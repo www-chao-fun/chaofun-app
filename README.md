@@ -17,6 +17,9 @@
 ## 如何贡献
 从master分支Fork以后，修改后直接提PR到master分支。
 
+## 前置需求
+安装 Flutter 2.5.0 + 
+
 ## 本地运行
 ```
 flutter run 
