@@ -33,8 +33,6 @@ allprojects {
         google()
         jcenter()
         maven {url 'https://developer.huawei.com/repo/'}
-
-
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
         // flatDir {
         //     dirs "${plugins.get("flutter_tencentplayer")}android/libs"
@@ -48,9 +46,10 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.aliyun.ams.emas-services'
 
 // 
-def keystorePropertiesFile = rootProject.file("key.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def releaseKeystorePropertiesFile = rootProject.file("key.properties")
+def releaseKeystoreProperties = new Properties()
+releaseKeystoreProperties.load(new FileInputStream(releaseKeystorePropertiesFile))
+
 
 android {
     compileSdkVersion 31
@@ -77,10 +76,14 @@ android {
     
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias releaseKeystoreProperties['keyAlias']
+            keyPassword releaseKeystoreProperties['keyPassword']
+            storeFile file(releaseKeystoreProperties['storeFile'])
+            storePassword releaseKeystoreProperties['storePassword']
+        }
+
+        debug {
+
         }
     }
 
@@ -104,7 +107,7 @@ android {
         }
 
         debug {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
 }

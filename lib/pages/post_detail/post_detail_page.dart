@@ -1532,10 +1532,18 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                     setState(() {
                                       isLoading = false;
                                     });
-                                    Fluttertoast.showToast(
-                                      msg: response['errorMessage'],
-                                      gravity: ToastGravity.CENTER,
-                                    );
+
+                                    if (response['errorMessage'] != null) {
+                                      Fluttertoast.showToast(
+                                        msg: response['errorMessage'],
+                                        gravity: ToastGravity.CENTER,
+                                      );
+                                    } else {
+                                      Fluttertoast.showToast(
+                                        msg: '获取帖子信息失败，帖子可能已经被移除',
+                                        gravity: ToastGravity.CENTER,
+                                      );
+                                    }
                                   }
                                 }
                               } else {
