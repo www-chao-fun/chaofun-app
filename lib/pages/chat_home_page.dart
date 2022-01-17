@@ -70,20 +70,20 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
 
   bool firstChannelConnect = false;
   Future getChatData() async {
-    _chatData  = await ChatListData().chatListData();
-    if (_chatData == null) {
-      _chatData = [];
-    }
-    if (mounted) setState(() {});
+    var result = await ChatListData().chatListData();
+    if (mounted) setState(() {
+      _chatData  = result;
+      if (_chatData == null) {
+        _chatData = [];
+      }
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    getChatData();
     reconnect();
     sendHeartBeat();
-    
     Notice.addListener("logout", (data) => close());
   }
 
@@ -94,6 +94,7 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
 
 
   Future<void> reconnect() async {
+    getChatData();
     print('Provider.of<UserStateProvide>(context, listen: false).ISLOGIN ' + Provider.of<UserStateProvide>(context, listen: false).ISLOGIN.toString());
     if (firstChannelConnect) {
       firstChannelConnect = false;
@@ -164,8 +165,10 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
 
   Future sendHeartBeat() async {
     while(true) {
-      await Future.delayed(Duration(milliseconds: 3000));
-      allChannel.sink.add("{\"scope\": \"heart_beat\"}");
+      try {
+        await Future.delayed(Duration(milliseconds: 3000));
+        allChannel.sink.add("{\"scope\": \"heart_beat\"}");
+      } catch (e) {}
     }
   }
 
