@@ -122,7 +122,10 @@ class _ChatPageState extends State<ChatPage> {
     return ExtendedTextField(
       specialTextSpanBuilder: TextSpanBuilder(showAtBackground: true),
       onTap: () => setState(() {
-        if (_focusNode.hasFocus) _emojiState = false;
+        // if (_focusNode.hasFocus) {
+            _emojiState = false;
+            _isMore = true;
+        // }
       }),
       onChanged: (v) => setState(() {}),
       decoration: InputDecoration(
