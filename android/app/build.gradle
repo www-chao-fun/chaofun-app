@@ -1,0 +1,158 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
+def plugins = new Properties()
+def pluginsFile = new File(flutterProjectRoot.toFile(), '.flutter-plugins')
+if (pluginsFile.exists()) {
+    pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {url 'https://developer.huawei.com/repo/'}
+
+
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        // flatDir {
+        //     dirs "${plugins.get("flutter_tencentplayer")}android/libs"
+        // }
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.aliyun.ams.emas-services'
+
+// 
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion 31
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.chao.app"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true
+        manifestPlaceholders = [qqappid: "101935770"]
+    }
+
+    
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            // signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+            
+
+            //关闭混淆
+            minifyEnabled false //删除无用代码
+            shrinkResources false //删除无用资源
+
+            //开启混淆
+            // minifyEnabled true
+            // useProguard true
+            // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+//flavorName [{
+//    applicationId = "com.chao.app"
+//}
+
+
+dependencies {
+    implementation 'com.huawei.hms:push:6.1.0.300'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.umeng.umsdk:common:9.3.7"
+    implementation "com.umeng.umsdk:asms:1.2.1" // asms包依赖(必选)
+    implementation "com.umeng.umsdk:crash:0.0.4" // native crash包依赖(必选)
+    implementation "com.umeng.umsdk:oaid_lenovo:1.0.0" // (可选)
+    implementation "com.umeng.umsdk:oaid_mi:1.0.0" // (可选)
+    implementation "com.umeng.umsdk:oaid_oppo:1.0.4" // (可选)
+    implementation "com.umeng.umsdk:oaid_vivo:1.0.0.1" // (可选)
+
+    implementation  "com.umeng.umsdk:share-core:7.1.4"
+    implementation  "com.umeng.umsdk:share-board:7.1.4"
+
+//    implementation  "com.umeng.umsdk:common:2.2.5"
+    implementation  'com.umeng.umsdk:share-qq:7.1.4'
+    implementation  'com.tencent.tauth:qqopensdk:3.51.2'       //qq官方sdk依赖库
+    implementation  'com.umeng.umsdk:share-wx:7.1.4'
+    implementation  'com.umeng.umsdk:share-dingding:7.1.4'
+    implementation  'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.5'//微信官方sdk依赖库
+
+
+    implementation  'com.umeng.umsdk:share-sina:7.1.4'
+    implementation  'io.github.sinaweibosdk:core:11.11.1@aar'//新浪微博官方SDK依赖库
+
+    implementation 'com.aliyun.ams:alicloud-android-third-push-xiaomi:3.7.3'
+    implementation 'com.aliyun.ams:alicloud-android-third-push-huawei:3.7.3'
+    implementation 'com.aliyun.ams:alicloud-android-third-push-oppo:3.7.3'
+    implementation 'com.aliyun.ams:alicloud-android-third-push-vivo:3.7.3'
+    implementation 'com.aliyun.ams:alicloud-android-third-push:3.7.3'
+    implementation 'com.aliyun.ams:alicloud-android-push:3.7.2'
+    implementation files("libs/libddshare.jar")
+
+
+//    implementation 'com.android.support:multidex:2.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
+
+}

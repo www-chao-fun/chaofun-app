@@ -1,0 +1,291 @@
+name: flutter_chaofan
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 2.37.13+213
+
+environment:
+  sdk: ">=2.10.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # webview_flutter:
+  #   path: ../
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  wakelock: ^0.5.2
+  cupertino_icons: ^1.0.2
+  dio: ^3.0.9
+  flutter_swiper: ^1.1.6
+  flutter_screenutil: ^4.0.3
+  flutter_svg: ^0.22.0-nullsafety.3
+  url_launcher: ^5.7.5
+  flutter_easyrefresh: ^2.1.8
+  provider: ^5.0.0-nullsafety
+  fluttertoast: ^8.0.8
+  fluro: ^1.7.8
+  flutter_html: ^2.0.0
+  shared_preferences: ^2.0.11
+  chewie: ^1.2.0
+  connectivity: ^3.0.6
+  photo_view: ^0.12.0
+  cached_network_image: ^2.3.3
+  flutter_cache_manager: ^2.0.0
+  image_picker: ^0.6.7+22
+  images_picker: ^1.2.10
+  flutter_webview_plugin: ^0.4.0
+  flutter_inappwebview: ^5.3.2
+  transparent_image: ^1.0.0
+  package_info: ^0.4.3+4
+  r_upgrade: ^0.3.7
+  image_gallery_saver: ^1.7.1
+  permission_handler: ^5.1.0+2
+  pull_to_refresh: ^2.0.0
+  loading_indicator_view: ^1.1.0
+  visibility_detector: ^0.2.0
+  video_player: ^2.2.11
+  sqflite: ^2.0.0+3
+  path_provider: ^2.0.2
+  device_info: ^2.0.0
+  launch_review: ^3.0.1
+  extended_text_field: ^8.0.0
+  extended_text: ^7.0.1
+  web_socket_channel: ^2.1.0
+
+  flutter_localizations:
+    sdk: flutter
+
+  # better_player: ^0.0.68
+  # wakelock: ^0.5.2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  connectivity_macos: ^0.2.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/girl.jpg
+    - assets/images/icon/back.png
+    - assets/images/icon/defalut_img_loading.jpg
+    - assets/images/_icon/zan.png
+    - assets/images/_icon/up_active.png
+    - assets/images/_icon/cai.png
+    - assets/images/_icon/down_active.png
+    - assets/images/_icon/comment.png
+    - assets/images/_icon/share.png
+    - assets/images/_icon/collect.png
+    - assets/images/_icon/collect2.png
+    - assets/images/_icon/right.png
+    - assets/images/_icon/circle_back.png
+    - assets/images/_icon/action.png
+    
+    - assets/images/_icon/success.png
+    - assets/images/_icon/record.png
+    - assets/images/_icon/search_icon.png
+    - assets/images/_icon/nocontent.png
+    - assets/images/_icon/videoError.png
+    - assets/images/_icon/choosed.png
+    - assets/images/_icon/hot.png
+
+    - assets/images/_icon/push_forum_icon.png
+    - assets/images/_icon/add_tag.png
+    - assets/images/_icon/new.png
+    - assets/images/_icon/tag.png
+    - assets/images/img/update.png
+    - assets/images/img/bg@3x.png
+
+    # - static/tencent1.mp4
+    - static/icon_back.png
+    - static/place_nodata.png
+    - static/player_lock.png
+    - static/player_pause.png
+    - static/player_play.png
+    - static/player_progress_img.png
+    - static/player_rotate.png
+    - static/player_unlock.png
+    - static/video_loading.png
+    - static/full_screen_on.png
+
+    # 底部图标
+    - assets/images/_icon/011.png
+    - assets/images/_icon/012.png
+    - assets/images/_icon/021.png
+    - assets/images/_icon/022.png
+    - assets/images/_icon/031.png
+    - assets/images/_icon/032.png
+    - assets/images/_icon/push.png
+    # - assets/images/icon/032.png
+    - assets/images/_icon/041.png
+    - assets/images/_icon/042.png
+    - assets/images/_icon/051.png
+    - assets/images/_icon/052.png
+
+    - assets/images/_icon/ttt.png
+    
+
+    - assets/images/_icon/quanzhan.png
+    - assets/images/_icon/tuijian.png
+    - assets/images/_icon/guanzhu.png
+
+    - assets/images/_icon/video_model.png
+
+    - assets/images/_icon/arrow_down.png
+    - assets/images/_icon/arrow_up.png
+
+    - assets/images/_icon/shipin.png
+    - assets/images/_icon/choosevideo.png
+
+
+    - assets/images/_icon/notice1.png
+    - assets/images/_icon/link.png
+    - assets/images/_icon/image.png
+    
+    - assets/images/_icon/video.png
+    - assets/images/_icon/article.png
+    - assets/images/_icon/toupiao.png
+    - assets/images/_icon/close.png
+    - assets/images/icon/close-btn.png
+    - assets/images/icon/more.png
+    - assets/images/img/bg.jpg
+
+    - assets/images/icon/fabu.png
+    - assets/images/icon/dianzan.png
+    - assets/images/icon/shoucang.png
+    - assets/images/icon/like_filled.png
+    - assets/images/icon/gz.png
+    - assets/images/icon/default.jpg
+    - assets/images/icon/set.png
+    
+    - assets/images/_icon/contact.png
+    
+
+    - assets/images/icon/logo.png
+
+    - assets/icon/love.png
+    - assets/icon/disabled.png
+    - assets/icon/addforum.png
+    - assets/icon/disableuser.png
+    - assets/icon/jubao.png
+    - assets/icon/copy.png
+    - assets/icon/delete.png
+    - assets/icon/network.png
+    
+
+
+    - assets/images/icon/hot.jpg
+
+    - assets/images/img/place.png
+    - assets/images/icon/play.png
+
+    - assets/images/icon/update.png
+    - assets/images/icon/about.png
+
+
+    - assets/images/_icon/1.jpg
+
+    - assets/images/_icon/collects.png
+    - assets/images/_icon/heji.png
+    - assets/images/_icon/addcol.png
+    - assets/images/_icon/wave.gif
+    - assets/images/_icon/eye.png
+    - assets/images/_icon/dele_comment.png
+    - assets/images/_icon/logo.png
+
+    - assets/images/_icon/mode_1.png
+    - assets/images/_icon/mode_2.png
+    - assets/images/_icon/mode_3.png
+
+    - assets/images/_icon/qz.png
+    - assets/images/_icon/qz_1.png
+    - assets/images/_icon/succ.png
+    - assets/images/_icon/reduce.png
+    - assets/images/_icon/add.png
+    - assets/images/_icon/guess.png
+    - assets/images/_icon/libiao.png
+    
+    - assets/images/_icon/my_star.png
+    - assets/images/_icon/my_heji.png
+    - assets/images/_icon/my_niming.png
+    - assets/images/_icon/exchange.png
+
+    - assets/images/_icon/n_comment.png
+    - assets/images/_icon/tzhi.png
+    - assets/images/_icon/closes.png
+    - assets/images/_icon/coll.png
+
+    - assets/images/_icon/t1.png
+    - assets/images/_icon/t2.png
+    - assets/images/_icon/t3.png
+    - assets/images/_icon/t4.png
+    - assets/images/_icon/t5.png
+    - assets/images/_icon/t6.png
+
+    - assets/images/_icon/s1.png
+    - assets/images/_icon/s2.png
+    - assets/images/_icon/s3.png
+    - assets/images/_icon/s4.png
+    - assets/images/_icon/s5.png
+    - assets/images/_icon/s6.png
+    - assets/images/_icon/Add@2x.png
+    - assets/images/_icon/s_close.png
+    - assets/images/_icon/add_2.png
+    - assets/images/_icon/nodata.png
+    - assets/images/chat/ic_voice.webp
+    - assets/images/chat/ic_Emotion.webp
+    - assets/images/chat/ic_chat_more.webp
+    - assets/images/chat/ic_details_photo.webp
+    - assets/images/chat/ic_details_camera.webp
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+    
