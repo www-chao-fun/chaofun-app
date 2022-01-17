@@ -234,6 +234,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
 
   @override
   void dispose() {
+    item = null;
     if (!toFull && _videoPlayerController != null) {
       _videoPlayerController.pause();
       _videoPlayerController.dispose();

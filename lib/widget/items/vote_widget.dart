@@ -400,4 +400,10 @@ class _VoteWidgetState extends State<VoteWidget> {
       ),
     );
   }
+
+
+  @override
+  void dispose() {
+    item = null;
+  }
 }
