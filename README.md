@@ -1,5 +1,5 @@
 # 前言
-欢迎各位大佬参与 [炒饭](https://chao.fun) Web开源项目，本项目由 Vue 实现，开源协议为 [CPAL 1.0](https://opensource.org/licenses/CPAL-1.0)
+欢迎各位大佬参与 [炒饭](https://chao.fun/app) App开源项目，本项目由 Flutter 实现，开源协议为 [CPAL 1.0](https://opensource.org/licenses/CPAL-1.0)
 
 # 关于炒饭
 [炒饭](https://chao.fun/app) 是一个鼓励优质内容的兴趣社区，Slogan是「世界那么大」，愿景是做中国最好的内容社区。
