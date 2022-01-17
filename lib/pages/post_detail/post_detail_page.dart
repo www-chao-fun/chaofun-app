@@ -187,13 +187,23 @@ class _PostDetailPageState extends State<PostDetailPage> {
   getPostInfo() async {
     var response =
         await HttpUtil().get(Api.getPostInfo, parameters: {'postId': postId});
-    getForumInfo(response['data']['forum']['id']);
-    setState(() {
-      postInfo = response['data'];
-      oks = _doItem(context, postInfo);
-    });
-    if (response['data']['collection'] != null) {
-      getCollectDatas(response['data']['collection']['id']);
+
+    if (response['data'] == null) {
+      Fluttertoast.showToast(
+        msg: '获取帖子信息失败或帖子已被删除',
+        gravity: ToastGravity.CENTER,
+      );
+      await Future.delayed(Duration(milliseconds: 1000));
+      Navigator.pop(context);
+    } else {
+      getForumInfo(response['data']['forum']['id']);
+      setState(() {
+        postInfo = response['data'];
+        oks = _doItem(context, postInfo);
+      });
+      if (response['data']['collection'] != null) {
+        getCollectDatas(response['data']['collection']['id']);
+      }
     }
   }
 
@@ -1533,17 +1543,11 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       isLoading = false;
                                     });
 
-                                    if (response['errorMessage'] != null) {
                                       Fluttertoast.showToast(
                                         msg: response['errorMessage'],
                                         gravity: ToastGravity.CENTER,
                                       );
-                                    } else {
-                                      Fluttertoast.showToast(
-                                        msg: '获取帖子信息失败，帖子可能已经被移除',
-                                        gravity: ToastGravity.CENTER,
-                                      );
-                                    }
+
                                   }
                                 }
                               } else {
