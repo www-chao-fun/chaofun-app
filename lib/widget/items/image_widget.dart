@@ -75,7 +75,7 @@ class ImageWidget extends StatelessWidget {
               imageUrl: imgurl +
                   '?x-oss-process=image/resize,w_' +
                   (item['width'] > 750
-                      ? '690'
+                      ? '800'
                       : item['width'].toStringAsFixed(0)),
               width: ScreenUtil().setWidth(690),
               // fit: BoxFit.fitHeight,
@@ -148,7 +148,7 @@ class ImageWidget extends StatelessWidget {
               imageUrl: asd[key] +
                   '?x-oss-process=image/resize,w_' +
                   (item['width'] > 400
-                      ? '400'
+                      ? '700'
                       : item['width'].toStringAsFixed(0)),
               width: ScreenUtil().setWidth(340),
               // fit: (item['width'] != null && item['height'] != null) &&
@@ -208,7 +208,7 @@ class ImageWidget extends StatelessWidget {
     var hight = 300;
     List asd = doImgList(item);
     if (asd.length <= 3) {
-      hight = 500;
+      hight = 350;
     } else if (asd.length <=6) {
       hight = 250;
     } else {
@@ -242,7 +242,7 @@ class ImageWidget extends StatelessWidget {
             // child: Image.network(src),
             child: CachedNetworkImage(
               filterQuality: FilterQuality.medium,
-              imageUrl: asd[key] + '?x-oss-process=image/resize,w_300',
+              imageUrl: asd[key] + '?x-oss-process=image/resize,w_500',
               width: ScreenUtil().setWidth(225),
               // fit: item['height'] < item['width']
               //     ? BoxFit.fitWidth
