@@ -402,7 +402,7 @@ class _SubmitPageState extends State<SubmitPage> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0x00FF0000)),
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    hintText: '请输入标题',
+                    hintText: '请输入标题' + ((postType == 'image' || postType == 'inner_video' ) ? '（可选）': ''),
                     hintStyle: TextStyle(color: Colors.grey),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0x00000000)),
@@ -753,9 +753,9 @@ class _SubmitPageState extends State<SubmitPage> {
         gravity: ToastGravity.CENTER,
       );
       return;
-    } else if (title == '') {
+    } else if (!(postType == 'image' || postType == 'inner_video' )  && title == '') {
       Fluttertoast.showToast(
-        msg: '请输入标题',
+        msg: '该类型帖子需要输入标题',
         gravity: ToastGravity.CENTER,
       );
       return;
