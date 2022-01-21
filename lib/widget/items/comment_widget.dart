@@ -506,7 +506,7 @@ class _CommentWidgetState extends State<CommentWidget> {
 
   _doRichText(txtContent) {
     var httpReg =
-        new RegExp(r'(https|http|ftp|rtsp|mms)://[^(\s|(\u4E00-\u9FFF)))]*');
+        new RegExp(r'(https|http|ftp|rtsp|mms)://[^(\,|\s|(\u4E00-\u9FFF)))]*');
     var link = httpReg.allMatches(txtContent);
     List listUrl = [];
     for (Match m in link) {
