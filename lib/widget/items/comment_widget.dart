@@ -638,11 +638,6 @@ class _CommentWidgetState extends State<CommentWidget> {
       } else if (a[0] == "route" && a[2] != null && a[2] == 'message') {
         nativePush = true;
         Provider.of<CurrentIndexProvide>(context, listen: false).setIndex(3);
-      } else {
-        nativePush = true;
-        Provider.of<CurrentIndexProvide>(context, listen: false).setIndex(0);
-        // Navigator.popUntil(context, ModalRoute.withName('/'));
-        Navigator.of(context).popUntil((route) => route.settings.name == ('/'));
       }
     }
 
