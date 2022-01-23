@@ -359,11 +359,11 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                 child: Container(
                   width: 60,
                   height: 30,
-                  color: Color.fromRGBO(0, 0, 0, 0.5),
+                  color: Color.fromRGBO(0, 0, 0, 1.0),
                   alignment: Alignment.center,
                   child: Icon(
                     Icons.download_outlined,
-                    color: Colors.white,
+                    color: Color.fromRGBO(255, 255, 255, 0.4),
                   ),
                   // child: Text(
                   //   '保存图片',
@@ -396,7 +396,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  color: Colors.white,
+                  color:  Color.fromRGBO(255, 255, 255, 0.4),
                   child: Icon(
                     Icons.close,
                     size: 30,
