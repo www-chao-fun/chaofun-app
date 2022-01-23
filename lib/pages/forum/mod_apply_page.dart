@@ -64,7 +64,7 @@ class _ModApplyPageState extends State<ModApplyPage> {
                       gravity: ToastGravity.CENTER,
                     );
                     Future.delayed(Duration(milliseconds: 1500)).then((e) {
-                      Navigator.pop(context, res['data']['id'].toString());
+                      Navigator.pop(context);
                     });
                   } else {
 
