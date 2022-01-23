@@ -48,7 +48,8 @@ class _MemberPageState extends State<MemberPage> {
 
 
   List<Map> listData = [
-    {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
+    {"label": "浏览历史", "value": "11", "icon": "assets/images/icon/fabu.png"},
+    {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
     // {"label": "我的发布", "value": "1", "icon": "assets/images/icon/fabu.png"},
     // {"label": "我点赞的", "value": "2", "icon": "assets/images/icon/dianzan.png"},
     // {"label": "我的收藏", "value": "3", "icon": "assets/images/icon/shoucang.png"},
@@ -57,6 +58,7 @@ class _MemberPageState extends State<MemberPage> {
   ];
 // 颜色 #FB8A96
   List<Map> listData2 = [
+    {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
     {"label": "检查更新", "value": "6", "icon": "assets/images/icon/update.png"},
     {"label": "联系我们", "value": "7", "icon": "assets/images/icon/about.png"},
     {"label": "鸣谢", "value": "8", "icon": "assets/images/icon/like_filled.png"},
@@ -1264,26 +1266,50 @@ class _MemberPageState extends State<MemberPage> {
   Widget _outLogin(context) {
     return InkWell(
       onTap: () async {
-        Notice.send("logout", "");
-        Provider.of<UserStateProvide>(context, listen: false)
-            .changeState(false);
-        // Provider.of<UserStateProvide>(context, listen: false).getLooksList();
-        await db.clear('table_user');
-        await db.clear('All_page');
-        await db.clear('table_addjoin');
-        setState(() {
-          ISLOGIN = false;
-        });
-        final unbindInfo = await _methodChannel
-            .invokeMapMethod<String, dynamic>('getDeviceInfo');
-        var _ = HttpUtil().get(Api.unbindDevice, parameters: unbindInfo);
-        Provider.of<UserStateProvide>(context, listen: false)
-            .removeSharedPreferences('cookie');
-        Navigator.pushAndRemoveUntil(
-          context,
-          new MaterialPageRoute(builder: (context) => IndexPage()),
-          (route) => route == null,
-        );
+
+        showCupertinoDialog(
+          //showCupertinoDialog
+            context: context,
+            builder: (context) {
+              return CupertinoAlertDialog(
+                title: Text('提示'),
+                content: Text('你确定退出登陆吗？'),
+                actions: <Widget>[
+                  CupertinoDialogAction(
+                    child: Text('取消'),
+                    onPressed: () {
+                      Navigator.of(context).pop('cancel');
+                    },
+                  ),
+                  CupertinoDialogAction(
+                    child: Text('确定'),
+                    onPressed: () async {
+                      Notice.send("logout", "");
+                      Provider.of<UserStateProvide>(context, listen: false)
+                          .changeState(false);
+                      // Provider.of<UserStateProvide>(context, listen: false).getLooksList();
+                      await db.clear('table_user');
+                      await db.clear('All_page');
+                      await db.clear('table_addjoin');
+                      setState(() {
+                        ISLOGIN = false;
+                      });
+                      final unbindInfo = await _methodChannel
+                          .invokeMapMethod<String, dynamic>('getDeviceInfo');
+                      var _ = HttpUtil().get(Api.unbindDevice, parameters: unbindInfo);
+                      Provider.of<UserStateProvide>(context, listen: false)
+                          .removeSharedPreferences('cookie');
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        new MaterialPageRoute(builder: (context) => IndexPage()),
+                            (route) => route == null,
+                      );
+                    },
+                  ),
+                ],
+              );
+            });
+
       },
       child: Container(
         color: Colors.white,

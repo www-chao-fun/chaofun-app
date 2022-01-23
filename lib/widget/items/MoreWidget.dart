@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -178,25 +179,50 @@ class MoreWidget{
             );
             Navigator.of(context).pop();
           } else if (pushItem['value'] == '1') {
-            var response = await HttpUtil.instance
-                .get(Api.deletePost, parameters: {'postId': item['postId']});
+            showCupertinoDialog(
+              //showCupertinoDialog
+                context: context,
+                builder: (context) {
+                  return CupertinoAlertDialog(
+                    title: Text('提示'),
+                    content: Text('确定删除帖子吗？'),
+                    actions: <Widget>[
+                      CupertinoDialogAction(
+                        child: Text('取消'),
+                        onPressed: () {
+                          Navigator.of(context).pop('cancel');
+                        },
+                      ),
+                      CupertinoDialogAction(
+                        child: Text('确定'),
+                        onPressed: () async {
+                          var response = await HttpUtil.instance
+                              .get(Api.deletePost, parameters: {'postId': item['postId']});
 
-            if (response['success']) {
-              Fluttertoast.showToast(
-                msg: "删除帖子成功",
-                gravity: ToastGravity.CENTER,
-                // textColor: Colors.grey,
-              );
-              Provider.of<UserStateProvide>(context, listen: false)
-                  .addDisabledList(item['postId']);
-            } else {
-              Fluttertoast.showToast(
-                msg: response['errorMessage'],
-                gravity: ToastGravity.CENTER,
-                // textColor: Colors.grey,
-              );
-            }
-            Navigator.of(context).pop();
+                          if (response['success']) {
+                            Fluttertoast.showToast(
+                              msg: "删除帖子成功",
+                              gravity: ToastGravity.CENTER,
+                              // textColor: Colors.grey,
+                            );
+                            Provider.of<UserStateProvide>(context, listen: false)
+                                .addDisabledList(item['postId']);
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: response['errorMessage'],
+                              gravity: ToastGravity.CENTER,
+                              // textColor: Colors.grey,
+                            );
+                          }
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                          // });
+                        },
+                      ),
+                    ],
+                  );
+                });
+
           } else if (pushItem['value'] == '6') {
             // Navigator.of(context).pop();
 
