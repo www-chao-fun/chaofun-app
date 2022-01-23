@@ -352,6 +352,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                               setState(() {
                                                 comParams['order'] = 'new';
                                               });
+                                            } else if (comParams['order'] == 'new') {
+                                              setState(() {
+                                                comParams['order'] = 'old';
+                                              });
                                             } else {
                                               setState(() {
                                                 comParams['order'] = 'hot';
@@ -382,10 +386,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                                     ),
                                                   ),
                                                   TextSpan(
-                                                    text: comParams['order'] ==
-                                                            'hot'
-                                                        ? ' 最热'
-                                                        : ' 最新',
+                                                    text: getOrder(comParams['order']),
+
                                                     style: TextStyle(
                                                       color: Color.fromRGBO(
                                                           33, 29, 47, 0.7),
@@ -616,6 +618,16 @@ class _PostDetailPageState extends State<PostDetailPage> {
             size: 20,
           ),
         );
+    }
+  }
+
+  getOrder(text) {
+    if (comParams['order'] == 'old') {
+      return '时间';
+    } else if (comParams['order'] == 'new') {
+      return '最新';
+    } else {
+      return '最热';
     }
   }
 
@@ -1396,7 +1408,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   padding: EdgeInsets.only(left: 20),
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '说说你的想法...',
+                    '评论千万条，文明第一条',
                     style: TextStyle(color: KColor.defaultGrayColor),
                   ),
                 ),
@@ -1587,7 +1599,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       BorderSide(color: Color(0x00FF0000)),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(50))),
-                              hintText: '说说你的想法...',
+                              hintText: '评论千万条，文明第一条',
                               focusedBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Color(0x00000000)),
