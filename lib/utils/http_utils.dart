@@ -2,6 +2,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:flutter_chaofan/utils/shared_preferences_util.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:package_info/package_info.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -122,7 +123,7 @@ class HttpUtil {
   }
 
   Future get(String url,
-      {Map<String, dynamic> parameters, Options options}) async {
+      {Map<String, dynamic> parameters, Options options, bool alterFailed = false}) async {
     Response response;
     if (parameters != null && options != null) {
       response =
@@ -133,6 +134,14 @@ class HttpUtil {
       response = await dio.get(url, options: options);
     } else {
       response = await dio.get(url);
+    }
+    if (alterFailed == true) {
+      if (!response.data['success']) {
+        Fluttertoast.showToast(
+          msg: response.data['errorMessage'],
+          gravity: ToastGravity.CENTER,
+        );
+      }
     }
     try {
       return response.data;

@@ -267,7 +267,6 @@ class _UserMemberPageState extends State<UserMemberPage>
                   ),
                 );
               default:
-                print('77777');
                 print(asyncSnapshot.connectionState);
                 print(asyncSnapshot.hasError);
                 if (asyncSnapshot.hasError) {
@@ -1306,7 +1305,7 @@ class _UserMemberPageState extends State<UserMemberPage>
         ),
         onPressed: () async {
           if (Provider.of<UserStateProvide>(context, listen: false).ISLOGIN) {
-            var response = await HttpUtil.instance.get(Api.startChat, parameters: {"targetUserId": memberInfo['userId']});
+            var response = await HttpUtil.instance.get(Api.startChat, parameters: {"targetUserId": memberInfo['userId']},alterFailed: true);
             if (response['success']) {
               routePush(context, new ChatPage(
                   id:  response['data']['id'],
@@ -1353,24 +1352,33 @@ class _UserMemberPageState extends State<UserMemberPage>
         // ),
         onPressed: () async {
           if (Provider.of<UserStateProvide>(context, listen: false).ISLOGIN) {
-            // FocusScope.of(context).requestFocus(_commentFocus);
-            Fluttertoast.showToast(
-              msg: memberInfo['focused'] ? '已取消关注' : '已关注',
-              gravity: ToastGravity.CENTER,
-              // textColor: Colors.grey,
-            );
-            if (memberInfo['focused']) {
-              setState(() {
-                memberInfo['focused'] = false;
-              });
-              var response = await HttpUtil().get(Api.toUnFocusUser,
-                  parameters: {'focusId': memberInfo['userId']});
+            var response = await HttpUtil().get(Api.toFocusUser,
+                parameters: {'focusId': memberInfo['userId']});
+
+            if (response['success']) {
+              // FocusScope.of(context).requestFocus(_commentFocus);
+              Fluttertoast.showToast(
+                msg: memberInfo['focused'] ? '已取消关注' : '已关注',
+                gravity: ToastGravity.CENTER,
+                // textColor: Colors.grey,
+              );
+              if (memberInfo['focused']) {
+                setState(() {
+                  memberInfo['focused'] = false;
+                });
+                var response = await HttpUtil().get(Api.toUnFocusUser,
+                    parameters: {'focusId': memberInfo['userId']});
+              } else {
+                setState(() {
+                  memberInfo['focused'] = true;
+                });
+
+              }
             } else {
-              setState(() {
-                memberInfo['focused'] = true;
-              });
-              var response = await HttpUtil().get(Api.toFocusUser,
-                  parameters: {'focusId': memberInfo['userId']});
+              Fluttertoast.showToast(
+                msg: response['errorMessage'],
+                gravity: ToastGravity.CENTER,
+              );
             }
           } else {
             Navigator.pushNamed(
