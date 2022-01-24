@@ -48,8 +48,9 @@ class _MemberPageState extends State<MemberPage> {
 
 
   List<Map> listData = [
-    {"label": "浏览历史", "value": "11", "icon": "assets/images/icon/fabu.png"},
-    {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
+    {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
+    // {"label": "浏览历史", "value": "11", "icon": "assets/images/icon/fabu.png"},
+    // {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
     // {"label": "我的发布", "value": "1", "icon": "assets/images/icon/fabu.png"},
     // {"label": "我点赞的", "value": "2", "icon": "assets/images/icon/dianzan.png"},
     // {"label": "我的收藏", "value": "3", "icon": "assets/images/icon/shoucang.png"},
@@ -58,7 +59,6 @@ class _MemberPageState extends State<MemberPage> {
   ];
 // 颜色 #FB8A96
   List<Map> listData2 = [
-    {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
     {"label": "检查更新", "value": "6", "icon": "assets/images/icon/update.png"},
     {"label": "联系我们", "value": "7", "icon": "assets/images/icon/about.png"},
     {"label": "鸣谢", "value": "8", "icon": "assets/images/icon/like_filled.png"},
