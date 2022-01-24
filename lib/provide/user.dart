@@ -341,7 +341,7 @@ class UserStateProvide with ChangeNotifier {
   }
 
   void getLooksList() async {
-    print('执行120');
+    // print('执行120');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString('looksList') != null) {
       var a = prefs.getString('looksList');

@@ -64,7 +64,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
   //     ),
   //   );
   // }
-  var item;
+  var item = null;
 
   bool showBottomWidget = true;
   bool showClearBtn = false;
@@ -98,7 +98,6 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
     if (widget.detail == true || !(widget.video)) {
       _inits();
     }
-
   }
 
   _inits() async {

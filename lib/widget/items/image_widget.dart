@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_chaofan/config/color.dart';
+import 'package:flutter_chaofan/utils/ImageUtils.dart';
 import 'package:flutter_chaofan/widget/image/image_scrollshow_wiget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -72,11 +73,7 @@ class ImageWidget extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(4)),
           child: CachedNetworkImage(
               filterQuality: FilterQuality.high,
-              imageUrl: imgurl +
-                  '?x-oss-process=image/resize,w_' +
-                  (item['width'] > 750
-                      ? '800'
-                      : item['width'].toStringAsFixed(0)),
+              imageUrl:  ImageUtils.ossUrl(imgurl, item['width'], item['height'] ,ScreenUtil().setWidth(690), ScreenUtil().setWidth(hight)),
               width: ScreenUtil().setWidth(690),
               // fit: BoxFit.fitHeight,
               fit: BoxFit.fitHeight,
@@ -98,11 +95,7 @@ class ImageWidget extends StatelessWidget {
               //     ScreenUtil().setWidth(hight),
               errorWidget: (context, url, error) => FadeInImage.assetNetwork(
                     placeholder: "assets/images/img/place.png",
-                    image: imgurl +
-                        '?x-oss-process=image/resize,w_' +
-                        (item['width'] > 750
-                            ? '690'
-                            : item['width'].toStringAsFixed(0)),
+                    image:  ImageUtils.ossUrl(imgurl, item['width'], item['height'] ,ScreenUtil().setWidth(690), ScreenUtil().setWidth(hight)),
                   )),
         ),
       ),
@@ -145,11 +138,7 @@ class ImageWidget extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(4)),
             child: CachedNetworkImage(
               filterQuality: FilterQuality.medium,
-              imageUrl: asd[key] +
-                  '?x-oss-process=image/resize,w_' +
-                  (item['width'] > 400
-                      ? '700'
-                      : item['width'].toStringAsFixed(0)),
+              imageUrl: ImageUtils.ossUrl(asd[key], null, null ,ScreenUtil().setWidth(340), ScreenUtil().setWidth(hight)),
               width: ScreenUtil().setWidth(340),
               // fit: (item['width'] != null && item['height'] != null) &&
               //         item['height'] < item['width']
@@ -175,11 +164,7 @@ class ImageWidget extends StatelessWidget {
               height: ScreenUtil().setWidth(hight),
               errorWidget: (context, url, error) => FadeInImage.assetNetwork(
                 placeholder: "assets/images/img/place.png",
-                image: imgurl +
-                    '?x-oss-process=image/resize,w_' +
-                    (item['width'] > 400
-                        ? '400'
-                        : item['width'].toStringAsFixed(0)),
+                image: ImageUtils.ossUrl(asd[key], null, null ,ScreenUtil().setWidth(340), ScreenUtil().setWidth(hight)),
               ),
             ),
           ),
@@ -231,8 +216,6 @@ class ImageWidget extends StatelessWidget {
                 page: JhPhotoAllScreenShow(
                   imgDataArr: doImgList(item), //[imgurl],
                   index: key,
-                  heroTag:
-                      'https://i.chao.fun/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
                 ),
               ),
             );
@@ -242,7 +225,7 @@ class ImageWidget extends StatelessWidget {
             // child: Image.network(src),
             child: CachedNetworkImage(
               filterQuality: FilterQuality.medium,
-              imageUrl: asd[key] + '?x-oss-process=image/resize,w_500',
+              imageUrl: ImageUtils.ossUrl(asd[key], null, null ,ScreenUtil().setWidth(225), ScreenUtil().setWidth(hight)),
               width: ScreenUtil().setWidth(225),
               // fit: item['height'] < item['width']
               //     ? BoxFit.fitWidth
@@ -263,7 +246,7 @@ class ImageWidget extends StatelessWidget {
               height: ScreenUtil().setWidth(hight),
               errorWidget: (context, url, error) => FadeInImage.assetNetwork(
                   placeholder: "assets/images/img/place.png",
-                  image: imgurl + '?x-oss-process=image/resize,w_300'),
+                  image: ImageUtils.ossUrl(asd[key], null, null ,ScreenUtil().setWidth(225), ScreenUtil().setWidth(hight)),),
             ),
           ),
         ),
