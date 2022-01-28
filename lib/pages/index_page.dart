@@ -133,9 +133,7 @@ class _IndexPageState extends State<IndexPage> {
       brand = deviceInfo['brand'];
     });
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (deviceInfo['brand'] == 'vivo' ||
-        deviceInfo['brand'] == 'xiaomi' ||
-        deviceInfo['brand'] == 'miui') {
+    if (Platform.isAndroid) {
       setState(() {
         showAgree = (prefs.getString('showAgree') != null ? true : false);
       });
