@@ -64,7 +64,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
   //     ),
   //   );
   // }
-  var item;
+  var item = null;
 
   bool showBottomWidget = true;
   bool showClearBtn = false;
@@ -98,14 +98,17 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
     if (widget.detail == true || !(widget.video)) {
       _inits();
     }
-
   }
 
   _inits() async {
     if (widget.video) {
       if (widget.isAssets) {
         _videoPlayerController =
-            VideoPlayerController.file(File(widget.item['video']))
+            VideoPlayerController.file(File(widget.item['video']),
+              videoPlayerOptions: VideoPlayerOptions(
+                mixWithOthers: false,
+              ),
+            )
               ..initialize().then((value) {
                 // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
                 print('视频加载value');
@@ -146,7 +149,12 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
       } else {
         dataSource = KSet.imgOrigin + widget.item['video'];
         _videoPlayerController =
-            VideoPlayerController.network(KSet.imgOrigin + widget.item['video'])
+              VideoPlayerController.network(
+                KSet.imgOrigin + widget.item['video'],
+                videoPlayerOptions: VideoPlayerOptions(
+                  mixWithOthers: false,
+                ),
+              )
               ..initialize().then((value) {
                 // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
                 print('视频加载value');
@@ -188,7 +196,11 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
     } else {
       dataSource = KSet.imgOrigin + widget.item['imageName'];
       _videoPlayerController = VideoPlayerController.network(
-          KSet.imgOrigin + widget.item['imageName'])
+          KSet.imgOrigin + widget.item['imageName'],
+        videoPlayerOptions: VideoPlayerOptions(
+          mixWithOthers: false,
+        ),
+      )
         ..initialize().then((_) {
           setState(() {
             initialized = true;

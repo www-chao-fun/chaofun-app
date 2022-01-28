@@ -422,7 +422,7 @@ class _SubmitPageState extends State<SubmitPage> {
                     // 这里进行事件处理
                   },
                   onTap:() {
-//                    FocusScope.of(context).requestFocus(FocusNode());
+                   // FocusScope.of(context).requestFocus(FocusNode());
                   },
                 ),
                 Expanded(
@@ -1161,239 +1161,250 @@ class _SubmitPageState extends State<SubmitPage> {
   }
 
   _imageWidget() {
-    return Container(
-      // color: Color.fromRGBO(95, 60, 94, 1),
-      padding: EdgeInsets.only(top: 4, left: 0, right: 0),
-      height: ScreenUtil().setWidth((716)),
-      constraints: BoxConstraints(
-          // minHeight: ScreenUtil().setWidth(140),
+    return InkWell(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Container(
+          // color: Color.fromRGBO(95, 60, 94, 1),
+          padding: EdgeInsets.only(top: 4, left: 0, right: 0),
+          // height: ScreenUtil().setWidth((716)),
+          constraints: BoxConstraints(
+            minHeight: ScreenUtil().setWidth(140),
           ),
-      child: GridView.builder(
-        padding: EdgeInsets.only(left: 10, right: 10),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: ScreenUtil().setWidth(12),
-          crossAxisSpacing: ScreenUtil().setWidth(12),
-          // childAspectRatio: 1.5,
-        ),
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: imageList.length < 9 ? imageList.length + 1 : 9,
-        itemBuilder: (context, index) {
-          if (index == imageList.length && imageList.length != 9) {
-            return InkWell(
-              onTap: () {
-                // _pickImage();
-              },
-              child: Container(
-                width: ScreenUtil().setWidth(228),
-                height: ScreenUtil().setWidth(228),
-                decoration: BoxDecoration(
-                  // border: Border.all(
-                  //   width: 1,
-                  //   color: Color.fromRGBO(224, 224, 224, 0.7),
-                  // ),
-                  image: DecorationImage(
-                    // image: AssetImage("assets/背景/bg1.jpg"),
-                    image: AssetImage(
-                      'assets/images/_icon/add_2.png',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        getImage(true);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: ScreenUtil().setWidth(114),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          // color: KColor.primaryColor,
-//                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(
-                              color: Color.fromRGBO(153, 153, 153, 0.3),
-                              width: 0.5),
+          child: GridView.builder(
+            padding: EdgeInsets.only(left: 10, right: 10),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: ScreenUtil().setWidth(12),
+              crossAxisSpacing: ScreenUtil().setWidth(12),
+              // childAspectRatio: 1.5,
+            ),
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: imageList.length < 9 ? imageList.length + 1 : 9,
+            itemBuilder: (context, index) {
+              if (index == imageList.length && imageList.length != 9) {
+                return InkWell(
+                  onTap: () {
+                    // _pickImage();
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
+                  child: Container(
+                    width: ScreenUtil().setWidth(228),
+                    height: ScreenUtil().setWidth(228),
+                    decoration: BoxDecoration(
+                      // border: Border.all(
+                      //   width: 1,
+                      //   color: Color.fromRGBO(224, 224, 224, 0.7),
+                      // ),
+                      image: DecorationImage(
+                        // image: AssetImage("assets/背景/bg1.jpg"),
+                        image: AssetImage(
+                          'assets/images/_icon/add_2.png',
                         ),
-                        child: Text(
-                          '拍照',
-                          style: TextStyle(
-                            fontSize: ScreenUtil().setSp(34),
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ),
-//                    SizedBox(
-//                      height: 14,
-//                    ),
-                    InkWell(
-                      onTap: () {
-                        getImage(false);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: ScreenUtil().setWidth(114),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          // color: KColor.primaryColor,
-//                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(
-                              color: Color.fromRGBO(153, 153, 153, 0.3),
-                              width: 0.5),
-                        ),
-                        child: Text(
-                          '相册',
-                          style: TextStyle(
-                            fontSize: ScreenUtil().setSp(34),
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          } else {
-            return Container(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        // color: Color.fromRGBO(211, 210, 214, 1),
-                        border: Border.all(
-                          width: 0.5,
-                          color: Color.fromRGBO(211, 210, 214, 1),
-                        ),
-                        // borderRadius: BorderRadius.all(Radius.circular(4)),
-                      ),
-                      child: Image.file(
-                        File(imageList[index].path),
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ),
-                  Positioned(
-                    right: 0,
-                    top: 0,
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          isLoading = false;
-                          imageList.removeAt(index);
-                          imagesUrl.removeAt(index);
-                        });
-                      },
-                      child: Image.asset(
-                        'assets/images/_icon/s_close.png',
-                        width: ScreenUtil().setWidth(34),
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            getImage(true);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: ScreenUtil().setWidth(114),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              // color: KColor.primaryColor,
+//                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(
+                                  color: Color.fromRGBO(153, 153, 153, 0.3),
+                                  width: 0.5),
+                            ),
+                            child: Text(
+                              '拍照',
+                              style: TextStyle(
+                                fontSize: ScreenUtil().setSp(34),
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+//                    SizedBox(
+//                      height: 14,
+//                    ),
+                        InkWell(
+                          onTap: () {
+                            getImage(false);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: ScreenUtil().setWidth(114),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              // color: KColor.primaryColor,
+//                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(
+                                  color: Color.fromRGBO(153, 153, 153, 0.3),
+                                  width: 0.5),
+                            ),
+                            child: Text(
+                              '相册',
+                              style: TextStyle(
+                                fontSize: ScreenUtil().setSp(34),
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            );
-          }
-        },
-      ),
+                );
+              } else {
+                return Container(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            // color: Color.fromRGBO(211, 210, 214, 1),
+                            border: Border.all(
+                              width: 0.5,
+                              color: Color.fromRGBO(211, 210, 214, 1),
+                            ),
+                            // borderRadius: BorderRadius.all(Radius.circular(4)),
+                          ),
+                          child: Image.file(
+                            File(imageList[index].path),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isLoading = false;
+                              imageList.removeAt(index);
+                              imagesUrl.removeAt(index);
+                            });
+                          },
+                          child: Image.asset(
+                            'assets/images/_icon/s_close.png',
+                            width: ScreenUtil().setWidth(34),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+            },
+          ),
+        )
     );
   }
 
   _videoWidget() {
     if (assetsVideo == null) {
-      return Container(
-        // color: Color.fromRGBO(95, 60, 94, 1),
-        padding: EdgeInsets.only(top: 4, left: 10, right: 10),
-        // width: ScreenUtil().setWidth(250),
-        // height: ScreenUtil().setWidth(250),
-        alignment: Alignment.topLeft,
-        child: InkWell(
-          onTap: () {
-            // _pickImage();
-          },
-          child: Container(
-            width: ScreenUtil().setWidth(228),
-            height: ScreenUtil().setWidth(228),
-            decoration: BoxDecoration(
-              // border: Border.all(
-              //   width: 1,
-              //   color: Color.fromRGBO(224, 224, 224, 0.7),
-              // ),
-              image: DecorationImage(
-                // image: AssetImage("assets/背景/bg1.jpg"),
-                image: AssetImage(
-                  'assets/images/_icon/add_2.png',
+      return InkWell(
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Container(
+              // color: Color.fromRGBO(95, 60, 94, 1),
+              padding: EdgeInsets.only(top: 4, left: 10, right: 10),
+              // width: ScreenUtil().setWidth(250),
+              // height: ScreenUtil().setWidth(250),
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                },
+                child: Container(
+                  width: ScreenUtil().setWidth(228),
+                  height: ScreenUtil().setWidth(228),
+                  decoration: BoxDecoration(
+                    // border: Border.all(
+                    //   width: 1,
+                    //   color: Color.fromRGBO(224, 224, 224, 0.7),
+                    // ),
+                    image: DecorationImage(
+                      // image: AssetImage("assets/背景/bg1.jpg"),
+                      image: AssetImage(
+                        'assets/images/_icon/add_2.png',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // child: Image.asset(
+                  //   'assets/images/_icon/Add@2x.png',
+                  //   fit: BoxFit.cover,
+                  // ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          getVideo(true);
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: ScreenUtil().setWidth(114),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            // color: KColor.primaryColor,
+//                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                                color: Color.fromRGBO(153, 153, 153, 0.3),
+                                width: 0.5),
+                          ),
+                          child: Text(
+                            '拍摄',
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(34),
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          getVideo(false);
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: ScreenUtil().setWidth(114),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            // color: KColor.primaryColor,
+//                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                                color: Color.fromRGBO(153, 153, 153, 0.3),
+                                width: 0.5),
+                          ),
+                          child: Text(
+                            '相册',
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(34),
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                fit: BoxFit.cover,
               ),
-            ),
-            // child: Image.asset(
-            //   'assets/images/_icon/Add@2x.png',
-            //   fit: BoxFit.cover,
-            // ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {
-                    getVideo(true);
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: ScreenUtil().setWidth(114),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: KColor.primaryColor,
-//                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(
-                          color: Color.fromRGBO(153, 153, 153, 0.3),
-                          width: 0.5),
-                    ),
-                    child: Text(
-                      '拍摄',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(34),
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    getVideo(false);
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: ScreenUtil().setWidth(114),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: KColor.primaryColor,
-//                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(
-                          color: Color.fromRGBO(153, 153, 153, 0.3),
-                          width: 0.5),
-                    ),
-                    child: Text(
-                      '相册',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(34),
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
+            )
+        );
     } else {
       return Container(
         alignment: Alignment.topLeft,

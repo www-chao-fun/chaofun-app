@@ -48,8 +48,9 @@ class _MemberPageState extends State<MemberPage> {
 
 
   List<Map> listData = [
-    {"label": "浏览历史", "value": "11", "icon": "assets/images/icon/fabu.png"},
-    {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
+    {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
+    // {"label": "浏览历史", "value": "11", "icon": "assets/images/icon/fabu.png"},
+    // {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
     // {"label": "我的发布", "value": "1", "icon": "assets/images/icon/fabu.png"},
     // {"label": "我点赞的", "value": "2", "icon": "assets/images/icon/dianzan.png"},
     // {"label": "我的收藏", "value": "3", "icon": "assets/images/icon/shoucang.png"},
@@ -58,13 +59,18 @@ class _MemberPageState extends State<MemberPage> {
   ];
 // 颜色 #FB8A96
   List<Map> listData2 = [
-    {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
     {"label": "检查更新", "value": "6", "icon": "assets/images/icon/update.png"},
     {"label": "联系我们", "value": "7", "icon": "assets/images/icon/about.png"},
     {"label": "鸣谢", "value": "8", "icon": "assets/images/icon/like_filled.png"},
     {"label": "设置", "value": "9", "icon": "assets/images/icon/set.png"},
     {"label": "清除缓存", "value": "10", "icon": "assets/images/icon/set.png"},
     // {"label": "关于我们", "value": "7", "icon": "assets/images/icon/about.png"},
+  ];
+
+  // 颜色 #FB8A96
+  List<Map> listData3 = [
+    {"label": "用户服务协议", "value": "13", "icon": "assets/images/icon/update.png"},
+    {"label": "隐私政策", "value": "14", "icon": "assets/images/icon/about.png"},
   ];
   var ISLOGIN = false;
   List<Map> listForum = [{}, {}, {}, {}, {}, {}];
@@ -176,7 +182,8 @@ class _MemberPageState extends State<MemberPage> {
               ISLOGIN && (userInfo != null)
                   ? _iconsList(context)
                   : Container(height: 0),
-              _iconsList2(context),
+              _iconsList2(context, listData2),
+              _iconsList2(context, listData3),
               // actWidget(),
               // ISLOGIN && (userInfo != null)
               //     ? _clearStorage(context)
@@ -875,12 +882,12 @@ class _MemberPageState extends State<MemberPage> {
     );
   }
 
-  Widget _iconsList2(context) {
+  Widget _iconsList2(context, List<Map> tListData) {
     return Container(
       margin: EdgeInsets.only(top: 4),
       // padding: EdgeInsets.all(ScreenUtil().setWidth(20)),
       child: Column(
-        children: listData2.map((item) {
+        children: tListData.map((item) {
           return Container(
             child: Column(
               children: <Widget>[
@@ -948,6 +955,31 @@ class _MemberPageState extends State<MemberPage> {
                         }
                       } else if (item['value'] == '10') {
                         clearStorages();
+                      } else if (item['value'] == '13') {
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChaoFunWebView(
+                              url: 'https://chao.fun/webview/useragree', //'https://chao.fun/webview/agreement',
+                              title: '用户服务协议',
+                              showAction: false,
+                            ),
+                          ),
+                        );
+
+                      } else if (item['value'] == '14') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChaoFunWebView(
+                              // url: 'https://chao.fun/p/417588',
+                              url: 'https://chao.fun/webview/agreement', //'https://chao.fun/webview/agreement',
+                              title: '隐私政策',
+                              showAction: false,
+                            ),
+                          ),
+                        );
                       }
                     },
                     child: Row(
@@ -999,46 +1031,6 @@ class _MemberPageState extends State<MemberPage> {
             ),
           );
         }).toList(),
-      ),
-    );
-  }
-
-  //也可以把图标同样作为参数
-  Widget _myListTile(String title) {
-    return Container(
-      padding: EdgeInsets.all(14),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(bottom: BorderSide(width: 1, color: Colors.black12))),
-      child: InkWell(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(right: 10.0),
-                  child: Icon(
-                    Icons.album,
-                    size: 28,
-                    color: Colors.grey,
-                  ),
-                ),
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(30),
-                  ),
-                ),
-              ],
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 16,
-              color: Colors.grey,
-            ),
-          ],
-        ),
       ),
     );
   }
