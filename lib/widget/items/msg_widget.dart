@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_chaofan/config/index.dart';
 import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/items/top_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MsgWidget extends StatelessWidget {
   var item;
@@ -64,6 +66,14 @@ class MsgWidget extends StatelessWidget {
                         KSet.toNavigate(context, item['link'], '炒饭通知');
                         // https://chao.fun/p/1026976
                       }
+                    },
+                    onLongPress: () {
+                      Clipboard.setData(ClipboardData(text: item['title']));
+                      Fluttertoast.showToast(
+                        msg: '已复制消息',
+                        gravity: ToastGravity.BOTTOM,
+                        // textColor: Colors.grey,
+                      );
                     },
                     child: Container(
                       padding: EdgeInsets.all(ScreenUtil().setWidth(24)),
