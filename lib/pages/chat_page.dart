@@ -86,6 +86,9 @@ class _ChatPageState extends State<ChatPage> {
 
   _handleSubmittedData(String text) async {
     _textController.clear();
+    if (text == null || text == '') {
+      return;
+    }
     allChannel.sink.add("{\"scope\": \"chat\", \"data\": {\"type\": \"text\", \"channelId\": " + widget.id.toString() + ", \"content\": \"" + text +"\"}}");
   }
 
