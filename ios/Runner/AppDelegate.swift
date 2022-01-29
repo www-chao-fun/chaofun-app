@@ -74,7 +74,7 @@ import CloudPushSDK
                 let  messageObject = UMSocialMessageObject();
                 // 小程序
                 if (platform == UMSocialPlatformType.wechatSession  && (newObject["type"] as? String == "image" || newObject["type"] as? String == "gif" || newObject["type"] as? String == "article" || newObject["type"] as? String == "forward" || newObject["type"] as? String == "vote")) {
-                    shareObject = UMShareMiniProgramObject.shareObject(withTitle: newObject["title"] as? String, descr: "炒饭 - 分享奇趣、发现世界", thumImage: "") as! UMShareObject
+                    shareObject = UMShareMiniProgramObject.shareObject(withTitle: newObject["title"] as? String, descr: "炒饭 - 世界那么大", thumImage: "") as! UMShareObject
                     (shareObject as! UMShareMiniProgramObject).path = "/pages/detail/detail?postId=" + String(newObject["postId"] as! Int);
                     (shareObject as! UMShareMiniProgramObject).webpageUrl = "https://chao.fun/p/" + String(newObject["postId"] as! Int);
                     (shareObject as! UMShareMiniProgramObject).userName = "gh_41eb4fc2a95b";

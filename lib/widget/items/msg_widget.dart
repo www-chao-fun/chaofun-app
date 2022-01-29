@@ -68,12 +68,20 @@ class MsgWidget extends StatelessWidget {
                       }
                     },
                     onLongPress: () {
-                      Clipboard.setData(ClipboardData(text: item['title']));
-                      Fluttertoast.showToast(
-                        msg: '已复制消息',
-                        gravity: ToastGravity.BOTTOM,
-                        // textColor: Colors.grey,
-                      );
+                      if (item['type'] == 'text_notice') {
+                        Clipboard.setData(ClipboardData(text: item['text']));
+                        Fluttertoast.showToast(
+                          msg: '已复制消息',
+                          gravity: ToastGravity.BOTTOM,
+                          // textColor: Colors.grey,
+                        );
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: '不支持复制该类型消息',
+                          gravity: ToastGravity.BOTTOM,
+                          // textColor: Colors.grey,
+                        );
+                      }
                     },
                     child: Container(
                       padding: EdgeInsets.all(ScreenUtil().setWidth(24)),

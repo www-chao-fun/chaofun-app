@@ -35,12 +35,20 @@ class _TextItemContainerState extends State<TextItemContainer> {
             case 0:
               Clipboard.setData(new ClipboardData(text: widget.text));
               break;
+            case 1:
+              //todo 这里要优化
+              Fluttertoast.showToast(
+                msg: '举报成功',
+                gravity: ToastGravity.BOTTOM,
+                // textColor: Colors.grey,
+              );
+              break;
             case 3:
               break;
           }
         },
         pressType: PressType.longPress,
-        actions: ['复制'],
+        actions: ['复制', '举报'],
         child: new Container(
           width: widget.text.length > 20
               ? ScreenUtil().screenWidth - 166
@@ -101,4 +109,6 @@ class _TextItemContainerState extends State<TextItemContainer> {
       );
     }
   }
+
+
 }
