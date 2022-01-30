@@ -122,6 +122,15 @@
 					android:resource="@xml/file_paths"/>
 		</provider>
 
+		<provider
+				android:name="com.pichillilorenzo.flutter_inappwebview.InAppWebViewFileProvider"
+				android:authorities="${applicationId}.flutter_inappwebview.fileprovider"
+				android:exported="false"
+				android:grantUriPermissions="true">
+			<meta-data
+					android:name="android.support.FILE_PROVIDER_PATHS"
+					android:resource="@xml/provider_paths" />
+		</provider>
         <receiver
                 android:name=".MyMessageReceiver"
                 android:exported="false" tools:ignore="WrongManifestParent"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->

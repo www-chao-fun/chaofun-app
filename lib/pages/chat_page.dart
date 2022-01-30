@@ -144,9 +144,11 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    // 这里有点不准，键盘弹起来的时候会重复Build，所以会有些问题
     if (keyboardHeight == 270.0 &&
-        MediaQuery.of(context).viewInsets.bottom != 0) {
+        MediaQuery.of(context).viewInsets.bottom > keyboardHeight) {
       keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+      // print(MediaQuery.of(context).viewInsets);
     }
 
     List<Widget> body = [
