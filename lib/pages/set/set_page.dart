@@ -21,15 +21,26 @@ class _SetPageState extends State<SetPage> {
   var appVersionInfo;
 
   bool ifdown = false;
-  bool loopGif;
+  bool loopGif = true;
+  bool autoPlayGif = true;
   var plat;
   var downpercent = 0.0;
   @override
   void initState() {
-    // TODO: implement initState
 
     super.initState();
-    loopGif = Provider.of<UserStateProvide>(context, listen: false).loopGif;
+
+    this.init();
+  }
+
+  void init() async {
+    var tLoopGif = await Provider.of<UserStateProvide>(context, listen: false).getLoopGif();
+    var tAutoPlayGif = await Provider.of<UserStateProvide>(context, listen: false).getAutoPlayGif();
+    setState(() {
+      loopGif = tLoopGif;
+      autoPlayGif = tAutoPlayGif;
+    });
+
   }
 
   @override
@@ -234,6 +245,51 @@ class _SetPageState extends State<SetPage> {
                               Provider.of<UserStateProvide>(context,
                                       listen: false)
                                   .setLoopGif();
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.white,
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    height: ScreenUtil().setWidth(110),
+                    padding: EdgeInsets.only(left: 0, right: 0),
+                    margin: EdgeInsets.only(left: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          width: 1,
+                          color: Color.fromRGBO(183, 183, 183, 0.2),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'GIF自动播放',
+                          style: TextStyle(
+                              color: Color.fromRGBO(105, 105, 105, 1)),
+                        ),
+                        Transform.scale(
+                          scale: 0.8,
+                          child: CupertinoSwitch(
+                            //CupertinoSwitch
+                            value: autoPlayGif,
+                            onChanged: (value) {
+                              setState(() {
+                                autoPlayGif = !autoPlayGif;
+                              });
+                              Provider.of<UserStateProvide>(context,
+                                  listen: false)
+                                  .setAutoPlayGif();
                             },
                           ),
                         ),

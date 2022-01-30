@@ -24,6 +24,7 @@ class UserStateProvide with ChangeNotifier {
   bool hasNetWork = true;
 
   bool loopGif = true;
+  bool autoPlayGif = true;
   var modelType = 'model2';
 
   List remmenberForumList = [];
@@ -93,9 +94,35 @@ class UserStateProvide with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void setLoopGif() {
+  void setLoopGif() async {
     loopGif = !loopGif;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('loopGif', loopGif);
     notifyListeners();
+  }
+
+  Future<bool> getLoopGif() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('loopGif') != null) {
+      loopGif = prefs.getBool('loopGif');
+    }
+
+    return loopGif;
+  }
+
+  Future<void> setAutoPlayGif() async {
+    autoPlayGif = !autoPlayGif;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('autoPlayGif', autoPlayGif);
+    notifyListeners();
+  }
+
+  Future<bool> getAutoPlayGif() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('autoPlayGif') != null) {
+      autoPlayGif = prefs.getBool('autoPlayGif');
+    }
+    return autoPlayGif;
   }
 
   var changeTag;

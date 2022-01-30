@@ -12,6 +12,7 @@ import 'package:flutter_chaofan/widget/items/full_video_page_ios.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'dart:async';
 import 'package:video_player/video_player.dart';
@@ -229,9 +230,12 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
               _inits();
             }
           });
-          Future.delayed(Duration(milliseconds: 200)).then((e) {
-            _videoPlayerController.play();
-          });
+          if (Provider.of<UserStateProvide>(context, listen: false).autoPlayGif) {
+
+            Future.delayed(Duration(milliseconds: 200)).then((e) {
+              _videoPlayerController.play();
+            });
+          }
         });
       // canshow = true;
     }
@@ -706,7 +710,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
         alignment: Alignment.center,
         child: Stack(
           children: [
-            canshow || !initialized
+            canshow || (!this.video || !initialized)
                 ? Container(
                     width: ScreenUtil().setWidth(750),
                     height: ScreenUtil().setWidth(500),
@@ -766,7 +770,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
           var visiblePercentage = info.visibleFraction * 100;
           print(visiblePercentage);
           if (visiblePercentage >= 99) {
-            if (!video) {
+            if (!video && Provider.of<UserStateProvide>(context, listen: false).autoPlayGif) {
               canshow = true;
               _videoPlayerController.play();
             }
