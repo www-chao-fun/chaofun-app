@@ -198,7 +198,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
       _videoPlayerController = VideoPlayerController.network(
           KSet.imgOrigin + widget.item['imageName'],
         videoPlayerOptions: VideoPlayerOptions(
-          mixWithOthers: false,
+          mixWithOthers: true,
         ),
       )
         ..initialize().then((_) {
