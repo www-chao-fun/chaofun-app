@@ -142,7 +142,11 @@ class _DiscoverPageState extends State<DiscoverPage>
                       _tabIndex = index;
                       tabs = index;
                     });
-                    _rebuildLayoutController.notification();
+
+                    // Avoid error，maybe useless
+                    if (_rebuildLayoutController != null) {
+                      _rebuildLayoutController.notification();
+                    }
                   },
                   children: _tabWidget,
                   controller: _pageController,
