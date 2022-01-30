@@ -328,6 +328,7 @@ class _AppVersionPageState extends State<AppVersionPage> {
     );
   }
 
+  bool isDownLoading = false;
   Widget btn(context) {
     return MaterialButton(
       elevation: 0,
@@ -350,6 +351,10 @@ class _AppVersionPageState extends State<AppVersionPage> {
         side: BorderSide(color: KColor.defaultBorderColor),
       ),
       onPressed: () async {
+        if (isDownLoading == true) {
+          return;
+        }
+        isDownLoading = true;
         print('点击下载');
         Fluttertoast.showToast(
           msg: '准备下载',
@@ -370,6 +375,7 @@ class _AppVersionPageState extends State<AppVersionPage> {
               useDownloadManager: false);
           upgradeMethod = UpgradeMethod.all;
           print('开始安装');
+          isDownLoading = false;
         } else {
           await RUpgrade.upgradeFromUrl(
             'https://apps.apple.com/cn/app/%E7%82%92%E9%A5%AD%E8%B6%85fun/id1526950194',
