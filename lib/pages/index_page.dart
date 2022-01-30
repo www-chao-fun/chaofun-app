@@ -128,10 +128,6 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   checkIfShowAgree() async {
-    final deviceInfo = await DeviceInfoApi.getInfo();
-    setState(() {
-      brand = deviceInfo['brand'];
-    });
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (Platform.isAndroid) {
       setState(() {
@@ -142,7 +138,13 @@ class _IndexPageState extends State<IndexPage> {
         showAgree = true;
       });
     }
-    print('_version11是$deviceInfo');
+    if (showAgree) {
+      initAndroidSDK();
+    }
+  }
+
+  initAndroidSDK() async {
+    _methodChannel.invokeMethod("initAndroidSDK");
   }
 
   Future<void> initPlatformState() async {
@@ -970,6 +972,7 @@ class _IndexPageState extends State<IndexPage> {
                                     SharedPreferences prefs =
                                         await SharedPreferences.getInstance();
                                     prefs.setString('showAgree', '1');
+                                    initAndroidSDK();
                                     setState(() {
                                       showAgree = true;
                                     });
