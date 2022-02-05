@@ -57,6 +57,7 @@ class ArticleWidget extends StatelessWidget {
         child: (item['article'].startsWith('<p') ||
                 item['article'].startsWith('<ol') ||
                 item['article'].startsWith('<ul') ||
+                item['article'].startsWith('<a') ||
                 item['article'].startsWith('<div') ||
                 item['article'].startsWith('<h'))
             // ? Html(

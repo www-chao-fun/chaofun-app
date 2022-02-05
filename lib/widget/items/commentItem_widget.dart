@@ -49,7 +49,8 @@ class PostItemWidget extends StatelessWidget {
       ),
       child: (data['article'].startsWith('<p') ||
               data['article'].startsWith('<ol') ||
-              data['article'].startsWith('<ul') ||
+            data['article'].startsWith('<a') ||
+            data['article'].startsWith('<ul') ||
               data['article'].startsWith('<div') ||
               data['article'].startsWith('<h'))
           ? Html(
