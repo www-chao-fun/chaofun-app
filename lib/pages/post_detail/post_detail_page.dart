@@ -255,228 +255,228 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   children: <Widget>[
                     postInfo != null && forumInfo != null
                         ? SingleChildScrollView(
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              constraints: BoxConstraints(
-                                minHeight: MediaQuery.of(context).size.height,
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        constraints: BoxConstraints(
+                          minHeight: MediaQuery.of(context).size.height,
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 40 +
+                                  MediaQueryData.fromWindow(window)
+                                      .padding
+                                      .top,
+                            ),
+                            _tools(),
+                            postInfo['type'] != 'link' &&
+                                postInfo['type'] != 'video'
+                                ? _postTitle()
+                                : Container(
+                              height: 0,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 0,
+                                right: 0,
                               ),
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    height: 40 +
-                                        MediaQueryData.fromWindow(window)
-                                            .padding
-                                            .top,
+                              child: oks,
+                            ),
+                            // _timeLine(),
+                            Container(
+                              color: Colors.white,
+                              padding:
+                              EdgeInsets.only(left: 10, right: 10),
+                              child: BottomWidget(
+                                  item: postInfo,
+                                  type: '1',
+                                  toDou: () {
+                                    if (Provider.of<UserStateProvide>(
+                                        context,
+                                        listen: false)
+                                        .ISLOGIN) {
+                                      // FocusScope.of(context).requestFocus(_commentFocus);
+                                      setState(() {
+                                        toWho = null;
+                                        showImgs = false;
+                                      });
+                                      doWay(context);
+                                    } else {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/accoutlogin',
+                                        arguments: {"from": 'from'},
+                                      );
+                                    }
+                                  }),
+                            ),
+                            Container(
+                              height: 4,
+                              color: KColor.defaultPageBgColor,
+                            ),
+                            postInfo['collection'] != null
+                                ? _collectionLine(context)
+                                : Container(),
+                            Container(
+                              height: 4,
+                              color: KColor.defaultPageBgColor,
+                            ),
+                            Container(
+                              padding:
+                              EdgeInsets.only(left: 10, right: 10),
+                              alignment: Alignment.centerLeft,
+                              margin:
+                              EdgeInsets.only(bottom: 10, top: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/_icon/n_comment.png',
+                                        width: 14,
+                                      ),
+                                      Text(
+                                        ' 评论区',
+                                        style: TextStyle(
+                                            fontSize:
+                                            ScreenUtil().setSp(30)),
+                                      ),
+                                    ],
                                   ),
-                                  _tools(),
-                                  postInfo['type'] != 'link' &&
-                                          postInfo['type'] != 'video'
-                                      ? _postTitle()
-                                      : Container(
-                                          height: 0,
-                                        ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: 0,
-                                      right: 0,
+
+                                  InkWell(
+                                    onTap: () {
+                                      if (comParams['order'] == 'hot') {
+                                        setState(() {
+                                          comParams['order'] = 'new';
+                                        });
+                                      } else if (comParams['order'] == 'new') {
+                                        setState(() {
+                                          comParams['order'] = 'old';
+                                        });
+                                      } else {
+                                        setState(() {
+                                          comParams['order'] = 'hot';
+                                        });
+                                      }
+                                      getComment();
+                                    },
+                                    child: RichText(
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      text: TextSpan(
+                                          text: '',
+                                          style: TextStyle(
+                                            fontSize:
+                                            ScreenUtil().setSp(26),
+                                            color: Color.fromRGBO(
+                                                53, 140, 255, 1),
+                                            // fontWeight: FontWeight.bold,
+                                          ),
+                                          children: [
+                                            WidgetSpan(
+                                              alignment:
+                                              PlaceholderAlignment
+                                                  .middle,
+                                              child: Image.asset(
+                                                'assets/images/_icon/exchange.png',
+                                                width: 14,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: getOrder(comParams['order']),
+
+                                              style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    33, 29, 47, 0.7),
+                                              ),
+                                            ),
+                                          ]),
                                     ),
-                                    child: oks,
                                   ),
-                                  // _timeLine(),
-                                  Container(
-                                    color: Colors.white,
-                                    padding:
-                                        EdgeInsets.only(left: 10, right: 10),
-                                    child: BottomWidget(
-                                        item: postInfo,
-                                        type: '1',
-                                        toDou: () {
-                                          if (Provider.of<UserStateProvide>(
-                                                  context,
-                                                  listen: false)
+                                  // assets/images/_icon/exchange.png
+                                ],
+                              ),
+                            ),
+                            // _comItems(commentList),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  left: 10,
+                                  right: 10,
+                                  top: 0,
+                                  bottom: 130),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  left: BorderSide(
+                                      width: 0.5,
+                                      color: Color.fromRGBO(
+                                          241, 241, 241, 1)),
+                                  top: BorderSide(
+                                      width: 0.5,
+                                      color: Color.fromRGBO(
+                                          241, 241, 241, 1)),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              child: commentList.length > 0
+                                  ? MediaQuery.removePadding(
+                                removeTop: true,
+                                context: context,
+                                child: ListView.builder(
+                                  primary: true,
+                                  shrinkWrap:
+                                  true, //为true可以解决子控件必须设置高度的问题
+                                  physics:
+                                  NeverScrollableScrollPhysics(), //禁用滑动事件
+                                  itemBuilder: (c, i) {
+                                    return CommentWidget(
+                                        item: commentList[i],
+                                        callBack: (item) {
+                                          setState(() {
+                                            toWho = item;
+                                            showImgs = false;
+                                          });
+                                          if (Provider.of<
+                                              UserStateProvide>(
+                                              context,
+                                              listen: false)
                                               .ISLOGIN) {
                                             // FocusScope.of(context).requestFocus(_commentFocus);
-                                            setState(() {
-                                              toWho = null;
-                                              showImgs = false;
-                                            });
                                             doWay(context);
                                           } else {
                                             Navigator.pushNamed(
                                               context,
                                               '/accoutlogin',
-                                              arguments: {"from": 'from'},
+                                              arguments: {
+                                                "from": 'from'
+                                              },
                                             );
                                           }
-                                        }),
-                                  ),
-                                  Container(
-                                    height: 4,
-                                    color: KColor.defaultPageBgColor,
-                                  ),
-                                  postInfo['collection'] != null
-                                      ? _collectionLine(context)
-                                      : Container(),
-                                  Container(
-                                    height: 4,
-                                    color: KColor.defaultPageBgColor,
-                                  ),
-                                  Container(
-                                    padding:
-                                        EdgeInsets.only(left: 10, right: 10),
-                                    alignment: Alignment.centerLeft,
-                                    margin:
-                                        EdgeInsets.only(bottom: 10, top: 20),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                              'assets/images/_icon/n_comment.png',
-                                              width: 14,
-                                            ),
-                                            Text(
-                                              ' 评论区',
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      ScreenUtil().setSp(30)),
-                                            ),
-                                          ],
-                                        ),
-
-                                        InkWell(
-                                          onTap: () {
-                                            if (comParams['order'] == 'hot') {
-                                              setState(() {
-                                                comParams['order'] = 'new';
-                                              });
-                                            } else if (comParams['order'] == 'new') {
-                                              setState(() {
-                                                comParams['order'] = 'old';
-                                              });
-                                            } else {
-                                              setState(() {
-                                                comParams['order'] = 'hot';
-                                              });
-                                            }
-                                            getComment();
-                                          },
-                                          child: RichText(
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            text: TextSpan(
-                                                text: '',
-                                                style: TextStyle(
-                                                  fontSize:
-                                                      ScreenUtil().setSp(26),
-                                                  color: Color.fromRGBO(
-                                                      53, 140, 255, 1),
-                                                  // fontWeight: FontWeight.bold,
-                                                ),
-                                                children: [
-                                                  WidgetSpan(
-                                                    alignment:
-                                                        PlaceholderAlignment
-                                                            .middle,
-                                                    child: Image.asset(
-                                                      'assets/images/_icon/exchange.png',
-                                                      width: 14,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text: getOrder(comParams['order']),
-
-                                                    style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          33, 29, 47, 0.7),
-                                                    ),
-                                                  ),
-                                                ]),
-                                          ),
-                                        ),
-                                        // assets/images/_icon/exchange.png
-                                      ],
-                                    ),
-                                  ),
-                                  // _comItems(commentList),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        left: 10,
-                                        right: 10,
-                                        top: 0,
-                                        bottom: 130),
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                        left: BorderSide(
-                                            width: 0.5,
-                                            color: Color.fromRGBO(
-                                                241, 241, 241, 1)),
-                                        top: BorderSide(
-                                            width: 0.5,
-                                            color: Color.fromRGBO(
-                                                241, 241, 241, 1)),
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: commentList.length > 0
-                                        ? MediaQuery.removePadding(
-                                            removeTop: true,
-                                            context: context,
-                                            child: ListView.builder(
-                                              primary: true,
-                                              shrinkWrap:
-                                                  true, //为true可以解决子控件必须设置高度的问题
-                                              physics:
-                                                  NeverScrollableScrollPhysics(), //禁用滑动事件
-                                              itemBuilder: (c, i) {
-                                                return CommentWidget(
-                                                    item: commentList[i],
-                                                    callBack: (item) {
-                                                      setState(() {
-                                                        toWho = item;
-                                                        showImgs = false;
-                                                      });
-                                                      if (Provider.of<
-                                                                  UserStateProvide>(
-                                                              context,
-                                                              listen: false)
-                                                          .ISLOGIN) {
-                                                        // FocusScope.of(context).requestFocus(_commentFocus);
-                                                        doWay(context);
-                                                      } else {
-                                                        Navigator.pushNamed(
-                                                          context,
-                                                          '/accoutlogin',
-                                                          arguments: {
-                                                            "from": 'from'
-                                                          },
-                                                        );
-                                                      }
-                                                    });
-                                              },
-                                              // itemExtent: 100.0,
-                                              itemCount: commentList.length,
-                                            ),
-                                          )
-                                        : Container(
-                                            height: 80,
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              '还没有评论哦~，快来发表看法吧！',
-                                              style:
-                                                  TextStyle(color: Colors.grey),
-                                            ),
-                                          ),
-                                  ),
-                                ],
+                                        });
+                                  },
+                                  // itemExtent: 100.0,
+                                  itemCount: commentList.length,
+                                ),
+                              )
+                                  : Container(
+                                height: 80,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  '还没有评论哦~，快来发表看法吧！',
+                                  style:
+                                  TextStyle(color: Colors.grey),
+                                ),
                               ),
                             ),
-                          )
+                          ],
+                        ),
+                      ),
+                    )
                         : Container(
-                            height: 0,
-                          ),
+                      height: 0,
+                    ),
                     Positioned(
                       top: 0,
                       child: Container(
@@ -486,7 +486,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             top: MediaQueryData.fromWindow(window).padding.top),
                         width: ScreenUtil().setWidth(750),
                         height:
-                            40 + MediaQueryData.fromWindow(window).padding.top,
+                        40 + MediaQueryData.fromWindow(window).padding.top,
                         color: Colors.white,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -504,12 +504,12 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             InkWell(
                               onTap: () {
                                 Provider.of<CurrentIndexProvide>(context,
-                                        listen: false)
+                                    listen: false)
                                     .setIndex(0);
                                 // Navigator.popUntil(
                                 //     context, ModalRoute.withName('/'));
                                 Navigator.of(context).popUntil(
-                                    (route) => route.settings.name == ('/'));
+                                        (route) => route.settings.name == ('/'));
                               },
                               child: Image.asset(
                                 'assets/images/_icon/012.png',
@@ -532,6 +532,37 @@ class _PostDetailPageState extends State<PostDetailPage> {
                       bottom: 0,
                       right: 0,
                     ),
+                    Positioned(
+                        right: 15,
+                        bottom: 80,
+                        child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  await this.getComment();
+                                  Fluttertoast.showToast(
+                                    msg: '刷新评论成功',
+                                    gravity: ToastGravity.BOTTOM,
+                                    // textColor: Colors.grey,
+                                  );
+                                  // Navigator.pushNamed(context, '/search',
+                                  // arguments: {'forumData': forumData});
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                  ),
+                                  child: Icon(
+                                    Icons.refresh,
+                                    color: Colors.white,
+                                  ),
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ),
+                            ]))
+
                   ],
                 );
               }
