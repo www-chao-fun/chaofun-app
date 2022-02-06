@@ -35,6 +35,8 @@ class _RegisterPageState extends State<RegisterPage> {
   String loginType = 'account';
   Timer _timer;
   int _countdownTime = 0;
+  ClipboardData data = null;
+
 
   void initState() {
     super.initState();
@@ -49,6 +51,8 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() {
       pref = prefs;
     });
+
+    data = await Clipboard.getData('text/plain');
   }
   // 定义 controller
 
@@ -177,8 +181,6 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void toLogin(context, accout, pwd, phone, code) async {
-    ClipboardData data = await Clipboard.getData('text/plain');
-
     var inviter = null;
     if (data != null && data.text != null && data.text.contains("inviter") && data.text.contains("chao.fun")) {
       var uri = Uri.parse(data.text);
