@@ -2511,6 +2511,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   // +'?x-oss-process=image/resize,h_1024',
                   // 'https://i.chao.fun/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512'
                 ],
+                imgHeight: data['height'],
+                imgWidth: data['width'],
                 index: 0,
               ),
             ),

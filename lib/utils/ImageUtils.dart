@@ -31,14 +31,28 @@ class ImageUtils {
       } else {
         var actualContainerHeight = (containerHeight * screenUtil.pixelRatio).round();
         var actualContainerWidth = (containerWidth * screenUtil.pixelRatio).round();
-        imageUrl = imageUrl + '?x-oss-process=image/resize,m_fill,w_$actualContainerWidth,h_$actualContainerHeight';
+        if (longImage(imageWidth, imageHeight)) {
+          // 长图
+          var tureHeight = (imageWidth * 1.0 * actualContainerHeight / actualContainerWidth).round() * 2;
+          imageUrl = imageUrl + '?x-oss-process=image/crop,h_$tureHeight';
+        } else {
+          imageUrl = imageUrl + '?x-oss-process=image/resize,m_fill,w_$actualContainerWidth,h_$actualContainerHeight';
+        }
       }
     }
 
     return imageUrl;
   }
 
-  static bool longImage(String imageName, imageWidth, imageHeight, containerWidth, containerHeight) {
-    return true;
+  static bool longImage(imageWidth, imageHeight) {
+    if (imageWidth == null || imageHeight == null) {
+      return false;
+    }
+
+    if (imageHeight * 1.0 /  imageWidth > 2.5) {
+      return true;
+    }
+
+    return false;
   }
 }

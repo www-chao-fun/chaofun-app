@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_chaofan/utils/ImageUtils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,8 @@ class FadeRoute extends PageRouteBuilder {
 
 class JhPhotoAllScreenShow extends StatefulWidget {
   List imgDataArr = [];
+  double imgHeight;
+  double imgWidth;
   int index;
   String heroTag;
   PageController controller;
@@ -55,6 +58,8 @@ class JhPhotoAllScreenShow extends StatefulWidget {
       this.index,
       this.onLongPress,
       this.controller,
+        this.imgWidth,
+        this.imgHeight,
       this.heroTag})
       : super(key: key) {
     controller = PageController(initialPage: this.index);
@@ -67,6 +72,8 @@ class JhPhotoAllScreenShow extends StatefulWidget {
 class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
   int currentIndex = 1;
   var imgDataArr;
+  double imgWidth = 500;
+  double imgHeight = 500;
   bool isBig = false;
   bool haspermission = true;
   GlobalKey _globalKey = GlobalKey();
@@ -76,10 +83,18 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
     super.initState();
     _requestPermission();
     imgDataArr = widget.imgDataArr;
+    if (widget.imgWidth != null) {
+      imgWidth = widget.imgWidth;
+    }
+
+    if (widget.imgHeight != null) {
+      imgHeight = widget.imgHeight;
+    }
 
     setState(() {
       currentIndex = widget.index;
     });
+
     SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
       //SystemUiOverlayStyle
       statusBarColor: Colors.transparent,
@@ -213,16 +228,29 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                 },
                 child: Container(
                   color: Colors.black,
+                  padding:  EdgeInsets.only(top:MediaQuery.of(context).padding.top),
                   child: PhotoViewGallery.builder(
                     scrollPhysics: const BouncingScrollPhysics(),
                     builder: (BuildContext context, int index) {
-                      return PhotoViewGalleryPageOptions(
-                        imageProvider:
-                            CachedNetworkImageProvider(imgDataArr[index]),
-                        initialScale: PhotoViewComputedScale.contained * 1,
-                        heroAttributes:
-                            PhotoViewHeroAttributes(tag: imgDataArr[index]),
-                      );
+                      // 大图展示的关键
+                      if (imgDataArr.length > 1 || !ImageUtils.longImage(imgWidth, imgHeight)) {
+                        return PhotoViewGalleryPageOptions(
+                          // minScale:
+                          imageProvider:
+                          CachedNetworkImageProvider(imgDataArr[index]),
+                          initialScale: PhotoViewComputedScale.contained * 1,
+                          heroAttributes:
+                          PhotoViewHeroAttributes(tag: imgDataArr[index]),
+                        );
+                      } else {
+                        // 单张长图
+                        return PhotoViewGalleryPageOptions(
+                          // minScale:
+                          basePosition: Alignment.topCenter,
+                          imageProvider: CachedNetworkImageProvider(imgDataArr[index]),
+                          initialScale: PhotoViewComputedScale.covered,
+                          heroAttributes: PhotoViewHeroAttributes(tag: imgDataArr[index]),
+                        );                      }
                     },
                     itemCount: imgDataArr.length,
                     loadingBuilder: (context, event) => Center(
@@ -328,28 +356,11 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
               ),
             ),
           ),
-          // Positioned(
-          //   top: MediaQuery.of(context).padding.top + 30,
-          //   width: MediaQuery.of(context).size.width,
-          //   child: Center(
-          //     child: Text("${currentIndex + 1}/${widget.imgDataArr.length}",
-          //         style: TextStyle(color: Colors.white, fontSize: 16)),
-          //   ),
-          // ),
+
           Positioned(
             right: 20,
             bottom: MediaQuery.of(context).padding.top + 15,
-            // child: IconButton(
-            //   color: Colors.white,
-            //   icon: Icon(
-            //     Icons.close,
-            //     size: 30,
-            //     color: Colors.black,
-            //   ),
-            //   onPressed: () {
-            //     Navigator.of(context).pop();
-            //   },
-            // ),
+
             child: InkWell(
               onTap: () {
                 _save(context, 2);
@@ -365,12 +376,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                     Icons.download_outlined,
                     color: Color.fromRGBO(255, 255, 255, 0.4),
                   ),
-                  // child: Text(
-                  //   '保存图片',
-                  //   style: TextStyle(
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
+
                 ),
               ),
             ),
@@ -378,17 +384,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
           Positioned(
             left: ScreenUtil().setWidth(330),
             bottom: MediaQuery.of(context).padding.top + 15,
-            // child: IconButton(
-            //   color: Colors.white,
-            //   icon: Icon(
-            //     Icons.close,
-            //     size: 30,
-            //     color: Colors.black,
-            //   ),
-            //   onPressed: () {
-            //     Navigator.of(context).pop();
-            //   },
-            // ),
+
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: InkWell(
@@ -406,53 +402,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
               ),
             ),
           ),
-          // Positioned(
-          //     bottom: MediaQuery.of(context).padding.top + 25,
-          //     left: 20,
-          //     child: ClipRRect(
-          //       borderRadius: BorderRadius.circular(20),
-          //       child: InkWell(
-          //         onTap: () {
-          //           setState(() {
-          //             isBig = true;
-          //           });
-          //         },
-          //         child: Container(
-          //           alignment: Alignment.center,
-          //           width: 78,
-          //           height: 24,
-          //           color: Color.fromRGBO(235, 235, 235, 0.7),
-          //           child: Text(
-          //             '查看原图',
-          //             style: TextStyle(fontSize: 14, color: Colors.white),
-          //           ),
-          //         ),
-          //       ),
-          //     )),
 
-//           Align(
-//               alignment: Alignment.bottomCenter,
-//               child: Container(
-// //                color: Colors.red,
-//                 width: widget.imgDataArr.length >= 6
-//                     ? 200
-//                     : widget.imgDataArr.length < 3 ? 50 : 100,
-//                 height: widget.imgDataArr.length == 1 ? 0 : 50,
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                   children: List.generate(
-//                     widget.imgDataArr.length,
-//                     (i) => GestureDetector(
-//                       child: CircleAvatar(
-// //                      foregroundColor: Theme.of(context).primaryColor,
-//                         radius: 5.0,
-//                         backgroundColor:
-//                             currentIndex == i ? selColor : otherColor,
-//                       ),
-//                     ),
-//                   ).toList(),
-//                 ),
-//               ))
         ],
       ),
     );

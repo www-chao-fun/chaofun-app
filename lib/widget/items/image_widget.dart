@@ -56,49 +56,70 @@ class ImageWidget extends StatelessWidget {
       //         maxHeight: ScreenUtil().setWidth(730),
       //       )),
       margin: EdgeInsets.only(top: 5),
-      child: InkWell(
-        onTap: () {
-          print('点击图片');
-          // JhPhotoAllScreenShow
-          Navigator.of(context).push(
-            FadeRoute(
-              page: JhPhotoAllScreenShow(
-                imgDataArr: [imgurl],
-                index: 0,
-              ),
-            ),
-          );
-        },
-        child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          child: CachedNetworkImage(
-              filterQuality: FilterQuality.high,
-              imageUrl:  ImageUtils.ossUrl(imgurl, item['width'], item['height'] ,ScreenUtil().setWidth(690), ScreenUtil().setWidth(hight)),
-              width: ScreenUtil().setWidth(690),
-              // fit: BoxFit.fitHeight,
-              fit: BoxFit.fitHeight,
-              height: ScreenUtil().setWidth(hight),
-              placeholder: (context, url) => Center(
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        backgroundColor: Colors.transparent,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Color.fromRGBO(254, 149, 0, 100)),
-                      ),
+      child: Stack(
+          children: [
+            InkWell(
+              onTap: () {
+                print('点击图片');
+                // JhPhotoAllScreenShow
+                Navigator.of(context).push(
+                  FadeRoute(
+                    page: JhPhotoAllScreenShow(
+                      imgDataArr: [imgurl],
+                      imgHeight: item['height'],
+                      imgWidth: item['width'],
+                      index: 0,
                     ),
                   ),
-              // fit: BoxFit.scaleDown,
-              // height:
-              //     ScreenUtil().setWidth(hight),
-              errorWidget: (context, url, error) => FadeInImage.assetNetwork(
-                    placeholder: "assets/images/img/place.png",
-                    image:  ImageUtils.ossUrl(imgurl, item['width'], item['height'] ,ScreenUtil().setWidth(690), ScreenUtil().setWidth(hight)),
-                  )),
-        ),
-      ),
+                );
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+                child: CachedNetworkImage(
+                    filterQuality: FilterQuality.high,
+                    imageUrl:  ImageUtils.ossUrl(imgurl, item['width'], item['height'] ,ScreenUtil().setWidth(690), ScreenUtil().setWidth(hight)),
+                    width: ScreenUtil().setWidth(690),
+                    // fit: BoxFit.fitHeight,
+                    fit: BoxFit.fitHeight,
+                    height: ScreenUtil().setWidth(hight),
+                    placeholder: (context, url) => Center(
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          backgroundColor: Colors.transparent,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Color.fromRGBO(254, 149, 0, 100)),
+                        ),
+                      ),
+                    ),
+                    // fit: BoxFit.scaleDown,
+                    // height:
+                    //     ScreenUtil().setWidth(hight),
+                    errorWidget: (context, url, error) => FadeInImage.assetNetwork(
+                      placeholder: "assets/images/img/place.png",
+                      image:  ImageUtils.ossUrl(imgurl, item['width'], item['height'] ,ScreenUtil().setWidth(690), ScreenUtil().setWidth(hight)),
+                    )),
+              ),
+            ),
+            Visibility(
+                visible: ImageUtils.longImage(item['width'], item['height']),
+                child:
+                Positioned(
+                  bottom: 0,
+                    left: 0,
+                    child:
+                  Container(
+                  color: Colors.blueAccent,
+                  padding: EdgeInsets.fromLTRB(4,1,4,1),
+                  child: Text('长图', style: TextStyle(color: Colors.white),),
+                  )
+                )
+
+            )
+
+          ]),
     );
   }
 
