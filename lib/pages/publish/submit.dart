@@ -284,8 +284,8 @@ class _SubmitPageState extends State<SubmitPage> {
                     padding: EdgeInsets.only(
                       left: 12,
                       right: 20,
-                      top: 14,
-                      bottom: 14,
+                      top: 5,
+                      bottom: 10,
                     ),
                     color: Color.fromRGBO(244, 244, 245, 1),
                     width: ScreenUtil().setWidth(750),
@@ -335,7 +335,7 @@ class _SubmitPageState extends State<SubmitPage> {
                 ),
                 tagList.length != 0
                     ? Container(
-                        height: 40,
+                        height: 30,
                         color: Color.fromRGBO(244, 244, 245, 1),
                         width: ScreenUtil().setWidth(750),
                         child: ListView.builder(
@@ -369,7 +369,7 @@ class _SubmitPageState extends State<SubmitPage> {
                                   right: 10,
                                 ),
                                 margin: EdgeInsets.only(
-                                    left: 14, top: 10, bottom: 10),
+                                    left: 14, top: 5, bottom: 5),
                                 child: Text(
                                   tagList[index]['name'],
                                   style: TextStyle(
@@ -396,7 +396,7 @@ class _SubmitPageState extends State<SubmitPage> {
                   decoration: InputDecoration(
                     isDense: true,
                     contentPadding: EdgeInsets.only(
-                        left: 14, top: 14, right: 14, bottom: 14),
+                        left: 14, top: 2, right: 14, bottom: 2),
                     fillColor: Colors.white,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
@@ -550,7 +550,7 @@ class _SubmitPageState extends State<SubmitPage> {
                           height: 0,
                         ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       // Container(
                       //   height: 20,
@@ -586,112 +586,109 @@ class _SubmitPageState extends State<SubmitPage> {
                               ),
                               collectName != null
                                   ? Container(
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            constraints: BoxConstraints(
-                                              maxWidth:
-                                                  ScreenUtil().setWidth(300),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      constraints: BoxConstraints(
+                                        maxWidth:
+                                        ScreenUtil().setWidth(300),
 
-                                              // minWidth: ScreenUtil().setWidth(200),
-                                            ),
-                                            child: Text(
-                                              '--' + collectName,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(24),
-                                                color: KColor.primaryColor,
-                                              ),
-                                            ),
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                collectionId = '';
-                                                collectName = null;
-                                              });
-                                            },
-                                            child: Icon(
-                                              Icons.close_outlined,
-                                              size: 16,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ],
+                                        // minWidth: ScreenUtil().setWidth(200),
                                       ),
-                                    )
+                                      child: Text(
+                                        '--' + collectName,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize:
+                                          ScreenUtil().setSp(24),
+                                          color: KColor.primaryColor,
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          collectionId = '';
+                                          collectName = null;
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.close_outlined,
+                                        size: 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
                                   : Text(''),
                             ],
                           ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                if (!anonymity) {
-                                  anonymity = true;
-                                } else {
-                                  anonymity = false;
-                                }
-                              });
-                            },
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                left: 10,
-                                right: 10,
-                                bottom: 4,
-                                top: 4,
-                              ),
-                              alignment: Alignment.centerLeft,
-                              decoration: BoxDecoration(
-                                color: !anonymity
-                                    ? Color.fromRGBO(244, 244, 245, 1)
-                                    : KColor.primaryColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(14)),
-                                // border: Border.all(
-                                //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: ScreenUtil().setWidth(24),
-                                    height: ScreenUtil().setWidth(24),
-                                    alignment: Alignment.centerLeft,
-                                    margin: EdgeInsets.only(right: 4),
-                                    decoration: BoxDecoration(
-                                      color: anonymity
-                                          ? Color.fromRGBO(244, 244, 245, 1)
-                                          : Colors.transparent,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(14)),
-                                      border: Border.all(
-                                          color: !anonymity
-                                              ? Color.fromRGBO(
-                                                  153, 153, 153, 0.7)
-                                              : Colors.transparent,
-                                          width: 1),
-                                    ),
-                                  ),
-                                  Text(
-                                    '匿名',
-                                    style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(26),
-                                      color: !anonymity
-                                          ? Color.fromRGBO(33, 29, 47, 0.7)
-                                          : Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                      Container(width: 15,),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            if (!anonymity) {
+                              anonymity = true;
+                            } else {
+                              anonymity = false;
+                            }
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                            bottom: 4,
+                            top: 4,
                           ),
-                        ],
-                      )
+                          alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                            color: !anonymity
+                                ? Color.fromRGBO(244, 244, 245, 1)
+                                : KColor.primaryColor,
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(14)),
+                            // border: Border.all(
+                            //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: ScreenUtil().setWidth(24),
+                                height: ScreenUtil().setWidth(24),
+                                alignment: Alignment.centerLeft,
+                                margin: EdgeInsets.only(right: 4),
+                                decoration: BoxDecoration(
+                                  color: anonymity
+                                      ? Colors.blueGrey
+                                      : Colors.transparent,
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(14)),
+                                  border: Border.all(
+                                      color: !anonymity
+                                          ? Color.fromRGBO(
+                                          153, 153, 153, 0.7)
+                                          : Colors.transparent,
+                                      width: 1),
+                                ),
+                              ),
+                              Text(
+                                '匿名',
+                                style: TextStyle(
+                                  fontSize: ScreenUtil().setSp(26),
+                                  color: !anonymity
+                                      ? Color.fromRGBO(33, 29, 47, 0.7)
+                                      : Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   _typeWidget(),
@@ -2225,15 +2222,15 @@ class _SubmitPageState extends State<SubmitPage> {
               imageUrl: KSet.imgOrigin +
                   forumImageName +
                   '?x-oss-process=image/resize,h_80',
-              width: ScreenUtil().setWidth(34),
-              height: ScreenUtil().setWidth(34),
+              width: ScreenUtil().setWidth(40),
+              height: ScreenUtil().setWidth(40),
             ),
             SizedBox(
               width: 5,
             ),
             Text(
               forumName,
-              style: TextStyle(fontSize: ScreenUtil().setSp(28)),
+              style: TextStyle(fontSize: ScreenUtil().setSp(32)),
             ),
           ],
         );
@@ -2280,8 +2277,8 @@ class _SubmitPageState extends State<SubmitPage> {
             padding: EdgeInsets.only(
                 left: 10,
                 right: 10,
-                top: 8,
-                bottom: MediaQuery.of(context).padding.bottom + 10),
+                top: 2,
+                bottom: MediaQuery.of(context).padding.bottom + 2),
             margin: EdgeInsets.only(top: 2),
             child: Column(
               children: [
@@ -2289,10 +2286,10 @@ class _SubmitPageState extends State<SubmitPage> {
                   postType == e['type'] ? e['actIcon'] : e['icon'],
                   width: ScreenUtil().setWidth(64),
                 ),
-                Text(
-                  e['label'],
-                  style: TextStyle(fontSize: ScreenUtil().setSp(26)),
-                ),
+                // Text(
+                //   e['label'],
+                //   style: TextStyle(fontSize: ScreenUtil().setSp(26)),
+                // ),
               ],
             ),
           ),

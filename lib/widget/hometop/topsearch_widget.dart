@@ -23,6 +23,7 @@ class _TopSearchState extends State<TopSearch> {
   var type;
   var ishas;
   var hasNewMessage = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -159,6 +160,7 @@ class _TopSearchState extends State<TopSearch> {
                     );
                     return;
                   } else {
+                    hasNewMessage = !hasNewMessage;
                     Navigator.pushNamed(
                       context,
                       '/message',
