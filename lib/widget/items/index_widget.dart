@@ -92,53 +92,53 @@ class ItemIndex extends StatelessWidget {
             PredictWidget(item: item),
             this.cate != 'prediction'
                 ? Container(
-                    margin: EdgeInsets.only(left: 10, right: 10, top: 5),
-                    height: ScreenUtil().setHeight(90),
-                    padding: EdgeInsets.only(left: 14, right: 14),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(227, 237, 247, 1),
-                      borderRadius:
-                          BorderRadius.circular(ScreenUtil().setWidth(10)),
+              margin: EdgeInsets.only(left: 10, right: 10, top: 5),
+              height: ScreenUtil().setHeight(90),
+              padding: EdgeInsets.only(left: 14, right: 14),
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(227, 237, 247, 1),
+                borderRadius:
+                BorderRadius.circular(ScreenUtil().setWidth(10)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    item['predictionsTournament']['name'],
+                    style: TextStyle(
+                      fontSize: ScreenUtil().setSp(30),
+                      color: Color.fromRGBO(83, 83, 83, 1),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          item['predictionsTournament']['name'],
-                          style: TextStyle(
-                            fontSize: ScreenUtil().setSp(30),
-                            color: Color.fromRGBO(83, 83, 83, 1),
-                          ),
-                        ),
-                        MaterialButton(
-                          color: Color.fromRGBO(255, 147, 0, 0.7),
-                          child: new Text(
-                            '点击查看',
-                            style: TextStyle(
-                              fontSize: ScreenUtil().setSp(26),
-                            ),
-                          ),
-                          elevation: 0,
-                          minWidth: ScreenUtil().setWidth(180),
-                          height: ScreenUtil().setWidth(60),
-                          padding: EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          onPressed: () async {
-                            Navigator.pushNamed(context, '/predictionpage',
-                                arguments: {
-                                  'forumId': item['forum']['id'],
-                                  'forumName': item['forum']['name'],
-                                });
-                          },
-                        ),
-                      ],
-                    ),
-                  )
-                : Container(
-                    height: 0,
                   ),
+                  MaterialButton(
+                    color: Color.fromRGBO(255, 147, 0, 0.7),
+                    child: new Text(
+                      '点击查看',
+                      style: TextStyle(
+                        fontSize: ScreenUtil().setSp(26),
+                      ),
+                    ),
+                    elevation: 0,
+                    minWidth: ScreenUtil().setWidth(180),
+                    height: ScreenUtil().setWidth(60),
+                    padding: EdgeInsets.all(0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    onPressed: () async {
+                      Navigator.pushNamed(context, '/predictionpage',
+                          arguments: {
+                            'forumId': item['forum']['id'],
+                            'forumName': item['forum']['name'],
+                          });
+                    },
+                  ),
+                ],
+              ),
+            )
+                : Container(
+              height: 0,
+            ),
           ],
         );
         break;
@@ -188,9 +188,9 @@ class ItemIndex extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
           border: Border.all(
-        width: 0.5,
-        color: Color.fromRGBO(235, 235, 235, 1),
-      )),
+            width: 0.5,
+            color: Color.fromRGBO(235, 235, 235, 1),
+          )),
       child: Text(
         '当前版本不支持的类型，请尝试升级版本查看',
         style: TextStyle(color: Colors.grey),
@@ -260,7 +260,7 @@ class ItemIndex extends StatelessWidget {
               );
             }
           },
-          child: Container(
+          child: item['title'] != null && item['title'].toString().trim() != ''?  Container(
             color: Colors.white,
             margin: EdgeInsets.only(
                 left: ScreenUtil().setWidth(30),
@@ -273,52 +273,52 @@ class ItemIndex extends StatelessWidget {
                 children: [
                   item['tags'] != null && item['tags'].length > 0
                       ? WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: Container(
-                            padding: EdgeInsets.only(left: 5, right: 5),
-                            margin: EdgeInsets.only(right: 4),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                  ScreenUtil().setWidth(4)),
-                              color: (item['tags'] != null &&
-                                      item['tags'].length > 0 &&
-                                      item['tags'][0]['backgroundColor'] !=
-                                          null &&
-                                      item['tags'][0]['backgroundColor'] !=
-                                          null)
-                                  ? fromHex(item['tags'][0]['backgroundColor'])
-                                  : Color.fromRGBO(255, 147, 0, 1),
-                            ),
-                            child: Text(
-                              (item['tags'] != null && item['tags'].length > 0
-                                  ? (item['tags'][0]['name'])
-                                  : ''),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: ScreenUtil().setSp(28),
-                              ),
-                            ),
-                          ),
-                        )
+                    alignment: PlaceholderAlignment.middle,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 5, right: 5),
+                      margin: EdgeInsets.only(right: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                            ScreenUtil().setWidth(4)),
+                        color: (item['tags'] != null &&
+                            item['tags'].length > 0 &&
+                            item['tags'][0]['backgroundColor'] !=
+                                null &&
+                            item['tags'][0]['backgroundColor'] !=
+                                null)
+                            ? fromHex(item['tags'][0]['backgroundColor'])
+                            : Color.fromRGBO(255, 147, 0, 1),
+                      ),
+                      child: Text(
+                        (item['tags'] != null && item['tags'].length > 0
+                            ? (item['tags'][0]['name'])
+                            : ''),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(28),
+                        ),
+                      ),
+                    ),
+                  )
                       : TextSpan(),
                   vs != null &&
-                          (item['type'] == 'vote' ||
-                              item['type'] == 'prediction')
+                      (item['type'] == 'vote' ||
+                          item['type'] == 'prediction')
                       ? WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: Container(
-                            // color: KColor.primaryColor,
-                            padding: EdgeInsets.only(left: 0, right: 0),
-                            margin: EdgeInsets.only(right: 0),
-                            child: Text(
-                              '【' + doTypeName(item['type']) + '】',
-                              style: TextStyle(
-                                color: Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: ScreenUtil().setSp(30),
-                              ),
-                            ),
-                          ),
-                        )
+                    alignment: PlaceholderAlignment.middle,
+                    child: Container(
+                      // color: KColor.primaryColor,
+                      padding: EdgeInsets.only(left: 0, right: 0),
+                      margin: EdgeInsets.only(right: 0),
+                      child: Text(
+                        '【' + doTypeName(item['type']) + '】',
+                        style: TextStyle(
+                          color: Color.fromRGBO(153, 153, 153, 1),
+                          fontSize: ScreenUtil().setSp(30),
+                        ),
+                      ),
+                    ),
+                  )
                       : TextSpan(text: ''),
                   // TextSpan(
                   //   text: (item['tags'] != null && item['tags'].length > 0
@@ -347,7 +347,7 @@ class ItemIndex extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          ) : Container(),
         ),
       );
     } else {
@@ -426,138 +426,150 @@ class ItemIndex extends StatelessWidget {
         if (!disabledPostList.contains(item['postId']) &&
             (item['userInfo'] != null) &&
             !disabledUserList.contains(item['userInfo']['userId'])) {
-          return Container(
-            width: ScreenUtil().setWidth(750),
-            margin: EdgeInsets.only(bottom: 0, left: 0, right: 0),
-            color: Color.fromRGBO(245, 245, 245, 1),
-            child: Container(
-              color: Colors.white,
-              margin: EdgeInsets.only(bottom: 5),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: ScreenUtil().setWidth(30),
-                      right: ScreenUtil().setWidth(30),
-                    ),
-                    child: ItemsTop(
-                      item: item,
-                      type: type,
-                      // callTag: callTag,
-                    ),
-                  ),
-                  Container(
-                    // color: Colors.red,
-                    child: Provider.of<UserStateProvide>(context, listen: false)
-                                    .modelType !=
-                                'model1' ||
+          return InkWell(
+              onTap:() {
+                Navigator.pushNamed(
+                  context,
+                  '/postdetail',
+                  arguments: {
+                    "postId": item['postId']
+                        .toString()
+                  },
+                );
+              },
+              child: Container(
+                width: ScreenUtil().setWidth(750),
+                margin: EdgeInsets.only(bottom: 0, left: 0, right: 0),
+                color: Color.fromRGBO(245, 245, 245, 1),
+                child: Container(
+                  color: Colors.white,
+                  margin: EdgeInsets.only(bottom: 5),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(
+                          left: ScreenUtil().setWidth(30),
+                          right: ScreenUtil().setWidth(30),
+                        ),
+                        child: ItemsTop(
+                          item: item,
+                          type: type,
+                          // callTag: callTag,
+                        ),
+                      ),
+                      Container(
+                        // color: Colors.red,
+                        child: Provider.of<UserStateProvide>(context, listen: false)
+                            .modelType !=
+                            'model1' ||
                             (this.cate == 'prediction')
-                        ? Column(
-                            children: <Widget>[
-                              doTitle(context, item, null),
-                              doItem(context, item),
-                            ],
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: doTitle(context, item, '1'),
-                              ),
-                              item['type'] != 'vote' &&
-                                      item['type'] != 'prediction'
-                                  ? Container(
-                                      margin: EdgeInsets.only(
-                                          right: ScreenUtil().setWidth(20)),
-                                      width: ScreenUtil().setWidth(180),
-                                      height: ScreenUtil().setWidth(130),
-                                      // color: Colors.red,
-                                      child: Stack(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(4)),
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pushNamed(
-                                                  context,
-                                                  '/postdetail',
-                                                  arguments: {
-                                                    "postId": item['postId']
-                                                        .toString()
-                                                  },
-                                                );
-                                              },
-                                              child: _getImageUrl(item),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            bottom: 0,
-                                            right: 0,
-                                            child: _postType(item),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : Container(
-                                      width: 0,
+                            ? Column(
+                          children: <Widget>[
+                            doTitle(context, item, null),
+                            doItem(context, item),
+                          ],
+                        )
+                            : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: doTitle(context, item, '1'),
+                            ),
+                            item['type'] != 'vote' &&
+                                item['type'] != 'prediction'
+                                ? Container(
+                              margin: EdgeInsets.only(
+                                  right: ScreenUtil().setWidth(20)),
+                              width: ScreenUtil().setWidth(180),
+                              height: ScreenUtil().setWidth(130),
+                              // color: Colors.red,
+                              child: Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(4)),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          '/postdetail',
+                                          arguments: {
+                                            "postId": item['postId']
+                                                .toString()
+                                          },
+                                        );
+                                      },
+                                      child: _getImageUrl(item),
                                     ),
-                            ],
-                          ),
-                  ), //gmtComment
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    right: 0,
+                                    child: _postType(item),
+                                  ),
+                                ],
+                              ),
+                            )
+                                : Container(
+                              width: 0,
+                            ),
+                          ],
+                        ),
+                      ), //gmtComment
 
-                  item['gmtComment'] != null &&
+                      item['gmtComment'] != null &&
                           this.isComment != null &&
                           this.isComment
-                      ? InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              '/postdetail',
-                              arguments: {"postId": item['postId'].toString()},
-                            );
-                          },
+                          ? InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/postdetail',
+                            arguments: {"postId": item['postId'].toString()},
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10, top: 5),
+                          alignment: Alignment.centerLeft,
                           child: Container(
-                            margin: EdgeInsets.only(left: 10, top: 5),
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(
-                                  left: 2, right: 2, top: 2, bottom: 2),
-                              color: Color.fromRGBO(221, 221, 221, 0.5),
-                              width: ScreenUtil().setWidth(230),
-                              child: Text(
-                                '最新评论·' + Utils.moments(item['gmtComment']),
-                                style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(24),
-                                  color: Color.fromRGBO(33, 29, 47, 0.5),
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            alignment: Alignment.center,
+                            margin: EdgeInsets.only(
+                                left: 2, right: 2, top: 2, bottom: 2),
+                            color: Color.fromRGBO(221, 221, 221, 0.5),
+                            width: ScreenUtil().setWidth(230),
+                            child: Text(
+                              '最新评论·' + Utils.moments(item['gmtComment']),
+                              style: TextStyle(
+                                fontSize: ScreenUtil().setSp(24),
+                                color: Color.fromRGBO(33, 29, 47, 0.5),
+                                fontWeight: FontWeight.w500,
                               ),
-                              padding: EdgeInsets.only(left: 4, right: 4),
                             ),
+                            padding: EdgeInsets.only(left: 4, right: 4),
                           ),
-                        )
-                      : Container(
-                          height: 0,
                         ),
-                  Container(
-                    // color: Colors.black,
-                    padding: EdgeInsets.only(
-                      left: ScreenUtil().setWidth(30),
-                      right: ScreenUtil().setWidth(30),
-                    ),
-                    child: BottomWidget(item: item),
+                      )
+                          : Container(
+                        height: 0,
+                      ),
+                      Container(
+                        // color: Colors.black,
+                        padding: EdgeInsets.only(
+                          left: ScreenUtil().setWidth(30),
+                          right: ScreenUtil().setWidth(30),
+                        ),
+                        child: BottomWidget(item: item),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              // padding: EdgeInsets.only(
-              //   left: ScreenUtil().setWidth(30),
-              //   right: ScreenUtil().setWidth(30),
-              // ),
-            ),
+                  // padding: EdgeInsets.only(
+                  //   left: ScreenUtil().setWidth(30),
+                  //   right: ScreenUtil().setWidth(30),
+                  // ),
+                ),
+              )
           );
         } else {
           return Container(
@@ -634,9 +646,9 @@ class ItemIndex extends StatelessWidget {
           width: ScreenUtil().setWidth(180),
           child: CachedNetworkImage(
             imageUrl: (KSet.imgOrigin +
-                    (item['type'] == 'inner_video'
-                        ? item['video']
-                        : item['imageName'])) +
+                (item['type'] == 'inner_video'
+                    ? item['video']
+                    : item['imageName'])) +
                 '?x-oss-process=video/snapshot,t_100000,m_fast,ar_auto,w_200',
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
@@ -652,12 +664,12 @@ class ItemIndex extends StatelessWidget {
           width: ScreenUtil().setWidth(180),
           child: item['cover'] != null
               ? CachedNetworkImage(
-                  imageUrl: (KSet.imgOrigin +
-                      item['cover'] +
-                      '?x-oss-process=image/resize,w_200'),
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                )
+            imageUrl: (KSet.imgOrigin +
+                item['cover'] +
+                '?x-oss-process=image/resize,w_200'),
+            fit: BoxFit.cover,
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          )
               : Image.asset('assets/images/_icon/link.png'),
         );
         break;
@@ -670,18 +682,18 @@ class ItemIndex extends StatelessWidget {
           width: ScreenUtil().setWidth(180),
           child: item['imageName'] != null
               ? CachedNetworkImage(
-                  imageUrl: (KSet.imgOrigin +
-                      item['imageName'] +
-                      '?x-oss-process=image/resize,w_450'),
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                )
+            imageUrl: (KSet.imgOrigin +
+                item['imageName'] +
+                '?x-oss-process=image/resize,w_450'),
+            fit: BoxFit.cover,
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          )
               : CachedNetworkImage(
-                  imageUrl:
-                      'https://i.chao.fun/biz/9563cdd828d2b674c424b79761ccb4c0.png',
-                  fit: BoxFit.contain,
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+            imageUrl:
+            'https://i.chao.fun/biz/9563cdd828d2b674c424b79761ccb4c0.png',
+            fit: BoxFit.contain,
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
         );
       case 'prediction':
         return Container(
@@ -700,9 +712,9 @@ class ItemIndex extends StatelessWidget {
     }
   }
 
-  // callTag(data) {
-  //   item['tags'] = [
-  //     {'name': '找不到'}
-  //   ];
-  // }
+// callTag(data) {
+//   item['tags'] = [
+//     {'name': '找不到'}
+//   ];
+// }
 }

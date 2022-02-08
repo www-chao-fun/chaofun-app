@@ -270,7 +270,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             ),
                             _tools(),
                             postInfo['type'] != 'link' &&
-                                postInfo['type'] != 'video'
+                                postInfo['type'] != 'video' && postInfo['title'] != null && postInfo['title'].toString().trim() != ''
                                 ? _postTitle()
                                 : Container(
                               height: 0,
@@ -411,12 +411,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                 border: Border(
                                   left: BorderSide(
                                       width: 0.5,
-                                      color: Color.fromRGBO(
-                                          241, 241, 241, 1)),
+                                      color: Color.fromRGBO(241, 241, 241, 1)),
                                   top: BorderSide(
                                       width: 0.5,
-                                      color: Color.fromRGBO(
-                                          241, 241, 241, 1)),
+                                      color: Color.fromRGBO(241, 241, 241, 1)),
                                 ),
                               ),
                               alignment: Alignment.center,
