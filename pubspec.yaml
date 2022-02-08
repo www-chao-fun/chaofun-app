@@ -142,6 +142,8 @@ flutter:
     - assets/images/_icon/022.png
     - assets/images/_icon/031.png
     - assets/images/_icon/032.png
+    - assets/images/_icon/message_read.png
+    - assets/images/_icon/message_unread.png
     - assets/images/_icon/push.png
     # - assets/images/icon/032.png
     - assets/images/_icon/041.png

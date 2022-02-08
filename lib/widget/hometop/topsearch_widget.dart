@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_chaofan/api/api.dart';
 import 'package:flutter_chaofan/config/color.dart';
 import 'package:flutter_chaofan/config/font.dart';
 import 'package:flutter_chaofan/config/index.dart';
 import 'package:flutter_chaofan/provide/user.dart';
+import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -20,12 +22,29 @@ class TopSearch extends StatefulWidget {
 class _TopSearchState extends State<TopSearch> {
   var type;
   var ishas;
+  var hasNewMessage = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     type = widget.type;
     ishas = widget.ishas;
+    getMessageCount();
+  }
+
+
+  Future<void> getMessageCount() async {
+    while(true) {
+      await Future.delayed(Duration(seconds: 30));
+      if (Provider.of<UserStateProvide>(context, listen: false).ISLOGIN) {
+        var response = await HttpUtil().get(Api.checkMessage);
+        if(response['success'] && response['data'] != null) {
+          setState(() {
+            hasNewMessage = response['data']['hasNewMessage'];
+          });
+        }
+      }
+    }
   }
 
   @override
@@ -146,8 +165,12 @@ class _TopSearchState extends State<TopSearch> {
                     );
                   }
                 },
-                child: Image.asset(
-                  'assets/images/_icon/032.png',
+                // child: Icon(Icons.mail_outline),
+                child: hasNewMessage ? Image.asset(
+                  'assets/images/_icon/message_unread.png',
+                  fit: BoxFit.fill,
+                ): Image.asset(
+                  'assets/images/_icon/message_read.png',
                   fit: BoxFit.fill,
                 ),
               ),
