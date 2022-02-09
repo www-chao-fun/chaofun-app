@@ -1085,12 +1085,18 @@ class _SubmitPageState extends State<SubmitPage> {
       );
     }
   }
-
   _articleWidget() {
+
+    var bottom = MediaQuery.of(context).viewInsets.bottom;
+
+    // 计算出来的
+    var maxLines = 12;
+    maxLines = maxLines -  ((bottom - 336) /16).round();
+
     return TextField(
       autofocus: false,
       controller: _articleController,
-      maxLines: 10,
+      maxLines: maxLines,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: EdgeInsets.only(left: 14, top: 0, right: 14, bottom: 0),
