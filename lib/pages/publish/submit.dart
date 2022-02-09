@@ -1089,9 +1089,10 @@ class _SubmitPageState extends State<SubmitPage> {
 
     var bottom = MediaQuery.of(context).viewInsets.bottom;
 
-    // 计算出来的
-    var maxLines = 12;
-    maxLines = maxLines -  ((bottom - 336) /16).round();
+    var maxLines = 10;
+    // var x =  ScreenUtil().screenHeight;
+    // 以小米m8 770 高度作为基准，键盘高度 280 为基准
+    maxLines = (maxLines -  (bottom - (280 + ScreenUtil().screenHeight - 770) ) / 21).floor();
 
     return TextField(
       autofocus: false,
