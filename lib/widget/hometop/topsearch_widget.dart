@@ -36,7 +36,6 @@ class _TopSearchState extends State<TopSearch> {
 
   Future<void> getMessageCount() async {
     while(true) {
-      await Future.delayed(Duration(seconds: 30));
       if (Provider.of<UserStateProvide>(context, listen: false).ISLOGIN) {
         var response = await HttpUtil().get(Api.checkMessage);
         if(response['success'] && response['data'] != null) {
@@ -45,6 +44,7 @@ class _TopSearchState extends State<TopSearch> {
           });
         }
       }
+      await Future.delayed(Duration(seconds: 30));
     }
   }
 
@@ -160,7 +160,7 @@ class _TopSearchState extends State<TopSearch> {
                     );
                     return;
                   } else {
-                    hasNewMessage = !hasNewMessage;
+                    hasNewMessage = false;
                     Navigator.pushNamed(
                       context,
                       '/message',
