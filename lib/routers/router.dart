@@ -3,6 +3,7 @@ import 'package:flutter_chaofan/pages/collect/collect_add_page.dart';
 import 'package:flutter_chaofan/pages/collect/collect_detail_page.dart';
 import 'package:flutter_chaofan/pages/collect/collect_list_page.dart';
 import 'package:flutter_chaofan/pages/discover.dart';
+import 'package:flutter_chaofan/pages/focus_page.dart';
 import 'package:flutter_chaofan/pages/forum/all_page.dart';
 import 'package:flutter_chaofan/pages/forum/focused_page.dart';
 import 'package:flutter_chaofan/pages/forum/forum_page.dart';
@@ -64,6 +65,7 @@ final routes = {
   // '/goodDetailPage': (context, {arguments}) =>
   //     GoodsDetailPage(arguments: arguments),
   '/postdetail': (context, {arguments}) => PostDetailPage(arguments: arguments),
+  '/focus_user': (context, {arguments}) => FocusPage(arguments: arguments),
   '/login': (context) => LoginPage(), //选择登录
   '/accoutlogin': (context, {arguments}) =>
       AccoutLoginPage(arguments: arguments), //账号密码登录

@@ -18,6 +18,13 @@ class Api {
   static const String listFocusUser =
       BASE_URL + '/api/v0/user/listFocus'; // 查询关注用户
 
+  static const String listFocusUserV1 =
+      BASE_URL + '/api/v0/focus/list_focus'; // 查询关注用户
+
+  static const String listFansUserV1 =
+      BASE_URL + '/api/v0/focus/list_fans'; // 查询关注用户
+
+
   static const String ListTags =
       BASE_URL + '/api/v0/forum_tag/list_tags'; //查询全部分类
 
@@ -26,7 +33,7 @@ class Api {
   static const String userRegister = BASE_URL + '/api/register'; //账号密码登录
 
   static const String userCodeLogin =
-      BASE_URL + '​/api​/v0​/phone​/login'; //验证码登录
+      BASE_URL + '/api/v0/phone/login'; //验证码登录
 
   static const String bindDevice =
       BASE_URL + '/api/v0/user/bindDevice'; // 绑定设备用于推送

@@ -47,12 +47,13 @@ class PostItemWidget extends StatelessWidget {
         left: ScreenUtil().setWidth(10),
         right: ScreenUtil().setWidth(10),
       ),
-      child: (data['article'].startsWith('<p') ||
-              data['article'].startsWith('<ol') ||
-            data['article'].startsWith('<a') ||
-            data['article'].startsWith('<ul') ||
-              data['article'].startsWith('<div') ||
-              data['article'].startsWith('<h'))
+      child: (data['article'].trim().startsWith('<p') ||
+            data['article'].trim().startsWith('<ol') ||
+            data['article'].trim().startsWith('<a') ||
+            data['article'].trim().startsWith('<ul') ||
+            data['article'].trim().startsWith('<div') ||
+            data['article'].trim().startsWith('<block') ||
+            data['article'].trim().startsWith('<h'))
           ? Html(
               data: data['article'],
               style: {

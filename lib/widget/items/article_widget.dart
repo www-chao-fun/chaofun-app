@@ -33,6 +33,9 @@ class ArticleWidget extends StatelessWidget {
     // print(b);
     // print('document');
     // print(document.outerHtml);
+
+    print(123);
+    print(item['article'].toString().trim());
     return Container(
       alignment: Alignment.topLeft,
       // 设置盒子最大或最小高度宽度
@@ -54,12 +57,14 @@ class ArticleWidget extends StatelessWidget {
             arguments: {"postId": item['postId'].toString()},
           );
         },
-        child: (item['article'].startsWith('<p') ||
-                item['article'].startsWith('<ol') ||
-                item['article'].startsWith('<ul') ||
-                item['article'].startsWith('<a') ||
-                item['article'].startsWith('<div') ||
-                item['article'].startsWith('<h'))
+
+        child: (item['article'].trim().startsWith('<p') ||
+                item['article'].trim().startsWith('<ol') ||
+                item['article'].trim().startsWith('<ul') ||
+                item['article'].trim().startsWith('<a') ||
+                item['article'].trim().startsWith('<div') ||
+                item['article'].trim().startsWith('<block') ||
+                item['article'].trim().startsWith('<h'))
             // ? Html(
             //     data:
             //         '<div style="height:250px;overflow:hidden;display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;">' +

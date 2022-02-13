@@ -208,15 +208,14 @@ class _MemberPageState extends State<MemberPage> {
         ),
         Expanded(
           flex: 1,
-          child: Container(
-            // decoration: BoxDecoration(
-            //   border: Border(
-            //     right: BorderSide(
-            //       width: 0.5,
-            //       color: Color.fromRGBO(33, 29, 47, 0.5),
-            //     ),
-            //   ),
-            // ),
+          child:  InkWell(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/focus_user',
+                arguments: {'title': '粉丝', 'userId': userInfo['userId'].toString()},
+              );
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -248,7 +247,14 @@ class _MemberPageState extends State<MemberPage> {
         ),
         Expanded(
           flex: 1,
-          child: Container(
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/focus_user',
+                arguments: {'title': '关注', 'userId': userInfo['userId'].toString()},
+              );
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

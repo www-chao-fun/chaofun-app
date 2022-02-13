@@ -715,56 +715,77 @@ class _UserMemberPageState extends State<UserMemberPage>
                                         ),
                                       ],
                                     ),
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: memberInfo['followers'] != null
-                                              ? memberInfo['followers']
-                                                  .toString()
-                                              : '',
-                                          style: TextStyle(
-                                            fontSize: ScreenUtil().setSp(34),
-                                            color: Colors.white,
-                                            // fontWeight: FontWeight.bold,
+                                    Row(
+                                        children: [
+                                          InkWell(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  '/focus_user',
+                                                  arguments: {'title': '粉丝', 'userId': memberInfo['userId'].toString()},
+                                                );
+                                              },
+                                              child: RichText(
+                                                  text: TextSpan(
+                                                      text: memberInfo['followers'] != null
+                                                          ? memberInfo['followers']
+                                                          .toString()
+                                                          : '',
+                                                      style: TextStyle(
+                                                        fontSize: ScreenUtil().setSp(34),
+                                                        color: Colors.white,
+                                                        // fontWeight: FontWeight.bold,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(text: ' '),
+                                                        TextSpan(
+                                                          text: '粉丝',
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                            ScreenUtil().setSp(28),
+                                                            color: Color.fromRGBO(
+                                                                255, 255, 255, 0.8),
+                                                          ),
+                                                        )]
+                                                  )
+                                              )
                                           ),
-                                          children: <TextSpan>[
-                                            TextSpan(text: ' '),
-                                            TextSpan(
-                                              text: '粉丝',
-                                              style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(28),
-                                                color: Color.fromRGBO(
-                                                    255, 255, 255, 0.8),
-                                              ),
-                                            ),
-                                            TextSpan(text: '  '),
-                                            TextSpan(text: '  '),
-                                            TextSpan(
-                                              text: memberInfo['focus'] != null
-                                                  ? memberInfo['focus']
-                                                      .toString()
-                                                  : '',
-                                              style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(34),
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: '关注',
-                                              style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(28),
-                                                color: Color.fromRGBO(
-                                                    255, 255, 255, 0.8),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                          Text('    '),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                '/focus_user',
+                                                arguments: {'title': '关注', 'userId': memberInfo['userId'].toString()},
+                                              );
+                                            },
+                                              child: RichText(
+                                                  text: TextSpan(
+                                                      text: memberInfo['focus'] != null
+                                                          ? memberInfo['focus']
+                                                          .toString()
+                                                          : '',
+                                                      style: TextStyle(
+                                                        fontSize: ScreenUtil().setSp(34),
+                                                        color: Colors.white,
+                                                        // fontWeight: FontWeight.bold,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(text: ' '),
+                                                        TextSpan(
+                                                          text: '关注',
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                            ScreenUtil().setSp(28),
+                                                            color: Color.fromRGBO(
+                                                                255, 255, 255, 0.8),
+                                                          ),
+                                                        )]
+                                                  )
+                                              )
+                                          )
+                                        ]
+                                    )
                                   ],
                                 ),
                               ),

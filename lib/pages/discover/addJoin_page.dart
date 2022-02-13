@@ -388,6 +388,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
     }
   }
 
+
   Widget _nothing(text) {
     return Container(
       height: 100,
