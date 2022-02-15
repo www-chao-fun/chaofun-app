@@ -50,7 +50,7 @@ class HttpUtil {
 //    };
 
     dio.interceptors
-        .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
+        .add(InterceptorsWrapper(onRequest: (RequestOptions options, RequestInterceptorHandler handler) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var tCookie = prefs.getString("cookie");
       if (tCookie != null) {
@@ -66,8 +66,8 @@ class HttpUtil {
       //   // options.headers[Strings.TOKEN] = token;
       // });
       dio.unlock();
-      return options;
-    }, onResponse: (Response response) async {
+      handler.next(options);
+    }, onResponse: (Response response, ResponseInterceptorHandler handler) async {
       print("========================接收数据2===================");
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var tCookie = prefs.getString("cookie");
@@ -116,8 +116,12 @@ class HttpUtil {
 
         prefs.setString('cookie', target);
       }
-    }, onError: (DioError error) {
+
+      handler.next(response);
+    }, onError: (DioError error, ErrorInterceptorHandler handler) {
       print("========================请求错误3===================");
+
+      handler.next(error);
       // print("message =${error.message}");
     }));
   }

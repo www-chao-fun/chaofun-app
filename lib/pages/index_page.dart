@@ -474,133 +474,40 @@ class _IndexPageState extends State<IndexPage> {
     });
   }
 
-  final List<BottomNavigationBarItem> bottomTabs = [
-    BottomNavigationBarItem(
-      icon: Consumer<UserStateProvide>(builder: (context, user, child) {
-        if (user.ISLOGIN) {
-          return Image.asset(
-            'assets/images/_icon/011.png',
-            width: 24,
-            height: 24,
-          );
-        } else {
-          return Image.asset(
-            'assets/images/_icon/qz_1.png',
-            width: 24,
-            height: 24,
-          );
-        }
-      }),
-      activeIcon: Consumer<UserStateProvide>(builder: (context, user, child) {
-        if (user.ISLOGIN) {
-          return Image.asset(
-            'assets/images/_icon/012.png',
-            width: 24,
-            height: 24,
-          );
-        } else {
-          return Image.asset(
-            'assets/images/_icon/qz.png',
-            width: 24,
-            height: 24,
-          );
-        }
-      }),
-      title: Consumer<UserStateProvide>(builder: (context, user, child) {
-        if (user.ISLOGIN) {
-          return Text(
-            '首页',
-            style: KFont.navBarBottomStyle,
-          );
-        } else {
-          return Text(
-            '全站',
-            style: KFont.navBarBottomStyle,
-          );
-        }
-      }),
-      // title: Provide<UserStateProvide>(
-      //     builder: (BuildContext context, Widget child, UserStateProvide user) {
-      //   if (user.ISLOGIN) {
-      //     return Text(
-      //       '首页',
-      //       style: KFont.navBarBottomStyle,
-      //     );
-      //   } else {
-      //     return Text(
-      //       '全站',
-      //       style: KFont.navBarBottomStyle,
-      //     );
-      //   }
-      // }), //首页
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset(
-        'assets/images/_icon/021.png',
-        width: 24,
-        height: 24,
-      ),
-      activeIcon: Image.asset(
-        'assets/images/_icon/022.png',
-        width: 24,
-        height: 24,
-      ),
-      title: Text(
-        KString.categoryTitle,
-        style: KFont.navBarBottomStyle,
-      ), //分类
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset(
-        'assets/images/_icon/push.png',
-        width: 35,
-        height: 35,
-      ),
-      activeIcon: Image.asset(
-        'assets/images/_icon/push.png',
-        width: 35,
-        height: 35,
-      ),
-      title: Text(
-        KString.gameTitle,
-        style: TextStyle(
-          fontSize: 14,
-        ),
-      ), //分类
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset(
-        'assets/images/_icon/052.png',
-        width: 24,
-        height: 24,
-      ),
-      activeIcon: Image.asset(
-        'assets/images/_icon/051.png',
-        width: 24,
-        height: 24,
-      ),
-      title: Text(
-        KString.chatTitle,
-        style: KFont.navBarBottomStyle,
-      ), //首页
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset(
-        'assets/images/_icon/041.png',
-        width: 24,
-        height: 24,
-      ),
-      activeIcon: Image.asset(
-        'assets/images/_icon/042.png',
-        width: 24,
-        height: 24,
-      ),
-      title: Text(
-        KString.shoppingCartTitle,
-        style: KFont.navBarBottomStyle,
-      ), //首页
-    )
-  ];
+  // getBottomNavigationBarItem() {
+  //   var widget = Consumer<UserStateProvide>(builder: (context, user, child) {
+  //     if (user.ISLOGIN) {
+  //       return  BottomNavigationBarItem(
+  //           icon: Image.asset(
+  //             'assets/images/_icon/011.png',
+  //             width: 24,
+  //             height: 24,
+  //           ),
+  //           activeIcon: Image.asset(
+  //             'assets/images/_icon/012.png',
+  //             width: 24,
+  //             height: 24,
+  //           ),
+  //           label: '首页');
+  //     } else {
+  //       return  BottomNavigationBarItem(
+  //           icon: Image.asset(
+  //             'assets/images/_icon/qz_1.png',
+  //             width: 24,
+  //             height: 24,
+  //           ),
+  //           activeIcon: Image.asset(
+  //             'assets/images/_icon/qz.png',
+  //             width: 24,
+  //             height: 24,
+  //           ),
+  //           label: '全站');
+  //     }
+  //   });
+  //   return widget;
+  // }
+
+
   final List<Widget> tabBodies = [
     HomePage(),
     DiscoverPage(),
@@ -670,23 +577,88 @@ class _IndexPageState extends State<IndexPage> {
     // ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     // Provide.value<UserStateProvide>(context).setIndexDialog();
     Provider.of<UserStateProvide>(context, listen: false).setIndexDialog();
-    // checkIfShowAgree();
-    // // if (Provide.value<UserStateProvide>(context).ISLOGIN) {
-    // Provide.value<UserStateProvide>(context).setLooksList({
-    //   'icon': 'assets/images/_icon/quanzhan.png',
-    //   'label': '全站',
-    //   'value': '1'
-    // });
-    // Provide.value<UserStateProvide>(context).setLooksList(
-    //   {'icon': 'assets/images/_icon/tuijian.png', 'label': '推荐', 'value': '1'},
-    // );
-    // Provide.value<UserStateProvide>(context).setLooksList({
-    //   'icon': 'assets/images/_icon/guanzhu.png',
-    //   'label': '关注',
-    //   'value': '1'
-    // });
-    // // }
-    // delays();
+
+    final List<BottomNavigationBarItem> bottomTabs = [
+      Provider.of<UserStateProvide>(context, listen: false).ISLOGIN ?
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            'assets/images/_icon/011.png',
+            width: 24,
+            height: 24,
+          ),
+          activeIcon:Image.asset(
+            'assets/images/_icon/012.png',
+            width: 24,
+            height: 24,
+          ),
+          label: '首页'
+      ): BottomNavigationBarItem(
+          icon: Image.asset(
+            'assets/images/_icon/qz_1.png',
+            width: 24,
+            height: 24,
+          ),
+          activeIcon:Image.asset(
+            'assets/images/_icon/qz.png',
+            width: 24,
+            height: 24,
+          ),
+          label: '全站'),
+      // getBottomNavigationBarItem(),
+      BottomNavigationBarItem(
+        icon: Image.asset(
+          'assets/images/_icon/021.png',
+          width: 24,
+          height: 24,
+        ),
+        activeIcon: Image.asset(
+          'assets/images/_icon/022.png',
+          width: 24,
+          height: 24,
+        ),
+        label: KString.categoryTitle,
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset(
+          'assets/images/_icon/push.png',
+          width: 35,
+          height: 35,
+        ),
+        activeIcon: Image.asset(
+          'assets/images/_icon/push.png',
+          width: 35,
+          height: 35,
+        ),
+        label: KString.gameTitle,
+        //分类
+      ),
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            'assets/images/_icon/052.png',
+            width: 24,
+            height: 24,
+          ),
+          activeIcon: Image.asset(
+            'assets/images/_icon/051.png',
+            width: 24,
+            height: 24,
+          ),
+          label: KString.chatTitle
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset(
+          'assets/images/_icon/041.png',
+          width: 24,
+          height: 24,
+        ),
+        activeIcon: Image.asset(
+          'assets/images/_icon/042.png',
+          width: 24,
+          height: 24,
+        ),
+        label:
+        KString.shoppingCartTitle,)
+    ];
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),

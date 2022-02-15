@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'dart:async';
-import 'package:flutter_ijkplayer/flutter_ijkplayer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 // class ForwardWidget extends StatefulWidget {

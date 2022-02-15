@@ -31,11 +31,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   wakelock: ^0.5.2
   cupertino_icons: ^1.0.2
-  dio: ^3.0.9
+  dio: ^4.0.4
   flutter_swiper: ^1.1.6
   flutter_screenutil: ^4.0.3
   flutter_svg: ^0.22.0-nullsafety.3
-  url_launcher: ^5.7.5
+  url_launcher: ^6.0.2
   flutter_easyrefresh: ^2.1.8
   provider: ^6.0.0
   fluttertoast: ^8.0.8
@@ -46,7 +46,7 @@ dependencies:
   photo_view: ^0.13.0
   cached_network_image: ^2.3.3
   flutter_cache_manager: ^2.0.0
-  image_picker: ^0.6.7+22
+  image_picker: ^0.8.2
   images_picker: ^1.2.10
   flutter_webview_plugin: ^0.4.0
   flutter_inappwebview: ^5.3.2
@@ -54,7 +54,7 @@ dependencies:
   package_info: ^0.4.3+4
   r_upgrade: ^0.3.7
   image_gallery_saver: ^1.7.1
-  permission_handler: ^5.1.0+2
+  permission_handler: ^8.3.0
   pull_to_refresh: ^2.0.0
   loading_indicator_view: ^1.1.0
   visibility_detector: ^0.2.0
@@ -63,9 +63,10 @@ dependencies:
   path_provider: ^2.0.2
   device_info: ^2.0.0
   launch_review: ^3.0.1
-  extended_text_field: ^8.0.0
-  extended_text: ^7.0.1
+  extended_text_field: ^10.0.0
+  extended_text: ^9.0.0
   web_socket_channel: ^2.1.0
+  flutter_quill: ^4.0.0
 
   flutter_localizations:
     sdk: flutter

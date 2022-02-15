@@ -281,7 +281,7 @@ class _ArticlePublishPageState extends State<ArticlePublishPage> {
 
   Future getImage(isTakePhoto) async {
     Navigator.pop(context);
-    var image = await ImagePicker.pickImage(
+    var image = await ImagePicker.platform.getImage(
         source: isTakePhoto ? ImageSource.camera : ImageSource.gallery);
   }
 

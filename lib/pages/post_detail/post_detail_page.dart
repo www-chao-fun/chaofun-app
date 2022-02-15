@@ -258,7 +258,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                       child: Container(
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                         constraints: BoxConstraints(
-                          minHeight: MediaQuery.of(context).size.height,
+                          minHeight: 100,
                         ),
                         child: Column(
                           children: <Widget>[
@@ -1110,7 +1110,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     } else if (data['type'] == 'gif') {
       return VideoWidget(
         item: data,
-        height: 320.0,
+        height: 100,
         detail: true,
       );
     } else if (data['type'] == 'inner_video') {
