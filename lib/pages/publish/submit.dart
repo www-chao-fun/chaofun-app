@@ -764,8 +764,7 @@ class _SubmitPageState extends State<SubmitPage> {
       return;
     }
     if (postType == 'article') {
-      if (_inputController.text.trim().isNotEmpty &&
-          _articleController.text.trim().isNotEmpty) {
+      if (_inputController.text.trim().isNotEmpty) {
         if (canSub) {
           setState(() {
             canSub = false;
@@ -775,10 +774,11 @@ class _SubmitPageState extends State<SubmitPage> {
             'forumId': forumId,
             'title': title,
             'articleType': 'richtext',
-            'article': _articleController.text,
+            'article': _controller.document.toDelta(),
             'tagId': tagId,
             'collectionId': collectionId,
           });
+          print(_controller.document.toPlainText());
           response = await HttpUtil().post(
             Api.submitArticle,
             parameters: {'data': formdata},
@@ -1092,45 +1092,96 @@ class _SubmitPageState extends State<SubmitPage> {
     }
   }
 
+  Future<String> _onImagePickCallback(File file) async {
+    // Copies the picked file from temporary cache to applications directory
+    // final appDocDir = await getApplicationDocumentsDirectory();
+    // // final copiedFile = await file.copy('${appDocDir.path}/${basename(file.path)}');
+
+    return file.path.toString();
+
+    // return "https://i.chao.fun/biz/4974df460b6e2c9cf3f12aed410dcb83.jpeg";
+  }
+
+  QuillController _controller = QuillController(
+      document: Document.fromJson(jsonDecode('[{"insert": "Flutter Quill"},{"insert": "\\n"}]')),
+      selection: TextSelection.collapsed(offset: 0));
+
+
   _articleWidget() {
+    // var bottom = MediaQuery.of(context).viewInsets.bottom;
+    //
+    // var maxLines = 10;
+    // // var x =  ScreenUtil().screenHeight;
+    // // 以小米m8 770 高度作为基准，键盘高度 280 为基准
+    // maxLines = (maxLines -  (bottom - (280 + ScreenUtil().screenHeight - 770) ) / 21).floor();
 
-
-    var bottom = MediaQuery.of(context).viewInsets.bottom;
-
-    var maxLines = 10;
-    // var x =  ScreenUtil().screenHeight;
-    // 以小米m8 770 高度作为基准，键盘高度 280 为基准
-    maxLines = (maxLines -  (bottom - (280 + ScreenUtil().screenHeight - 770) ) / 21).floor();
-
-    return TextField(
-      autofocus: false,
-      controller: _articleController,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        isDense: true,
-        contentPadding: EdgeInsets.only(left: 14, top: 0, right: 14, bottom: 0),
-        fillColor: Colors.white,
-        filled: true,
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0x00FF0000)),
+    return Column(
+      children: [
+        QuillToolbar.basic(
+          controller: _controller,
+          onImagePickCallback: _onImagePickCallback,
+          showDividers: false,
+          showCenterAlignment: false,
+          showLeftAlignment: false,
+          showRightAlignment: false,
+          showRedo: false,
+          showUndo: false,
+          showItalicButton: false,
+          showHeaderStyle: false,
+          showUnderLineButton: false,
+          showListNumbers: false,
+          showJustifyAlignment: false,
+          showIndent: false,
+          multiRowsDisplay: true,
+          showVideoButton: false,
+          showCameraButton: false,
+          showColorButton: false,
+          showStrikeThrough: false,
+          showBackgroundColorButton: false,
+          showClearFormat: false,
         ),
-        hintText: '请输入正文',
-        hintStyle: TextStyle(color: Colors.grey),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0x00000000)),
-            borderRadius: BorderRadius.all(Radius.circular(50))),
-      ),
-      textInputAction: TextInputAction.newline,
-      style: TextStyle(
-        fontSize: ScreenUtil().setSp(30),
-        // fontWeight: FontWeight.bold,
-      ),
-      onChanged: (val) {},
-      onSubmitted: (term) async {
-        print(term);
+        Expanded(
+          flex: 15,
+          child:
 
-        // 这里进行事件处理
-      },
+          Container(
+            padding: EdgeInsets.only(bottom: 70),
+            // child:
+            // GestureDetector(
+            //     behavior: HitTestBehavior.opaque,
+            //     onPanDown: (_) {
+            //       // FocusScope.of(context).requestFocus(FocusNode());
+            //     },
+                child: QuillEditor(
+                  // onTapUp: (details, func) {
+                  //   print(details);
+                  // } ,
+                  controller: _controller,
+                  scrollController: ScrollController(),
+                  scrollable: true,
+                  focusNode: _focusNode,
+                  autoFocus: true,
+                  readOnly: false,
+                  expands: true,
+                  padding: EdgeInsets.zero,
+                  // customStyles: DefaultStyles(
+                  //               h1: DefaultTextBlockStyle(
+                  //                   const TextStyle(
+                  //                     fontSize: 32,
+                  //                     color: Colors.black,
+                  //                     height: 1.15,
+                  //                     fontWeight: FontWeight.w300,
+                  //                   ),
+                  //                   const Tuple2(16, 0),
+                  //                   const Tuple2(0, 0),
+                  //                   null),
+                  //               sizeSmall: const TextStyle(fontSize: 9),
+                  //             )
+                )
+            ),
+          // ),
+        )
+      ],
     );
   }
 
