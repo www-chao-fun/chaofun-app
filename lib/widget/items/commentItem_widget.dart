@@ -195,7 +195,7 @@ class PostItemWidget extends StatelessWidget {
             url: url,
             title: title,
             showHeader: true,
-            cookie: false,
+            cookie: true,
           ),
         ),
       );

@@ -367,7 +367,7 @@ class ItemIndex extends StatelessWidget {
                   url: item['link'],
                   title: item['title'],
                   showAction: 0,
-                  cookie: false,
+                  cookie: true,
                   showHeader: true,
                 ),
               ),

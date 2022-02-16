@@ -565,7 +565,7 @@ class _HomePageState extends State<HomePage>
             url: url,
             title: title,
             showHeader: true,
-            cookie: false,
+            cookie: true,
           ),
         ),
       );

@@ -54,6 +54,7 @@ class _IndexPageState extends State<IndexPage> {
   int lastTime;
   var plat;
   var versionInfo;
+  var isLogin = false;
   UpgradeMethod upgradeMethod;
 
   var showAgree = true;
@@ -241,6 +242,9 @@ class _IndexPageState extends State<IndexPage> {
       final bindInfo = await _methodChannel
           .invokeMapMethod<String, dynamic>('getDeviceInfo');
       var _ = HttpUtil().get(Api.bindDevice, parameters: bindInfo);
+      setState(() {
+        isLogin = true;
+      });
     } else {
       final unbindInfo = await _methodChannel
           .invokeMapMethod<String, dynamic>('getDeviceInfo');
@@ -248,6 +252,7 @@ class _IndexPageState extends State<IndexPage> {
     }
   }
 
+  
   void setUpdateTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var now = new DateTime.now();
@@ -307,6 +312,7 @@ class _IndexPageState extends State<IndexPage> {
     });
     _checkHasData();
     getUserInfo();
+    
     print('查看设备');
 
     if (Platform.isIOS) {
@@ -579,7 +585,7 @@ class _IndexPageState extends State<IndexPage> {
     Provider.of<UserStateProvide>(context, listen: false).setIndexDialog();
 
     final List<BottomNavigationBarItem> bottomTabs = [
-      Provider.of<UserStateProvide>(context, listen: false).ISLOGIN ?
+      isLogin ?
       BottomNavigationBarItem(
           icon: Image.asset(
             'assets/images/_icon/011.png',

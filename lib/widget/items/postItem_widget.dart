@@ -210,7 +210,7 @@ class _PostItemWidgetState extends State<PostItemWidget>
             url: url,
             title: title,
             showHeader: true,
-            cookie: false,
+            cookie: true,
           ),
         ),
       );

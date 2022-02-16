@@ -1279,7 +1279,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
             url: url,
             title: title,
             showHeader: true,
-            cookie: false,
+            cookie: true,
           ),
         ),
       );

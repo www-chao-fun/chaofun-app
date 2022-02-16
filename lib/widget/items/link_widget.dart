@@ -234,7 +234,7 @@ class _LinkWidgetState extends State<LinkWidget> {
                 url: item['link'],
                 // url: 'http://192.168.8.208:8099/webview/activity/index',
                 title: item['title'],
-                cookie: false,
+                cookie: true,
                 showHeader: true,
               ),
             ),

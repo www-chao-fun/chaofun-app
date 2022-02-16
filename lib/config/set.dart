@@ -177,7 +177,7 @@ class KSet {
             url: url,
             title: title,
             showHeader: true,
-            cookie: false,
+            cookie: true,
           ),
         ),
       );
