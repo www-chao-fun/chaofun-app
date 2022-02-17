@@ -101,11 +101,11 @@ PODS:
     - UMShare/Core
   - url_launcher_ios (0.0.1):
     - Flutter
-  - video_player (0.0.1):
+  - video_player_avfoundation (0.0.1):
     - Flutter
   - wakelock (0.0.1):
     - Flutter
-  - webview_flutter (0.0.1):
+  - webview_flutter_wkwebview (0.0.1):
     - Flutter
   - ZLPhotoBrowser (4.2.0):
     - ZLPhotoBrowser/Core (= 4.2.0)
@@ -141,9 +141,9 @@ DEPENDENCIES:
   - UMShare/Social/WeChat
   - UMShare/UI
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
-  - video_player (from `.symlinks/plugins/video_player/ios`)
+  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
-  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   https://github.com/aliyun/aliyun-specs.git:
@@ -207,12 +207,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
-  video_player:
-    :path: ".symlinks/plugins/video_player/ios"
+  video_player_avfoundation:
+    :path: ".symlinks/plugins/video_player_avfoundation/ios"
   wakelock:
     :path: ".symlinks/plugins/wakelock/ios"
-  webview_flutter:
-    :path: ".symlinks/plugins/webview_flutter/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   AlicloudPush: ab6e76dd02cec791bb9ab789a58ab855b4f33243
@@ -242,7 +242,7 @@ SPEC CHECKSUMS:
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   r_upgrade: 44d715c61914cce3d01ea225abffe894fd51c114
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  shared_preferences_ios: aef470a42dc4675a1cdd50e3158b42e3d1232b32
+  shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   UMCCommonLog: bea707e50c85cef4b0eb47cc5c7226bb843245ca
@@ -250,9 +250,9 @@ SPEC CHECKSUMS:
   UMDevice: c13bbb2e8ca6c67d1e23e03162553e3ec5a8b5b0
   UMShare: 84edf6d080f524d109271164ba2b07650f69d691
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
-  video_player: 7e9dad9437c238a97648819f6dd443c8854cf0c7
+  video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
-  webview_flutter: 5fb4def2bbd4339889ee14d045b605cefc5bc232
+  webview_flutter_wkwebview: 005fbd90c888a42c5690919a1527ecc6649e1162
   ZLPhotoBrowser: 602d505d4f2cf7f309ce973c4353d33e85216d58
 
 PODFILE CHECKSUM: 9dc296e4f72dcd8f203723f61ce3fcd04320be13

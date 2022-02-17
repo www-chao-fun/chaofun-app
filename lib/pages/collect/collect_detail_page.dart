@@ -17,7 +17,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:loading_indicator_view/loading_indicator_view.dart';
 
 class CollectDetailPage extends StatefulWidget {
   final Map arguments;
