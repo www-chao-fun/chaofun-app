@@ -726,6 +726,7 @@ class _SubmitPageState extends State<SubmitPage> {
   }
 
 
+  // 现在是纯代码引入
   deltaToHtml(Delta delta) {
     final convertedValue = jsonEncode(delta.toJson());
     final markdown = deltaToMarkdown(convertedValue);
@@ -1153,11 +1154,13 @@ class _SubmitPageState extends State<SubmitPage> {
           showRedo: false,
           showUndo: false,
           showItalicButton: false,
+          showInlineCode: false,
           showHeaderStyle: false,
           showUnderLineButton: false,
           showListNumbers: false,
           showJustifyAlignment: false,
           showIndent: false,
+          showListCheck: false,
           multiRowsDisplay: true,
           showVideoButton: false,
           showCameraButton: false,
@@ -1169,9 +1172,8 @@ class _SubmitPageState extends State<SubmitPage> {
         Expanded(
           flex: 15,
           child:
-
           Container(
-            padding: EdgeInsets.only(bottom: 70),
+            padding: EdgeInsets.only(left: 15, right: 15, bottom: 70),
                 child: QuillEditor(
                   placeholder: '输入正文(可选)',
                   controller: _controller,
