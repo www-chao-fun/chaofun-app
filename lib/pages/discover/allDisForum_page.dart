@@ -85,6 +85,7 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
   // @override
   void getTag() async {
     var a = await db.getForumListByTag(params2['tagId']);
+
     print(a);
     if (a.length > 0) {
       setState(() {
@@ -92,12 +93,18 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
           ifAll = true;
         } else {
           ifAll = false;
-          speForum = a;
+          speForum = a.map((e) => getMap(e)).toList();
         }
       });
     } else {
       getTagOK();
     }
+  }
+  
+  Map getMap(Map e) {
+    var map = {};
+    e.forEach((key, value) => map[key] = value);
+    return map;
   }
 
   void getTagOK() async {

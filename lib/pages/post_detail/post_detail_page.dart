@@ -252,6 +252,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 return new Text('error');
               } else {
                 return Stack(
+                  fit : StackFit.expand,
                   children: <Widget>[
                     postInfo != null && forumInfo != null
                         ? SingleChildScrollView(
