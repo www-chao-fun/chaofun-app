@@ -2126,7 +2126,7 @@ class _SubmitPageState extends State<SubmitPage> {
         List res = await ImagesPicker.pick(
           count: 1,
           pickType: PickType.video,
-          quality: 0.7,
+          // quality: 0.7,
             maxTime: 10000
         );
         // maxSize: 307200,
