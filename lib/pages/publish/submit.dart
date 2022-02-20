@@ -2110,8 +2110,8 @@ class _SubmitPageState extends State<SubmitPage> {
         assetsVideo = ims[0].path;
       });
     } else {
-      if (Platform.isIOS) {
-        PickedFile res = await _picker.getVideo(
+      // if (Platform.isIOS) {
+        XFile res = await _picker.pickVideo(
           source: ImageSource.gallery,
           maxDuration: const Duration(seconds: 10000),
         );
@@ -2120,23 +2120,23 @@ class _SubmitPageState extends State<SubmitPage> {
         setState(() {
           assetsVideo = res.path;
         });
-        print('获取视频结果ios');
-        print(res);
-      } else {
-        List res = await ImagesPicker.pick(
-          count: 1,
-          pickType: PickType.video,
-          // quality: 0.7,
-            maxTime: 10000
-        );
-        // maxSize: 307200,
-        _upLoadVideo(File(res[0].path));
-        setState(() {
-          assetsVideo = res[0].path;
-        });
-        print('获取视频结果android');
-        print(res);
-      }
+        // print('获取视频结果ios');
+        // print(res);
+      // } else {
+      //   List res = await ImagesPicker.pick(
+      //     count: 1,
+      //     pickType: PickType.video,
+      //     // quality: 0.7,
+      //       maxTime: 10000
+      //   );
+      //   // maxSize: 307200,
+      //   _upLoadVideo(File(res[0].path));
+      //   setState(() {
+      //     assetsVideo = res[0].path;
+      //   });
+      //   print('获取视频结果android');
+      //   print(res);
+      // }
     }
     // }
   }
