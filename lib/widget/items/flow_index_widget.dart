@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chaofan/config/index.dart';
+import 'package:flutter_chaofan/utils/check.dart';
+
 
 import 'package:flutter_chaofan/widget/image/image_scrollshow_wiget.dart';
 import 'package:flutter_chaofan/widget/items/video_widget.dart';
@@ -28,6 +30,8 @@ class FlowIndexWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    clearMemoryImageCache();
 
     if (item2 != null) {
 

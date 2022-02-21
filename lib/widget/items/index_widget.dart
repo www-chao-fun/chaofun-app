@@ -4,6 +4,7 @@ import 'package:flutter_chaofan/config/font.dart';
 import 'package:flutter_chaofan/config/index.dart';
 import 'package:flutter_chaofan/pages/post_detail/chao_fun_webview.dart';
 import 'package:flutter_chaofan/pages/post_detail/postwebview.dart';
+import 'package:flutter_chaofan/utils/check.dart';
 import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/items/article_widget.dart';
 import 'package:flutter_chaofan/widget/items/bottom_widget.dart';
@@ -415,7 +416,7 @@ class ItemIndex extends StatelessWidget {
   Widget build(BuildContext context) {
     // var d = new DateTime(2019, 1, 10, 9, 30);
     // print(d);
-
+    clearMemoryImageCache();
     return Consumer<UserStateProvide>(
       builder:
           (BuildContext context, UserStateProvide disabledList, Widget child) {

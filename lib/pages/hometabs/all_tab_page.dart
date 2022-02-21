@@ -264,7 +264,9 @@ class _PageAllTabState extends State<PageAllTab>
   }
 
   initDB(res) async {
-    await db.delete('All_page');
+    if (db != null) {
+      await db.delete('All_page');
+    }
     insertDB(res);
   }
 
