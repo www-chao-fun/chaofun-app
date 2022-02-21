@@ -193,7 +193,7 @@ class _CollectDetailPageState extends State<CollectDetailPage>
                                     Provider.of<UserStateProvide>(context,
                                             listen: false)
                                         .userInfo['icon'] +
-                                    '?x-oss-process=image/resize,h_150',
+                                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_150',
                                 width: 70,
                                 height: 70,
                                 fit: BoxFit.cover,
@@ -472,7 +472,7 @@ class _CollectDetailPageState extends State<CollectDetailPage>
               child: Image.network(
                 KSet.imgOrigin +
                     forumData['imageName'] +
-                    '?x-oss-process=image/resize,h_80',
+                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,

@@ -307,7 +307,7 @@ class ImageWidget extends StatelessWidget {
         //       child: ClipRRect(
         //         borderRadius: BorderRadius.all(Radius.circular(4)),
         //         child: CachedNetworkImage(
-        //           imageUrl: imgurl + '?x-oss-process=image/resize,h_1228',
+        //           imageUrl: imgurl + '?x-oss-process=image/format,webp/quality,q_75/resize,h_1228',
         //           width: ScreenUtil().setWidth(225),
         //           height: ScreenUtil()
         //               .setWidth((item['height'] / item['width']) * 225),

@@ -554,7 +554,7 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
                 child: CachedNetworkImage(
                   imageUrl: KSet.imgOrigin +
                       item['imageName'] +
-                      '?x-oss-process=image/resize,h_80',
+                      '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                   width: ScreenUtil().setWidth(60),
                   height: ScreenUtil().setWidth(60),
                   fit: BoxFit.cover,

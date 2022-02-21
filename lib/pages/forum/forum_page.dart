@@ -392,7 +392,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                             child: Image.network(
                                               KSet.imgOrigin +
                                                   forumData['imageName'] +
-                                                  '?x-oss-process=image/resize,h_80',
+                                                  '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                                               width: 40,
                                               height: 40,
                                               fit: BoxFit.cover,
@@ -456,7 +456,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                           // 'http://img.haote.com/upload/20180918/2018091815372344164.jpg',
                                           KSet.imgOrigin +
                                               forumData['imageName'] +
-                                              '?x-oss-process=image/resize,h_750',
+                                              '?x-oss-process=image/format,webp/quality,q_75/resize,h_750',
                                           fit: BoxFit.fitWidth,
                                         ),
                                       ),
@@ -1004,7 +1004,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                         borderRadius: BorderRadius.circular(10),
                         child: CachedNetworkImage(
                           imageUrl: KSet.imgOrigin +
-                              e['icon'] + '?x-oss-process=image/resize,h_60',
+                              e['icon'] + '?x-oss-process=image/format,webp/quality,q_75/resize,h_60',
                           width: 30,
                           height: 30,
                           fit: BoxFit.cover,
@@ -1293,7 +1293,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
     Provider.of<UserStateProvide>(context, listen: false).setLooksList({
       "icon": KSet.imgOrigin +
           forumData['imageName'] +
-          '?x-oss-process=image/resize,h_80',
+          '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
       "label": forumData['name'],
       "value": forumData['id'],
     });
@@ -1422,7 +1422,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
               child: Image.network(
                 KSet.imgOrigin +
                     forumData['imageName'] +
-                    '?x-oss-process=image/resize,h_80',
+                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,

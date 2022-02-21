@@ -286,7 +286,7 @@ class MsgWidget extends StatelessWidget {
                         (item['sender'] != null
                             ? item['sender']['icon']
                             : 'biz/9563cdd828d2b674c424b79761ccb4c0.png') +
-                        '?x-oss-process=image/resize,h_80',
+                        '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                     width: ScreenUtil().setWidth(68),
                     height: ScreenUtil().setWidth(68),
                     fit: BoxFit.cover,

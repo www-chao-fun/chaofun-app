@@ -76,7 +76,7 @@ class FlowIndexWidget extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(4)),
                 child: CachedNetworkImage(
                   filterQuality: FilterQuality.medium,
-                  imageUrl: KSet.imgOrigin + (item['imageName'] ?? '') + '?x-oss-process=image/resize,h_420',
+                  imageUrl: KSet.imgOrigin + (item['imageName'] ?? '') + '?x-oss-process=image/format,webp/quality,q_75/resize,h_420',
                   width: ScreenUtil().setWidth(width),
                   // fit: (item['width'] != null && item['height'] != null) &&
                   //         item['height'] < item['width']

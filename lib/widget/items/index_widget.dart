@@ -631,7 +631,7 @@ class ItemIndex extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: KSet.imgOrigin +
                 item['imageName'] +
-                '?x-oss-process=image/resize,w_200',
+                '?x-oss-process=image/format,webp/quality,q_75/resize,w_200',
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
@@ -667,7 +667,7 @@ class ItemIndex extends StatelessWidget {
               ? CachedNetworkImage(
             imageUrl: (KSet.imgOrigin +
                 item['cover'] +
-                '?x-oss-process=image/resize,w_200'),
+                '?x-oss-process=image/format,webp/quality,q_75/resize,w_200'),
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
           )
@@ -685,7 +685,7 @@ class ItemIndex extends StatelessWidget {
               ? CachedNetworkImage(
             imageUrl: (KSet.imgOrigin +
                 item['imageName'] +
-                '?x-oss-process=image/resize,w_450'),
+                '?x-oss-process=image/format,webp/quality,q_75/resize,w_450'),
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
           )

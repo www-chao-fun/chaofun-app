@@ -778,7 +778,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           child: CachedNetworkImage(
             imageUrl: KSet.imgOrigin +
                 item['imageName'] +
-                '?x-oss-process=image/resize,w_200',
+                '?x-oss-process=image/format,webp/quality,q_75/resize,w_200',
             fit: BoxFit.cover,
           ),
         );
@@ -802,7 +802,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
               ? CachedNetworkImage(
                   imageUrl: (KSet.imgOrigin +
                       item['cover'] +
-                      '?x-oss-process=image/resize,w_200'),
+                      '?x-oss-process=image/format,webp/quality,q_75/resize,w_200'),
                   fit: BoxFit.cover,
                 )
               : Image.asset('assets/images/_icon/link.png'),
@@ -813,7 +813,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
             ? CachedNetworkImage(
                 imageUrl: (KSet.imgOrigin +
                     item['imageName'] +
-                    '?x-oss-process=image/resize,w_450'),
+                    '?x-oss-process=image/format,webp/quality,q_75/resize,w_450'),
                 fit: BoxFit.cover,
               )
             : CachedNetworkImage(
@@ -944,7 +944,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           color: Colors.blue,
                           // image: DecorationImage(
                           //     image: NetworkImage(asd[index] +
-                          //         '?x-oss-process=image/resize,h_225'),
+                          //         '?x-oss-process=image/format,webp/quality,q_75/resize,h_225'),
                           //     fit: BoxFit.cover),
                           borderRadius: BorderRadius.all(
                             Radius.circular(2),
@@ -958,7 +958,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         ),
                         child: CachedNetworkImage(
                           imageUrl:
-                              asd[index] + '?x-oss-process=image/resize,w_225',
+                              asd[index] + '?x-oss-process=image/format,webp/quality,q_75/resize,w_225',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -994,7 +994,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           //         decoration: BoxDecoration(
           //           image: DecorationImage(
           //               image: NetworkImage(
-          //                   asd[index] + '?x-oss-process=image/resize,h_225'),
+          //                   asd[index] + '?x-oss-process=image/format,webp/quality,q_75/resize,h_225'),
           //               fit: BoxFit.cover),
           //           borderRadius: BorderRadius.all(
           //             Radius.circular(4),
@@ -2110,7 +2110,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                       child: Image.network(
                         KSet.imgOrigin +
                             postInfo['forum']['imageName'] +
-                            '?x-oss-process=image/resize,h_80',
+                            '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                         width: 34,
                         height: 34,
                       ),
@@ -2332,7 +2332,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   child: Image.network(
                     KSet.imgOrigin +
                         postInfo['userInfo']['icon'] +
-                        '?x-oss-process=image/resize,h_80',
+                        '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                     width: 30,
                     height: 30,
                     fit: BoxFit.cover,
@@ -2509,8 +2509,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
               page: JhPhotoAllScreenShow(
                 imgDataArr: [
                   KSet.imgOrigin + data['imageName']
-                  // +'?x-oss-process=image/resize,h_1024',
-                  // 'https://i.chao.fun/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512'
+                  // +'?x-oss-process=image/format,webp/quality,q_75/resize,h_1024',
+                  // 'https://i.chao.fun/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/format,webp/quality,q_75/resize,h_512'
                 ],
                 imgHeight: data['height'],
                 imgWidth: data['width'],
@@ -2558,7 +2558,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(4)),
             child: CachedNetworkImage(
-              imageUrl: asd[key] + '?x-oss-process=image/resize,h_614',
+              imageUrl: asd[key] + '?x-oss-process=image/format,webp/quality,q_75/resize,h_614',
               width: ScreenUtil().setWidth(340),
               fit: data['height'] < data['width']
                   ? BoxFit.fitWidth
@@ -2618,7 +2618,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(4)),
             child: CachedNetworkImage(
-              imageUrl: asd[key] + '?x-oss-process=image/resize,h_408',
+              imageUrl: asd[key] + '?x-oss-process=image/format,webp/quality,q_75/resize,h_408',
               width: ScreenUtil().setWidth(225),
               // fit: data['height'] < data['width']
               //     ? BoxFit.fitWidth

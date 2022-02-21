@@ -197,7 +197,7 @@ class _LinkWidgetState extends State<LinkWidget> {
                 item['cover'] +
                 (item['cover'].contains('.ico')
                     ? ''
-                    : '?x-oss-process=image/resize,h_100'),
+                    : '?x-oss-process=image/format,webp/quality,q_75/resize,h_100'),
             fit: BoxFit.cover,
             imageErrorBuilder: (context, error, stackTrace) {
               // TODO 图片加载错误后展示的 widget

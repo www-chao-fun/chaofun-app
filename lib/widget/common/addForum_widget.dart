@@ -1206,7 +1206,7 @@ class _AddForumWidgetState extends State<AddForumWidget> {
                               Image.network(
                                 KSet.imgOrigin +
                                     forums[index]['imageName'] +
-                                    '?x-oss-process=image/resize,h_120',
+                                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_120',
                                 // width: ScreenUtil().setWidth(80),
                                 // height: ScreenUtil().setWidth(80),
                                 // fit: BoxFit.cover,

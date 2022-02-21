@@ -30,7 +30,7 @@ class ImgMsg extends StatelessWidget {
 
 //    if (!listNoEmpty(msg['imageList'])) return Text('发送中');
     var originUrl = KSet.imgOrigin + msg;
-    var url = originUrl + '?x-oss-process=image/resize,h_200';
+    var url = originUrl + '?x-oss-process=image/format,webp/quality,q_75/resize,h_200';
 
     var isFile = false;
     var body = [

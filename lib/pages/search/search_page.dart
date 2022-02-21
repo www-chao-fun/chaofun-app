@@ -314,7 +314,7 @@ class _SearchPageState extends State<SearchPage> {
                                   KSet.imgOrigin +
                                       widget.arguments['forumData']
                                           ['imageName'] +
-                                      '?x-oss-process=image/resize,h_80',
+                                      '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                                   width: 20,
                                   // height: 20,
                                   fit: BoxFit.cover,

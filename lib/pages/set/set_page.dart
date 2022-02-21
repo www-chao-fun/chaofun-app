@@ -127,7 +127,7 @@ class _SetPageState extends State<SetPage> {
                                                       context,
                                                       listen: true)
                                                   .userInfo['icon'] +
-                                              '?x-oss-process=image/resize,h_150',
+                                              '?x-oss-process=image/format,webp/quality,q_75/resize,h_150',
                                           fit: BoxFit.cover,
                                         )
                                       : Image.asset(

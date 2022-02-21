@@ -101,7 +101,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                 child: Image.network(
                                   KSet.imgOrigin +
                                       item['userInfo']['icon'] +
-                                      '?x-oss-process=image/resize,h_80',
+                                      '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                                   width: 16,
                                   height: 16,
                                   fit: BoxFit.cover,
@@ -304,7 +304,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                           imageUrl: KSet.imgOrigin +
                                               item['imageNames']
                                                   .split(',')[index] +
-                                              '?x-oss-process=image/resize,h_300',
+                                              '?x-oss-process=image/format,webp/quality,q_75/resize,h_300',
                                           // fit: BoxFit.fitHeight,
                                           fit: BoxFit.cover,
                                           height: ScreenUtil().setWidth(150),

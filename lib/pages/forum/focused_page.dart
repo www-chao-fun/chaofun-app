@@ -386,7 +386,7 @@ class _FocusedPageState extends State<FocusedPage> {
           child: CachedNetworkImage(
             imageUrl: KSet.imgOrigin +
                 item['postInfo']['imageName'] +
-                '?x-oss-process=image/resize,w_450',
+                '?x-oss-process=image/format,webp/quality,q_75/resize,w_450',
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
@@ -422,7 +422,7 @@ class _FocusedPageState extends State<FocusedPage> {
               ? CachedNetworkImage(
                   imageUrl: (KSet.imgOrigin +
                       item['postInfo']['cover'] +
-                      '?x-oss-process=image/resize,w_450'),
+                      '?x-oss-process=image/format,webp/quality,q_75/resize,w_450'),
                   fit: BoxFit.cover,
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 )

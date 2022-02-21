@@ -205,7 +205,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
                         child: CachedNetworkImage(
                           imageUrl: KSet.imgOrigin +
                               e['imageName'] +
-                              '?x-oss-process=image/resize,h_80',
+                              '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                           width: 30,
                           height: 30,
                           fit: BoxFit.cover,
@@ -327,7 +327,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
                         child: CachedNetworkImage(
                           imageUrl: KSet.imgOrigin +
                               e['icon'] +
-                              '?x-oss-process=image/resize,h_80',
+                              '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                           width: 30,
                           height: 30,
                           fit: BoxFit.cover,
@@ -338,7 +338,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
                         // child: Image.network(
                         //   KSet.imgOrigin +
                         //       e['icon'] +
-                        //       '?x-oss-process=image/resize,h_80',
+                        //       '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
                         //   width: 30,
                         //   height: 30,
                         //   fit: BoxFit.cover,

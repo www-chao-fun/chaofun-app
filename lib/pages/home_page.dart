@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage>
         if (data['data']['imageName'] != null) {
           activitys['imgUrl'] = KSet.imgOrigin +
               data['data']['imageName'] +
-              '?x-oss-process=image/resize,h_512';
+              '?x-oss-process=image/format,webp/quality,q_75/resize,h_512';
         }
 
         activitys['title'] =
