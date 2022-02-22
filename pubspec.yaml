@@ -71,6 +71,8 @@ dependencies:
   args: ^2.0.0
   charcode: ^1.2.0
   collection: ^1.15.0
+  # 视频处理依赖
+  ffmpeg_kit_flutter: 4.5.1
 
   flutter_localizations:
     sdk: flutter

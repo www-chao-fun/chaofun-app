@@ -22,6 +22,7 @@ import 'package:flutter_chaofan/pages/post_detail/postwebview.dart';
 import 'package:flutter_chaofan/pages/post_detail/webview_flutter.dart';
 import 'package:flutter_chaofan/pages/publish/forumList.dart';
 import 'package:flutter_chaofan/provide/user.dart';
+import 'package:flutter_chaofan/utils/VideoUtils.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_chaofan/widget/items/video_widget.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
@@ -2191,7 +2192,14 @@ class _SubmitPageState extends State<SubmitPage> {
   _upLoadVideo(File video) async {
     String path = video.path;
     print('进入视频上传');
-    print(path);
+
+    // 处理压缩视频
+    var res = await VideoUtils.compress(video);
+    if (res != "") {
+      path = res;
+      video = File(path);
+    }
+
     var name =
         path.substring(path.lastIndexOf("/") + 1, path.length).toLowerCase();
     print(name);
