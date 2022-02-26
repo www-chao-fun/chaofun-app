@@ -730,7 +730,9 @@ class _SubmitPageState extends State<SubmitPage> {
   deltaToHtml(Delta delta) {
     final convertedValue = jsonEncode(delta.toJson());
     final markdown = deltaToMarkdown(convertedValue);
-    final html = markdownToHtml(markdown);
+    var html = markdownToHtml(markdown);
+    html = html.replaceAll("\n", "<br>");
+    html = html.replaceAll(" ", "&nbsp;");
     return html;
   }
 

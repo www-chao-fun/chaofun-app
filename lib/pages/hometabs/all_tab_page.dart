@@ -366,6 +366,15 @@ class _PageAllTabState extends State<PageAllTab>
         });
       }
       List<Map> res = (data['data']['posts'] as List).cast();
+      
+      if (type == 'addForum' && (res == null || res.length == 0)) {
+        Fluttertoast.showToast(
+          msg: '暂无数据',
+          gravity: ToastGravity.CENTER,
+          // textColor: Colors.grey,
+        );
+      }
+
       setState(() {
         print('HOME pagedata的数据长度是: ${pageData.length}');
         pageData.addAll(res);
@@ -662,7 +671,7 @@ class _PageAllTabState extends State<PageAllTab>
                                               params['key'] = '';
                                               params['marker'] = '';
                                             });
-                                            getDatas('');
+                                            getDatas('addForum');
                                           }),
                                         )
                                       : Container(
