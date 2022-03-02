@@ -199,7 +199,7 @@ class ItemIndex extends StatelessWidget {
     );
   }
 
-  Color fromHex(String hexString) {
+  static Color fromHex(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
     buffer.write(hexString.replaceFirst('#', ''));
@@ -272,36 +272,7 @@ class ItemIndex extends StatelessWidget {
             child: Text.rich(
               TextSpan(
                 children: [
-                  item['tags'] != null && item['tags'].length > 0
-                      ? WidgetSpan(
-                    alignment: PlaceholderAlignment.middle,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 5, right: 5),
-                      margin: EdgeInsets.only(right: 4),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                            ScreenUtil().setWidth(4)),
-                        color: (item['tags'] != null &&
-                            item['tags'].length > 0 &&
-                            item['tags'][0]['backgroundColor'] !=
-                                null &&
-                            item['tags'][0]['backgroundColor'] !=
-                                null)
-                            ? fromHex(item['tags'][0]['backgroundColor'])
-                            : Color.fromRGBO(255, 147, 0, 1),
-                      ),
-                      child: Text(
-                        (item['tags'] != null && item['tags'].length > 0
-                            ? (item['tags'][0]['name'])
-                            : ''),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(28),
-                        ),
-                      ),
-                    ),
-                  )
-                      : TextSpan(),
+                  getTag(context, item),
                   vs != null &&
                       (item['type'] == 'vote' ||
                           item['type'] == 'prediction')
@@ -412,6 +383,39 @@ class ItemIndex extends StatelessWidget {
     }
   }
 
+  static InlineSpan getTag(BuildContext context, Map item) {
+    return item['tags'] != null && item['tags'].length > 0 ? WidgetSpan(
+      alignment: PlaceholderAlignment.middle,
+      child: Container(
+        padding: EdgeInsets.only(left: 5, right: 5),
+        margin: EdgeInsets.only(right: 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+              ScreenUtil().setWidth(4)),
+          color: (item['tags'] != null &&
+              item['tags'].length > 0 &&
+              item['tags'][0]['backgroundColor'] !=
+                  null &&
+              item['tags'][0]['backgroundColor'] !=
+                  null)
+              ? fromHex(item['tags'][0]['backgroundColor'])
+              : Color.fromRGBO(255, 147, 0, 1),
+        ),
+        child: Text(
+          (item['tags'] != null && item['tags'].length > 0
+              ? (item['tags'][0]['name'])
+              : ''),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: ScreenUtil().setSp(28),
+          ),
+        ),
+      ),
+    )
+        : TextSpan();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     // var d = new DateTime(2019, 1, 10, 9, 30);
@@ -467,7 +471,23 @@ class ItemIndex extends StatelessWidget {
                             ? Column(
                           children: <Widget>[
                             doTitle(context, item, null),
-                            doItem(context, item),
+                            Stack(
+                              children: [
+                                doItem(context, item),
+                                 Positioned(
+                                    top: 0,
+                                    left: 0,
+                                    child:
+                                    new Visibility(
+                                      visible: item == null || item['type'] == 'link' || item['title']== null || item['title'] == '',
+                                      child:
+                                      Text.rich(
+                                    TextSpan(
+                                        children: [getTag(context, item)]
+                                    ))),
+                                ),
+                              ]
+                            ),
                           ],
                         )
                             : Row(
@@ -631,7 +651,7 @@ class ItemIndex extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: KSet.imgOrigin +
                 item['imageName'] +
-                '?x-oss-process=image/format,webp/quality,q_75/resize,w_200',
+                'x-oss-process=image/resize,w_200/format,webp/quality,q_75',
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
@@ -667,7 +687,7 @@ class ItemIndex extends StatelessWidget {
               ? CachedNetworkImage(
             imageUrl: (KSet.imgOrigin +
                 item['cover'] +
-                '?x-oss-process=image/format,webp/quality,q_75/resize,w_200'),
+                'x-oss-process=image/resize,w_200/format,webp/quality,q_75'),
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
           )
@@ -685,7 +705,7 @@ class ItemIndex extends StatelessWidget {
               ? CachedNetworkImage(
             imageUrl: (KSet.imgOrigin +
                 item['imageName'] +
-                '?x-oss-process=image/format,webp/quality,q_75/resize,w_450'),
+                '?x-oss-process=image/resize,w_450/format,webp/quality,q_75'),
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => Icon(Icons.error),
           )

@@ -75,7 +75,7 @@ class ItemsTop extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: KSet.imgOrigin +
                             item['forum']['imageName'] +
-                            '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                            '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                         width: ScreenUtil().setWidth(68),
                         height: ScreenUtil().setWidth(68),
                         fit: BoxFit.fill,
@@ -142,7 +142,7 @@ class ItemsTop extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl: KSet.imgOrigin +
                           item['userInfo']['icon'] +
-                          '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                          '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                       width: ScreenUtil().setWidth(68),
                       height: ScreenUtil().setWidth(68),
                       fit: BoxFit.fill,
@@ -154,7 +154,7 @@ class ItemsTop extends StatelessWidget {
                     //   placeholder: "assets/images/img/place.png",
                     //   image: KSet.imgOrigin +
                     //       item['forum']['imageName'] +
-                    //       '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                    //       '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                     //   fit: BoxFit.fill,
                     //   width: ScreenUtil().setWidth(68),
                     //   height: ScreenUtil().setWidth(68),
@@ -207,7 +207,7 @@ class ItemsTop extends StatelessWidget {
                   CachedNetworkImage(
                     imageUrl: KSet.imgOrigin +
                         item['userInfo']['icon'] +
-                        '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                        '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                     width: ScreenUtil().setWidth(40),
                     height: ScreenUtil().setWidth(40),
                     fit: BoxFit.fill,
@@ -218,7 +218,7 @@ class ItemsTop extends StatelessWidget {
                   // Image.network(
                   //   KSet.imgOrigin +
                   //       item['userInfo']['icon'] +
-                  //       '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                  //       '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                   //   width: ScreenUtil().setWidth(40),
                   //   height: ScreenUtil().setWidth(40),
                   // ),

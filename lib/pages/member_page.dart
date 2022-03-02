@@ -465,7 +465,7 @@ class _MemberPageState extends State<MemberPage> {
                             imgDataArr: [
                               KSet.imgOrigin +
                                   info['icon'] +
-                                  '?x-oss-process=image/format,webp/quality,q_75/resize,h_150'
+                                  '?x-oss-process=image/resize,h_150/format,webp/quality,q_75'
                             ],
                             index: 0,
                             showMore: true,
@@ -481,7 +481,7 @@ class _MemberPageState extends State<MemberPage> {
                         ? CachedNetworkImage(
                             imageUrl: KSet.imgOrigin +
                                 info['icon'] +
-                                '?x-oss-process=image/format,webp/quality,q_75/resize,h_150',
+                                '?x-oss-process=image/resize,h_150/format,webp/quality,q_75',
                             width: ScreenUtil().setWidth(108),
                             height: ScreenUtil().setWidth(108),
                             fit: BoxFit.cover,
@@ -1076,7 +1076,7 @@ class _MemberPageState extends State<MemberPage> {
             child: Column(
               children: <Widget>[
                 Image.network(
-                  'https://i.chao.fun/990cf5792a356642fe46e7dbe577ebab.png?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                  'https://i.chao.fun/990cf5792a356642fe46e7dbe577ebab.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                   width: ScreenUtil().setWidth(60),
                 ),
                 Text(

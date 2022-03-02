@@ -31,8 +31,6 @@ class Share {
                     ummin.userName = "gh_41eb4fc2a95b"
                     ummin.title = argMap["title"] as String;
 
-
-
                     var umImage = getUMImage(activity, argMap);
                     if (umImage != null) {
                         ummin.setThumb(umImage);
@@ -98,11 +96,11 @@ class Share {
 
             var umImage: UMImage? = null;
             if (argMap["cover"] != null) {
-                umImage = UMImage(activity, imageBaseUrl + (argMap["cover"] as String) + "?x-oss-process=image/format,webp/quality,q_75/resize,h_408,w_300")
+                umImage = UMImage(activity, imageBaseUrl + (argMap["cover"] as String) + "?x-oss-process=image/resize,h_408,w_300/format,webp/quality,q_75")
             } else if (argMap["imageName"] != null) {
-                umImage = UMImage(activity, imageBaseUrl + (argMap["imageName"] as String) + "?x-oss-process=image/format,webp/quality,q_75/resize,h_408,w_300")
+                umImage = UMImage(activity, imageBaseUrl + (argMap["imageName"] as String) + "?x-oss-process=image/resize,h_408,w_300/format,webp/quality,q_75")
             } else {
-                umImage = UMImage(activity, imageBaseUrl + "9563cdd828d2b674c424b79761ccb4c0.png?x-oss-process=image/format,webp/quality,q_75/resize,h_408,w_300")
+                umImage = UMImage(activity, imageBaseUrl + "9563cdd828d2b674c424b79761ccb4c0.png?x-oss-process=image/resize,h_408,w_300/format,webp/quality,q_75")
             }
             if (umImage != null) {
                 umWeb.setThumb(umImage);
@@ -123,11 +121,11 @@ class Share {
             var umImage: UMImage? = null;
 
             if (argMap["cover"] != null) {
-                umImage = UMImage(activity, imageBaseUrl + (argMap["cover"] as String) + "?x-oss-process=image/format,webp/quality,q_75/resize,h_408,w_300")
+                umImage = UMImage(activity, imageBaseUrl + (argMap["cover"] as String) + "?x-oss-process=image/resize,h_408,w_300/format,webp/quality,q_75")
             } else if (argMap["imageName"] != null) {
-                umImage = UMImage(activity, imageBaseUrl + (argMap["imageName"] as String) + "?x-oss-process=image/format,webp/quality,q_75/resize,h_408,w_300")
+                umImage = UMImage(activity, imageBaseUrl + (argMap["imageName"] as String) + "?x-oss-process=image/resize,h_408,w_300/format,webp/quality,q_75")
             } else {
-                umImage = UMImage(activity, imageBaseUrl + "9563cdd828d2b674c424b79761ccb4c0.png?x-oss-process=image/format,webp/quality,q_75/resize,h_408,w_300")
+                umImage = UMImage(activity, imageBaseUrl + "9563cdd828d2b674c424b79761ccb4c0.png?x-oss-process=image/resize,h_408,w_300/format,webp/quality,q_75")
             }
 
             return umImage

@@ -401,7 +401,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                                   child: Image.network(
                                       KSet.imgOrigin +
                                           badges[index]['badge']['icon']+
-                                          '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                                          '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                                     width: ScreenUtil().setWidth(60),
                                     height: ScreenUtil().setWidth(60),
                                     fit: BoxFit.cover,
@@ -446,7 +446,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                 child: Image.network(
                   KSet.imgOrigin +
                       item['userInfo']['icon'] +
-                      '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                      '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                   width: 36,
                   height: 36,
                   fit: BoxFit.cover,
@@ -562,7 +562,7 @@ class _UserMemberPageState extends State<UserMemberPage>
           image: NetworkImage(
             KSet.imgOrigin +
                 memberInfo['icon'] +
-                '?x-oss-process=image/format,webp/quality,q_75/resize,h_414',
+                'x-oss-process=image/resize,h_414/format,webp/quality,q_75',
           ),
           fit: BoxFit.cover,
         ),
@@ -628,8 +628,8 @@ class _UserMemberPageState extends State<UserMemberPage>
                                     page: JhPhotoAllScreenShow(
                                       imgDataArr: [
                                         KSet.imgOrigin + memberInfo['icon']
-                                        // +'?x-oss-process=image/format,webp/quality,q_75/resize,h_1024',
-                                        // 'https://i.chao.fun/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/format,webp/quality,q_75/resize,h_512'
+                                        // +'x-oss-process=image/resize,h_1024/format,webp/quality,q_75',
+                                        // 'https://i.chao.fun/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
                                       ],
                                       index: 0,
                                     ),
@@ -641,7 +641,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                                 child: Image.network(
                                   KSet.imgOrigin +
                                       memberInfo['icon'] +
-                                      '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                                      '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                                   width: ScreenUtil().setWidth(120),
                                   height: ScreenUtil().setWidth(120),
                                   fit: BoxFit.cover,
@@ -1003,7 +1003,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.network(
-                      KSet.imgOrigin + memberInfo['icon'] + '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                      KSet.imgOrigin + memberInfo['icon'] + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,

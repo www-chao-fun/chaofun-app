@@ -463,7 +463,7 @@ class _RecommendPageState extends State<RecommendPage>
     Provider.of<UserStateProvide>(context, listen: false).setLooksList({
       "icon": KSet.imgOrigin +
           forumData['imageName'] +
-          '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+          '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
       "label": forumData['name'],
       "value": forumData['id'],
     });

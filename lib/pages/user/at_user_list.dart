@@ -244,7 +244,7 @@ class _AtUserListPageState extends State<AtUserListPage> {
                                         child: CachedNetworkImage(
                                           imageUrl: KSet.imgOrigin +
                                               userList[index]['icon'] +
-                                              '?x-oss-process=image/format,webp/quality,q_75/resize,h_80', //userList[index]['icon'],
+                                              '?x-oss-process=image/resize,h_80/format,webp/quality,q_75', //userList[index]['icon'],
                                           fit: BoxFit.cover,
                                           errorWidget: (context, url, error) =>
                                               Icon(Icons.error),

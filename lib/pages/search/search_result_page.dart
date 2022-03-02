@@ -505,7 +505,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
               child: Image.network(
                 KSet.imgOrigin +
                     item['icon'] +
-                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                    '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                 fit: BoxFit.fill,
               ),
             ),
@@ -551,7 +551,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
               child: Image.network(
                 KSet.imgOrigin +
                     item['imageName'] +
-                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                    '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                 fit: BoxFit.fill,
               ),
             ),

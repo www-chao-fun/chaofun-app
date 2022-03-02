@@ -288,32 +288,32 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                   //     );
                   //     // return FadeInImage.assetNetwork(
                   //     //   placeholder: "assets/images/img/place.png",
-                  //     //   image: imgurl + '?x-oss-process=image/format,webp/quality,q_75/resize,h_400',
+                  //     //   image: imgurl + 'x-oss-process=image/resize,h_400/format,webp/quality,q_75',
                   //     //   fit: BoxFit.contain,
                   //     // );
                   //   },
                   //   itemCount: imgDataArr.length,
                   //   loadingBuilder: (context, progress) {
-                  //     // ?x-oss-process=image/format,webp/quality,q_75/resize,h_1228
+                  //     // x-oss-process=image/resize,h_1228/format,webp/quality,q_75
                   //     if (imgDataArr.length == 1) {
                   // return CachedNetworkImage(
                   //     imageUrl: imgDataArr[currentIndex] +
-                  //         '?x-oss-process=image/format,webp/quality,q_75/resize,h_1228');
+                  //         'x-oss-process=image/resize,h_1228/format,webp/quality,q_75');
                   //     } else {
                   //       return FadeInImage.assetNetwork(
                   //         placeholder: imgDataArr[currentIndex] +
-                  //             "?x-oss-process=image/format,webp/quality,q_75/resize,h_512",
+                  //             "?x-oss-process=image/resize,h_512/format,webp/quality,q_75",
                   //         image: imgDataArr[currentIndex] +
-                  //             "?x-oss-process=image/format,webp/quality,q_75/resize,h_512",
+                  //             "?x-oss-process=image/resize,h_512/format,webp/quality,q_75",
                   //         fit: BoxFit.contain,
                   //       );
                   //     }
                   //   },
                   //   // loadingChild: FadeInImage.assetNetwork(
                   //   //   placeholder:
-                  //   //       imgDataArr[0] + "?x-oss-process=image/format,webp/quality,q_75/resize,h_512",
+                  //   //       imgDataArr[0] + "?x-oss-process=image/resize,h_512/format,webp/quality,q_75",
                   //   //   image:
-                  //   //       imgDataArr[0] + "?x-oss-process=image/format,webp/quality,q_75/resize,h_512",
+                  //   //       imgDataArr[0] + "?x-oss-process=image/resize,h_512/format,webp/quality,q_75",
                   //   //   fit: BoxFit.contain,
                   //   // ),
                   //   backgroundDecoration: null,

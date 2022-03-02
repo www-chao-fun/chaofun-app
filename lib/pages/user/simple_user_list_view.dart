@@ -54,7 +54,7 @@ class SimpleUserListViewState extends State<SimpleUserListView> {
                 child: CachedNetworkImage(
                   imageUrl: KSet.imgOrigin +
                       widget.userInfo['icon'] +
-                      '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                      '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                   width: 30,
                   height: 30,
                   fit: BoxFit.cover,
@@ -65,7 +65,7 @@ class SimpleUserListViewState extends State<SimpleUserListView> {
                 // child: Image.network(
                 //   KSet.imgOrigin +
                 //       userInfo['icon'] +
-                //       '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                //       '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                 //   width: 30,
                 //   height: 30,
                 //   fit: BoxFit.cover,

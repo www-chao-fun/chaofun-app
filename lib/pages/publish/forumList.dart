@@ -299,7 +299,7 @@ class _ForumListPageState extends State<ForumListPage> {
                                   Image.network(
                                     KSet.imgOrigin +
                                         f['imageName'] +
-                                        '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                                        '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                                     width: 18,
                                     height: 18,
                                   ),
@@ -363,7 +363,7 @@ class _ForumListPageState extends State<ForumListPage> {
               child: CachedNetworkImage(
                 imageUrl: KSet.imgOrigin +
                     item['imageName'] +
-                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                    '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                 width: ScreenUtil().setWidth(60),
                 height: ScreenUtil().setWidth(60),
               ),

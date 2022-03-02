@@ -19,24 +19,24 @@ class ImageUtils {
 
     if (imageWidth == null || imageHeight == null) {
       if (containerWidth == null || containerHeight == null) {
-        imageUrl = imageUrl + '?x-oss-process=image/format,webp/quality,q_75/resize,m_fill,h_500,w_500';
+        imageUrl = imageUrl + '?x-oss-process=image/resize,m_fill,h_500,w_500/format,webp/quality,q_75';
       } else {
         var actualContainerHeight = (containerHeight * screenUtil.pixelRatio).round();
         var actualContainerWidth = (containerWidth * screenUtil.pixelRatio).round();
-        imageUrl = imageUrl + '?x-oss-process=image/format,webp/quality,q_75/resize,m_fill,w_$actualContainerWidth,h_$actualContainerHeight';
+        imageUrl = imageUrl + '?x-oss-process=image/resize,m_fill,w_$actualContainerWidth,h_$actualContainerHeight/format,webp/quality,q_75';
       }
     } else {
       if (containerWidth == null || containerHeight == null) {
-        imageUrl = imageUrl + '?x-oss-process=image/format,webp/quality,q_75/resize,m_fill,h_500,w_500';
+        imageUrl = imageUrl + '?x-oss-process=image/resize,m_fill,h_500,w_500/format,webp/quality,q_75';
       } else {
         var actualContainerHeight = (containerHeight * screenUtil.pixelRatio).round();
         var actualContainerWidth = (containerWidth * screenUtil.pixelRatio).round();
         if (longImage(imageWidth, imageHeight)) {
           // 长图
           var tureHeight = (imageWidth * 1.0 * actualContainerHeight / actualContainerWidth).round() * 2;
-          imageUrl = imageUrl + '?x-oss-process=image/crop,h_$tureHeight';
+          imageUrl = imageUrl + '?x-oss-process=image/crop,h_$tureHeight/format,webp/quality,q_75';
         } else {
-          imageUrl = imageUrl + '?x-oss-process=image/format,webp/quality,q_75/resize,m_fill,w_$actualContainerWidth,h_$actualContainerHeight';
+          imageUrl = imageUrl + '?x-oss-process=image/resize,m_fill,w_$actualContainerWidth,h_$actualContainerHeight/format,webp/quality,q_75';
         }
       }
     }

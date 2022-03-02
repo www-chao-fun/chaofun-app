@@ -2296,7 +2296,7 @@ class _SubmitPageState extends State<SubmitPage> {
             CachedNetworkImage(
               imageUrl: KSet.imgOrigin +
                   forumImageName +
-                  '?x-oss-process=image/format,webp/quality,q_75/resize,h_80',
+                  '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
               width: ScreenUtil().setWidth(40),
               height: ScreenUtil().setWidth(40),
             ),

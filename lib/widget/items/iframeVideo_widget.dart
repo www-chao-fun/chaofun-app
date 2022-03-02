@@ -29,7 +29,7 @@ class IframeVideoWidget extends StatelessWidget {
                 placeholder: "assets/images/img/place.png",
                 image: KSet.imgOrigin +
                     item['cover'] +
-                    '?x-oss-process=image/format,webp/quality,q_75/resize,h_512',
+                    '?x-oss-process=image/resize,h_512/format,webp/quality,q_75',
                 fit: BoxFit.fitHeight,
               ),
             ),
