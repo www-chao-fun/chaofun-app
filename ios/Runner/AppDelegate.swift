@@ -69,12 +69,18 @@ import CloudPushSDK
             
             let postBaseUrl = "https://chao.fun/p/"
             
+            var title = "无标题";
+            
+            if (!(newObject["title"] is NSNull || newObject["title"] as? String == "")) {
+                title = newObject["title"] as! String;
+            }
+            
             UMSocialUIManager.showShareMenuViewInWindow { (platform, dataMap) in
                 var shareObject: UMShareObject? = nil;
                 let  messageObject = UMSocialMessageObject();
                 // 小程序
                 if (platform == UMSocialPlatformType.wechatSession  && (newObject["type"] as? String == "image" || newObject["type"] as? String == "gif" || newObject["type"] as? String == "article" || newObject["type"] as? String == "forward" || newObject["type"] as? String == "vote")) {
-                    shareObject = UMShareMiniProgramObject.shareObject(withTitle: newObject["title"] as? String, descr: "炒饭 - 世界那么大", thumImage: "") as! UMShareObject
+                    shareObject = UMShareMiniProgramObject.shareObject(withTitle: title, descr: "炒饭 - 世界那么大", thumImage: "") as! UMShareObject
                     (shareObject as! UMShareMiniProgramObject).path = "/pages/detail/detail?postId=" + String(newObject["postId"] as! Int);
                     (shareObject as! UMShareMiniProgramObject).webpageUrl = "https://chao.fun/p/" + String(newObject["postId"] as! Int);
                     (shareObject as! UMShareMiniProgramObject).userName = "gh_41eb4fc2a95b";
@@ -97,12 +103,7 @@ import CloudPushSDK
                         print(error)
                     }
                 } else {
-                    
-                    var title = ""
-                    
-                    if (!(newObject["title"] is NSNull)) {
-                        title = newObject["title"] as! String;
-                    }
+
                     if (platform == UMSocialPlatformType.sina) {
                         shareObject = UMShareImageObject.shareObject(withTitle: newObject["title"] as? String, descr: "", thumImage: "")
                     
@@ -113,11 +114,11 @@ import CloudPushSDK
                             messageObject.text =  title.prefix(100) + " 分享自炒饭: " + postBaseUrl + String(newObject["postId"] as! Int)  + " @炒饭社区"
                         }
                     } else if (newObject["type"] as? String == "link") {
-                        shareObject = UMShareWebpageObject.shareObject(withTitle: newObject["title"] as! String, descr: "", thumImage:  nil);
+                        shareObject = UMShareWebpageObject.shareObject(withTitle: title, descr: "", thumImage:  nil);
                         
                         (shareObject as! UMShareWebpageObject).webpageUrl = newObject["link"] as? String;
                     }  else {
-                        shareObject = UMShareWebpageObject.shareObject(withTitle: newObject["title"] as! String, descr: "", thumImage:  nil);
+                        shareObject = UMShareWebpageObject.shareObject(withTitle: title, descr: "", thumImage:  nil);
                              
                         if (!(newObject["cover"] is NSNull)) {
                             (shareObject as! UMShareWebpageObject).thumbImage  = imageBaseUrl + (newObject["cover"] as! String)
@@ -137,7 +138,6 @@ import CloudPushSDK
                     shareObject?.thumbImage = imageBaseUrl + (newObject["cover"] as! String);
                 }
                     
-            
                 messageObject.shareObject = shareObject;
                
                     
