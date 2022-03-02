@@ -60,6 +60,7 @@ class PostItemWidget extends StatelessWidget {
                 'p': Style(
                   fontSize: FontSize.large,
                   lineHeight: LineHeight(1.5),
+                  whiteSpace: WhiteSpace.PRE,
                 ),
               },
               onImageTap: (src, _, __, ___) {

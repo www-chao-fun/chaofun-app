@@ -78,6 +78,9 @@
 				android:name="com.vivo.push.app_id"
 				android:value="105503685"/>
 
+		<meta-data
+			android:name="com.huawei.hms.client.appid"
+			android:value="appid=103546067" />
 
 		<activity
 				android:name=".ddshare.DDShareActivity"
@@ -180,6 +183,10 @@
 	<meta-data
 			android:name="com.vivo.push.app_id"
 			android:value="105503685"/>
+	<meta-data
+		android:name="com.huawei.hms.client.appid"
+		android:value="appid=103546067" />
+
 
 	<!--网络权限-->
     <!-- 视频播放相关权限添加start -->

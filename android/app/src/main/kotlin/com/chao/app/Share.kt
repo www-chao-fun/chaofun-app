@@ -20,6 +20,12 @@ class Share {
 
         fun umengShare(activity: Activity, argMap: Map<String, Any>, baseMediaObject: BaseMediaObject, shareAction: ShareAction) {
 
+            var title = "无标题";
+
+            if (argMap["title"] != null && argMap["title"] != "") {
+                title = argMap["title"] as String;
+            }
+
             val shareBoardlistener = ShareBoardlistener { snsPlatform, share_media ->
 
                 if (share_media == SHARE_MEDIA.WEIXIN && (argMap["type"]!!.equals("image") ||  argMap["type"]!!.equals("forward") || argMap["type"]!!.equals("gif") ||  argMap["type"]!!.equals("article") || argMap["type"]!!.equals("vote") || argMap["type"]!!.equals("inner_video")) ) {
@@ -29,7 +35,7 @@ class Share {
                     ummin.path = miniProgramBaseUrl + (argMap["postId"] as java.lang.Integer);
 
                     ummin.userName = "gh_41eb4fc2a95b"
-                    ummin.title = argMap["title"] as String;
+                    ummin.title = title;
 
                     var umImage = getUMImage(activity, argMap);
                     if (umImage != null) {
@@ -49,7 +55,7 @@ class Share {
                     var umImage = getUMImage(activity, argMap);
 
                     shareAction
-                            .withText(argMap["title"] as String)
+                            .withText(title)
                             .withSubject(" ")
                             .withMedia(umImage)
                             .setPlatform(share_media)
@@ -59,7 +65,7 @@ class Share {
 
                 } else { //社交平台的分享行为
                     shareAction
-                            .withText(argMap["title"] as String)
+                            .withText(title)
                             .withSubject(" ")
                             .setPlatform(share_media)
                             .setCallback(null)
@@ -69,7 +75,7 @@ class Share {
             }
 
             ShareAction(activity)
-                    .withText(argMap["title"] as String)
+                    .withText(title)
                     .withSubject(" ")
                     .setCallback(null)
                     .setShareboardclickCallback(shareBoardlistener)
@@ -79,7 +85,13 @@ class Share {
 
         fun shareWeb(activity: Activity, argMap: Map<String, Any>) {
             var umWeb = UMWeb(argMap["link"] as String);
-            umWeb.title = argMap["title"] as String
+
+            var title = "无标题";
+
+            if (argMap["title"] != null && argMap["title"] != "") {
+                title = argMap["title"] as String;
+            }
+            umWeb.title = title;
             umWeb.description = " ";
 
             if (argMap["cover"] != null) {
@@ -91,7 +103,12 @@ class Share {
 
         fun shareOutLink(activity: Activity, argMap: Map<String, Any>) {
             var umWeb = UMWeb(baseUrl + (argMap["postId"] as java.lang.Integer))
-            umWeb.title = argMap["title"] as String
+            var title = "无标题";
+
+            if (argMap["title"] != null && argMap["title"] != "") {
+                title = argMap["title"] as String;
+            }
+            umWeb.title = title;
             umWeb.description = " ";
 
             var umImage: UMImage? = null;
