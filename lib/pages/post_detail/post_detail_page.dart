@@ -798,7 +798,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           child: CachedNetworkImage(
             imageUrl: KSet.imgOrigin +
                 item['imageName'] +
-                'x-oss-process=image/resize,w_200/format,webp/quality,q_75',
+                '?x-oss-process=image/resize,w_200/format,webp/quality,q_75',
             fit: BoxFit.cover,
           ),
         );
@@ -822,7 +822,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
               ? CachedNetworkImage(
                   imageUrl: (KSet.imgOrigin +
                       item['cover'] +
-                      'x-oss-process=image/resize,w_200/format,webp/quality,q_75'),
+                      '?x-oss-process=image/resize,w_200/format,webp/quality,q_75'),
                   fit: BoxFit.cover,
                 )
               : Image.asset('assets/images/_icon/link.png'),
@@ -964,7 +964,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           color: Colors.blue,
                           // image: DecorationImage(
                           //     image: NetworkImage(asd[index] +
-                          //         'x-oss-process=image/resize,h_225/format,webp/quality,q_75'),
+                          //         '?x-oss-process=image/resize,h_225/format,webp/quality,q_75'),
                           //     fit: BoxFit.cover),
                           borderRadius: BorderRadius.all(
                             Radius.circular(2),
@@ -978,7 +978,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         ),
                         child: CachedNetworkImage(
                           imageUrl:
-                              asd[index] + 'x-oss-process=image/resize,w_225/format,webp/quality,q_75',
+                              asd[index] + '?x-oss-process=image/resize,w_225/format,webp/quality,q_75',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -1014,7 +1014,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           //         decoration: BoxDecoration(
           //           image: DecorationImage(
           //               image: NetworkImage(
-          //                   asd[index] + 'x-oss-process=image/resize,h_225/format,webp/quality,q_75'),
+          //                   asd[index] + '?x-oss-process=image/resize,h_225/format,webp/quality,q_75'),
           //               fit: BoxFit.cover),
           //           borderRadius: BorderRadius.all(
           //             Radius.circular(4),
@@ -2565,7 +2565,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(4)),
             child: CachedNetworkImage(
-              imageUrl: asd[key] + 'x-oss-process=image/resize,h_614/format,webp/quality,q_75',
+              imageUrl: asd[key] + '?x-oss-process=image/resize,h_614/format,webp/quality,q_75',
               width: ScreenUtil().setWidth(340),
               fit: data['height'] < data['width']
                   ? BoxFit.fitWidth
@@ -2625,7 +2625,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(4)),
             child: CachedNetworkImage(
-              imageUrl: asd[key] + 'x-oss-process=image/resize,h_408/format,webp/quality,q_75',
+              imageUrl: asd[key] + '?x-oss-process=image/resize,h_408/format,webp/quality,q_75',
               width: ScreenUtil().setWidth(225),
               // fit: data['height'] < data['width']
               //     ? BoxFit.fitWidth

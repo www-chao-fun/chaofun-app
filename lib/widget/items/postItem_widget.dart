@@ -68,8 +68,9 @@ class _PostItemWidgetState extends State<PostItemWidget>
               data['article'].startsWith('<ol') ||
               data['article'].startsWith('<ul') ||
               data['article'].startsWith('<div') ||
-              data['article'].startsWith('<h'))
-          ? Html(
+              data['article'].startsWith('<h') ||
+              data['article'].startsWith('<br'))
+    ? Html(
               data: data['article'],
               style: {
                 'p': Style(

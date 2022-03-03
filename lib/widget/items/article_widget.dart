@@ -60,6 +60,7 @@ class ArticleWidget extends StatelessWidget {
 
         child: (item['article'].trim().startsWith('<p') ||
                 item['article'].trim().startsWith('<ol') ||
+                item['article'].trim().startsWith('<br') ||
                 item['article'].trim().startsWith('<ul') ||
                 item['article'].trim().startsWith('<a') ||
                 item['article'].trim().startsWith('<div') ||

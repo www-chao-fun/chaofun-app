@@ -1004,7 +1004,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                         borderRadius: BorderRadius.circular(10),
                         child: CachedNetworkImage(
                           imageUrl: KSet.imgOrigin +
-                              e['icon'] + 'x-oss-process=image/resize,h_60/format,webp/quality,q_75',
+                              e['icon'] + '?x-oss-process=image/resize,h_60/format,webp/quality,q_75',
                           width: 30,
                           height: 30,
                           fit: BoxFit.cover,

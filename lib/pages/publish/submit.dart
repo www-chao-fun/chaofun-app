@@ -732,7 +732,7 @@ class _SubmitPageState extends State<SubmitPage> {
     final markdown = deltaToMarkdown(convertedValue);
     var html = markdownToHtml(markdown);
     html = html.replaceAll("\n", "<br>");
-    html = html.replaceAll("<p>", "<p style=\"white-space:pre\">");
+    html = html.replaceAll("<p>", "<p style=\"white-space:pre-wrap\">");
     // html = html.replaceAll(" ", "&nbsp;");
     return html;
   }
