@@ -25,6 +25,10 @@ class Api {
       BASE_URL + '/api/v0/focus/list_fans'; // 查询关注用户
 
 
+  static const String listFollowersUserV1 =
+      BASE_URL + '/api/v0/forum/listFollowers'; // 查询关注用户
+
+
   static const String ListTags =
       BASE_URL + '/api/v0/forum_tag/list_tags'; //查询全部分类
 

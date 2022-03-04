@@ -49,8 +49,8 @@ class PostItemWidget extends StatelessWidget {
       ),
       child: (data['article'].trim().startsWith('<p') ||
             data['article'].trim().startsWith('<ol') ||
-          data['article'].trim().startsWith('<br') ||
-          data['article'].trim().startsWith('<a') ||
+            data['article'].trim().startsWith('<br') ||
+            data['article'].trim().startsWith('<a') ||
             data['article'].trim().startsWith('<ul') ||
             data['article'].trim().startsWith('<div') ||
             data['article'].trim().startsWith('<block') ||

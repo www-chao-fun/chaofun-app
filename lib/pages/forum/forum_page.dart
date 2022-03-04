@@ -12,6 +12,7 @@ import 'package:flutter_chaofan/pages/hometabs/all_tab_page.dart';
 import 'package:flutter_chaofan/pages/post_detail/chao_fun_webview.dart';
 import 'package:flutter_chaofan/provide/user.dart';
 import 'package:flutter_chaofan/config/index.dart';
+import 'package:flutter_chaofan/widget/im/ui.dart';
 import 'package:flutter_chaofan/widget/items/flow_index_widget.dart';
 import 'package:flutter_chaofan/widget/items/index_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -421,7 +422,31 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                     ),
                                                   ),
                                                 ),
-                                                Container(
+                                                Row( children:
+                                                    [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pushNamed(
+                                                            context,
+                                                            '/followers_user',
+                                                            arguments: {'title': '加入用户', 'forumId': forumData['id'].toString()},
+                                                          );
+                                                        },
+                                                        // alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                          '用户' +
+                                                              forumData['followers']
+                                                                  .toString(),
+                                                          style: TextStyle(
+                                                            fontSize: ScreenUtil()
+                                                                .setSp(20),
+                                                            color: Color.fromRGBO(
+                                                                255, 255, 255, 0.5),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Space(width: 5),
+                                                      Container(
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
@@ -435,7 +460,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                           255, 255, 255, 0.5),
                                                     ),
                                                   ),
-                                                ),
+                                                ),]),
                                               ],
                                             ),
                                           ),

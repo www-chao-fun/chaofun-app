@@ -10,6 +10,7 @@ import 'package:flutter_chaofan/pages/forum/forum_page.dart';
 import 'package:flutter_chaofan/pages/forum/prediction_page.dart';
 import 'package:flutter_chaofan/pages/forum/recommend_page.dart';
 import 'package:flutter_chaofan/pages/forum/test_page.dart';
+import 'package:flutter_chaofan/pages/forum_followers_page.dart';
 import 'package:flutter_chaofan/pages/login/accoutLogin.dart';
 import 'package:flutter_chaofan/pages/login/register.dart';
 import 'package:flutter_chaofan/pages/message_page.dart';
@@ -66,6 +67,7 @@ final routes = {
   //     GoodsDetailPage(arguments: arguments),
   '/postdetail': (context, {arguments}) => PostDetailPage(arguments: arguments),
   '/focus_user': (context, {arguments}) => FocusPage(arguments: arguments),
+  '/followers_user': (context, {arguments}) => ForumFollowersPage(arguments: arguments),
   '/login': (context) => LoginPage(), //选择登录
   '/accoutlogin': (context, {arguments}) =>
       AccoutLoginPage(arguments: arguments), //账号密码登录
