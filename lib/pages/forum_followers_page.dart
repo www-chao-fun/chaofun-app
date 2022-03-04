@@ -28,7 +28,7 @@ class _ForumFollowersPage extends State<ForumFollowersPage> {
   var userData = [];
 
   var marker = null;
-  var pageSize = 40;
+  var pageSize = 50;
 
   var forumId = null;
   EasyRefreshController _controller = EasyRefreshController();
@@ -40,7 +40,7 @@ class _ForumFollowersPage extends State<ForumFollowersPage> {
 
   @override
   void initState() {
-    forumId = widget.arguments['userId'];
+    forumId = widget.arguments['forumId'];
     getData();
   }
 

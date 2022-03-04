@@ -429,7 +429,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                           Navigator.pushNamed(
                                                             context,
                                                             '/followers_user',
-                                                            arguments: {'title': '加入用户', 'forumId': forumData['id'].toString()},
+                                                            arguments: {'title': '已加入用户', 'forumId': forumId},
                                                           );
                                                         },
                                                         // alignment: Alignment.centerLeft,
