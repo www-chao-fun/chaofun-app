@@ -1170,7 +1170,7 @@ class _SubmitPageState extends State<SubmitPage> {
           showColorButton: false,
           showStrikeThrough: false,
           showBackgroundColorButton: false,
-          showClearFormat: false,
+          showClearFormat: true,
         ),
         Expanded(
           flex: 15,

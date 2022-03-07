@@ -93,6 +93,17 @@ class _CommentWidgetState extends State<CommentWidget> {
                       InkWell(
                         child: Row(
                           children: [
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/userMemberPage',
+                                    arguments: {
+                                      "userId":
+                                      item['userInfo']['userId'].toString()
+                                    },
+                                  );
+                                }, child:
                             Container(
                               width: ScreenUtil().setWidth(50),
                               height: ScreenUtil().setWidth(50),
@@ -107,7 +118,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            ),
+                            )),
                             SizedBox(
                               width: 6,
                             ),
@@ -118,7 +129,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                   '/userMemberPage',
                                   arguments: {
                                     "userId":
-                                        item['userInfo']['userId'].toString()
+                                    item['userInfo']['userId'].toString()
                                   },
                                 );
                               },
@@ -132,19 +143,19 @@ class _CommentWidgetState extends State<CommentWidget> {
                             ),
                             item['userInfo']['userTag'] != null
                                 ? Container(
-                                    margin: EdgeInsets.only(
-                                        left: 2, right: 2, top: 2, bottom: 2),
-                                    color: Color.fromRGBO(221, 221, 221, 0.5),
-                                    child: Text(
-                                      item['userInfo']['userTag']['data'],
-                                      style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(24),
-                                        color: Color.fromRGBO(33, 29, 47, 0.5),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    padding: EdgeInsets.only(left: 4, right: 4),
-                                  )
+                              margin: EdgeInsets.only(
+                                  left: 2, right: 2, top: 2, bottom: 2),
+                              color: Color.fromRGBO(221, 221, 221, 0.5),
+                              child: Text(
+                                item['userInfo']['userTag']['data'],
+                                style: TextStyle(
+                                  fontSize: ScreenUtil().setSp(24),
+                                  color: Color.fromRGBO(33, 29, 47, 0.5),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              padding: EdgeInsets.only(left: 4, right: 4),
+                            )
                                 : Text(''),
                             Container(
                               alignment: Alignment.centerRight,
@@ -174,61 +185,61 @@ class _CommentWidgetState extends State<CommentWidget> {
                               child: Text(''),
                               flex: 1,
                             ),
-                                  item['canDeleted']
-                                      ? InkWell(
-                                    onTap: () {
-                                      showCupertinoDialog(
-                                        //showCupertinoDialog
-                                          context: context,
-                                          builder: (context) {
-                                            return CupertinoAlertDialog(
-                                              title: Text('提示'),
-                                              content: Text('确认删除该评论吗？'),
-                                              actions: <Widget>[
-                                                CupertinoDialogAction(
-                                                  child: Text('取消'),
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop('cancel');
-                                                  },
-                                                ),
-                                                CupertinoDialogAction(
-                                                  child: Text('确认'),
-                                                  onPressed: () async {
-                                                    var res = await HttpUtil()
-                                                        .get(Api.deleteComment,
-                                                        parameters: {
-                                                          'commentId':
-                                                          item['id']
-                                                        });
-                                                    if (res['success']) {
-                                                      Navigator.of(context)
-                                                          .pop('ok');
-                                                      item['text'] = '【已删除】';
-                                                      item['imageNames'] = null;
-                                                      setState(() {
-                                                        item = item;
-                                                      });
-                                                    } else {
-                                                      Fluttertoast.showToast(
-                                                        msg: res['errorMessage']
-                                                            .toString(),
-                                                        gravity:
-                                                        ToastGravity.CENTER,
-                                                      );
-                                                    }
-                                                  },
-                                                ),
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    child: Image.asset(
-                                      'assets/images/_icon/dele_comment.png',
-                                      width: 20,
-                                      height: 20,
-                                    ),
-                                  )
-                                      : Text('')
+                            item['canDeleted']
+                                ? InkWell(
+                              onTap: () {
+                                showCupertinoDialog(
+                                  //showCupertinoDialog
+                                    context: context,
+                                    builder: (context) {
+                                      return CupertinoAlertDialog(
+                                        title: Text('提示'),
+                                        content: Text('确认删除该评论吗？'),
+                                        actions: <Widget>[
+                                          CupertinoDialogAction(
+                                            child: Text('取消'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop('cancel');
+                                            },
+                                          ),
+                                          CupertinoDialogAction(
+                                            child: Text('确认'),
+                                            onPressed: () async {
+                                              var res = await HttpUtil()
+                                                  .get(Api.deleteComment,
+                                                  parameters: {
+                                                    'commentId':
+                                                    item['id']
+                                                  });
+                                              if (res['success']) {
+                                                Navigator.of(context)
+                                                    .pop('ok');
+                                                item['text'] = '【已删除】';
+                                                item['imageNames'] = null;
+                                                setState(() {
+                                                  item = item;
+                                                });
+                                              } else {
+                                                Fluttertoast.showToast(
+                                                  msg: res['errorMessage']
+                                                      .toString(),
+                                                  gravity:
+                                                  ToastGravity.CENTER,
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child: Image.asset(
+                                'assets/images/_icon/dele_comment.png',
+                                width: 20,
+                                height: 20,
+                              ),
+                            )
+                                : Text('')
                           ],
                         ),
                       ),

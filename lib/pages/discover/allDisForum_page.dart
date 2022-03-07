@@ -14,6 +14,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_chaofan/database/allforumhelper.dart';
 
+import '../forum/forum_apply_page.dart';
+
 class AllDiscoverPage extends StatefulWidget {
   _AllDiscoverPageState createState() => _AllDiscoverPageState();
   // State<StatefulWidget> createState() => _AllDiscoverPageState();
@@ -259,37 +261,40 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
                     return Container(
                       padding: EdgeInsets.only(top: ScreenUtil().setWidth(10)),
                       constraints: BoxConstraints(
-                        maxHeight: ScreenUtil().setWidth(70),
+                        // maxHeight: ScreenUtil().setWidth(70),
                         maxWidth: ScreenUtil().setWidth(750),
                       ),
-                      child: TextField(
-                        focusNode: _focusNode,
-                        autofocus: false,
-                        controller: _inputController,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding: EdgeInsets.only(
-                              left: 0, top: 0, right: 10, bottom: 0),
-                          fillColor: Color(0x30cccccc),
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0x00FF0000)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
-                          hintText: '请输入搜索内容',
-                          hintStyle: TextStyle(
-                            fontSize: ScreenUtil().setSp(28),
-                            color: Color.fromRGBO(153, 153, 153, 1),
-                          ),
-                          prefixIcon: Icon(Icons.search),
-                          suffix: _inputController.text.isNotEmpty
-                              ? InkWell(
+                      child:
+                      Column(
+                          children:[
+                            TextField(
+                              focusNode: _focusNode,
+                              autofocus: false,
+                              controller: _inputController,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.only(
+                                    left: 0, top: 0, right: 10, bottom: 0),
+                                fillColor: Color(0x30cccccc),
+                                filled: true,
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Color(0x00FF0000)),
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                                hintText: '请输入搜索内容',
+                                hintStyle: TextStyle(
+                                  fontSize: ScreenUtil().setSp(28),
+                                  color: Color.fromRGBO(153, 153, 153, 1),
+                                ),
+                                prefixIcon: Icon(Icons.search),
+                                suffix: _inputController.text.isNotEmpty
+                                    ? InkWell(
                                   onTap: () {
                                     _inputController.value =
                                         _inputController.value.copyWith(
-                                      text: '',
-                                      composing: TextRange.empty,
-                                    );
+                                          text: '',
+                                          composing: TextRange.empty,
+                                        );
                                     setState(() {
                                       allForum = allForumCopy;
                                     });
@@ -300,43 +305,57 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
                                     color: Colors.grey,
                                   ),
                                 )
-                              : Text(''),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0x00000000)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
-                        ),
-                        style: TextStyle(fontSize: ScreenUtil().setSp(28)),
-                        onChanged: (value) {
-                          print('onChanged:$value');
-                          if (value.trim().isNotEmpty) {
-                            List<Map> arr = [];
-                            allForumCopy.forEach((element) {
-                              print(element['name']);
-                              if (element['name'].contains(value)) {
-                                arr.add(element);
-                              }
-                            });
-                            setState(() {
-                              allForum = arr;
-                            });
-                          } else {
-                            setState(() {
-                              allForum = allForumCopy;
-                            });
-                          }
-                        },
-                        onEditingComplete: () {
-                          print('onEditingComplete');
-                        },
-                        onTap: () {
-                          // FocusScope.of(context).requestFocus(_focusNode);
-                        },
-                        textInputAction: TextInputAction.search,
-                        onSubmitted: (value) {
-                          if (value.trim().isNotEmpty) {}
-                        },
-                      ),
+                                    : Text(''),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Color(0x00000000)),
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                              ),
+                              style: TextStyle(fontSize: ScreenUtil().setSp(28)),
+                              onChanged: (value) {
+                                print('onChanged:$value');
+                                if (value.trim().isNotEmpty) {
+                                  List<Map> arr = [];
+                                  allForumCopy.forEach((element) {
+                                    print(element['name']);
+                                    if (element['name'].contains(value)) {
+                                      arr.add(element);
+                                    }
+                                  });
+                                  setState(() {
+                                    allForum = arr;
+                                  });
+                                } else {
+                                  setState(() {
+                                    allForum = allForumCopy;
+                                  });
+                                }
+                              },
+                              onEditingComplete: () {
+                                print('onEditingComplete');
+                              },
+                              onTap: () {
+                                // FocusScope.of(context).requestFocus(_focusNode);
+                              },
+                              textInputAction: TextInputAction.search,
+                              onSubmitted: (value) {
+                                if (value.trim().isNotEmpty) {}
+                              },
+                            ),
+                            InkWell(
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push<String>(context,
+                                        new MaterialPageRoute(builder: (BuildContext context) {
+                                          return new ForumApplyPage(forumName: '',);
+                                        })).then((String result) {
+                                    });
+                                  },
+                                  child: const Text('开通新版块'),
+                                ),
+                            )
+                          ]
+                      )
                     );
                   }
                   return _rightItem(allForum[index - 1], index - 1);
