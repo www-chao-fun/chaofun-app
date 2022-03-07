@@ -41,6 +41,7 @@ class _TopSearchState extends State<TopSearch> {
         if(response['success'] && response['data'] != null) {
           setState(() {
             hasNewMessage = response['data']['hasNewMessage'];
+            Provider.of<UserStateProvide>(context, listen: false).changeHasMessage(hasNewMessage);
           });
         }
       }
@@ -161,6 +162,7 @@ class _TopSearchState extends State<TopSearch> {
                     return;
                   } else {
                     hasNewMessage = false;
+                    Provider.of<UserStateProvide>(context, listen: false).changeHasMessage(hasNewMessage);
                     Navigator.pushNamed(
                       context,
                       '/message',

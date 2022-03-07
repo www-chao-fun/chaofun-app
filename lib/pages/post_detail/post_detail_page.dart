@@ -1634,10 +1634,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           flex: 1,
                           child: TextField(
                             // focusNode: _commentFocus,
-
                             autofocus: true,
                             controller: _inputController,
-                            maxLines: 2,
+                            maxLines: 3,
                             decoration: InputDecoration(
                               isDense: true,
                               contentPadding: EdgeInsets.only(
@@ -1657,7 +1656,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       BorderRadius.all(Radius.circular(50))),
                             ),
 
-                            textInputAction: TextInputAction.send,
+                            textInputAction: TextInputAction.newline,
                             style: TextStyle(
                               fontSize: ScreenUtil().setSp(28),
                               // fontWeight: FontWeight.bold,

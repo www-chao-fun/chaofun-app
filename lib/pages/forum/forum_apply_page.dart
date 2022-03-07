@@ -63,7 +63,7 @@ class _ForumApplyPageState extends State<ForumApplyPage> {
                       parameters: {'name': _nameInputController.text, 'reason': _reasonInputController.text});
                   if (res['success']) {
                     Fluttertoast.showToast(
-                      msg: '申请新建板块成功',
+                      msg: '申请新建版块成功',
                       gravity: ToastGravity.CENTER,
                     );
                     Future.delayed(Duration(milliseconds: 1500)).then((e) {
@@ -73,7 +73,7 @@ class _ForumApplyPageState extends State<ForumApplyPage> {
 
                   }
                 } else {
-                  Fluttertoast.showToast(msg: '申请板块名称或者理由不能为空', toastLength: Toast.LENGTH_LONG);
+                  Fluttertoast.showToast(msg: '申请版块名称或者理由不能为空', toastLength: Toast.LENGTH_LONG);
                 }
               },
               child: Text(
@@ -99,6 +99,8 @@ class _ForumApplyPageState extends State<ForumApplyPage> {
           Container(
             margin: EdgeInsets.all(20),
             child: TextField(
+
+              autofocus: true,
               // focusNode: _commentFocus,
               // autofocus: true,
               controller: _nameInputController,
@@ -112,7 +114,7 @@ class _ForumApplyPageState extends State<ForumApplyPage> {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0x00FF0000)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                hintText: '请输入板块名称',
+                hintText: '请输入版块名称',
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0x00000000)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -137,7 +139,6 @@ class _ForumApplyPageState extends State<ForumApplyPage> {
             margin: EdgeInsets.all(20),
             child: TextField(
               // focusNode: _commentFocus,
-              autofocus: true,
               controller: _reasonInputController,
               maxLines: 2,
               decoration: InputDecoration(

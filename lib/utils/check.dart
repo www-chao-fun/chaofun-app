@@ -79,10 +79,10 @@ double getMemoryImageCashe() {
 }
 var Image_Maxnum = 100;
 void clearMemoryImageCache() async {
-  print('clear');
+  // print('clear');
   ImageCache _imageCache = PaintingBinding.instance.imageCache;
   if (_imageCache.currentSizeBytes >= 55 << 20 || _imageCache.currentSize >= Image_Maxnum) {
-    _imageCache.clear();
+    // _imageCache.clear();
     _imageCache.clearLiveImages();
   }
 }

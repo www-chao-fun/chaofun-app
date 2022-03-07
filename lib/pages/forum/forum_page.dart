@@ -21,6 +21,8 @@ import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_chaofan/widget/hometop/topsearch_widget.dart';
+
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -910,7 +912,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                   } else {
                                     return ItemIndex(
                                       item: pageData[index-1],
-                                      type: 'forum',
+                                      type: 'forum_page',
                                       isComment: params['order'] == 'comment',
                                     );
                                   }
@@ -933,8 +935,52 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
             bottom: 20,
             child: Column(
               children: [
-                InkWell(
-                  onTap: () {
+                FloatingActionButton(
+                  mini: true,
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/message',
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child:
+                        Stack(
+                          children: [
+                            Visibility(
+                              visible:  Provider.of<UserStateProvide>(context, listen: false).hasNewMessage,
+                                child:
+                            Positioned(
+                              right: 0,
+                                top: 2,
+                                child:
+                              Container(
+                                height: 8, width: 8,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.red
+                                ),
+                              ))
+                            ),
+                            Icon(Icons.mail_outline_rounded)
+                          ]
+                        )
+
+
+                    // width: 20,
+                    // height: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                FloatingActionButton(
+                  mini: true,
+                  onPressed: () {
                     Navigator.pushNamed(context, '/search',
                         arguments: {'forumData': forumData});
                   },
@@ -952,7 +998,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 FloatingActionButton(
                   mini: true,

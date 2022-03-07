@@ -25,6 +25,8 @@ class UserStateProvide with ChangeNotifier {
 
   bool loopGif = true;
   bool autoPlayGif = true;
+  bool hasNewMessage = false;
+  var unreadMessage = 0;
   var modelType = 'model2';
 
   List remmenberForumList = [];
@@ -333,6 +335,10 @@ class UserStateProvide with ChangeNotifier {
     notifyListeners(); //通知监听者刷新页面
   }
 
+  void changeHasMessage(hasMessage) {
+    hasNewMessage = hasMessage;
+    notifyListeners();
+  }
   void changeUserInfo(info) {
     print('更新用户信息');
     print(info);

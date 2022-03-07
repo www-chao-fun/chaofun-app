@@ -265,6 +265,10 @@ class ItemsTop extends StatelessWidget {
     }
   }
 
+  _forumTop(context) {
+    return Container();
+  }
+
   _forumLi(context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
