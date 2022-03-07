@@ -22,7 +22,6 @@ class TopSearch extends StatefulWidget {
 class _TopSearchState extends State<TopSearch> {
   var type;
   var ishas;
-  var hasNewMessage = false;
 
   @override
   void initState() {
@@ -40,8 +39,10 @@ class _TopSearchState extends State<TopSearch> {
         var response = await HttpUtil().get(Api.checkMessage);
         if(response['success'] && response['data'] != null) {
           setState(() {
-            hasNewMessage = response['data']['hasNewMessage'];
-            Provider.of<UserStateProvide>(context, listen: false).changeHasMessage(hasNewMessage);
+            if(response['data']['hasNewMessage'] != null) {
+              Provider.of<UserStateProvide>(context, listen: false)
+                  .changeHasMessage(response['data']['hasNewMessage']);
+            }
           });
         }
       }
@@ -161,8 +162,7 @@ class _TopSearchState extends State<TopSearch> {
                     );
                     return;
                   } else {
-                    hasNewMessage = false;
-                    Provider.of<UserStateProvide>(context, listen: false).changeHasMessage(hasNewMessage);
+                    Provider.of<UserStateProvide>(context, listen: false).changeHasMessage(false);
                     Navigator.pushNamed(
                       context,
                       '/message',
@@ -170,7 +170,7 @@ class _TopSearchState extends State<TopSearch> {
                   }
                 },
                 // child: Icon(Icons.mail_outline),
-                child: hasNewMessage ? Image.asset(
+                child:  Provider.of<UserStateProvide>(context, listen: false).hasNewMessage ? Image.asset(
                   'assets/images/_icon/message_unread.png',
                   fit: BoxFit.fill,
                 ): Image.asset(
