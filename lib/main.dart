@@ -101,6 +101,9 @@ class MyApp extends StatelessWidget {
             primaryColor: KColor.primaryColor,
             platform: TargetPlatform.iOS,
           ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+          ),
           home: IndexPage(),
         );
       },
