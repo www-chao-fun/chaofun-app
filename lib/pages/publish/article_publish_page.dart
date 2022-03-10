@@ -119,7 +119,7 @@ class _ArticlePublishPageState extends State<ArticlePublishPage> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           brightness: Brightness.light,
@@ -130,7 +130,7 @@ class _ArticlePublishPageState extends State<ArticlePublishPage> {
             '发布文字',
             style: TextStyle(color: Colors.black),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           // bottomOpacity: 0,
           elevation: 0, //头部阴影区域高度
           actions: <Widget>[

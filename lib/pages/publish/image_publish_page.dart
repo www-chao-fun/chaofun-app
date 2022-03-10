@@ -67,7 +67,7 @@ class _ImagePublishPageState extends State<ImagePublishPage> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           brightness: Brightness.light,
@@ -78,7 +78,7 @@ class _ImagePublishPageState extends State<ImagePublishPage> {
             '发布图片/视频',
             style: TextStyle(color: Colors.black),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           // bottomOpacity: 0,
           elevation: 0, //头部阴影区域高度
           actions: <Widget>[

@@ -35,7 +35,7 @@ class ContactPage extends StatelessWidget {
             '联系我们',
             style: TextStyle(color: Colors.black),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         preferredSize: Size.fromHeight(40),
       ),

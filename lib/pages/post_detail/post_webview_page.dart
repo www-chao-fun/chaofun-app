@@ -54,7 +54,7 @@ class _WebViewState extends State<WebView> {
               child: AppBar(
                 brightness: Brightness.light,
                 title: Text(widget.title),
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               ),
               preferredSize: Size.fromHeight(20),
             ),

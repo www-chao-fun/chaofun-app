@@ -57,7 +57,7 @@ class ItemIndex extends StatelessWidget {
         } else {
           return Container(
             height: ScreenUtil().setWidth(400),
-            color: Color.fromRGBO(240, 240, 240, 1),
+            color: Theme.of(context).backgroundColor,
             child: Center(
               child: Container(
                 height: ScreenUtil().setWidth(180),
@@ -151,7 +151,7 @@ class ItemIndex extends StatelessWidget {
 
   Widget _forwardWidget(context, item) {
     return Container(
-      color: Color.fromRGBO(245, 245, 245, 1),
+      color: Theme.of(context).backgroundColor,
       padding: EdgeInsets.only(left: 10, right: 10, top: 14, bottom: 20),
       child: Column(
         children: [
@@ -262,7 +262,7 @@ class ItemIndex extends StatelessWidget {
             }
           },
           child: item['title'] != null && item['title'].toString().trim() != ''?  Container(
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             margin: EdgeInsets.only(
                 left: ScreenUtil().setWidth(30),
                 right: ScreenUtil().setWidth(30),
@@ -310,11 +310,7 @@ class ItemIndex extends StatelessWidget {
                   // ),
                   TextSpan(
                     text: item['title'],
-                    style: TextStyle(
-                      fontSize: ScreenUtil().setSp(32),
-                      color: KColor.defaultTitleColor,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
               ),
@@ -445,9 +441,9 @@ class ItemIndex extends StatelessWidget {
               child: Container(
                 width: ScreenUtil().setWidth(750),
                 margin: EdgeInsets.only(bottom: 0, left: 0, right: 0),
-                color: Color.fromRGBO(245, 245, 245, 1),
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: Container(
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   margin: EdgeInsets.only(bottom: 5),
                   child: Column(
                     children: <Widget>[

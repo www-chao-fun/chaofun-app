@@ -92,7 +92,7 @@ class _UserPostPageState extends State<UserPostPage> {
       });
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
@@ -115,7 +115,7 @@ class _UserPostPageState extends State<UserPostPage> {
             style: TextStyle(
                 color: Colors.black, fontSize: ScreenUtil().setSp(34)),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         preferredSize: Size.fromHeight(40),
       ),

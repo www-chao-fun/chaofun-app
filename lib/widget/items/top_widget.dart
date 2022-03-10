@@ -38,7 +38,7 @@ class ItemsTop extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 0),
       width: ScreenUtil().setWidth(750),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
             // bottom: BorderSide(width: 0.5, color: KColor.defaultBorderColor),
             ),
@@ -96,6 +96,7 @@ class ItemsTop extends StatelessWidget {
             ),
           ),
           Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: Column(
               children: <Widget>[
                 InkWell(
@@ -296,11 +297,7 @@ class ItemsTop extends StatelessWidget {
               pageSource == null
                   ? item['forum']['name']
                   : item['userInfo']['userName'],
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(28),
-                color: Color.fromRGBO(33, 29, 47, 1),
-                // fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         ),
@@ -320,17 +317,11 @@ class ItemsTop extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
                 text: Utils.moments(item['gmtCreate']) + ' · ',
-                style: TextStyle(
-                  fontSize: ScreenUtil().setSp(24),
-                  color: Color.fromRGBO(33, 29, 47, 0.5),
-                ),
+                style: Theme.of(context).textTheme.bodySmall,
                 children: [
                   TextSpan(
                     text: '' + _doSource(),
-                    style: TextStyle(
-                      color: Color.fromRGBO(33, 29, 47, 0.5),
-                      fontWeight: FontWeight.normal,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   item['userInfo']['userTag'] != null
                       ? WidgetSpan(
@@ -343,11 +334,7 @@ class ItemsTop extends StatelessWidget {
                               item['userInfo']['userTag']['data'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(24),
-                                color: Color.fromRGBO(33, 29, 47, 0.5),
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                             padding: EdgeInsets.only(left: 4, right: 4),
                           ),

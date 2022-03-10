@@ -161,7 +161,7 @@ class _AllPageState extends State<AllPage> with AutomaticKeepAliveClientMixin {
       });
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: FutureBuilder(
           //防止刷新重绘
           future: forumFuture({'forumId': '5'}),
@@ -539,7 +539,7 @@ class _AllPageState extends State<AllPage> with AutomaticKeepAliveClientMixin {
 
   _topForumInfo(context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: EdgeInsets.fromLTRB(10, 0, 10, 5),
       child: Row(
         children: <Widget>[
@@ -608,7 +608,7 @@ class _AllPageState extends State<AllPage> with AutomaticKeepAliveClientMixin {
 
   Widget sortCell() {
     return Container(
-      color: Color.fromRGBO(245, 245, 245, 1),
+      color: Theme.of(context).backgroundColor,
       // alignment: Alignment.centerRight,
       // color: Colors.white,
       child: Container(
@@ -777,7 +777,7 @@ class _AllPageState extends State<AllPage> with AutomaticKeepAliveClientMixin {
             ),
             showZanData
                 ? Container(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     padding: EdgeInsets.only(
                       left: ScreenUtil().setWidth(40),
                       top: ScreenUtil().setWidth(20),

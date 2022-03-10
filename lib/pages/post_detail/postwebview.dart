@@ -119,7 +119,7 @@ class _WebViewExampleState extends State<WebViewExample> {
             title,
             style: TextStyle(color: Colors.black),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
 
           actions: <Widget>[

@@ -92,7 +92,7 @@ class _ForumApplyPageState extends State<ForumApplyPage> {
           style:
               Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Column(
         children: [

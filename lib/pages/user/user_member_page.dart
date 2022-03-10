@@ -251,7 +251,7 @@ class _UserMemberPageState extends State<UserMemberPage>
       });
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: FutureBuilder(
           //防止刷新重绘
           future: memberInfoFuture,
@@ -829,7 +829,7 @@ class _UserMemberPageState extends State<UserMemberPage>
       margin: EdgeInsets.only(top: 0),
       height: 48,
       decoration: BoxDecoration(
-        // color: Color.fromRGBO(95, 60, 94, 1),
+        color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
           bottom: BorderSide(
             width: 0.5,
@@ -845,7 +845,7 @@ class _UserMemberPageState extends State<UserMemberPage>
         child: InkWell(
           onTap: () {},
           child: Container(
-            color: Colors.white,
+            color: Theme.of(context).backgroundColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -875,15 +875,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                     ),
                     child: Text(
                       '发布',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(28),
-                        color: curSelected == 'publish'
-                            ? Color.fromRGBO(0, 0, 0, 1)
-                            : Color.fromRGBO(33, 29, 47, 0.7),
-                        fontWeight: curSelected == 'publish'
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                 ),
@@ -913,15 +905,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                     ),
                     child: Text(
                       '评论',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(28),
-                        color: curSelected == 'comment'
-                            ? Color.fromRGBO(0, 0, 0, 1)
-                            : Color.fromRGBO(33, 29, 47, 0.7),
-                        fontWeight: curSelected == 'comment'
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                 ),
@@ -951,15 +935,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                     ),
                     child: Text(
                       '点赞',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(28),
-                        color: curSelected == 'ups'
-                            ? Color.fromRGBO(0, 0, 0, 1)
-                            : Color.fromRGBO(33, 29, 47, 0.7),
-                        fontWeight: curSelected == 'ups'
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                 ),
@@ -1192,7 +1168,7 @@ class _UserMemberPageState extends State<UserMemberPage>
 
   Widget sortCell() {
     return Container(
-      color: Color.fromRGBO(245, 245, 245, 1),
+      color: Theme.of(context).backgroundColor,
       // alignment: Alignment.centerRight,
       // color: Colors.white,
       child: Container(

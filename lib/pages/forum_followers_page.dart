@@ -105,7 +105,7 @@ class _ForumFollowersPage extends State<ForumFollowersPage> {
             style:
             Theme.of(context).textTheme.headline6,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body: Container(
           color: Colors.white,

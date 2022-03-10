@@ -98,7 +98,7 @@ class _UserSavePageState extends State<UserSavePage> {
       });
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
@@ -121,7 +121,7 @@ class _UserSavePageState extends State<UserSavePage> {
             style: TextStyle(
                 color: Colors.black, fontSize: ScreenUtil().setSp(34)),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         preferredSize: Size.fromHeight(40),
       ),

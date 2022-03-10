@@ -14,6 +14,7 @@ import 'package:flutter_chaofan/pages/user/at_user_list.dart';
 import 'package:flutter_chaofan/provide/current_index_provide.dart';
 import 'package:flutter_chaofan/provide/user.dart';
 import 'package:flutter_chaofan/service/home_service.dart';
+import 'package:flutter_chaofan/theme.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/image/image_scrollshow_wiget.dart';
@@ -236,7 +237,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
       SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: FutureBuilder(
         future: commentFuture,
         builder: (context, AsyncSnapshot asyncSnapshot) {
@@ -305,7 +306,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             ),
                             // _timeLine(),
                             Container(
-                              color: Colors.white,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               padding:
                               EdgeInsets.only(left: 10, right: 10),
                               child: BottomWidget(
@@ -333,14 +334,14 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             ),
                             Container(
                               height: 4,
-                              color: KColor.defaultPageBgColor,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                             ),
                             postInfo['collection'] != null
                                 ? _collectionLine(context)
                                 : Container(),
                             Container(
                               height: 4,
-                              color: KColor.defaultPageBgColor,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                             ),
                             Container(
                               padding:
@@ -429,6 +430,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                   top: 0,
                                   bottom: 130),
                               decoration: BoxDecoration(
+                                color: Theme.of(context).scaffoldBackgroundColor,
                                 border: Border(
                                   left: BorderSide(
                                       width: 0.5,
@@ -506,7 +508,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         width: ScreenUtil().setWidth(750),
                         height:
                         40 + MediaQueryData.fromWindow(window).padding.top,
-                        color: Colors.white,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -685,7 +687,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
       // color: Color.fromRGBO(241, 241, 241, 1),
-      color: KColor.defaultPageBgColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Column(
         children: [
           Container(
@@ -727,7 +729,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   },
                   child: Container(
                     width: 100,
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     // height: 80,
                     margin: EdgeInsets.only(right: 6),
                     padding: EdgeInsets.all(2),
@@ -795,6 +797,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     switch (item['type']) {
       case 'image':
         return Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: CachedNetworkImage(
             imageUrl: KSet.imgOrigin +
                 item['imageName'] +
@@ -1422,7 +1425,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
           top: BorderSide(width: 0.5, color: Color.fromRGBO(241, 241, 241, 1)),
         ),
@@ -2046,7 +2049,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     return Container(
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 10),
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: InkWell(
         onLongPress: () {
           Clipboard.setData(ClipboardData(text: postInfo['title']));
@@ -2062,11 +2065,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
               ItemIndex.getTag(context, postInfo),
               TextSpan(
                 text: postInfo['title'],
-                style: TextStyle(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: KColor.defaultTitleColor,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ],
           ),
@@ -2091,7 +2090,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
   _tools() {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       margin: EdgeInsets.only(bottom: 4, left: 10, right: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -2546,7 +2545,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
       var c = Container(
         width: ScreenUtil().setWidth(340),
         height: ScreenUtil().setWidth((data['height'] / data['width']) * 340),
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         margin: EdgeInsets.only(top: 0, bottom: 2),
         child: InkWell(
           onTap: () {
@@ -2603,7 +2602,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
       var c = Container(
         width: ScreenUtil().setWidth(225),
         height: ScreenUtil().setWidth(hight),
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         margin: EdgeInsets.only(top: 0, bottom: 2),
         child: InkWell(
           onTap: () {

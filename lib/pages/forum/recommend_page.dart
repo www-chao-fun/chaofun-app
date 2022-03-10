@@ -120,7 +120,7 @@ class _RecommendPageState extends State<RecommendPage>
       });
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: FutureBuilder(
           //防止刷新重绘
           future: forumFuture({'forumId': '5'}),

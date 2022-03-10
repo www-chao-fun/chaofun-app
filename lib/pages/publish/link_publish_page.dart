@@ -52,7 +52,7 @@ class _LinkPublishPageState extends State<LinkPublishPage> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           brightness: Brightness.light,
@@ -64,7 +64,7 @@ class _LinkPublishPageState extends State<LinkPublishPage> {
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           // bottomOpacity: 0,
           elevation: 0, //头部阴影区域高度
           actions: <Widget>[

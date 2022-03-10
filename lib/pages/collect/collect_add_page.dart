@@ -118,7 +118,7 @@ class _CollectAddPageState extends State<CollectAddPage> {
           style:
               Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Stack(
         children: [

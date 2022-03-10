@@ -87,7 +87,7 @@ class _AtUserListPageState extends State<AtUserListPage> {
           style:
               Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Stack(
         children: [

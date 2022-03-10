@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage>
                       alignment: Alignment.center,
                       width: ScreenUtil().setWidth(750),
                       height: 35,
-                      // color: Colors.white,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       child: Container(
                         width: ScreenUtil().setWidth(30),
                         height: ScreenUtil().setWidth(30),
@@ -301,7 +301,7 @@ class _HomePageState extends State<HomePage>
   _navs() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         // border: Border(
         //   bottom: BorderSide(
         //     width: 0.1,
@@ -430,7 +430,7 @@ class _HomePageState extends State<HomePage>
                           )
                         : Container(
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                             ),

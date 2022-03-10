@@ -264,7 +264,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
       });
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       // floatingActionButton: FloatingActionButton(
       //   mini: true,
       //   onPressed: () {

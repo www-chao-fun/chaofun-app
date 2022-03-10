@@ -105,7 +105,7 @@ class _CollectListPageState extends State<CollectListPage> {
           style:
               Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
           Container(
             margin: EdgeInsets.only(bottom: 12, top: 12, right: 10),

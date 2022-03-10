@@ -85,7 +85,7 @@ class _ForumListPageState extends State<ForumListPage> {
       //     style:
       //         Theme.of(context).textTheme.headline6,
       //   ),
-      //   backgroundColor: Colors.white,
+      //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       //   // bottomOpacity: 0,
       //   elevation: 0, //头部阴影区域高度rr
       // ),
@@ -356,7 +356,7 @@ class _ForumListPageState extends State<ForumListPage> {
           Expanded(
             flex: 1,
             child: CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               child: CachedNetworkImage(
                 imageUrl: KSet.imgOrigin +
                     item['imageName'] +

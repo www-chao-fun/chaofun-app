@@ -342,7 +342,7 @@ class _SubmitPageState extends State<SubmitPage> {
                 tagList.length != 0
                     ? Container(
                         height: 30,
-                        color: Color.fromRGBO(244, 244, 245, 1),
+                        color: Theme.of(context).backgroundColor,
                         width: ScreenUtil().setWidth(750),
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -445,7 +445,7 @@ class _SubmitPageState extends State<SubmitPage> {
             child: Container(
               padding: EdgeInsets.only(top: 4, bottom: 4, left: 10, right: 10),
               // height: ScreenUtil().setWidth(300),
-              color: Colors.white,
+              color: Theme.of(context).backgroundColor,
               child: Column(
                 children: [
                   clipboardDatas != null
@@ -1203,7 +1203,7 @@ class _SubmitPageState extends State<SubmitPage> {
             isDense: true,
             contentPadding:
                 EdgeInsets.only(left: 14, top: 0, right: 14, bottom: 0),
-            fillColor: Colors.white,
+            //fillColor: Colors.white,
             filled: true,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Color(0x00FF0000)),
@@ -1237,6 +1237,7 @@ class _SubmitPageState extends State<SubmitPage> {
         },
         child: Container(
           // color: Color.fromRGBO(95, 60, 94, 1),
+          color: Theme.of(context).backgroundColor,
           padding: EdgeInsets.only(top: 4, left: 0, right: 0),
           // height: ScreenUtil().setWidth((716)),
           constraints: BoxConstraints(
@@ -1288,7 +1289,7 @@ class _SubmitPageState extends State<SubmitPage> {
                             height: ScreenUtil().setWidth(114),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              // color: KColor.primaryColor,
+                            color: Theme.of(context).backgroundColor,
 //                          borderRadius: BorderRadius.all(Radius.circular(20)),
                               border: Border.all(
                                   color: Color.fromRGBO(153, 153, 153, 0.3),
@@ -1296,10 +1297,7 @@ class _SubmitPageState extends State<SubmitPage> {
                             ),
                             child: Text(
                               '拍照',
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(34),
-                                color: Colors.grey,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText2,
                             ),
                           ),
                         ),
@@ -1315,7 +1313,7 @@ class _SubmitPageState extends State<SubmitPage> {
                             height: ScreenUtil().setWidth(114),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              // color: KColor.primaryColor,
+                              color: Theme.of(context).backgroundColor,
 //                          borderRadius: BorderRadius.all(Radius.circular(20)),
                               border: Border.all(
                                   color: Color.fromRGBO(153, 153, 153, 0.3),
@@ -1323,10 +1321,7 @@ class _SubmitPageState extends State<SubmitPage> {
                             ),
                             child: Text(
                               '相册',
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(34),
-                                color: Colors.grey,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText2,
                             ),
                           ),
                         ),
@@ -1431,7 +1426,7 @@ class _SubmitPageState extends State<SubmitPage> {
                           height: ScreenUtil().setWidth(114),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            // color: KColor.primaryColor,
+                            color: Theme.of(context).backgroundColor,
 //                      borderRadius: BorderRadius.all(Radius.circular(20)),
                             border: Border.all(
                                 color: Color.fromRGBO(153, 153, 153, 0.3),
@@ -1439,10 +1434,7 @@ class _SubmitPageState extends State<SubmitPage> {
                           ),
                           child: Text(
                             '拍摄',
-                            style: TextStyle(
-                              fontSize: ScreenUtil().setSp(34),
-                              color: Colors.grey,
-                            ),
+                            style:  Theme.of(context).textTheme.bodyText2,
                           ),
                         ),
                       ),
@@ -1455,7 +1447,7 @@ class _SubmitPageState extends State<SubmitPage> {
                           height: ScreenUtil().setWidth(114),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            // color: KColor.primaryColor,
+                          color: Theme.of(context).backgroundColor,
 //                      borderRadius: BorderRadius.all(Radius.circular(20)),
                             border: Border.all(
                                 color: Color.fromRGBO(153, 153, 153, 0.3),
@@ -1463,10 +1455,7 @@ class _SubmitPageState extends State<SubmitPage> {
                           ),
                           child: Text(
                             '相册',
-                            style: TextStyle(
-                              fontSize: ScreenUtil().setSp(34),
-                              color: Colors.grey,
-                            ),
+                            style:  Theme.of(context).textTheme.bodyText2,
                           ),
                         ),
                       ),
@@ -1847,12 +1836,13 @@ class _SubmitPageState extends State<SubmitPage> {
           ),
           duration: const Duration(milliseconds: 100), //时常 （必要）
           child: Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
             height: ScreenUtil().setWidth(750),
             child: Stack(
               children: [
                 Container(
                   // height: ScreenUtil().setWidth(350),
-                  color: Color.fromRGBO(245, 245, 245, 1),
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   padding: EdgeInsets.all(ScreenUtil().setWidth(20)),
                   width: ScreenUtil().setWidth(750),
                   child: Column(

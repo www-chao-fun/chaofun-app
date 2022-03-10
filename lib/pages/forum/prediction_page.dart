@@ -101,7 +101,7 @@ class _PredictionPageState extends State<PredictionPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           elevation: 0.5,
           // bottom: Border(),
@@ -113,7 +113,7 @@ class _PredictionPageState extends State<PredictionPage> {
             style: TextStyle(
                 color: Colors.black, fontSize: ScreenUtil().setSp(36)),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           iconTheme: IconThemeData(
               color: Color.fromRGBO(153, 153, 153, 1),
               //透明度

@@ -53,7 +53,7 @@ class _BindPhonePageState extends State<BindPhonePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         leading: Container(
@@ -75,7 +75,7 @@ class _BindPhonePageState extends State<BindPhonePage> {
           style:
               Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Container(
         child: Column(

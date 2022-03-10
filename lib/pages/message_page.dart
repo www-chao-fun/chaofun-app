@@ -234,7 +234,7 @@ class _MessagePageState extends State<MessagePage> {
             style:
             Theme.of(context).textTheme.headline6,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body:
         FutureBuilder(

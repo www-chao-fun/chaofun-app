@@ -65,7 +65,7 @@ class _VotePublishPageState extends State<VotePublishPage> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           brightness: Brightness.light,
@@ -77,7 +77,7 @@ class _VotePublishPageState extends State<VotePublishPage> {
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           // bottomOpacity: 0,
           elevation: 0, //头部阴影区域高度
           actions: <Widget>[
@@ -151,6 +151,7 @@ class _VotePublishPageState extends State<VotePublishPage> {
   // 链接地址
   Widget _linkInput() {
     return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
       margin: EdgeInsets.only(bottom: 20),
       child: ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -159,6 +160,7 @@ class _VotePublishPageState extends State<VotePublishPage> {
         itemCount: voteList.length,
         itemBuilder: (c, i) {
           return Container(
+
             margin: EdgeInsets.only(bottom: 4),
             child: TextField(
               controller: _doController(i + 1),

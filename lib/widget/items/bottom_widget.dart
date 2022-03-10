@@ -33,7 +33,7 @@ class _BottomWidgetState extends State<BottomWidget> {
       padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
       width: ScreenUtil().setWidth(750),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         // border: Border(
         //   top: BorderSide(
         //     width: 0.5,
@@ -120,7 +120,8 @@ class _BottomWidgetState extends State<BottomWidget> {
           Container(
             // padding: EdgeInsets.only(left: 10, right: 10),
             child: Text((item['ups'] - item['downs']).toString(),
-                style: KFont.descFontStyle),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
           Expanded(
             child: InkWell(
@@ -204,7 +205,7 @@ class _BottomWidgetState extends State<BottomWidget> {
                 item['comments'].toString() == '0'
                     ? '评论'
                     : item['comments'].toString(),
-                style: KFont.descFontStyle,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
           ],
@@ -234,7 +235,7 @@ class _BottomWidgetState extends State<BottomWidget> {
               padding: EdgeInsets.only(left: 4),
               child: Text(
                 '分享',
-                style: KFont.descFontStyle,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
           ],
@@ -279,7 +280,8 @@ class _BottomWidgetState extends State<BottomWidget> {
                         fontSize: ScreenUtil().setSp(26),
                         color: Color.fromRGBO(255, 147, 0, 1),
                       )
-                    : KFont.descFontStyle,
+                    :            Theme.of(context).textTheme.bodySmall,
+
               ),
             ),
           ],

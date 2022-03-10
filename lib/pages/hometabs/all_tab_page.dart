@@ -456,7 +456,7 @@ class _PageAllTabState extends State<PageAllTab>
       });
     }
     return Scaffold(
-        backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         // body: !noNet
         //     ?
         body: Stack(
@@ -886,7 +886,7 @@ class _PageAllTabState extends State<PageAllTab>
 
   Widget sortCell() {
     return Container(
-      color: Color.fromRGBO(245, 245, 245, 1),
+      color: Theme.of(context).backgroundColor,
       // alignment: Alignment.centerRight,
       // color: Colors.white,
       child: Container(
@@ -936,20 +936,7 @@ class _PageAllTabState extends State<PageAllTab>
                             child: item['value'] != 'ups'
                                 ? Text(
                                     item['name'],
-                                    style: TextStyle(
-                                      color: Color.fromRGBO(
-                                          33,
-                                          29,
-                                          47,
-                                          params['order'] == item['value']
-                                              ? 1
-                                              : 0.5),
-                                      fontSize: ScreenUtil().setSp(28),
-                                      fontWeight:
-                                          params['order'] == item['value']
-                                              ? FontWeight.bold
-                                              : FontWeight.normal,
-                                    ),
+                                      style: Theme.of(context).textTheme.bodySmall,
                                   )
                                 : Row(
                                     children: [
@@ -1013,12 +1000,7 @@ class _PageAllTabState extends State<PageAllTab>
                           child: Container(
                             child: Text(
                               '没看过',
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(26),
-                                color: params['onlyNew']
-                                    ? Colors.white
-                                    : Color.fromRGBO(122, 120, 131, 1),
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                             width: ScreenUtil().setWidth(120),
                             height: ScreenUtil().setWidth(54),
@@ -1127,7 +1109,7 @@ class _PageAllTabState extends State<PageAllTab>
             ),
             showZanData
                 ? Container(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     padding: EdgeInsets.only(
                       left: ScreenUtil().setWidth(40),
                       top: ScreenUtil().setWidth(20),
@@ -1165,12 +1147,7 @@ class _PageAllTabState extends State<PageAllTab>
                                 ),
                                 Text(
                                   item['name'],
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(28),
-                                    color: params['range'] == item['value']
-                                        ? Color.fromRGBO(122, 120, 131, 1)
-                                        : Color.fromRGBO(33, 29, 47, 1),
-                                  ),
+                                    style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ],
                             ),

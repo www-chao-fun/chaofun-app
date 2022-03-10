@@ -125,7 +125,7 @@ class _CollectDetailPageState extends State<CollectDetailPage>
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       floatingActionButton: FloatingActionButton(
         mini: true,
         onPressed: () {
@@ -234,7 +234,7 @@ class _CollectDetailPageState extends State<CollectDetailPage>
                 ],
               ),
             ),
-            backgroundColor: Colors.white
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor
             // backgroundColor: Color.fromRGBO(95, 60, 94, 1),
             ),
         preferredSize: Size.fromHeight(60),

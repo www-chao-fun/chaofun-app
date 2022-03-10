@@ -167,7 +167,7 @@ class _FocusedPageState extends State<FocusedPage> {
             style: TextStyle(
                 color: Colors.black, fontSize: ScreenUtil().setSp(34)),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         preferredSize: Size.fromHeight(40),
       ),
