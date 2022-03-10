@@ -232,10 +232,7 @@ class _MemberPageState extends State<MemberPage> {
                 ),
                 Text(
                   '粉丝',
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
-                  ),
+                    style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
@@ -271,10 +268,7 @@ class _MemberPageState extends State<MemberPage> {
                 ),
                 Text(
                   '关注',
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
-                  ),
+                    style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
@@ -302,10 +296,7 @@ class _MemberPageState extends State<MemberPage> {
                 ),
                 Text(
                   '获赞',
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
@@ -347,10 +338,7 @@ class _MemberPageState extends State<MemberPage> {
                 ),
                 Text(
                   'FBi',
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
-                  ),
+                    style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
@@ -532,10 +520,7 @@ class _MemberPageState extends State<MemberPage> {
                                 : userInfo['desc'],
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: Color.fromRGBO(33, 29, 47, 0.5),
-                              fontSize: ScreenUtil().setSp(26),
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
                       ],
@@ -714,11 +699,11 @@ class _MemberPageState extends State<MemberPage> {
               children: <Widget>[
                 Text(
                   userInfo['ups'].toString(),
-                  style: KFont.titleFontStyle,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Text(
                   '获赞',
-                  style: KFont.descFontStyle,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
