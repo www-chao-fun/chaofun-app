@@ -83,7 +83,7 @@ class _PushSetPageState extends State<PushSetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(247, 247, 247, 1),
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0,
         leading: Container(

@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage>
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         // resizeToAvoidBottomPadding: true,
         body: Stack(
           children: <Widget>[

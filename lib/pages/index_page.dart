@@ -667,7 +667,7 @@ class _IndexPageState extends State<IndexPage> {
     ];
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 10.0, //选中时的大小

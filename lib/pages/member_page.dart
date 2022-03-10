@@ -60,11 +60,14 @@ class _MemberPageState extends State<MemberPage> {
 // 颜色 #FB8A96
   List<Map> listData2 = [
     {"label": "检查更新", "value": "6", "icon": "assets/images/icon/update.png"},
+
+
     {"label": "联系我们", "value": "7", "icon": "assets/images/icon/about.png"},
     {"label": "鸣谢", "value": "8", "icon": "assets/images/icon/like_filled.png"},
     {"label": "设置", "value": "9", "icon": "assets/images/icon/set.png"},
     {"label": "清除缓存", "value": "10", "icon": "assets/images/icon/set.png"},
     // {"label": "关于我们", "value": "7", "icon": "assets/images/icon/about.png"},
+    {"label": "主题", "value": "11", "icon": "assets/images/icon/set.png"},
   ];
 
   // 颜色 #FB8A96
@@ -151,7 +154,7 @@ class _MemberPageState extends State<MemberPage> {
   Widget build(BuildContext context) {
     inits(context);
     return Scaffold(
-      backgroundColor: KColor.defaultPageBgColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: Container(
           width: double.infinity,
@@ -493,7 +496,7 @@ class _MemberPageState extends State<MemberPage> {
               Expanded(
                 flex: 10,
                 child: Container(
-                  color: KColor.defaultPageBgColor,
+                  color: Theme.of(context).backgroundColor,
                   padding:
                       EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
                   height: ScreenUtil().setWidth(114),
@@ -898,7 +901,7 @@ class _MemberPageState extends State<MemberPage> {
             child: Column(
               children: <Widget>[
                 Container(
-                  color: Colors.white,
+                  color: Theme.of(context).backgroundColor,
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   height: ScreenUtil().setWidth(88),
                   child: InkWell(
@@ -961,7 +964,17 @@ class _MemberPageState extends State<MemberPage> {
                         }
                       } else if (item['value'] == '10') {
                         clearStorages();
-                      } else if (item['value'] == '13') {
+                      }
+                      // 设置主题分支
+                      else if (item['value'] == '11'){
+                        Navigator.pushNamed(
+                          context,
+                          '/setThemePage',
+                          arguments: {'type': 1},
+                        );
+                      }
+
+                      else if (item['value'] == '13') {
 
                         Navigator.push(
                           context,

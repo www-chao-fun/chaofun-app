@@ -30,3 +30,9 @@ const itemOnColor = Color.fromRGBO(68, 68, 68, 1.0);
 
 const btTextColor = Color.fromRGBO(112, 113, 135, 1.0);
 
+
+class CONSTANTS{
+  static const SHARED_PREF_KEY_THEME = "theme_code";
+  static const SHARED_PREF_KEY_TEMPERATURE_UNIT = "temp_unit";
+}
+

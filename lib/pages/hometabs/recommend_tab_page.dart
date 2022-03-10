@@ -144,7 +144,7 @@ class _PageRecommendTabState extends State<PageRecommendTab>
     super.build(context);
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: isLoading
           ? LoadingWidget()
           : Container(

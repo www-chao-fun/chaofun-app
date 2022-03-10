@@ -46,7 +46,7 @@ class _SetPageState extends State<SetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(247, 247, 247, 1),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         leading: Container(
@@ -68,7 +68,7 @@ class _SetPageState extends State<SetPage> {
           style:
               TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
       ),
       body: Stack(
         children: [
