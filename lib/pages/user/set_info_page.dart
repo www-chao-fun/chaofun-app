@@ -37,11 +37,11 @@ class _SetInfoPageState extends State<SetInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(247, 247, 247, 1),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         leading: Container(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
@@ -140,9 +140,9 @@ class _SetInfoPageState extends State<SetInfoPage> {
         title: Text(
           '修改签名',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
+              Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Stack(
         children: [

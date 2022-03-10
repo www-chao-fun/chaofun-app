@@ -70,12 +70,12 @@ class _AppVersionPageState extends State<AppVersionPage> {
         Provider.of<UserStateProvide>(context, listen: false).appVersionInfo;
     print('appVersionInfo');
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
           leading: Container(
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
@@ -92,7 +92,7 @@ class _AppVersionPageState extends State<AppVersionPage> {
             '',
             style: TextStyle(color: Colors.black),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         preferredSize: Size.fromHeight(40),
       ),
@@ -159,12 +159,11 @@ class _AppVersionPageState extends State<AppVersionPage> {
                     UserStateProvide user, Widget child) {
                   if (appVersionInfo == null) {
                     return Container(
-                      color: Colors.white,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       margin: EdgeInsets.only(top: 50),
                       child: MaterialButton(
                         elevation: 0,
-                        color: Colors.white,
-                        textColor: Colors.black,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         child: new Text('当前为最新版本'),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4.0),

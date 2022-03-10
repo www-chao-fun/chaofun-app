@@ -103,7 +103,7 @@ class _CollectListPageState extends State<CollectListPage> {
         title: Text(
           widget.arguments['type'] == 'choose' ? '选择合集' : '我的合集',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
+              Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,
         actions: [

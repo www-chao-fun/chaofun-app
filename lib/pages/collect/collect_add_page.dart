@@ -116,7 +116,7 @@ class _CollectAddPageState extends State<CollectAddPage> {
         title: Text(
           '创建合集',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
+              Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,
       ),

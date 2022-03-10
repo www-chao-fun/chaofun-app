@@ -83,11 +83,11 @@ class _PushSetPageState extends State<PushSetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         leading: Container(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
@@ -105,7 +105,7 @@ class _PushSetPageState extends State<PushSetPage> {
           style:
               Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Stack(
         children: [
@@ -113,7 +113,7 @@ class _PushSetPageState extends State<PushSetPage> {
               ? ListView.builder(
                   itemBuilder: (context, index) {
                     return Container(
-                      color: Colors.white,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       child: InkWell(
                         onTap: () {},
                         child: Container(

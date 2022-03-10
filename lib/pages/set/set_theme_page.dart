@@ -42,7 +42,7 @@ class _PushSetPageState extends State<SetThemePage> {
       appBar: AppBar(
         elevation: 0,
         leading: Container(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
@@ -60,7 +60,7 @@ class _PushSetPageState extends State<SetThemePage> {
           style: Theme.of(context).textTheme.headline6
 
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

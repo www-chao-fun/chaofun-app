@@ -11,7 +11,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         children: <Widget>[
           Container(
@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.only(
                 top: MediaQueryData.fromWindow(window).padding.top, left: 0),
             child: Material(
-              color: Colors.white,
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: Ink(
                 padding: EdgeInsets.all(20),
                 child: InkWell(

@@ -395,7 +395,7 @@ class _MemberPageState extends State<MemberPage> {
     return Expanded(
       flex: 1,
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: InkWell(
           onTap: () {
             if (url != null) {
@@ -496,7 +496,7 @@ class _MemberPageState extends State<MemberPage> {
               Expanded(
                 flex: 10,
                 child: Container(
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   padding:
                       EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
                   height: ScreenUtil().setWidth(114),
@@ -639,7 +639,7 @@ class _MemberPageState extends State<MemberPage> {
 
   Widget _untopHeader(BuildContext context) {
     return Container(
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: EdgeInsets.fromLTRB(32, 80, 32, 60),
       child: Row(
         children: <Widget>[
@@ -806,7 +806,7 @@ class _MemberPageState extends State<MemberPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    color: Theme.of(context).backgroundColor,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                     height: ScreenUtil().setWidth(88),
                     child: InkWell(
@@ -901,7 +901,7 @@ class _MemberPageState extends State<MemberPage> {
             child: Column(
               children: <Widget>[
                 Container(
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   height: ScreenUtil().setWidth(88),
                   child: InkWell(
@@ -1323,7 +1323,7 @@ class _MemberPageState extends State<MemberPage> {
 
       },
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         margin: EdgeInsets.only(top: 10),
         padding: EdgeInsets.fromLTRB(10, 14, 10, 14),
         alignment: Alignment.center,
@@ -1355,7 +1355,7 @@ class _MemberPageState extends State<MemberPage> {
         );
       },
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         margin: EdgeInsets.only(top: 10),
         padding: EdgeInsets.fromLTRB(10, 14, 10, 14),
         alignment: Alignment.center,

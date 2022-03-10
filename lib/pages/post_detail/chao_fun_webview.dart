@@ -144,12 +144,12 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
           leading: Container(
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
@@ -164,13 +164,9 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
           brightness: Brightness.light,
           title: Text(
             title,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: ScreenUtil().setSp(38),
-              // fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.headline6,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
 
           actions: <Widget>[

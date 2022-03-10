@@ -86,7 +86,7 @@ class _ForumListPageState extends State<ForumListPage> {
       //   title: Text(
       //     '选择版块',
       //     style:
-      //         TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
+      //         Theme.of(context).textTheme.headline6,
       //   ),
       //   backgroundColor: Colors.white,
       //   // bottomOpacity: 0,

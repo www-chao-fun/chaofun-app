@@ -90,7 +90,7 @@ class _ForumApplyPageState extends State<ForumApplyPage> {
         title: Text(
           '新建版块申请',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
+              Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,
       ),

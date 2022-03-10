@@ -50,7 +50,7 @@ class _SetPageState extends State<SetPage> {
       appBar: AppBar(
         elevation: 0,
         leading: Container(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
@@ -68,14 +68,14 @@ class _SetPageState extends State<SetPage> {
           style:
               Theme.of(context).textTheme.headline6,
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Stack(
         children: [
           ListView(
             children: [
               Container(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(
@@ -151,7 +151,7 @@ class _SetPageState extends State<SetPage> {
                 ),
               ),
               Container(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: InkWell(
                   onTap: () {
                     // print(Provider.of<UserStateProvide>(context, listen: false)
@@ -209,7 +209,7 @@ class _SetPageState extends State<SetPage> {
                 ),
               ),
               Container(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: InkWell(
                   onTap: () {},
                   child: Container(
@@ -254,7 +254,7 @@ class _SetPageState extends State<SetPage> {
                 ),
               ),
               Container(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: InkWell(
                   onTap: () {},
                   child: Container(
@@ -300,7 +300,7 @@ class _SetPageState extends State<SetPage> {
               ),
               // 推送设置
               Container(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(

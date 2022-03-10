@@ -68,7 +68,7 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
         blankNode.unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: false,
         body: Container(
           child: Stack(
@@ -132,7 +132,7 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
                   Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(top: 40),
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, '/register');
@@ -375,7 +375,7 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
     return Container(
       height: 70,
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Row(
         children: [
           Expanded(
@@ -475,7 +475,7 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
               height: ScreenUtil().setWidth(90),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.white,
+              //  color: Theme.of(context).scaffoldBackgroundColor,
                 border: Border.all(
                   width: 0.5,
                   color: Colors.grey,
@@ -507,9 +507,9 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Material(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Container(
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             padding: EdgeInsets.all(20),
             child: InkWell(
               onTap: () {
