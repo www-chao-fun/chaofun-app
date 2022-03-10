@@ -200,7 +200,7 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
             } else {
               return SafeArea(
                 child: Scaffold(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   body: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
@@ -231,9 +231,9 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
           child: Container(
             height: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color:Theme.of(context).scaffoldBackgroundColor,
               border: Border(
-                right: BorderSide(width: 0.5, color: KColor.defaultBorderColor),
+                right: BorderSide(width: 0.5, color: Theme.of(context).backgroundColor),
               ),
             ),
             child: ListView.builder(
@@ -251,7 +251,7 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
             height: double.infinity,
             alignment: Alignment.topLeft,
             padding: const EdgeInsets.only(left: 10, right: 10),
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: ifAll ? allForum.length + 1 : speForum.length,
@@ -259,6 +259,7 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
                 if (ifAll) {
                   if (index == 0) {
                     return Container(
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       padding: EdgeInsets.only(top: ScreenUtil().setWidth(10)),
                       constraints: BoxConstraints(
                         // maxHeight: ScreenUtil().setWidth(70),
@@ -543,15 +544,16 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
 
   Widget _rightItem(item, index) {
     return Container(
+
       padding: EdgeInsets.fromLTRB(
           ScreenUtil().setWidth(10),
           ScreenUtil().setWidth(10),
           ScreenUtil().setWidth(10),
           ScreenUtil().setWidth(10)),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
-          bottom: BorderSide(width: 0.5, color: KColor.defaultBorderColor),
+          bottom: BorderSide(width: 0.5, color: Theme.of(context).backgroundColor),
         ),
       ),
       child: InkWell(
@@ -565,7 +567,6 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
         child: Row(
           children: <Widget>[
             Container(
-              // color: Colors.black,
               width: ScreenUtil().setWidth(70),
               height: ScreenUtil().setWidth(70),
               child: ClipRRect(

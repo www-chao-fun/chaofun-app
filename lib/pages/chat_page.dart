@@ -207,6 +207,7 @@ class _ChatPageState extends State<ChatPage> {
 
     return
       Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: new ComMomBar(
             title: newGroupName ?? widget.title, rightDMActions: rWidget),
         body: new MainInputBody(

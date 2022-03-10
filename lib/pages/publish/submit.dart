@@ -229,7 +229,7 @@ class _SubmitPageState extends State<SubmitPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: Container(
           padding: EdgeInsets.only(
@@ -281,7 +281,7 @@ class _SubmitPageState extends State<SubmitPage> {
         children: [
           Container(
             width: ScreenUtil().setWidth(750),
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: Column(
               children: [
                 InkWell(
@@ -296,7 +296,7 @@ class _SubmitPageState extends State<SubmitPage> {
                       top: 5,
                       bottom: 10,
                     ),
-                    color: Color.fromRGBO(244, 244, 245, 1),
+                    color: Theme.of(context).backgroundColor,
                     width: ScreenUtil().setWidth(750),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -327,10 +327,7 @@ class _SubmitPageState extends State<SubmitPage> {
                           child: Container(
                             child:  Text(
                                 "发帖规范",
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(24),
-                                color: Colors.black
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           )
                         )
@@ -406,7 +403,7 @@ class _SubmitPageState extends State<SubmitPage> {
                     isDense: true,
                     contentPadding: EdgeInsets.only(
                         left: 14, top: 2, right: 14, bottom: 2),
-                    fillColor: Colors.white,
+                    //fillColor: Colors.white,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0x00FF0000)),
@@ -1286,6 +1283,7 @@ class _SubmitPageState extends State<SubmitPage> {
                             getImage(true);
                           },
                           child: Container(
+
                             width: double.infinity,
                             height: ScreenUtil().setWidth(114),
                             alignment: Alignment.center,

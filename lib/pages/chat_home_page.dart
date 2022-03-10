@@ -200,26 +200,23 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
     return
       new SafeArea(
           child: Scaffold(
-            backgroundColor: KColor.defaultPageBgColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: PreferredSize(
               child: AppBar(
                 elevation: 0,
                 brightness: Brightness.light,
                 title: Text(
                   '聊天',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: ScreenUtil().setSp(34),
-                  ),
+                  style: Theme.of(context).textTheme.headline6
                 ),
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               ),
               preferredSize: Size.fromHeight(40),
             ),
             body:
             Provider.of<UserStateProvide>(context, listen: false).ISLOGIN ? (_chatData.length != 0 ?
             new Container(
-                color: Color(AppColors.BackgroundColor),
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: new ScrollConfiguration(
                     behavior: MyBehavior(),
                     child: new ListView.builder(

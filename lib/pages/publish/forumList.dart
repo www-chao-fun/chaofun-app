@@ -59,7 +59,7 @@ class _ForumListPageState extends State<ForumListPage> {
     Provider.of<UserStateProvide>(context, listen: false)
         .getRemmenberForumList();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
@@ -69,12 +69,9 @@ class _ForumListPageState extends State<ForumListPage> {
               size: 10),
           title: Text(
             '选择版块',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: ScreenUtil().setSp(34),
-            ),
+            style: Theme.of(context).textTheme.headline6,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         preferredSize: Size.fromHeight(60),
       ),
@@ -99,7 +96,7 @@ class _ForumListPageState extends State<ForumListPage> {
                   height: double.infinity,
                   alignment: Alignment.topLeft,
                   padding: const EdgeInsets.all(10),
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   child: Stack(
                     children: [
                       ListView.builder(

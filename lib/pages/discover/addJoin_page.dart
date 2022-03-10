@@ -88,7 +88,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       // controller: _scrollController,
       child: FutureBuilder(
         //防止刷新重绘
@@ -110,7 +110,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
               } else {
                 return SingleChildScrollView(
                   child: Container(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       children: [
                         _title(pageData[0], 0),
@@ -142,7 +142,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
         });
       },
       child: Container(
-        color: Color.fromRGBO(244, 244, 244, 1),
+        color: Theme.of(context).backgroundColor,
         height: 40,
         padding: EdgeInsets.only(left: 10),
         alignment: Alignment.centerLeft,
@@ -154,9 +154,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
                 : Icon(Icons.arrow_right_rounded),
             Text(
               item['label'],
-              style: TextStyle(
-                color: Color.fromRGBO(33, 29, 47, 0.5),
-              ),
+              style: Theme.of(context).textTheme.bodyText2,
             ),
           ],
         ),
@@ -175,7 +173,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
               alignment: Alignment.centerLeft,
               // margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 border: Border(
                   bottom: BorderSide(
                     width: 0.2,
@@ -227,6 +225,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
                         );
                       },
                       child: Container(
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         padding: EdgeInsets.only(top: 5, bottom: 5),
                         alignment: Alignment.center,
                         child: Column(
@@ -289,6 +288,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
   Widget userList() {
     if (B.length > 0) {
       return Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
         padding: EdgeInsets.all(10),
         child: Column(
           children: B.map((e) {
@@ -297,7 +297,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
               alignment: Alignment.centerLeft,
               // margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 border: Border(
                   bottom: BorderSide(
                     width: 0.2,

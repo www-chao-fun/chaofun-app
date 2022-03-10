@@ -166,7 +166,7 @@ class _DiscoverPageState extends State<DiscoverPage>
                   right: ScreenUtil().setWidth(50),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   border: Border(
                     bottom: BorderSide(
                       width: 0.5,
@@ -211,7 +211,7 @@ class _DiscoverPageState extends State<DiscoverPage>
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: FutureBuilder(
           builder: _buildFuture,
           future: getUserInfo(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
@@ -291,9 +291,7 @@ class _DiscoverPageState extends State<DiscoverPage>
       margin: EdgeInsets.only(bottom: 10),
       child: Text(
         title,
-        style: TextStyle(
-          fontSize: ScreenUtil().setSp(34),
-        ),
+        style: Theme.of(context).textTheme.headline6,
       ),
     );
   }
@@ -330,6 +328,7 @@ class _DiscoverPageState extends State<DiscoverPage>
         // }
       },
       child: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
         width: ScreenUtil().setWidth(150),
         height: 45,
         padding: EdgeInsets.only(
@@ -347,19 +346,15 @@ class _DiscoverPageState extends State<DiscoverPage>
               bottom: BorderSide(
                 width: 4,
                 color:
-                    tabs == id ? Color.fromRGBO(255, 147, 0, 1) : Colors.white,
+                    tabs == id ? Color.fromRGBO(255, 147, 0, 1) : Theme.of(context).secondaryHeaderColor,
               ),
             ),
           ),
           child: Text(
             name,
             style: tabs == id
-                ? KFont.homeNavActStyle
-                : TextStyle(
-                    fontSize: 15,
-                    color: Color.fromRGBO(33, 29, 47, 0.7),
-                    // fontWeight: FontWeight.bold,
-                  ),
+                ? Theme.of(context).textTheme.bodyText1
+                : Theme.of(context).textTheme.bodyText2,
           ),
         ),
       ),
