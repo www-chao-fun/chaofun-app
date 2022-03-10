@@ -85,7 +85,7 @@ class _AtUserListPageState extends State<AtUserListPage> {
         title: Text(
           '我要@TA',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+              Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,
       ),

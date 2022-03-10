@@ -9,6 +9,7 @@ import 'package:flutter_chaofan/pages/message_page.dart';
 import 'package:flutter_chaofan/pages/nonetwork_page.dart';
 import 'package:flutter_chaofan/pages/post_detail/chao_fun_webview.dart';
 import 'package:flutter_chaofan/provide/user.dart';
+import 'package:flutter_chaofan/theme.dart';
 import 'package:flutter_chaofan/utils/notice.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
@@ -673,7 +674,8 @@ class _IndexPageState extends State<IndexPage> {
         selectedFontSize: 10.0, //选中时的大小
         unselectedFontSize: 10.0,
         unselectedItemColor: Color.fromRGBO(167, 165, 172, 1),
-        selectedItemColor: Color.fromRGBO(33, 29, 47, 1),
+        selectedIconTheme: Theme.of(context).bottomNavigationBarTheme.selectedIconTheme,
+        selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
         currentIndex: Provider.of<CurrentIndexProvide>(context).currentIndex,
         items: bottomTabs,
         onTap: (index) {

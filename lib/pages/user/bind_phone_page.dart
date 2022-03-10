@@ -73,7 +73,7 @@ class _BindPhonePageState extends State<BindPhonePage> {
         title: Text(
           '绑定手机号',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+              Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,
       ),

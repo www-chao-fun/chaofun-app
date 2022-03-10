@@ -175,7 +175,7 @@ class _MemberPageState extends State<MemberPage> {
             controller: _scrollController,
             padding: EdgeInsets.only(bottom: 20),
             children: <Widget>[
-              ISLOGIN && (userInfo != null) ? _topHeader(userInfo) : _untopHeader(),
+              ISLOGIN && (userInfo != null) ? _topHeader(userInfo) : _untopHeader(context),
               ISLOGIN && (userInfo != null)
                   ? _secondLine(context)
                   : Container(height: 0),
@@ -637,9 +637,9 @@ class _MemberPageState extends State<MemberPage> {
     }
   }
 
-  Widget _untopHeader() {
+  Widget _untopHeader(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).backgroundColor,
       padding: EdgeInsets.fromLTRB(32, 80, 32, 60),
       child: Row(
         children: <Widget>[
@@ -806,7 +806,7 @@ class _MemberPageState extends State<MemberPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    color: Colors.white,
+                    color: Theme.of(context).backgroundColor,
                     padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                     height: ScreenUtil().setWidth(88),
                     child: InkWell(

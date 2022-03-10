@@ -66,7 +66,7 @@ class _SetPageState extends State<SetPage> {
         title: Text(
           '设置',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+              Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Theme.of(context).backgroundColor,
       ),

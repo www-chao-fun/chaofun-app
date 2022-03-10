@@ -108,7 +108,7 @@ class _FocusPage extends State<FocusPage> {
           title: Text(
             widget.arguments['title'],
             style:
-            TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+            Theme.of(context).textTheme.headline6,
           ),
           backgroundColor: Colors.white,
         ),

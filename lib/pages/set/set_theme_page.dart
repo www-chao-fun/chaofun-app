@@ -57,8 +57,8 @@ class _PushSetPageState extends State<SetThemePage> {
         brightness: Brightness.light,
         title: Text(
           '设置主题',
-          style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+          style: Theme.of(context).textTheme.headline6
+
         ),
         backgroundColor: Theme.of(context).backgroundColor,
       ),

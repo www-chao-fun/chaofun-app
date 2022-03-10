@@ -103,7 +103,7 @@ class _PushSetPageState extends State<PushSetPage> {
         title: Text(
           '推送设置',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+              Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,
       ),

@@ -523,7 +523,7 @@ class _CollectDetailPageState extends State<CollectDetailPage>
 
   Widget sortCell() {
     return Container(
-      color: Color.fromRGBO(245, 245, 245, 1),
+      color: Theme.of(context).backgroundColor,
       // alignment: Alignment.centerRight,
       // color: Colors.white,
       child: Container(

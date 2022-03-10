@@ -232,7 +232,7 @@ class _MessagePageState extends State<MessagePage> {
           title: Text(
             '消息',
             style:
-            TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+            Theme.of(context).textTheme.headline6,
           ),
           backgroundColor: Colors.white,
         ),
