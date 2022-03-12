@@ -265,7 +265,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
     }
     return Scaffold(
       //TODO: 夜间模式支持
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           FutureBuilder(
@@ -440,7 +440,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
-                                                    '帖子数量' +
+                                                    '帖子' +
                                                         forumData['posts']
                                                             .toString(),
                                                     style: TextStyle(
@@ -560,8 +560,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                         color: navStr == 'post'
                                                             ? KColor
                                                                 .primaryColor
-                                                            : Color.fromRGBO(
-                                                                0, 0, 0, 1)),
+                                                            : Theme.of(context).hintColor),
                                                   ),
                                                 ),
                                               ),
@@ -685,7 +684,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           color: navStr == 'more' ? KColor.primaryColor
-                                                              : Color.fromRGBO(0, 0, 0, 1)),
+                                                              : Theme.of(context).hintColor),
                                                     ),
                                                   )
                                               ),
@@ -702,7 +701,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                         children: [
                                           showTag
                                               ? Container(
-                                                  color: Colors.white,
+                                                  // color: Colors.white,
                                                   padding: EdgeInsets.only(
                                                     left: ScreenUtil().setWidth(10),
                                                     top: ScreenUtil().setWidth(10),
@@ -726,15 +725,9 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                                 width: 2,
                                                               ),
                                                               Text('标签',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      ScreenUtil()
-                                                                          .setSp(
-                                                                              30),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
+                                                                style: TextStyle(
+                                                                  fontSize: ScreenUtil().setSp(30),
+                                                                  fontWeight: FontWeight.bold,
                                                                 ),
                                                               ),
                                                             ]),
@@ -933,7 +926,6 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                     child:

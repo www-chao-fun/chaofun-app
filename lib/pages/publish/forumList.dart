@@ -382,7 +382,8 @@ class _ForumListPageState extends State<ForumListPage> {
                     item['name'],
                     style: TextStyle(
                         fontSize: ScreenUtil().setSp(30),
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w600
+                    ),
                   ),
                 ),
                 Container(
@@ -393,7 +394,8 @@ class _ForumListPageState extends State<ForumListPage> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            color: KColor.defaultGrayColor,
+                            color: Theme.of(context).hintColor,
+                      ,
                           ),
                         )
                       : null,

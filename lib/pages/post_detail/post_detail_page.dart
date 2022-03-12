@@ -2016,7 +2016,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 text: postInfo['title'],
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(32),
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.bold, 
+                  color: Theme.of(context).textTheme.titleLarge.color,
                 ),
               ),
             ],
@@ -2024,7 +2025,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
         ),
         // child: Text(
         //   postInfo['title'],
-        //   style: TextStyle(
+        //   style: TextSt  yle(
         //     fontSize: ScreenUtil().setSp(34),
         //     fontWeight: FontWeight.bold,
         //   ),

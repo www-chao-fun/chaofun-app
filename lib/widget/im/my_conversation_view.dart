@@ -57,7 +57,7 @@ class _MyConversationViewState extends State<MyConversationView> {
 
     return new Container(
       padding: EdgeInsets.only(left: 18.0),
-      color: Colors.white,
+      color: Theme.of(context).backgroundColor,
       child: new Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

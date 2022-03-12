@@ -55,7 +55,7 @@ class _TextItemContainerState extends State<TextItemContainer> {
               : null,
           padding: EdgeInsets.all(5.0),
           decoration: BoxDecoration(
-            color: widget.isMyself ? Color(0xff98E165) : Colors.white,
+            color: widget.isMyself ? Color(0xff98E165) : Theme.of(context).backgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),
           margin: EdgeInsets.only(right: 7.0),
@@ -88,7 +88,7 @@ class _TextItemContainerState extends State<TextItemContainer> {
               : null,
           padding: EdgeInsets.all(5.0),
           decoration: BoxDecoration(
-            color: widget.isMyself ? Color(0xff98E165) : Colors.white,
+            color: widget.isMyself ? Color(0xff98E165) : Theme.of(context).backgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),
           margin: EdgeInsets.only(right: 7.0),

@@ -76,20 +76,6 @@ class _PushSetPageState extends State<SetThemePage> {
         // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RadioListTile(
-            value: 'dark',
-            onChanged: (value) {
-              Provider.of<UserStateProvide>(context, listen: false).setTheme(value);
-              setState(() {
-                this.theme=value;
-                AppStateContainer.of(context).updateTheme(Themes.DARK_THEME_CODE);
-              });
-            },
-            groupValue: this.theme,
-            title: Text("暗黑"),
-            secondary: Icon(Icons.dark_mode),
-            selected: this.theme == 'dark',
-          ),
-          RadioListTile(
             value: 'normal',
             onChanged: (value) {
               Provider.of<UserStateProvide>(context, listen: false).setTheme(value);
@@ -102,6 +88,20 @@ class _PushSetPageState extends State<SetThemePage> {
             title: Text("明亮"),
             secondary: Icon(Icons.light_mode),
             selected: this.theme == 'normal',
+          ),
+          RadioListTile(
+            value: 'dark',
+            onChanged: (value) {
+              Provider.of<UserStateProvide>(context, listen: false).setTheme(value);
+              setState(() {
+                this.theme=value;
+                AppStateContainer.of(context).updateTheme(Themes.DARK_THEME_CODE);
+              });
+            },
+            groupValue: this.theme,
+            title: Text("暗黑"),
+            secondary: Icon(Icons.dark_mode),
+            selected: this.theme == 'dark',
           ),
         ],
       ),

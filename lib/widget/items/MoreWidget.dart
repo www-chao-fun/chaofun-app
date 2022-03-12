@@ -44,10 +44,11 @@ class MoreWidget{
       newTools.insert(
           3, {"label": "删除帖子", "value": "1", "icon": "assets/icon/delete.png"});
       newTools.insert(0, {
-        "label": "添加标签",
+        "label": "添加/修改标签",
         "value": "6",
         "icon": "assets/images/_icon/add_tag.png"
       });
+
     }
     if (item['canChangeTitle'] == true) {
       high += 150;
@@ -225,7 +226,6 @@ class MoreWidget{
 
           } else if (pushItem['value'] == '6') {
             // Navigator.of(context).pop();
-
             var res = await HttpUtil().get(Api.listTag,
                 parameters: {'forumId': item['forum']['id'].toString()});
             _pickTagList(context, res['data']);
@@ -318,7 +318,7 @@ class MoreWidget{
       ),
     );
   }
-
+  
   _pickTagList(context, data) {
     int high = 500;
     print('再次弹窗');;
@@ -326,7 +326,6 @@ class MoreWidget{
       context: context,
       builder: (context) => Container(
         height: ScreenUtil().setWidth(730),
-        color: Colors.white,
         child: Column(
           children: [
             Container(
@@ -334,24 +333,24 @@ class MoreWidget{
               padding: EdgeInsets.only(left: 10, right: 10),
               height: ScreenUtil().setWidth(80),
               child: Text(
-                '添加标签',
+                '添加/修改标签',
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(32),
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            
             Expanded(
               flex: 1,
               child: SingleChildScrollView(
-                child: Container(
+                child:Container(
                   height: ScreenUtil().setWidth(530),
                   child: ListView.builder(
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () async {
-                          var res =
-                          await HttpUtil().get(Api.addTag, parameters: {
+                          var res = await HttpUtil().get(Api.addTag, parameters: {
                             'postId': item['postId'].toString(),
                             'tagId': data[index]['id'].toString(),
                           });
@@ -394,22 +393,45 @@ class MoreWidget{
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Container(
-                // color: Colors.blue,
-                width: ScreenUtil().setWidth(750),
-                height: ScreenUtil().setWidth(70),
-                margin: EdgeInsets.only(
-                    top: ScreenUtil().setWidth(10),
-                    bottom: ScreenUtil().setWidth(40)),
-                child: Image.asset(
-                  'assets/images/icon/close-btn.png',
-                  width: ScreenUtil().setWidth(60),
-                ),
-              ),
+            Stack(
+                children:[
+
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      // color: Colors.blue,
+                      width: ScreenUtil().setWidth(750),
+                      height: ScreenUtil().setWidth(70),
+                      margin: EdgeInsets.only(
+                          top: ScreenUtil().setWidth(10),
+                          bottom: ScreenUtil().setWidth(40)),
+                      child: Image.asset(
+                        'assets/images/icon/close-btn.png',
+                        width: ScreenUtil().setWidth(60),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                      top: 0,
+                      left: 0,
+                      child: TextButton(
+                        onPressed: () async {
+                          var res = await HttpUtil().get(Api.removeTag, parameters: {
+                            'postId': item['postId'].toString(),
+                          });
+                          Fluttertoast.showToast(
+                            msg: '清除标签成功',
+                            gravity: ToastGravity.CENTER,
+                          );
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('清除帖子标签'),
+                      )
+                  ),
+                ],
+
             ),
           ],
         ),

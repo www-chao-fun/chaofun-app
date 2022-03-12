@@ -408,6 +408,7 @@ class ItemsTop extends StatelessWidget {
                 text: item['userInfo']['userName'],
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(26),
+                  color: Theme.of(context).hintColor,
                   fontWeight: FontWeight.w500,
                 ),
                 children: [

@@ -142,6 +142,7 @@ class Api {
   static const String checkMessage = BASE_URL + '/api/v0/message/check'; //
 
   static const String addTag = BASE_URL + '/api/v0/post/addTag'; // 添加标签
+  static const String removeTag = BASE_URL + '/api/v0/post/removeTag'; // 添加标签
 
   static const String getCode = BASE_URL + '/api/v0/phone/getCode'; // 获取验证码
 
