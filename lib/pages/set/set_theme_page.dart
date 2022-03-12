@@ -19,21 +19,30 @@ class _PushSetPageState extends State<SetThemePage> {
   var appVersionInfo;
 
   bool ifdown = false;
-  bool loopGif;
   var plat;
   var downpercent = 0.0;
   var hasSet;
-  String selectTheme = "system";
+  var theme = 'normal';
 
   @override
   void initState() {
     // TODO: implement initState
 
     super.initState();
-    loopGif = Provider.of<UserStateProvide>(context, listen: false).loopGif;
+
+    asyncInit();
+
+    print(theme);
   }
 
-  int theme;
+  void asyncInit() async {
+    var tmpTheme = await Provider.of<UserStateProvide>(context, listen: false).getTheme();
+    setState(() {
+      theme = tmpTheme;
+    });
+    print(theme);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +72,12 @@ class _PushSetPageState extends State<SetThemePage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RadioListTile(
-            value: 1,
+            value: 'dark',
             onChanged: (value) {
+              Provider.of<UserStateProvide>(context, listen: false).setTheme(value);
               setState(() {
                 this.theme=value;
                 AppStateContainer.of(context).updateTheme(Themes.DARK_THEME_CODE);
@@ -76,11 +86,12 @@ class _PushSetPageState extends State<SetThemePage> {
             groupValue: this.theme,
             title: Text("暗黑"),
             secondary: Icon(Icons.dark_mode),
-            selected: this.theme == 1,
+            selected: this.theme == 'dark',
           ),
           RadioListTile(
-            value: 2,
+            value: 'normal',
             onChanged: (value) {
+              Provider.of<UserStateProvide>(context, listen: false).setTheme(value);
               setState(() {
                 this.theme=value;
                 AppStateContainer.of(context).updateTheme(Themes.LIGHT_THEME_CODE);
@@ -89,7 +100,7 @@ class _PushSetPageState extends State<SetThemePage> {
             groupValue: this.theme,
             title: Text("明亮"),
             secondary: Icon(Icons.light_mode),
-            selected: this.theme == 2,
+            selected: this.theme == 'normal',
           ),
         ],
       ),

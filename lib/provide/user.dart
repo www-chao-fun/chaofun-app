@@ -26,6 +26,7 @@ class UserStateProvide with ChangeNotifier {
   bool loopGif = true;
   bool autoPlayGif = true;
   bool hasNewMessage = false;
+  var theme = 'normal'; // normal, dark, 
   var unreadMessage = 0;
   var modelType = 'model2';
 
@@ -112,6 +113,22 @@ class UserStateProvide with ChangeNotifier {
     return loopGif;
   }
 
+  void setTheme(theme) async {
+    this.theme = theme;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('theme', theme);
+    notifyListeners();
+  }
+
+  Future<String> getTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('theme') != null) {
+      var tmpTheme = prefs.getString('theme');
+      theme = tmpTheme;
+    }
+    return theme;
+  }
+  
   Future<void> setAutoPlayGif() async {
     autoPlayGif = !autoPlayGif;
     SharedPreferences prefs = await SharedPreferences.getInstance();
