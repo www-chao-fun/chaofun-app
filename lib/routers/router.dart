@@ -26,6 +26,7 @@ import 'package:flutter_chaofan/pages/search/search_page.dart';
 import 'package:flutter_chaofan/pages/search/search_result_page.dart';
 import 'package:flutter_chaofan/pages/set/contact_page.dart';
 import 'package:flutter_chaofan/pages/set/push_set_page.dart';
+import 'package:flutter_chaofan/pages/set/set_theme_page.dart';
 import 'package:flutter_chaofan/pages/tools/drop_water_page.dart';
 import 'package:flutter_chaofan/pages/tools/parse_url_page.dart';
 import 'package:flutter_chaofan/pages/tools/tools_page.dart';
@@ -102,6 +103,7 @@ final routes = {
       DropWaterPage(arguments: arguments),
   '/parseUrlPage': (context, {arguments}) => ParseUrlPage(),
   '/setpage': (context, {arguments}) => SetPage(),
+  '/setThemePage': (context, {arguments}) => SetThemePage(),
   '/bindphonepage': (context, {arguments}) => BindPhonePage(),
   '/pushSet': (context, {arguments}) => PushSetPage(),
   '/collectlist': (context, {arguments}) =>

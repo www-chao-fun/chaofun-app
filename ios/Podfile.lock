@@ -228,7 +228,7 @@ SPEC CHECKSUMS:
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
-  fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
+  fluttertoast: 16fbe6039d06a763f3533670197d01fc73459037
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
   image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
@@ -238,7 +238,7 @@ SPEC CHECKSUMS:
   loading_indicator_view: fb6f8efecc1cd030dc3a42a39f9107eef908da86
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
-  path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   r_upgrade: 44d715c61914cce3d01ea225abffe894fd51c114
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -257,4 +257,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9dc296e4f72dcd8f203723f61ce3fcd04320be13
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.11.2

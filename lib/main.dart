@@ -1,4 +1,5 @@
 import 'package:fluro/fluro.dart';
+import 'package:flutter_chaofan/AppState.dart';
 import 'package:flutter_chaofan/provide/user.dart';
 import 'package:flutter_chaofan/widget/common/customNavgator.dart';
 import './routers/router.dart';
@@ -18,6 +19,8 @@ import 'package:provider/single_child_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'theme.dart';
+
 void main() {
   List<SingleChildStatelessWidget> providers = [
     ChangeNotifierProvider<CurrentIndexProvide>(
@@ -30,10 +33,11 @@ void main() {
 
 
   runApp(
-    MultiProvider(
+    AppStateContainer(child:   MultiProvider(
       providers: providers,
       child: MyApp(),
-    ),
+    ))
+  ,
   );
   if (Platform.isAndroid) {
     // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
@@ -97,13 +101,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           onGenerateRoute: onGenerateRoute,
           // 主题
-          theme: ThemeData(
-            primaryColor: KColor.primaryColor,
-            platform: TargetPlatform.iOS,
-          ),
-          // darkTheme: ThemeData(
-          //   brightness: Brightness.dark,
-          // ),
+          theme: AppStateContainer.of(context).theme,
+          darkTheme: lightThemeData(),
           home: IndexPage(),
         );
       },

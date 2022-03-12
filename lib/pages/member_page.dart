@@ -63,6 +63,7 @@ class _MemberPageState extends State<MemberPage> {
     {"label": "联系我们", "value": "7", "icon": "assets/images/icon/about.png"},
     {"label": "鸣谢", "value": "8", "icon": "assets/images/icon/like_filled.png"},
     {"label": "设置", "value": "9", "icon": "assets/images/icon/set.png"},
+    {"label": "主题", "value": "15", "icon": "assets/images/icon/set.png"},
     {"label": "清除缓存", "value": "10", "icon": "assets/images/icon/set.png"},
     // {"label": "关于我们", "value": "7", "icon": "assets/images/icon/about.png"},
   ];
@@ -961,6 +962,12 @@ class _MemberPageState extends State<MemberPage> {
                         }
                       } else if (item['value'] == '10') {
                         clearStorages();
+                      } else if (item['value'] == '15'){
+                        Navigator.pushNamed(
+                          context,
+                          '/setThemePage',
+                          arguments: {'type': 1},
+                        );
                       } else if (item['value'] == '13') {
 
                         Navigator.push(
