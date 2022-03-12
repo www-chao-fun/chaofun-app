@@ -24,9 +24,8 @@ class AppStateContainer extends StatefulWidget {
 
 class _AppStateContainerState extends State<AppStateContainer> {
 
-
-  ThemeData _theme = Themes.getTheme(Themes.DARK_THEME_CODE);
-  int themeCode = Themes.DARK_THEME_CODE;
+  ThemeData _theme = Themes.getTheme(Themes.LIGHT_THEME_CODE);
+  int themeCode = Themes.LIGHT_THEME_CODE;
   TemperatureUnit temperatureUnit = TemperatureUnit.celsius;
 
 
@@ -37,7 +36,7 @@ class _AppStateContainerState extends State<AppStateContainer> {
     SharedPreferences.getInstance().then((sharedPref) {
       setState(() {
         themeCode = sharedPref.getInt(CONSTANTS.SHARED_PREF_KEY_THEME) ??
-            Themes.DARK_THEME_CODE;
+            Themes.LIGHT_THEME_CODE;
         temperatureUnit = TemperatureUnit.values[
         sharedPref.getInt(CONSTANTS.SHARED_PREF_KEY_TEMPERATURE_UNIT) ??
             TemperatureUnit.celsius.index];
