@@ -264,20 +264,8 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
       });
     }
     return Scaffold(
+      //TODO: 夜间模式支持
       backgroundColor: Colors.white,
-      // floatingActionButton: FloatingActionButton(
-      //   mini: true,
-      //   onPressed: () {
-      //     print('点击发布');
-      //     _pickImage(context);
-      //   },
-      //   child: Image.asset(
-      //     'assets/images/_icon/push.png',
-      //     width: 24,
-      //     height: 24,
-      //   ),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       body: Stack(
         children: [
           FutureBuilder(

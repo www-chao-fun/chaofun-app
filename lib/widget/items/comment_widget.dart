@@ -405,7 +405,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                     Container(
                       // padding: EdgeInsets.only(left: 10, right: 10),
                       child: Text((item['ups'] - item['downs']).toString(),
-                          style: KFont.descFontStyle),
+                          style: Theme.of(context).textTheme.bodySmall),
                     ),
                     InkWell(
                       onTap: () async {

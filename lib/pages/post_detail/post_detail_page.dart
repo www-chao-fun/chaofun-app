@@ -236,7 +236,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
       SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: FutureBuilder(
         future: commentFuture,
         builder: (context, AsyncSnapshot asyncSnapshot) {
@@ -305,7 +305,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             ),
                             // _timeLine(),
                             Container(
-                              color: Colors.white,
                               padding:
                               EdgeInsets.only(left: 10, right: 10),
                               child: BottomWidget(
@@ -1082,52 +1081,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
       return PostItemWidget(
         data: data,
       );
-      // return Container(
-      //   padding: EdgeInsets.only(
-      //     left: ScreenUtil().setWidth(10),
-      //     right: ScreenUtil().setWidth(10),
-      //   ),
-      //   child: (data['article'].startsWith('<p') ||
-      //           data['article'].startsWith('<ol') ||
-      //           data['article'].startsWith('<ul') ||
-      //           data['article'].startsWith('<div') ||
-      //           data['article'].startsWith('<h'))
-      //       ? Html(
-      //           data: data['article'],
-      //           style: {
-      //             'p': Style(
-      //               fontSize: FontSize.large,
-      //               lineHeight: LineHeight(1.5),
-      //             ),
-      //           },
-      //           onImageTap: (src, _, __, ___) {
-      //             Navigator.of(context).push(
-      //               FadeRoute(
-      //                 page: JhPhotoAllScreenShow(
-      //                   imgDataArr: [src],
-      //                   index: 0,
-      //                 ),
-      //               ),
-      //             );
-      //             print(src);
-      //           },
-      //           onLinkTap: (src, _, __, ___) {
-      //             toNavigate(src, context);
-      //             print(src);
-      //           },
-      //         )
-      //       : Container(
-      //           alignment: Alignment.centerLeft,
-      //           padding: EdgeInsets.only(left: 5),
-      //           child: Text(
-      //             data['article'],
-      //             style: TextStyle(
-      //               height: 1.6,
-      //               fontSize: ScreenUtil().setSp(32),
-      //             ),
-      //           ),
-      //         ),
-      // );
     } else if (data['type'] == 'gif') {
       return VideoWidget(
         item: data,
@@ -2046,7 +1999,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
     return Container(
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 10),
-      color: Colors.white,
       child: InkWell(
         onLongPress: () {
           Clipboard.setData(ClipboardData(text: postInfo['title']));
@@ -2064,7 +2016,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 text: postInfo['title'],
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(32),
-                  color: KColor.defaultTitleColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -2091,7 +2042,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
   _tools() {
     return Container(
-      color: Colors.white,
       margin: EdgeInsets.only(bottom: 4, left: 10, right: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -2191,8 +2141,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                                 style: TextStyle(
                                                   fontSize:
                                                       ScreenUtil().setSp(24),
-                                                  color: Color.fromRGBO(
-                                                      33, 29, 47, 0.5),
+                                                  color: Theme.of(context).hintColor,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -2207,7 +2156,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       text: ' · ' +
                                           Utils.moments(postInfo['gmtCreate']),
                                       style: TextStyle(
-                                        color: Color.fromRGBO(33, 29, 47, 0.3),
+                                        color: Theme.of(context).hintColor,
                                       ),
                                     ),
                                   ]),
