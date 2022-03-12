@@ -88,7 +88,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).backgroundColor,
       // controller: _scrollController,
       child: FutureBuilder(
         //防止刷新重绘
@@ -110,7 +110,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
               } else {
                 return SingleChildScrollView(
                   child: Container(
-                    color: Colors.white,
+                    color: Theme.of(context).backgroundColor,
                     child: Column(
                       children: [
                         _title(pageData[0], 0),
@@ -175,7 +175,6 @@ class _AddJoinPageState extends State<AddJoinPage> {
               alignment: Alignment.centerLeft,
               // margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
                 border: Border(
                   bottom: BorderSide(
                     width: 0.2,
@@ -297,7 +296,6 @@ class _AddJoinPageState extends State<AddJoinPage> {
               alignment: Alignment.centerLeft,
               // margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
                 border: Border(
                   bottom: BorderSide(
                     width: 0.2,
