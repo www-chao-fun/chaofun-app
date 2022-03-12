@@ -456,7 +456,7 @@ class _PageAllTabState extends State<PageAllTab>
       });
     }
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor, 
+        backgroundColor: Theme.of(context).backgroundColor,
         // body: !noNet
         //     ?
         body: Stack(
@@ -677,25 +677,6 @@ class _PageAllTabState extends State<PageAllTab>
                                       : Container(
                                           height: 0,
                                         )),
-                              // hasNetWork && !isLoading && pageData.length == 2
-                              //     ? InkWell(
-                              //         onTap: () {
-                              //           setState(() {
-                              //             isLoading = true;
-                              //           });
-                              //           refreshData();
-                              //         },
-                              //         child: Container(
-                              //           height: 40,
-                              //           child: Icon(
-                              //             Icons.refresh_outlined,
-                              //             size: 30,
-                              //           ),
-                              //         ),
-                              //       )
-                              //     : Container(
-                              //         height: 0,
-                              //       ),
                             ],
                           );
                         } else {
@@ -1036,70 +1017,6 @@ class _PageAllTabState extends State<PageAllTab>
                           ),
                         ),
 
-                        // Consumer<UserStateProvide>(
-                        //     builder: (context, user, child) {
-                        //   // user.getOnlyNew();
-                        //   if (params['onlyNew']) {
-                        //     return InkWell(
-                        //       onTap: () {
-                        //         user.setOnlyNew(false);
-                        //         setState(() {
-                        //           params['onlyNew'] = false;
-                        //         });
-                        //         refreshData();
-                        //       },
-                        //       child: Container(
-                        //         child: Text(
-                        //           '没看过',
-                        //           style: TextStyle(
-                        //             fontSize: ScreenUtil().setSp(26),
-                        //             color: Colors.white,
-                        //           ),
-                        //         ),
-                        //         width: ScreenUtil().setWidth(120),
-                        //         height: ScreenUtil().setWidth(54),
-                        //         alignment: Alignment.center,
-                        //         decoration: BoxDecoration(
-                        //           color: Color.fromRGBO(22, 103, 159, 1),
-                        //           border: Border.all(
-                        //             width: 1,
-                        //             color: KColor.defaultBorderColor,
-                        //           ),
-                        //           borderRadius: BorderRadius.circular(20),
-                        //         ),
-                        //       ),
-                        //     );
-                        //   } else {
-                        //     return InkWell(
-                        //       onTap: () {
-                        //         user.setOnlyNew(true);
-                        //         setState(() {
-                        //           params['onlyNew'] = true;
-                        //         });
-                        //         refreshData();
-                        //       },
-                        //       child: Container(
-                        //         child: Text(
-                        //           '没看过',
-                        //           style: TextStyle(
-                        //             fontSize: ScreenUtil().setSp(26),
-                        //             color: Color.fromRGBO(122, 120, 131, 1),
-                        //           ),
-                        //         ),
-                        //         width: ScreenUtil().setWidth(120),
-                        //         height: ScreenUtil().setWidth(54),
-                        //         alignment: Alignment.center,
-                        //         decoration: BoxDecoration(
-                        //           border: Border.all(
-                        //             width: 1,
-                        //             color: KColor.defaultBorderColor,
-                        //           ),
-                        //           borderRadius: BorderRadius.circular(20),
-                        //         ),
-                        //       ),
-                        //     );
-                        //   }
-                        // }),
 
                         SizedBox(
                           width: ScreenUtil().setWidth(20),

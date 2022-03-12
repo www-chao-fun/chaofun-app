@@ -57,7 +57,7 @@ class ItemIndex extends StatelessWidget {
         } else {
           return Container(
             height: ScreenUtil().setWidth(400),
-            color: Color.fromRGBO(240, 240, 240, 1),
+            color: Theme.of(context).backgroundColor,
             child: Center(
               child: Container(
                 height: ScreenUtil().setWidth(180),
@@ -262,7 +262,6 @@ class ItemIndex extends StatelessWidget {
             }
           },
           child: item['title'] != null && item['title'].toString().trim() != ''?  Container(
-            color: Colors.white,
             margin: EdgeInsets.only(
                 left: ScreenUtil().setWidth(30),
                 right: ScreenUtil().setWidth(30),
@@ -285,7 +284,6 @@ class ItemIndex extends StatelessWidget {
                       child: Text(
                         '【' + doTypeName(item['type']) + '】',
                         style: TextStyle(
-                          color: Color.fromRGBO(153, 153, 153, 1),
                           fontSize: ScreenUtil().setSp(30),
                         ),
                       ),
@@ -312,7 +310,7 @@ class ItemIndex extends StatelessWidget {
                     text: item['title'],
                     style: TextStyle(
                       fontSize: ScreenUtil().setSp(32),
-                      color: KColor.defaultTitleColor,
+                      // color: KColor.defaultTitleColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -445,9 +443,9 @@ class ItemIndex extends StatelessWidget {
               child: Container(
                 width: ScreenUtil().setWidth(750),
                 margin: EdgeInsets.only(bottom: 0, left: 0, right: 0),
-                color: Color.fromRGBO(245, 245, 245, 1),
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: Container(
-                  color: Colors.white,
+                  color: Theme.of(context).backgroundColor,
                   margin: EdgeInsets.only(bottom: 5),
                   child: Column(
                     children: <Widget>[
@@ -564,7 +562,7 @@ class ItemIndex extends StatelessWidget {
                               '最新评论·' + Utils.moments(item['gmtComment']),
                               style: TextStyle(
                                 fontSize: ScreenUtil().setSp(24),
-                                color: Color.fromRGBO(33, 29, 47, 0.5),
+                                color: Theme.of(context).hintColor,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

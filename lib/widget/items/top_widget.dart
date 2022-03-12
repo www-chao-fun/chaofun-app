@@ -38,7 +38,7 @@ class ItemsTop extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 0),
       width: ScreenUtil().setWidth(750),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         border: Border(
             // bottom: BorderSide(width: 0.5, color: KColor.defaultBorderColor),
             ),
@@ -298,7 +298,7 @@ class ItemsTop extends StatelessWidget {
                   : item['userInfo']['userName'],
               style: TextStyle(
                 fontSize: ScreenUtil().setSp(28),
-                color: Color.fromRGBO(33, 29, 47, 1),
+                // color: Color.fromRGBO(33, 29, 47, 1),
                 // fontWeight: FontWeight.bold,
               ),
             ),
@@ -322,13 +322,14 @@ class ItemsTop extends StatelessWidget {
                 text: Utils.moments(item['gmtCreate']) + ' · ',
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(24),
-                  color: Color.fromRGBO(33, 29, 47, 0.5),
+                  color: Theme.of(context).hintColor,
+                  // color: Color.fromRGBO(33, 29, 47, 0.5),
                 ),
                 children: [
                   TextSpan(
                     text: '' + _doSource(),
                     style: TextStyle(
-                      color: Color.fromRGBO(33, 29, 47, 0.5),
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -345,7 +346,7 @@ class ItemsTop extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: ScreenUtil().setSp(24),
-                                color: Color.fromRGBO(33, 29, 47, 0.5),
+                                color: Theme.of(context).hintColor,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
