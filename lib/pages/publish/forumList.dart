@@ -395,7 +395,6 @@ class _ForumListPageState extends State<ForumListPage> {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Theme.of(context).hintColor,
-                      ,
                           ),
                         )
                       : null,

@@ -1859,23 +1859,52 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
           if (Provider.of<UserStateProvide>(context, listen: false).ISLOGIN) {
             if (callBack == null) {
               if (text != '管理') {
-                Fluttertoast.showToast(
-                  msg: forumData['joined'] ? '已退出' : '已加入',
-                  gravity: ToastGravity.CENTER,
-                  // textColor: Colors.grey,
-                );
                 if (forumData['joined']) {
-                  setState(() {
-                    forumData['joined'] = false;
-                  });
-                  var response = await HttpUtil().get(Api.leaveForum,
-                      parameters: {'forumId': forumData['id']});
+                  showCupertinoDialog(
+                    //showCupertinoDialog
+                      context: context,
+                      builder: (context) {
+                        return CupertinoAlertDialog(
+                          title: Text('提示'),
+                          content: Text('你确定退出该版块吗？'),
+                          actions: <Widget>[
+                            CupertinoDialogAction(
+                              child: Text('取消'),
+                              onPressed: () {
+                                Navigator.of(context).pop('cancel');
+                              },
+                            ),
+                            CupertinoDialogAction(
+                              child: Text('确定'),
+                              onPressed: () async {
+                                Navigator.of(context).pop('ok');
+                                var response = await HttpUtil().get(Api.leaveForum,
+                                    parameters: {'forumId': forumData['id']});
+                                setState(() {
+                                  forumData['joined'] = false;
+                                });
+                                Fluttertoast.showToast(
+                                  msg:  '已退出',
+                                  gravity: ToastGravity.CENTER,
+                                  // textColor: Colors.grey,
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      });
+
                 } else {
                   setState(() {
                     forumData['joined'] = true;
                   });
                   var response = await HttpUtil().get(Api.joinForum,
                       parameters: {'forumId': forumData['id']});
+                  Fluttertoast.showToast(
+                    msg:  '已加入',
+                    gravity: ToastGravity.CENTER,
+                    // textColor: Colors.grey,
+                  );
                 }
               } else {
                 Navigator.push(
