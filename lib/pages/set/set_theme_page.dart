@@ -47,7 +47,7 @@ class _PushSetPageState extends State<SetThemePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0,
         leading: Container(
@@ -69,8 +69,9 @@ class _PushSetPageState extends State<SetThemePage> {
           style: Theme.of(context).textTheme.headline6
 
         ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      ),
+        backgroundColor: Theme.of(context).backgroundColor,
+
+    ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

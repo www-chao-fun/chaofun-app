@@ -9,7 +9,7 @@ ThemeData lightThemeData() {
   return ThemeData.light().copyWith(
     backgroundColor: Colors.white,
     primaryColor: kPrimaryColor,
-    scaffoldBackgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+    scaffoldBackgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
     appBarTheme: appBarTheme,
     iconTheme: IconThemeData(color: kContentColorLightTheme),
 
@@ -32,7 +32,7 @@ ThemeData darkThemeData() {
   // Bydefault flutter provie us light and dark theme
   // we just modify it as our need
   return ThemeData.dark().copyWith(
-    backgroundColor: Colors.black54,
+    backgroundColor: Color(0xFF000000),
     primaryColor: kPrimaryColor,
     scaffoldBackgroundColor: kContentColorLightTheme,
     appBarTheme: appBarTheme,

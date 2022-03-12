@@ -102,7 +102,7 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: onGenerateRoute,
           // 主题
           theme: AppStateContainer.of(context).theme,
-          darkTheme: lightThemeData(),
+          darkTheme: darkThemeData(),
           home: IndexPage(),
         );
       },

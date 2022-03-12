@@ -301,7 +301,7 @@ class _HomePageState extends State<HomePage>
   _navs() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         // border: Border(
         //   bottom: BorderSide(
         //     width: 0.1,

@@ -667,13 +667,13 @@ class _IndexPageState extends State<IndexPage> {
     ];
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 10.0, //选中时的大小
         unselectedFontSize: 10.0,
-        unselectedItemColor: Color.fromRGBO(167, 165, 172, 1),
-        selectedItemColor: Color.fromRGBO(33, 29, 47, 1),
+        selectedIconTheme: Theme.of(context).bottomNavigationBarTheme.selectedIconTheme,
+        selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
         currentIndex: Provider.of<CurrentIndexProvide>(context).currentIndex,
         items: bottomTabs,
         onTap: (index) {

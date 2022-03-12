@@ -54,7 +54,7 @@ class _TopSearchState extends State<TopSearch> {
   Widget build(BuildContext context) {
     return Container(
       // padding: EdgeInsets.all(2),
-      color: Colors.white,
+      color: Theme.of(context).backgroundColor,
       child: Container(
         // color: KColor.defaultSearchColor,
         width: ScreenUtil().setWidth(730),

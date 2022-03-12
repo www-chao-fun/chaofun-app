@@ -152,7 +152,7 @@ class _MemberPageState extends State<MemberPage> {
   Widget build(BuildContext context) {
     inits(context);
     return Scaffold(
-      backgroundColor: KColor.defaultPageBgColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreferredSize(
         child: Container(
           width: double.infinity,
@@ -494,7 +494,6 @@ class _MemberPageState extends State<MemberPage> {
               Expanded(
                 flex: 10,
                 child: Container(
-                  color: KColor.defaultPageBgColor,
                   padding:
                       EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
                   height: ScreenUtil().setWidth(114),
@@ -804,7 +803,7 @@ class _MemberPageState extends State<MemberPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    color: Colors.white,
+                    color: Theme.of(context).backgroundColor,
                     padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                     height: ScreenUtil().setWidth(88),
                     child: InkWell(
@@ -899,7 +898,7 @@ class _MemberPageState extends State<MemberPage> {
             child: Column(
               children: <Widget>[
                 Container(
-                  color: Colors.white,
+                  color: Theme.of(context).backgroundColor,
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   height: ScreenUtil().setWidth(88),
                   child: InkWell(
@@ -1050,6 +1049,7 @@ class _MemberPageState extends State<MemberPage> {
 
   Widget _interst() {
     return Container(
+      color: Theme.of(context).backgroundColor,
       padding: EdgeInsets.all(ScreenUtil().setWidth(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1317,7 +1317,7 @@ class _MemberPageState extends State<MemberPage> {
 
       },
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         margin: EdgeInsets.only(top: 10),
         padding: EdgeInsets.fromLTRB(10, 14, 10, 14),
         alignment: Alignment.center,
@@ -1349,7 +1349,7 @@ class _MemberPageState extends State<MemberPage> {
         );
       },
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         margin: EdgeInsets.only(top: 10),
         padding: EdgeInsets.fromLTRB(10, 14, 10, 14),
         alignment: Alignment.center,

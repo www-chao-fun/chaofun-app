@@ -733,7 +733,7 @@ class _PageAllTabState extends State<PageAllTab>
               left: 0,
               right: 0,
               child: Container(
-                color: Colors.white,
+                color: Theme.of(context).backgroundColor,
                 height: isShowTop ? ScreenUtil().setWidth(138) : 1,
                 padding: EdgeInsets.only(
                   top: ScreenUtil().setWidth(10),
