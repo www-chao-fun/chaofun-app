@@ -456,7 +456,7 @@ class _PageAllTabState extends State<PageAllTab>
       });
     }
     return Scaffold(
-        backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+        backgroundColor: Theme.of(context).backgroundColor, 
         // body: !noNet
         //     ?
         body: Stack(
