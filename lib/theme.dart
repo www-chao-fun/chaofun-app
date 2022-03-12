@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 
 ThemeData lightThemeData() {
   return ThemeData.light().copyWith(
+    platform: TargetPlatform.iOS,
     backgroundColor: Colors.white,
     primaryColor: kPrimaryColor,
     scaffoldBackgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
     appBarTheme: appBarTheme,
     iconTheme: IconThemeData(color: kContentColorLightTheme),
+
 
     colorScheme: ColorScheme.light(
       primary: kPrimaryColor,
@@ -32,6 +34,7 @@ ThemeData darkThemeData() {
   // Bydefault flutter provie us light and dark theme
   // we just modify it as our need
   return ThemeData.dark().copyWith(
+    platform: TargetPlatform.iOS,
     backgroundColor: Color(0xFF000000),
     primaryColor: kPrimaryColor,
     scaffoldBackgroundColor: kContentColorLightTheme,
