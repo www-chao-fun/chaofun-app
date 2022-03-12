@@ -323,7 +323,6 @@ class ItemsTop extends StatelessWidget {
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(24),
                   color: Theme.of(context).hintColor,
-                  // color: Color.fromRGBO(33, 29, 47, 0.5),
                 ),
                 children: [
                   TextSpan(
@@ -409,7 +408,6 @@ class ItemsTop extends StatelessWidget {
                 text: item['userInfo']['userName'],
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(26),
-                  color: Color.fromRGBO(33, 29, 47, 0.5),
                   fontWeight: FontWeight.w500,
                 ),
                 children: [
@@ -424,7 +422,7 @@ class ItemsTop extends StatelessWidget {
                               item['userInfo']['userTag']['data'],
                               style: TextStyle(
                                 fontSize: ScreenUtil().setSp(24),
-                                color: Color.fromRGBO(33, 29, 47, 0.5),
+                                color: Theme.of(context).hintColor,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -437,7 +435,7 @@ class ItemsTop extends StatelessWidget {
                   TextSpan(
                     text: ' · ' + Utils.moments(item['gmtCreate']),
                     style: TextStyle(
-                      color: Color.fromRGBO(33, 29, 47, 0.5),
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
