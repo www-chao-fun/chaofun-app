@@ -333,8 +333,8 @@ class MsgWidget extends StatelessWidget {
               item['sender'] != null ? item['sender']['userName'] : '游客',
               style: TextStyle(
                 fontSize: ScreenUtil().setSp(28),
-                color: Color.fromRGBO(33, 29, 47, 1),
-                // fontWeight: FontWeight.bold,
+                color:Theme.of(context).textTheme.titleLarge.color,
+    // fontWeight: FontWeight.bold,
               ),
             ),
           ),
