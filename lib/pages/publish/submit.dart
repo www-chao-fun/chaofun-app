@@ -228,7 +228,7 @@ class _SubmitPageState extends State<SubmitPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: PreferredSize(
         child: Container(
           padding: EdgeInsets.only(
@@ -280,7 +280,7 @@ class _SubmitPageState extends State<SubmitPage> {
         children: [
           Container(
             width: ScreenUtil().setWidth(750),
-            color: Colors.white,
+            color: Theme.of(context).backgroundColor,
             child: Column(
               children: [
                 InkWell(
@@ -295,7 +295,7 @@ class _SubmitPageState extends State<SubmitPage> {
                       top: 5,
                       bottom: 10,
                     ),
-                    color: Color.fromRGBO(244, 244, 245, 1),
+                    color: Theme.of(context).canvasColor,
                     width: ScreenUtil().setWidth(750),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -328,7 +328,7 @@ class _SubmitPageState extends State<SubmitPage> {
                                 "发帖规范",
                               style: TextStyle(
                                 fontSize: ScreenUtil().setSp(24),
-                                color: Colors.black
+                                color: Theme.of(context).hintColor
                               ),
                             ),
                           )
