@@ -16,7 +16,7 @@ class MsgWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      // color: Colors.white,
       padding: EdgeInsets.only(
         left: ScreenUtil().setWidth(30),
         top: ScreenUtil().setWidth(30),
@@ -43,7 +43,7 @@ class MsgWidget extends StatelessWidget {
                       );
                     }
                   },
-                  child: _doContent(),
+                  child: _doContent(context),
                 )
               ],
             )
@@ -100,7 +100,7 @@ class MsgWidget extends StatelessWidget {
                                 '】已被删除，请阅读炒饭和分区发帖规范。',
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(26),
-                          color: Color.fromRGBO(33, 29, 47, 0.7),
+                          color: Theme.of(context).hintColor,
                         ),
                       ),
                     ),
@@ -111,7 +111,7 @@ class MsgWidget extends StatelessWidget {
     );
   }
 
-  _doContent() {
+  _doContent(context) {
     switch (item['type']) {
       case 'comment_post':
         return Column(
@@ -124,7 +124,7 @@ class MsgWidget extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
-            _postTitle(Color.fromRGBO(33, 29, 47, 0.05)),
+            _postTitle(context, Color.fromRGBO(33, 29, 47, 0.05)),
           ],
         );
         break;
@@ -139,7 +139,7 @@ class MsgWidget extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
-            _rComment('sub_comment'),
+            _rComment(context, 'sub_comment'),
           ],
         );
         break;
@@ -154,15 +154,15 @@ class MsgWidget extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
-            _postTitle(Color.fromRGBO(33, 29, 47, 0.05)),
+            _postTitle(context,Color.fromRGBO(33, 29, 47, 0.05)),
           ],
         );
         break;
       case 'upvote_post':
-        return _postTitle(Color.fromRGBO(33, 29, 47, 0.05));
+        return _postTitle(context, Color.fromRGBO(33, 29, 47, 0.05));
         break;
       case 'upvote_comment':
-        return _rComment('upvote_comment');
+        return _rComment(context, 'upvote_comment');
         break;
       // case 'comment_post':
       //   return '评论了你的帖子';
@@ -210,7 +210,7 @@ class MsgWidget extends StatelessWidget {
     }
   }
 
-  Widget _rComment(v) {
+  Widget _rComment(context, v) {
     return Container(
       padding: EdgeInsets.all(ScreenUtil().setWidth(24)),
       alignment: Alignment.centerLeft,
@@ -229,19 +229,19 @@ class MsgWidget extends StatelessWidget {
                 : item['comment']['text'],
             style: TextStyle(
               fontSize: ScreenUtil().setSp(26),
-              color: Color.fromRGBO(33, 29, 47, 0.7),
+              color: Theme.of(context).hintColor,
             ),
           ),
           SizedBox(
             height: 8,
           ),
-          _postTitle(Colors.white),
+          _postTitle(context, Theme.of(context).backgroundColor),
         ],
       ),
     );
   }
 
-  Widget _postTitle(color) {
+  Widget _postTitle(context, color) {
     return Container(
       padding: EdgeInsets.all(ScreenUtil().setWidth(24)),
       alignment: Alignment.centerLeft,
@@ -257,7 +257,7 @@ class MsgWidget extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
             fontSize: ScreenUtil().setSp(26),
-            color: Color.fromRGBO(33, 29, 47, 0.7)),
+            color:Theme.of(context).hintColor),
       ),
     );
   }
@@ -357,13 +357,13 @@ class MsgWidget extends StatelessWidget {
                 text: Utils.moments(item['gmtCreate']) + ' · ',
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(24),
-                  color: Color.fromRGBO(33, 29, 47, 0.5),
+                  color: Theme.of(context).hintColor,
                 ),
                 children: [
                   TextSpan(
                     text: _doTypes(),
                     style: TextStyle(
-                      color: Color.fromRGBO(33, 29, 47, 0.5),
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.normal,
                     ),
                   ),

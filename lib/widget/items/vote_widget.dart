@@ -40,7 +40,7 @@ class _VoteWidgetState extends State<VoteWidget> {
   Widget build(BuildContext context) {
     return Container(
       // color: Color.fromRGBO(255, 244, 230, 1),
-      color: Colors.white,
+      // color: Colors.white,
       padding: EdgeInsets.only(
         left: ScreenUtil().setWidth(30),
         right: ScreenUtil().setWidth(30),
@@ -56,7 +56,7 @@ class _VoteWidgetState extends State<VoteWidget> {
             alignment: Alignment.bottomLeft,
             padding: EdgeInsets.only(left: 0),
             // color: Color.fromRGBO(255, 233, 204, 1),
-            color: Colors.white,
+            color:Theme.of(context).backgroundColor,
             margin: EdgeInsets.only(bottom: 0, top: 0),
             child: Row(
               children: [
@@ -64,7 +64,7 @@ class _VoteWidgetState extends State<VoteWidget> {
                   '投票：' + item['optionVoteCount'].toString() + '人',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(28),
-                    color: Color.fromRGBO(33, 29, 47, 1),
+                    color: Theme.of(context).textTheme.titleLarge.color
                   ),
                 ),
                 SizedBox(
@@ -74,7 +74,7 @@ class _VoteWidgetState extends State<VoteWidget> {
                   '围观：' + item['circuseeCount'].toString() + '人',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(28),
-                    color: Color.fromRGBO(33, 29, 47, 1),
+                    color: Theme.of(context).textTheme.titleLarge.color,
                   ),
                 ),
               ],
@@ -110,7 +110,7 @@ class _VoteWidgetState extends State<VoteWidget> {
           MaterialButton(
             elevation: 0,
             color: Color.fromRGBO(255, 147, 0, 1),
-            textColor: Colors.white,
+            textColor: Theme.of(context).textTheme.titleLarge.color,
             child: new Text(
               '投票',
               style: TextStyle(
@@ -316,7 +316,7 @@ class _VoteWidgetState extends State<VoteWidget> {
               style: TextStyle(
                 fontSize: ScreenUtil().setSp(28),
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Theme.of(context).textTheme.titleLarge.color,
               ),
               children: <TextSpan>[
                 TextSpan(

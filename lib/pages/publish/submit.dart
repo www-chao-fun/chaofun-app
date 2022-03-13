@@ -139,7 +139,6 @@ class _SubmitPageState extends State<SubmitPage> {
   var isLoading = false;
   List imageList = [];
   List imagesUrl = [];
-  ScrollController _scrollController = ScrollController();
   var chooseType;
   var videoUrl;
   bool canSub = true;
@@ -1138,9 +1137,8 @@ class _SubmitPageState extends State<SubmitPage> {
     }
   }
 
-  QuillController _controller = QuillController(
-      document: Document.fromJson(jsonDecode('[{"insert": "\\n"}]')),
-      selection: TextSelection.collapsed(offset: 0));
+  QuillController _controller = QuillController.basic();
+  ScrollController _scrollController = ScrollController();
 
 
   _articleWidget() {
@@ -1180,7 +1178,7 @@ class _SubmitPageState extends State<SubmitPage> {
                 child: QuillEditor(
                   placeholder: '输入正文(可选)',
                   controller: _controller,
-                  scrollController: ScrollController(),
+                  scrollController: _scrollController,
                   scrollable: true,
                   focusNode: _focusNode,
                   autoFocus: true,

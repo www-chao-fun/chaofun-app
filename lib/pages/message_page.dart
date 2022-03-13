@@ -212,29 +212,31 @@ class _MessagePageState extends State<MessagePage> {
   Widget build(BuildContext context) {
     inits(context);
     return Scaffold(
-        backgroundColor: Color.fromRGBO(247, 247, 247, 1),
+        // backgroundColor: Color.fromRGBO(247, 247, 247, 1),
         appBar: AppBar(
           elevation: 0,
           leading: Container(
-            color: Colors.white,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
               },
               child: Icon(
                 Icons.arrow_back_ios,
-                color: KColor.defaultGrayColor,
+                color: Theme.of(context).textTheme.titleLarge.color,
                 size: 20,
               ),
             ),
           ),
-          brightness: Brightness.light,
+          // brightness: Brightness.light,
           title: Text(
             '消息',
             style:
-            TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+            TextStyle(
+                color: Theme.of(context).textTheme.titleLarge.color,
+                fontSize: ScreenUtil().setSp(38)
+            ),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).backgroundColor,
         ),
         body:
         FutureBuilder(

@@ -59,22 +59,20 @@ class _ForumListPageState extends State<ForumListPage> {
     Provider.of<UserStateProvide>(context, listen: false)
         .getRemmenberForumList();
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
-          brightness: Brightness.light,
           iconTheme: IconThemeData(
-              color: KColor.defaultGrayColor, //修改颜色
-              size: 10),
+              color: Theme.of(context).textTheme.titleLarge.color, //修改颜色
+              size: 16),
           title: Text(
             '选择版块',
             style: TextStyle(
-              color: Colors.black,
+              color: Theme.of(context).textTheme.titleLarge.color,
               fontSize: ScreenUtil().setSp(34),
             ),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).backgroundColor,
         ),
         preferredSize: Size.fromHeight(60),
       ),
@@ -99,7 +97,7 @@ class _ForumListPageState extends State<ForumListPage> {
                   height: double.infinity,
                   alignment: Alignment.topLeft,
                   padding: const EdgeInsets.all(10),
-                  color: Colors.white,
+                  // color: Colors.white,
                   child: Stack(
                     children: [
                       ListView.builder(
@@ -292,7 +290,7 @@ class _ForumListPageState extends State<ForumListPage> {
                               }
                             },
                             child: Container(
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                              color: Theme.of(context).cardColor,
                               padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
                               child: Row(
                                 children: [
@@ -381,6 +379,7 @@ class _ForumListPageState extends State<ForumListPage> {
                   child: Text(
                     item['name'],
                     style: TextStyle(
+                        color: Theme.of(context).textTheme.titleLarge.color,
                         fontSize: ScreenUtil().setSp(30),
                         fontWeight: FontWeight.w600
                     ),
