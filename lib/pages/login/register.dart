@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
         onTap: () {
@@ -317,7 +317,6 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.only(top: 10, left: 20),
-      color: Colors.white,
 
       child: Row(
         children: [
@@ -462,7 +461,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       height: 70,
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      color: Colors.white,
+      // color: Colors.white,
       child: Row(
         children: [
           Expanded(
@@ -562,7 +561,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: ScreenUtil().setWidth(90),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.white,
+                // color: Colors.white,
                 border: Border.all(
                   width: 0.5,
                   color: Colors.grey,
@@ -594,9 +593,9 @@ class _RegisterPageState extends State<RegisterPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Material(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Container(
-            color: Colors.white,
+            // color: Colors.white,
             padding: EdgeInsets.all(20),
             child: InkWell(
               onTap: () {
@@ -611,7 +610,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
         Material(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Ink(
             padding: EdgeInsets.all(20),
             child: InkWell(

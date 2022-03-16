@@ -405,7 +405,6 @@ class _SubmitPageState extends State<SubmitPage> {
                     isDense: true,
                     contentPadding: EdgeInsets.only(
                         left: 14, top: 2, right: 14, bottom: 2),
-                    fillColor: Colors.white,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0x00FF0000)),
@@ -447,7 +446,6 @@ class _SubmitPageState extends State<SubmitPage> {
             child: Container(
               padding: EdgeInsets.only(top: 4, bottom: 4, left: 10, right: 10),
               // height: ScreenUtil().setWidth(300),
-              color: Colors.white,
               child: Column(
                 children: [
                   clipboardDatas != null
@@ -1204,7 +1202,6 @@ class _SubmitPageState extends State<SubmitPage> {
             isDense: true,
             contentPadding:
                 EdgeInsets.only(left: 14, top: 0, right: 14, bottom: 0),
-            fillColor: Colors.white,
             filled: true,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Color(0x00FF0000)),
@@ -1591,7 +1588,6 @@ class _SubmitPageState extends State<SubmitPage> {
       builder: (context) => StatefulBuilder(builder: (c, setBottomSheetState) {
         return Container(
           height: ScreenUtil().setWidth(750),
-          color: Colors.white,
           child: Column(
             children: [
               Container(

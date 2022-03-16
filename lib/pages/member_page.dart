@@ -636,7 +636,7 @@ class _MemberPageState extends State<MemberPage> {
 
   Widget _untopHeader() {
     return Container(
-      color: Colors.white,
+      // color: Colors.white,
       padding: EdgeInsets.fromLTRB(32, 80, 32, 60),
       child: Row(
         children: <Widget>[

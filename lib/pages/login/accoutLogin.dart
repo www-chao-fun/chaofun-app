@@ -68,7 +68,7 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
         blankNode.unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
         body: Container(
           child: Stack(
@@ -132,7 +132,7 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
                   Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(top: 40),
-                    color: Colors.white,
+                    // color: Colors.white,
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, '/register');
@@ -507,9 +507,9 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Material(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Container(
-            color: Colors.white,
+            // color: Colors.white,
             padding: EdgeInsets.all(20),
             child: InkWell(
               onTap: () {
@@ -522,49 +522,7 @@ class _AccoutLoginPageState extends State<AccoutLoginPage> {
               ),
             ),
           ),
-          // child: Ink(
-          //   padding: EdgeInsets.all(20),
-          //   color: Colors.white,
-          //   child: InkWell(
-          //     onTap: () {
-          //       // Navigator.pop(context);
-          //       Navigator.of(context).pop();
-          //     },
-          //     child: Icon(
-          //       Icons.arrow_back_ios,
-          //       color: KColor.defaultGrayColor,
-          //     ),
-          //   ),
-          // ),
-        ),
-        // Material(
-        //   color: Colors.white,
-        //   child: Ink(
-        //     padding: EdgeInsets.all(20),
-        //     child: InkWell(
-        //       onTap: () {
-        //         // Navigator.pop(context);
-        //         // 跳转并关闭所有页面
-        //         Navigator.pushAndRemoveUntil(
-        //           context,
-        //           new MaterialPageRoute(builder: (context) => IndexPage()),
-        //           (route) => route == null,
-        //         );
-
-        //         //跳转并关闭当前页面
-        //         // Navigator.pushAndRemoveUntil(
-        //         //   context,
-        //         //   new MaterialPageRoute(builder: (context) => new MyHomePage()),
-        //         //   (route) => route == null,
-        //         // );
-        //       },
-        //       child: Icon(
-        //         Icons.close,
-        //         color: KColor.defaultGrayColor,
-        //       ),
-        //     ),
-        //   ),
-        // ),
+        )
       ],
     );
   }
