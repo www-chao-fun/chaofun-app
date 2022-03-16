@@ -1035,7 +1035,7 @@ class _SubmitPageState extends State<SubmitPage> {
                 margin: EdgeInsets.all(14),
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  // color: Colors.white,
                   border: Border.all(
                     width: 0.5,
                     color: Color.fromRGBO(230, 230, 230, 1),
@@ -1638,7 +1638,7 @@ class _SubmitPageState extends State<SubmitPage> {
                 child: collects.length > 0
                     ? Container(
                         // height: ScreenUtil().setWidth(500),
-                        color: Colors.white,
+                        // color: Colors.white,
                         padding: EdgeInsets.only(
                           left: ScreenUtil().setWidth(30),
                           right: ScreenUtil().setWidth(30),
