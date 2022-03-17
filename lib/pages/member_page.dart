@@ -232,7 +232,7 @@ class _MemberPageState extends State<MemberPage> {
                   '粉丝',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
+                    color: Theme.of(context).hintColor,
                   ),
                 ),
               ],
@@ -271,7 +271,7 @@ class _MemberPageState extends State<MemberPage> {
                   '关注',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
+                    color: Theme.of(context).hintColor,
                   ),
                 ),
               ],
@@ -302,7 +302,7 @@ class _MemberPageState extends State<MemberPage> {
                   '获赞',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
+                    color: Theme.of(context).hintColor,
                   ),
                 ),
               ],
@@ -347,7 +347,7 @@ class _MemberPageState extends State<MemberPage> {
                   'FBi',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(22),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
+                    color: Theme.of(context).hintColor,
                   ),
                 ),
               ],
@@ -367,7 +367,7 @@ class _MemberPageState extends State<MemberPage> {
       height: ScreenUtil().setWidth(152),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         boxShadow: [
           BoxShadow(
               color: Color.fromRGBO(224, 224, 224, 0.5),
@@ -393,7 +393,6 @@ class _MemberPageState extends State<MemberPage> {
     return Expanded(
       flex: 1,
       child: Container(
-        color: Colors.white,
         child: InkWell(
           onTap: () {
             if (url != null) {
@@ -426,13 +425,14 @@ class _MemberPageState extends State<MemberPage> {
                     text: text,
                     style: TextStyle(
                       fontSize: ScreenUtil().setSp(24),
-                      color: Color.fromRGBO(33, 29, 47, 1),
+                      color:Theme.of(context).textTheme.titleLarge.color,
+                      // color: Color.fromRGBO(33, 29, 47, 1),
                     ),
                     children: [
                       TextSpan(
                         text: num.toString(),
                         style: TextStyle(
-                          color: Color.fromRGBO(33, 29, 47, 0.5),
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -530,7 +530,7 @@ class _MemberPageState extends State<MemberPage> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: Color.fromRGBO(33, 29, 47, 0.5),
+                              color: Theme.of(context).hintColor,
                               fontSize: ScreenUtil().setSp(26),
                             ),
                           ),

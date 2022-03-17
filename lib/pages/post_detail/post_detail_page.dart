@@ -220,21 +220,21 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid) {
-      //Platform
-      // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
-      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-      ); //Colors.black38
-      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-    } else {
-      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarBrightness: Brightness.light,
-      ); //Colors.black38
-      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-    }
+    // if (Platform.isAndroid) {
+    //   //Platform
+    //   // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
+    //   SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+    //     statusBarColor: Colors.transparent,
+    //     statusBarIconBrightness: Brightness.dark,
+    //   ); //Colors.black38
+    //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    // } else {
+    //   SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+    //     statusBarColor: Colors.transparent,
+    //     statusBarBrightness: Brightness.light,
+    //   ); //Colors.black38
+    //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    // }
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: FutureBuilder(
@@ -505,7 +505,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         width: ScreenUtil().setWidth(750),
                         height:
                         40 + MediaQueryData.fromWindow(window).padding.top,
-                        color: Colors.white,
+                        color: Theme.of(context).backgroundColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -513,10 +513,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
                               onTap: () {
                                 Navigator.pop(context);
                               },
-                              child: Image.asset(
-                                'assets/images/_icon/circle_back.png',
-                                width: 24,
-                                height: 24,
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: KColor.defaultGrayColor,
                               ),
                             ),
                             InkWell(
@@ -1375,7 +1374,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         border: Border(
           top: BorderSide(width: 0.5, color: Color.fromRGBO(241, 241, 241, 1)),
         ),
@@ -1412,7 +1411,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     '评论千万条，文明第一条',
-                    style: TextStyle(color: KColor.defaultGrayColor),
+                    // style: TextStyle(color: KColor.defaultGrayColor),
                   ),
                 ),
               ),
@@ -1458,7 +1457,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                               text: toWho == null ? '正在评论 · ' : '正在回复 · ',
                               style: TextStyle(
                                 fontSize: ScreenUtil().setSp(26),
-                                color: Color.fromRGBO(33, 29, 47, 0.5),
+                                color: Theme.of(context).hintColor,
                                 // fontWeight: FontWeight.bold,
                               ),
                               children: <TextSpan>[

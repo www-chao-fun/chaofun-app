@@ -155,7 +155,7 @@ class _AddJoinPageState extends State<AddJoinPage> {
             Text(
               item['label'],
               style: TextStyle(
-                color: Color.fromRGBO(33, 29, 47, 0.5),
+                color: Theme.of(context).hintColor,
               ),
             ),
           ],

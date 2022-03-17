@@ -186,6 +186,81 @@ class _CollectListPageState extends State<CollectListPage> {
                     return Container(
                       color: Colors.white,
                       child: InkWell(
+                        onLongPress: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) => Container(
+                                height: ScreenUtil().setWidth(200),
+                                child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pop('cancel');
+                                          showCupertinoDialog(
+                                            //showCupertinoDialog
+                                              context: context,
+                                              builder: (context) {
+                                                return CupertinoAlertDialog(
+                                                  title: Text('提示'),
+                                                  content: Text('确定删除合集吗？（不会删除帖子）'),
+                                                  actions: <Widget>[
+                                                    CupertinoDialogAction(
+                                                      child: Text('取消'),
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop('cancel');
+                                                      },
+                                                    ),
+                                                    CupertinoDialogAction(
+                                                      child: Text('确定'),
+                                                      onPressed: () async {
+                                                        var response = await HttpUtil.instance
+                                                            .get(Api.deleteCollection, parameters: {'collectionId': setData[index]['id'],});
+                                                        collectionlist();
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        child: Container(
+                                          // color: Colors.blue,
+                                          height: ScreenUtil().setWidth(90),
+                                          child: Row(
+                                            children: [
+                                              // SizedBox(
+                                              //   width: 10,
+                                              // ),
+                                              // Container(
+                                              //   width: ScreenUtil().setWidth(44),
+                                              //   height: ScreenUtil().setWidth(44),
+                                              //   decoration: BoxDecoration(
+                                              //     shape: BoxShape.circle,
+                                              //     image: DecorationImage(
+                                              //       image: AssetImage(
+                                              //         pushItem['icon'],
+                                              //       ),
+                                              //       fit: BoxFit.fill,
+                                              //     ),
+                                              //   ),
+                                              // ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                '删除',
+                                                style: TextStyle(
+                                                  fontSize: ScreenUtil().setSp(32),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),)
+                                  ]
+                                ),
+                              ));
+                        },
                         onTap: () {
                           SystemUiOverlayStyle systemUiOverlayStyle =
                               SystemUiOverlayStyle(

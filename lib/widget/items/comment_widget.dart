@@ -108,7 +108,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                               width: ScreenUtil().setWidth(50),
                               height: ScreenUtil().setWidth(50),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(ScreenUtil().setWidth(25)),
                                 child: Image.network(
                                   KSet.imgOrigin +
                                       item['userInfo']['icon'] +
@@ -150,7 +150,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                 item['userInfo']['userTag']['data'],
                                 style: TextStyle(
                                   fontSize: ScreenUtil().setSp(24),
-                                  color: Color.fromRGBO(33, 29, 47, 0.5),
+                                  color: Theme.of(context).hintColor,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),

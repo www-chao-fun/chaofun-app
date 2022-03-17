@@ -37,7 +37,7 @@ ThemeData darkThemeData() {
     platform: TargetPlatform.iOS,
     backgroundColor: Color(0xFF000000),
     primaryColor: kPrimaryColor,
-    scaffoldBackgroundColor: kContentColorLightTheme,
+    scaffoldBackgroundColor: kContentColorDarkTheme,
     appBarTheme: appBarTheme,
     iconTheme: IconThemeData(color: kContentColorDarkTheme),
     colorScheme: ColorScheme.dark().copyWith(

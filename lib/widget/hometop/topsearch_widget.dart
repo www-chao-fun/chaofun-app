@@ -120,7 +120,7 @@ class _TopSearchState extends State<TopSearch> {
                   padding: EdgeInsets.only(left: 15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Color.fromRGBO(238, 238, 238, 1),
+                    color:Theme.of(context).scaffoldBackgroundColor,
                   ),
                   alignment: Alignment.centerLeft,
                   child: Row(

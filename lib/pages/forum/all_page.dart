@@ -276,7 +276,7 @@ class _AllPageState extends State<AllPage> with AutomaticKeepAliveClientMixin {
                             ),
                             // Positioned(
                             //   child: Container(
-                            //     color: Color.fromRGBO(33, 29, 47, 0.5),
+                            //     color: Theme.of(context).hintColor,
                             //     height: 260,
                             //   ),
                             // ),
@@ -287,7 +287,7 @@ class _AllPageState extends State<AllPage> with AutomaticKeepAliveClientMixin {
                                 child: Container(
                                   height: 180,
                                   decoration: BoxDecoration(
-                                    color: (Color.fromRGBO(33, 29, 47, 0.5))
+                                    color: (Theme.of(context).hintColor)
                                         .withOpacity(0.5),
                                     borderRadius: BorderRadius.circular(0),
                                   ),

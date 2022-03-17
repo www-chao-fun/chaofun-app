@@ -204,15 +204,19 @@ class ItemsTop extends StatelessWidget {
             child: Container(
               child: Row(
                 children: <Widget>[
-                  CachedNetworkImage(
-                    imageUrl: KSet.imgOrigin +
-                        item['userInfo']['icon'] +
-                        '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                  Container(
                     width: ScreenUtil().setWidth(40),
                     height: ScreenUtil().setWidth(40),
-                    fit: BoxFit.fill,
-                    placeholder: (context, url) => Center(
-                      child: Image.asset("assets/images/img/place.png"),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(ScreenUtil().setWidth(20)),
+                      child: Image.network(
+                        KSet.imgOrigin +
+                            item['userInfo']['icon'] +
+                            '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                        width: 16,
+                        height: 16,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   // Image.network(
@@ -362,7 +366,7 @@ class ItemsTop extends StatelessWidget {
             //   Utils.moments(item['gmtCreate']) + ' · ' + _doSource(),
             //   style: TextStyle(
             //     fontSize: ScreenUtil().setSp(24),
-            //     color: Color.fromRGBO(33, 29, 47, 0.5),
+            //     color: Theme.of(context).hintColor,
             //   ),
             // ),
           ),
@@ -450,7 +454,7 @@ class ItemsTop extends StatelessWidget {
             //     text: item['userInfo']['userName'] + ' · ',
             //     style: TextStyle(
             //       fontSize: ScreenUtil().setSp(26),
-            //       color: Color.fromRGBO(33, 29, 47, 0.5),
+            //       color: Theme.of(context).hintColor,
             //       fontWeight: FontWeight.w500,
             //     ),
             //     children: <TextSpan>[
@@ -465,7 +469,7 @@ class ItemsTop extends StatelessWidget {
             //       TextSpan(
             //         text: Utils.moments(item['gmtCreate']),
             //         style: TextStyle(
-            //           color: Color.fromRGBO(33, 29, 47, 0.5),
+            //           color: Theme.of(context).hintColor,
             //           fontWeight: FontWeight.normal,
             //         ),
             //       ),

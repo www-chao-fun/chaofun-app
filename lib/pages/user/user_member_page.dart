@@ -532,7 +532,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                   text: item['post']['forum']['name'] + ' · ',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(28),
-                    color: Color.fromRGBO(33, 29, 47, 0.5),
+                    color: Theme.of(context).hintColor,
                     // fontWeight: FontWeight.bold,
                   ),
                   children: <TextSpan>[
@@ -580,7 +580,7 @@ class _UserMemberPageState extends State<UserMemberPage>
               ScreenUtil().setWidth(30),
               ScreenUtil().setWidth(30),
             ),
-            color: (Color.fromRGBO(33, 29, 47, 0.5)).withOpacity(0.3),
+            color: (Theme.of(context).hintColor).withOpacity(0.3),
             // child: Text(
             //   "CHOCOLATE", //前景文字
             //   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
@@ -697,7 +697,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                                                 left: 4,
                                                 right: 4),
                                             color:
-                                                Color.fromRGBO(33, 29, 47, 0.5),
+                                                Theme.of(context).hintColor,
                                             child: Text(
                                               '获赞：' +
                                                   (memberInfo['ups'] != null

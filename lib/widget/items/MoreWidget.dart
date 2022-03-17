@@ -31,6 +31,17 @@ class MoreWidget{
       {"label": "举报", "value": "5", "icon": "assets/icon/jubao.png"},
     ];
 
+    if (item['canDeleted'] == true) {
+      high += 180;
+      newTools.insert(
+          4, {"label": "删除帖子", "value": "1", "icon": "assets/icon/delete.png"});
+      newTools.insert(0, {
+        "label": "添加/修改标签",
+        "value": "6",
+        "icon": "assets/images/_icon/add_tag.png"
+      });
+    }
+
     if (item['canAddToRecommend'] != null && item['canAddToRecommend']) {
       newTools.insert(0, {
         "label": "推荐",
@@ -39,17 +50,7 @@ class MoreWidget{
       });
     }
 
-    if (item['canDeleted'] == true) {
-      high += 180;
-      newTools.insert(
-          3, {"label": "删除帖子", "value": "1", "icon": "assets/icon/delete.png"});
-      newTools.insert(0, {
-        "label": "添加/修改标签",
-        "value": "6",
-        "icon": "assets/images/_icon/add_tag.png"
-      });
 
-    }
     if (item['canChangeTitle'] == true) {
       high += 150;
       newTools.insert(0, {
@@ -287,22 +288,22 @@ class MoreWidget{
           height: ScreenUtil().setWidth(90),
           child: Row(
             children: [
-              SizedBox(
-                width: 10,
-              ),
-              Container(
-                width: ScreenUtil().setWidth(44),
-                height: ScreenUtil().setWidth(44),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(
-                      pushItem['icon'],
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   width: 10,
+              // ),
+              // Container(
+              //   width: ScreenUtil().setWidth(44),
+              //   height: ScreenUtil().setWidth(44),
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.circle,
+              //     image: DecorationImage(
+              //       image: AssetImage(
+              //         pushItem['icon'],
+              //       ),
+              //       fit: BoxFit.fill,
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 width: 10,
               ),

@@ -472,7 +472,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                 fontWeight: FontWeight.bold,
                 color: curTab == index
                     ? Color.fromRGBO(33, 29, 47, 1)
-                    : Color.fromRGBO(33, 29, 47, 0.5),
+                    : Theme.of(context).hintColor,
               ),
             ),
           ),

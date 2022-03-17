@@ -168,6 +168,10 @@ class Api {
   static const String collectionlist =
       BASE_URL + '/api/v0/collection/list'; // 合集列表
 
+  static const String deleteCollection =
+      BASE_URL + '/api/v0/collection/delete'; // 合集删除
+
+
   static const String collectionlistPosts =
       BASE_URL + '/api/v0/collection/listPosts'; // 合集详情
 
