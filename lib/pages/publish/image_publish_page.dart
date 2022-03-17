@@ -591,7 +591,8 @@ class _ImagePublishPageState extends State<ImagePublishPage> {
           print(res);
         } else {
           List res = await ImagesPicker.pick(
-            count: 1, pickType: PickType.video, quality: 0.8,
+            count: 1,
+            pickType: PickType.video,
             // cropOpt: CropOption(
             //     // aspectRatio: CropAspectRatio.wh16x9
             //     ),

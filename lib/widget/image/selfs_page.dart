@@ -439,13 +439,6 @@ class _SelfHeaderState extends State<SelfHeader> {
     List res = await ImagesPicker.pick(
       count: 1,
       pickType: PickType.image,
-      maxSize: 10480,
-      quality: 0.8,
-      // cropOpt: CropOption(aspectRatio: CropAspectRatio.wh16x9),
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.circle,
-      ),
     );
     _upLoadImage(File(res[0].path));
   }

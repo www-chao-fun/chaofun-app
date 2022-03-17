@@ -55,6 +55,16 @@ public class MyMessageReceiver extends MessageReceiver {
         channel.invokeMethod("push", getMap(extraMap));
     }
 
+    @Override
+    public void onNotificationOpened(Context var1, String var2, String var3, String var4, int var5) {
+        if (var5 == 4) {
+            this.onNotificationClickedWithNoAction(var1, var2, var3, var4);
+        } else {
+            this.onNotificationOpened(var1, var2, var3, var4);
+        }
+
+    }
+
     public static Map<String, Object> getMap(String jsonString) {
         JSONObject jsonObject;
         try
@@ -83,6 +93,8 @@ public class MyMessageReceiver extends MessageReceiver {
     @Override
     protected void onNotificationClickedWithNoAction(Context context, String title, String summary, String extraMap) {
         Log.e("MyMessageReceiver", "onNotificationClickedWithNoAction, title: " + title + ", summary: " + summary + ", extraMap:" + extraMap);
+        MethodChannel channel = new MethodChannel(FlutterEngineCache.getInstance().get("chaofun").getDartExecutor().getBinaryMessenger(), "app.chao.fun/main_channel");
+        channel.invokeMethod("push", getMap(extraMap));
     }
     @Override
     protected void onNotificationReceivedInApp(Context context, String title, String summary, Map<String, String> extraMap, int openType, String openActivity, String openUrl) {

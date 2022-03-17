@@ -1695,8 +1695,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       atUserMap.length > 0) {
                                     List finalAt = [];
                                     for (var i = 0; i < atUserMap.length; i++) {
-                                      if (content.contains(
-                                          '@' + atUserMap[i]['userName'])) {
+                                      if (content.contains('@' + atUserMap[i]['userName'])) {
                                         finalAt.add(atUserMap[i]['userId']);
                                       }
                                     }
@@ -1713,9 +1712,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                     params['parentId'] = toWho['id'].toString();
                                   }
                                   print(params);
-                                  var response = await HttpUtil().get(
-                                      Api.userToComment,
-                                      parameters: params);
+                                  var response = await HttpUtil().get(Api.userToComment, parameters: params);
                                   if (response['success']) {
                                     setState(() {
                                       isLoading = false;
@@ -1916,14 +1913,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
     List res = await ImagesPicker.pick(
       count: 9 - imagesUrl.length,
       pickType: PickType.image,
-      maxSize: 20480,
-      quality: 0.8,
-      // cropOpt: CropOption(aspectRatio: CropAspectRatio.wh16x9),
-      cropOpt: CropOption(
-        aspectRatio: CropAspectRatio.custom,
-        cropType: CropType.rect,
-      ),
     );
+    Navigator.pop(context);
+    doWay(context);
     if (res != null) {
       print(res);
       setState(() {
@@ -1990,8 +1982,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
         isLoading = false;
         isUploadingImage = false;
       });
-      Navigator.pop(context);
-      doWay(context);
     }
   }
 
