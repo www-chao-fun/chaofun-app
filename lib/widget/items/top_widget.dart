@@ -332,6 +332,7 @@ class ItemsTop extends StatelessWidget {
                   TextSpan(
                     text: '' + _doSource(),
                     style: TextStyle(
+                      fontSize: ScreenUtil().setSp(24),
                       color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.normal,
                     ),
@@ -341,7 +342,7 @@ class ItemsTop extends StatelessWidget {
                           alignment: PlaceholderAlignment.middle,
                           child: Container(
                             margin: EdgeInsets.only(
-                                left: 2, right: 2, top: 2, bottom: 2),
+                                left: 1, right: 1, top: 1, bottom: 1),
                             color: Color.fromRGBO(221, 221, 221, 0.5),
                             child: Text(
                               item['userInfo']['userTag']['data'],
@@ -353,7 +354,7 @@ class ItemsTop extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            padding: EdgeInsets.only(left: 4, right: 4),
+                            padding: EdgeInsets.only(left: 1, right: 1),
                           ),
                         )
                       : TextSpan(

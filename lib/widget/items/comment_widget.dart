@@ -144,7 +144,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                             item['userInfo']['userTag'] != null
                                 ? Container(
                               margin: EdgeInsets.only(
-                                  left: 1, right: 2, top: 2, bottom: 2),
+                                  left: 1, right: 1, top: 1, bottom: 1),
                               color: Color.fromRGBO(221, 221, 221, 0.5),
                               child: Text(
                                 item['userInfo']['userTag']['data'],
