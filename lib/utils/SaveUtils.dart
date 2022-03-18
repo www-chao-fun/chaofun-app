@@ -18,7 +18,12 @@ save(context, fileNames, type) async {
 
   for (var fileName in fileNames.split(",")) {
     String savePath = appDocDir.path + "/" + fileName;
-    await Dio().download(KSet.imgOrigin + fileName, savePath);
+    String downloadUrl = KSet.imgOrigin + fileName;
+    if (downloadUrl.endsWith('.webp')) {
+      savePath = savePath.replaceAll('.webp', '.png');
+      downloadUrl =downloadUrl.replaceAll('.webp', '.webp?x-oss-process=image/format,png');
+    }
+    await Dio().download(downloadUrl, savePath);
     final result = await ImageGallerySaver.saveFile(savePath, isReturnPathOfIOS: true);
     if (type == 1) {
       Navigator.of(context).pop();

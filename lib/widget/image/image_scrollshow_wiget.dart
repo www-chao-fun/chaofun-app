@@ -128,7 +128,13 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
   _save(context, type) async {
     var appDocDir = await getTemporaryDirectory();
     String savePath = appDocDir.path + "/" + getFileName(widget.imgDataArr[currentIndex]);
-    await Dio().download(widget.imgDataArr[currentIndex], savePath);
+    String downloadUrl = widget.imgDataArr[currentIndex];
+    if (downloadUrl.endsWith('.webp')) {
+      savePath = savePath.replaceAll('.webp', '.png');
+      downloadUrl =downloadUrl.replaceAll('.webp', '.webp?x-oss-process=image/format,png');
+    }
+    
+    await Dio().download(downloadUrl, savePath);
     final result = await ImageGallerySaver.saveFile(savePath, isReturnPathOfIOS: true);
     // print(result);
     if (Platform.isIOS) {
