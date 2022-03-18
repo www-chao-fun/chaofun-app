@@ -120,7 +120,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                               ),
                             )),
                             SizedBox(
-                              width: 6,
+                              width: 2,
                             ),
                             InkWell(
                               onTap: () {
@@ -144,7 +144,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                             item['userInfo']['userTag'] != null
                                 ? Container(
                               margin: EdgeInsets.only(
-                                  left: 2, right: 2, top: 2, bottom: 2),
+                                  left: 1, right: 2, top: 2, bottom: 2),
                               color: Color.fromRGBO(221, 221, 221, 0.5),
                               child: Text(
                                 item['userInfo']['userTag']['data'],
@@ -154,7 +154,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              padding: EdgeInsets.only(left: 4, right: 4),
+                              padding: EdgeInsets.only(left: 1, right: 1),
                             )
                                 : Text(''),
                             Container(
