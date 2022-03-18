@@ -49,7 +49,7 @@ class _CommentWidgetState extends State<CommentWidget> {
 
   Widget ddd(coms) {
     return Container(
-      padding: EdgeInsets.only(top: 5, left: 10, bottom: 0),
+      padding: EdgeInsets.only(top: 2, left: 10, bottom: 0),
       child: ListView.builder(
         primary: true,
         shrinkWrap: true, //为true可以解决子控件必须设置高度的问题
@@ -70,7 +70,7 @@ class _CommentWidgetState extends State<CommentWidget> {
       a = item['children'];
     }
     return Container(
-      padding: EdgeInsets.only(left: 10, top: 4, bottom: 0),
+      padding: EdgeInsets.only(left: 10, top: 2, bottom: 0),
       decoration: BoxDecoration(
         border: Border(
           left: BorderSide(width: 0.5, color: Color.fromRGBO(241, 241, 241, 1)),
@@ -105,8 +105,8 @@ class _CommentWidgetState extends State<CommentWidget> {
                                   );
                                 }, child:
                             Container(
-                              width: ScreenUtil().setWidth(50),
-                              height: ScreenUtil().setWidth(50),
+                              width: ScreenUtil().setWidth(35),
+                              height: ScreenUtil().setWidth(35),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(ScreenUtil().setWidth(25)),
                                 child: Image.network(
@@ -357,7 +357,7 @@ class _CommentWidgetState extends State<CommentWidget> {
           ),
           Container(
             // width: 30,
-            height: ScreenUtil().setWidth(50),
+            height: ScreenUtil().setWidth(40),
             alignment: Alignment.centerLeft,
             // color: Colors.black,
             child: Row(

@@ -423,7 +423,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             // _comItems(commentList),
                             Container(
                               padding: EdgeInsets.only(
-                                  left: 10,
+                                  left: 3,
                                   right: 10,
                                   top: 0,
                                   bottom: 130),
