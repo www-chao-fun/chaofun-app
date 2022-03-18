@@ -46,12 +46,12 @@ class ItemIndex extends StatelessWidget {
           if (item['type'] == 'inner_video') {
             return Container(
               width: ScreenUtil().setWidth(750),
-              child: VideoWidget(item: item, video: true),
+              child: VideoWidget(key: Key(item['postId'].toString()), item: item, video: true),
             );
           } else {
             return Container(
               width: ScreenUtil().setWidth(750),
-              child: VideoWidget(item: item),
+              child: VideoWidget(key: Key(item['postId'].toString()), item: item),
             );
           }
         } else {
@@ -79,10 +79,10 @@ class ItemIndex extends StatelessWidget {
         }
         break;
       case 'video':
-        return LinkWidget(item: item);
+        return LinkWidget(key: Key(item['postId'].toString()), item: item);
         break;
       case 'vote':
-        return VoteWidget(item: item);
+        return VoteWidget(key: Key(item['postId'].toString()), item: item);
         break;
       case 'forward':
         return _forwardWidget(context, item);
@@ -90,7 +90,7 @@ class ItemIndex extends StatelessWidget {
       case 'prediction':
         return Column(
           children: [
-            PredictWidget(item: item),
+            PredictWidget(key: Key(item['postId'].toString()),item: item),
             this.cate != 'prediction'
                 ? Container(
               margin: EdgeInsets.only(left: 10, right: 10, top: 5),

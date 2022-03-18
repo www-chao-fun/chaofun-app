@@ -39,6 +39,7 @@ class _VoteWidgetState extends State<VoteWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: Key(item['postId'].toString()),
       // color: Color.fromRGBO(255, 244, 230, 1),
       // color: Colors.white,
       padding: EdgeInsets.only(

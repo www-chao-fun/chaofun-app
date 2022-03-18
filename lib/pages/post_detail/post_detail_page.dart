@@ -1087,17 +1087,17 @@ class _PostDetailPageState extends State<PostDetailPage> {
         detail: true,
       );
     } else if (data['type'] == 'inner_video') {
-      return VideoWidget(item: data, height: 320.0, detail: true, video: true);
+      return VideoWidget(key: Key(data['postId'].toString()), item: data, height: 320.0, detail: true, video: true);
     } else if (data['type'] == 'link' || data['type'] == 'video') {
-      return LinkWidget(item: data);
+      return LinkWidget(key: Key(data['postId'].toString()), item: data);
     } else if (data['type'] == 'vote') {
-      return VoteWidget(item: data);
+      return VoteWidget(key: Key(data['postId'].toString()), item: data);
     } else if (data['type'] == 'forward') {
       return _forwardWidget(context, data);
     } else if (data['type'] == 'prediction') {
       return Column(
         children: [
-          PredictWidget(item: postInfo),
+          PredictWidget(key: Key(data['postId'].toString()), item: postInfo),
           Container(
             margin: EdgeInsets.only(left: 10, right: 10, top: 5),
             height: ScreenUtil().setHeight(90),

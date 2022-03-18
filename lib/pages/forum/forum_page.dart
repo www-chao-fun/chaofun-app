@@ -892,6 +892,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                     }
                                   } else {
                                     return ItemIndex(
+                                      key: Key(pageData[index-1]['postId'].toString()),
                                       item: pageData[index-1],
                                       type: 'forum_page',
                                       isComment: params['order'] == 'comment',

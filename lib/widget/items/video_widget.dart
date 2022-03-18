@@ -39,7 +39,7 @@ class VideoWidget extends StatefulWidget {
 }
 
 class _VideoWidgetState extends State<VideoWidget> with RouteAware {
-  // VideoPlayerController _videoPlayerController;
+
   bool startedPlaying = false;
   bool isPlay = false;
   bool isFinished = false;

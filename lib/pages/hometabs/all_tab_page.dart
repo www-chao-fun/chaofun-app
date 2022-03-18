@@ -559,7 +559,7 @@ class _PageAllTabState extends State<PageAllTab>
 
                     return ListView.builder(
                       primary: false,
-                      cacheExtent: 1000,
+                      cacheExtent: 300,
                       controller: _scrollController,
                       itemBuilder: (c, i) {
                         if (i == 0) {
@@ -695,6 +695,7 @@ class _PageAllTabState extends State<PageAllTab>
                             }
                           } else {
                             return ItemIndex(
+                              key: Key(pageData[i]['postId'].toString()),
                               item: pageData[i],
                               type: 'forum',
                               isComment: params['order'] == 'comment',
