@@ -73,8 +73,8 @@ class _CommentWidgetState extends State<CommentWidget> {
       padding: EdgeInsets.only(left: 10, top: 2, bottom: 0),
       decoration: BoxDecoration(
         border: Border(
-          left: BorderSide(width: 0.5, color: Color.fromRGBO(241, 241, 241, 1)),
-          top: BorderSide(width: 0.5, color: Color.fromRGBO(241, 241, 241, 1)),
+          left: BorderSide(width: 0.5, color: Theme.of(context).hintColor),
+          // top: BorderSide(width: 0.5, color: Theme.of(context).hintColor),
         ),
       ),
       child: Column(
