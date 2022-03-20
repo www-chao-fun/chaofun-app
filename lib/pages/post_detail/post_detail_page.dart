@@ -2102,21 +2102,41 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                 },
                               );
                             },
-                            child: RichText(
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              text: TextSpan(
-                                  text: postInfo['userInfo']['userName'],
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(26),
-                                    color: Color.fromRGBO(53, 140, 255, 1),
-                                    // fontWeight: FontWeight.bold,
+                            child: Row(
+                                children: [
+                                  Container(
+                                    width: ScreenUtil().setWidth(35),
+                                    height: ScreenUtil().setWidth(35),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(ScreenUtil().setWidth(25)),
+                                      child: Image.network(
+                                        KSet.imgOrigin +
+                                            postInfo['userInfo']['icon'] +
+                                            '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                                        width: 16,
+                                        height: 16,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
-                                  children: [
-                                    postInfo['userInfo']['userTag'] != null
-                                        ? WidgetSpan(
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  RichText(
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    text: TextSpan(
+                                        text: postInfo['userInfo']['userName'],
+                                        style: TextStyle(
+                                          fontSize: ScreenUtil().setSp(26),
+                                          color: Color.fromRGBO(53, 140, 255, 1),
+                                          // fontWeight: FontWeight.bold,
+                                        ),
+                                        children: [
+                                          postInfo['userInfo']['userTag'] != null
+                                              ? WidgetSpan(
                                             alignment:
-                                                PlaceholderAlignment.middle,
+                                            PlaceholderAlignment.middle,
                                             child: Container(
                                               margin: EdgeInsets.only(
                                                   left: 2,
@@ -2127,10 +2147,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                                   221, 221, 221, 0.5),
                                               child: Text(
                                                 postInfo['userInfo']['userTag']
-                                                    ['data'],
+                                                ['data'],
                                                 style: TextStyle(
                                                   fontSize:
-                                                      ScreenUtil().setSp(24),
+                                                  ScreenUtil().setSp(24),
                                                   color: Theme.of(context).hintColor,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -2139,17 +2159,19 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                                   left: 4, right: 4),
                                             ),
                                           )
-                                        : TextSpan(
+                                              : TextSpan(
                                             text: '',
                                           ),
-                                    TextSpan(
-                                      text: ' · ' +
-                                          Utils.moments(postInfo['gmtCreate']),
-                                      style: TextStyle(
-                                        color: Theme.of(context).hintColor,
-                                      ),
-                                    ),
-                                  ]),
+                                          TextSpan(
+                                            text: ' · ' +
+                                                Utils.moments(postInfo['gmtCreate']),
+                                            style: TextStyle(
+                                              color: Theme.of(context).hintColor,
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                ]
                             ),
                           ),
                         ],

@@ -31,7 +31,7 @@ class _UserMemberPageState extends State<UserMemberPage>
   ScrollController _scrollController = ScrollController();
   bool canload = true;
 
-  var memberInfo;
+  var memberInfo = {};
 
   var curSelected = 'publish';
 
@@ -561,7 +561,7 @@ class _UserMemberPageState extends State<UserMemberPage>
           // image: AssetImage("assets/背景/bg1.jpg"),
           image: NetworkImage(
             KSet.imgOrigin +
-                memberInfo['icon'] +
+                (memberInfo == null ? '' : memberInfo['icon'] ) +
                 '?x-oss-process=image/resize,h_414/format,webp/quality,q_75',
           ),
           fit: BoxFit.cover,
@@ -657,7 +657,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                                 alignment: Alignment.centerLeft,
                                 height: ScreenUtil().setWidth(120),
                                 padding: EdgeInsets.only(
-                                  top: ScreenUtil().setWidth(10),
+                                  top: ScreenUtil().setWidth(0),
                                   bottom: ScreenUtil().setWidth(10),
                                 ),
                                 child: Column(
@@ -715,6 +715,15 @@ class _UserMemberPageState extends State<UserMemberPage>
                                         ),
                                       ],
                                     ),
+                                    Row(children:[
+                                          Text(
+                                              'UID:' + ( memberInfo != null && memberInfo['userId'] != null ? memberInfo['userId'].toString() : ''),
+                                              style: TextStyle(
+                                                  fontSize:ScreenUtil().setSp(14),
+                                                  color: Theme.of(context).hintColor
+                                              )
+                                          ),
+                                    ]),
                                     Row(
                                         children: [
                                           InkWell(
