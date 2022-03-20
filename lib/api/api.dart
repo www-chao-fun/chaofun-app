@@ -219,6 +219,8 @@ class Api {
   static const String httpurltitle = BASE_URL + '/api/v0/httpurl/title';
 
   static const String setDesc = BASE_URL + '/api/v0/user/set_desc';
+  
+  static const String changeUserName = BASE_URL + '/api/v0/user/changeUserName';
 
   // static const String addTag = BASE_URL + '/api/v0/post/addTag'; // 添加标签
 

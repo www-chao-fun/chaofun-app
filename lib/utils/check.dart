@@ -77,12 +77,13 @@ bool isAssetsImg(String img) {
 double getMemoryImageCashe() {
   return PaintingBinding.instance.imageCache.maximumSize / 1000;
 }
-var Image_Maxnum = 100;
+var Image_Maxnum = 1000;
+var maxSize = 55 << 20;
+ImageCache _imageCache = PaintingBinding.instance.imageCache;
 void clearMemoryImageCache() async {
   // print('clear');
-  ImageCache _imageCache = PaintingBinding.instance.imageCache;
-  if (_imageCache.currentSizeBytes >= 55 << 20 || _imageCache.currentSize >= Image_Maxnum) {
-    // _imageCache.clear();
+  if (_imageCache.currentSizeBytes >= maxSize || _imageCache.currentSize >= Image_Maxnum) {
+    _imageCache.clear();
     _imageCache.clearLiveImages();
   }
 }

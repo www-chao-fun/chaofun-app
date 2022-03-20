@@ -423,20 +423,20 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             // _comItems(commentList),
                             Container(
                               padding: EdgeInsets.only(
-                                  left: 3,
+                                  left: 4,
                                   right: 10,
                                   top: 0,
                                   bottom: 130),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  left: BorderSide(
-                                      width: 0.5,
-                                      color: Color.fromRGBO(241, 241, 241, 1)),
-                                  top: BorderSide(
-                                      width: 0.5,
-                                      color: Color.fromRGBO(241, 241, 241, 1)),
-                                ),
-                              ),
+                              // decoration: BoxDecoration(
+                              //   border: Border(
+                              //     left: BorderSide(
+                              //         width: 0.5,
+                              //         color: Theme.of(context).hintColor),
+                              //     // top: BorderSide(
+                              //     //     width: 0.5,
+                              //     //     color: Theme.of(context).hintColor),
+                              //   ),
+                              // ),
                               alignment: Alignment.center,
                               child: commentList.length > 0
                                   ? MediaQuery.removePadding(

@@ -353,7 +353,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                                Icons.star
+                                Icons.star_sharp
                             ),
                             SizedBox(
                               width: 2,
@@ -715,15 +715,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                                         ),
                                       ],
                                     ),
-                                    Row(children:[
-                                          Text(
-                                              'UID:' + ( memberInfo != null && memberInfo['userId'] != null ? memberInfo['userId'].toString() : ''),
-                                              style: TextStyle(
-                                                  fontSize:ScreenUtil().setSp(14),
-                                                  color: Theme.of(context).hintColor
-                                              )
-                                          ),
-                                    ]),
+
                                     Row(
                                         children: [
                                           InkWell(
@@ -794,7 +786,16 @@ class _UserMemberPageState extends State<UserMemberPage>
                                               )
                                           )
                                         ]
-                                    )
+                                    ),
+                                    Row(children:[
+                                      Text(
+                                          ' UID:' + ( memberInfo != null && memberInfo['userId'] != null ? memberInfo['userId'].toString() : ''),
+                                          style: TextStyle(
+                                            fontSize:ScreenUtil().setSp(14),
+                                            color: Colors.white,
+                                          )
+                                      ),
+                                    ]),
                                   ],
                                 ),
                               ),

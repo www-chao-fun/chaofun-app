@@ -19,17 +19,23 @@ class SetInfoPage extends StatefulWidget {
 
 class _SetInfoPageState extends State<SetInfoPage> {
   String version;
-  TextEditingController _inputController = TextEditingController();
+  TextEditingController _descInputController = TextEditingController();
+  TextEditingController _nameInputController = TextEditingController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     var a = Provider.of<UserStateProvide>(context, listen: false).userInfo;
-    _inputController.value = _inputController.value.copyWith(
+    _descInputController.value = _descInputController.value.copyWith(
       text: a['desc'],
       composing: TextRange.empty,
     );
+    _nameInputController.value = _nameInputController.value.copyWith(
+      text: a['userName'],
+      composing: TextRange.empty,
+    );
+
     print('-=======');
     print(a);
   }
@@ -53,17 +59,126 @@ class _SetInfoPageState extends State<SetInfoPage> {
             ),
           ),
         ),
-        actions: [
+        brightness: Brightness.light,
+        title: Text(
+          '修改个人资料',
+          style:
+          TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
+        ),
+        backgroundColor: Colors.white,
+      ),
+      body: Column(
+        children: [
           Container(
-            margin: EdgeInsets.only(bottom: 12, top: 12, right: 20),
-            // width: ScreenUtil().setWidth(140),
-            // height: ScreenUtil().setWidth(20),
-            alignment: Alignment.center,
-            child: InkWell(
+            margin: EdgeInsets.all(20),
+            child: TextField(
+              // focusNode: _commentFocus,
+              autofocus: true,
+              controller: _nameInputController,
+              maxLines: 1,
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding:
+                EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+                fillColor: Color(0x30cccccc),
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0x00FF0000)),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                hintText: '请输入你的签名',
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0x00000000)),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+              ),
+
+              textInputAction: TextInputAction.done,
+              style: TextStyle(
+                fontSize: ScreenUtil().setSp(32),
+                // fontWeight: FontWeight.bold,
+              ),
+              onChanged: (val) {
+                print('旧值');
+              },
+              onSubmitted: (term) async {
+                print(term);
+              },
+            ),
+          ),
+          InkWell(
+              onTap: () async {
+                // if (_inputController.text.trim().isNotEmpty) {
+                var res = await HttpUtil().get(Api.changeUserName,
+                    parameters: {'userName': _nameInputController.text});
+                if (res['success']) {
+                  Fluttertoast.showToast(
+                    msg: '修改成功',
+                    gravity: ToastGravity.CENTER,
+                  );
+                  var info = Provider.of<UserStateProvide>(context, listen: false).userInfo;
+                  info['userName'] = _nameInputController.text;
+                  Provider.of<UserStateProvide>(context, listen: false)
+                      .changeUserInfo(info);
+
+                } else {
+                  Fluttertoast.showToast(
+                    msg: res['errorMessage'].toString(),
+                    gravity: ToastGravity.CENTER,
+                  );
+                }
+                // } else {
+                //   Fluttertoast.showToast(
+                //     msg: '请输入你的签名',
+                //     gravity: ToastGravity.CENTER,
+                //   );
+                // }
+              }, child:
+          Text(
+            '确定',
+            style: TextStyle(
+              fontSize: ScreenUtil().setSp(30),
+              color: Color.fromRGBO(53, 140, 255, 1),
+            ),
+          )),
+          Container(
+            margin: EdgeInsets.all(20),
+            child: TextField(
+              // focusNode: _commentFocus,
+              autofocus: true,
+              controller: _descInputController,
+              maxLines: 2,
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding:
+                EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+                fillColor: Color(0x30cccccc),
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0x00FF0000)),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                hintText: '请输入你的签名',
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0x00000000)),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+              ),
+
+              textInputAction: TextInputAction.done,
+              style: TextStyle(
+                fontSize: ScreenUtil().setSp(32),
+                // fontWeight: FontWeight.bold,
+              ),
+              onChanged: (val) {
+                print('旧值');
+              },
+              onSubmitted: (term) async {
+                print(term);
+              },
+            ),
+          ),
+          InkWell(
               onTap: () async {
                 // if (_inputController.text.trim().isNotEmpty) {
                 var res = await HttpUtil().get(Api.setDesc,
-                    parameters: {'desc': _inputController.text});
+                    parameters: {'desc': _descInputController.text});
                 if (res['success']) {
                   Fluttertoast.showToast(
                     msg: '修改成功',
@@ -72,7 +187,7 @@ class _SetInfoPageState extends State<SetInfoPage> {
                   var info =
                       Provider.of<UserStateProvide>(context, listen: false)
                           .userInfo;
-                  info['desc'] = _inputController.text;
+                  info['desc'] = _descInputController.text;
                   Provider.of<UserStateProvide>(context, listen: false)
                       .changeUserInfo(info);
 
@@ -98,91 +213,8 @@ class _SetInfoPageState extends State<SetInfoPage> {
                   fontSize: ScreenUtil().setSp(30),
                   color: Color.fromRGBO(53, 140, 255, 1),
                 ),
-              ),
-            ),
-            // child: MaterialButton(
-            //   color: Color.fromRGBO(255, 147, 0, 1),
-            //   textColor: Colors.white,
-            //   child: new Text(
-            //     '创建',
-            //     style: TextStyle(
-            //       fontSize: ScreenUtil().setSp(28),
-            //     ),
-            //   ),
-            //   minWidth: ScreenUtil().setWidth(120),
-            //   height: ScreenUtil().setWidth(20),
-            //   padding: EdgeInsets.all(0),
-            //   shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.circular(30.0),
-            //     side: BorderSide(
-            //       color: Color.fromRGBO(255, 147, 0, 1),
-            //     ),
-            //   ),
-            //   onPressed: () async {
-            //     if (_inputController.text.trim().isNotEmpty) {
-            //       var res = await HttpUtil().get(Api.addcollection,
-            //           parameters: {'name': _inputController.text});
-            //       if (res['success']) {
-            //         Fluttertoast.showToast(
-            //           msg: '新增合集成功',
-            //           gravity: ToastGravity.CENTER,
-            //         );
-            //         Future.delayed(Duration(milliseconds: 1500)).then((e) {
-            //           Navigator.pop(context);
-            //         });
-            //       }
-            //     }
-            //   },
-            // ),
+              )
           )
-        ],
-        brightness: Brightness.light,
-        title: Text(
-          '修改签名',
-          style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
-        ),
-        backgroundColor: Colors.white,
-      ),
-      body: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.all(20),
-            child: TextField(
-              // focusNode: _commentFocus,
-
-              autofocus: true,
-              controller: _inputController,
-              maxLines: 2,
-              decoration: InputDecoration(
-                isDense: true,
-                contentPadding:
-                    EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
-                fillColor: Color(0x30cccccc),
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0x00FF0000)),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                hintText: '请输入你的签名',
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0x00000000)),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-              ),
-
-              textInputAction: TextInputAction.done,
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(32),
-                // fontWeight: FontWeight.bold,
-              ),
-              onChanged: (val) {
-                print('旧值');
-              },
-
-              onSubmitted: (term) async {
-                print(term);
-              },
-            ),
-          ),
         ],
       ),
     );
