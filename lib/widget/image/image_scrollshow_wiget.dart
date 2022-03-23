@@ -184,11 +184,11 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                     builder: (context) => Container(
                       height: 125,
                       child: Container(
-                        color: KColor.defaultPageBgColor,
+                        // color: KColor.defaultPageBgColor,
                         child: Column(
                           children: [
                             Container(
-                              color: Colors.white,
+                              // color: Colors.white,
                               child: InkWell(
                                 onTap: () {
                                   _save(context, 1);
@@ -209,7 +209,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                               height: 5,
                             ),
                             Container(
-                              color: Colors.white,
+                              // color: Colors.white,
                               child: InkWell(
                                 onTap: () {
                                   Navigator.of(context).pop();
@@ -220,6 +220,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                                   child: Text(
                                     '取消',
                                     style: TextStyle(
+                                      color:Theme.of(context).textTheme.titleLarge.color,
                                       fontSize: ScreenUtil().setSp(30),
                                     ),
                                   ),

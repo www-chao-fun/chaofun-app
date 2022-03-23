@@ -65,29 +65,31 @@ class _AtUserListPageState extends State<AtUserListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(247, 247, 247, 1),
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0,
         leading: Container(
-          color: Colors.white,
+          // color: Theme.of(context).backgroundColor,
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
             },
             child: Icon(
               Icons.arrow_back_ios,
-              color: KColor.defaultGrayColor,
+              color:Theme.of(context).textTheme.titleLarge.color,
               size: 20,
             ),
           ),
         ),
-        brightness: Brightness.light,
+        // brightness: Brightness.light,
         title: Text(
           '我要@TA',
           style:
-              TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(38)),
+              TextStyle(
+              color:Theme.of(context).textTheme.titleLarge.color,
+            fontSize: ScreenUtil().setSp(38)),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
       ),
       body: Stack(
         children: [
@@ -111,7 +113,7 @@ class _AtUserListPageState extends State<AtUserListPage> {
                       isDense: true,
                       contentPadding: EdgeInsets.only(
                           left: 0, top: 0, right: 10, bottom: 0),
-                      fillColor: Color(0x30cccccc),
+                      fillColor: Theme.of(context).backgroundColor,
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Color(0x00FF0000)),
@@ -119,7 +121,7 @@ class _AtUserListPageState extends State<AtUserListPage> {
                       hintText: '请输入搜索内容',
                       hintStyle: TextStyle(
                         fontSize: ScreenUtil().setSp(28),
-                        color: Color.fromRGBO(153, 153, 153, 1),
+                        color: Theme.of(context).hintColor,
                       ),
                       prefixIcon: Icon(Icons.search),
                       focusedBorder: OutlineInputBorder(
