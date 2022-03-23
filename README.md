@@ -30,7 +30,7 @@ flutter run
 
 
 # 其他
-每周日下午五点，奖励上周贡献最多的饭友炒饭 TShirt 一件
+每周日下午五点，奖励（www-chao-fun）项目下上周贡献最多的饭友炒饭 TShirt 一件（or 7500fbi）
 
 ![image](https://user-images.githubusercontent.com/6985160/115997172-c6374600-a614-11eb-8fda-27a9b8725d5a.png)
 
