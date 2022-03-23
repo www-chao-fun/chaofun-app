@@ -57,6 +57,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
   Map postInfo;
   Map forumInfo;
   Map toWho;
+  bool deleted = false;
   TextEditingController _inputController = TextEditingController();
   FocusNode _commentFocus = FocusNode();
   var comParams = {
@@ -195,8 +196,11 @@ class _PostDetailPageState extends State<PostDetailPage> {
         msg: '获取帖子信息失败或帖子已被删除',
         gravity: ToastGravity.CENTER,
       );
-      await Future.delayed(Duration(milliseconds: 1000));
-      Navigator.pop(context);
+      setState(() {
+        deleted = true;
+      });
+      // await Future.delayed(Duration(milliseconds: 1000));
+      // Navigator.pop(context);
     } else {
       getForumInfo(response['data']['forum']['id']);
       setState(() {
@@ -491,10 +495,26 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           ],
                         ),
                       ),
-                    )
-                        : Container(
-                      height: 0,
-                    ),
+                    ):
+                    ( deleted == true ? SingleChildScrollView(
+                        child: Container(
+                            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            constraints: BoxConstraints(
+                              minHeight: 100,
+                            ),
+                            child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: 40 +
+                                        MediaQueryData.fromWindow(window)
+                                            .padding
+                                            .top,
+                                  ),
+                                  Text("该帖已经被删除"),
+                                ]
+
+                            )
+                        )) : Container(height: 0, )),
                     Positioned(
                       top: 0,
                       child: Container(
