@@ -1479,15 +1479,7 @@ class _SubmitPageState extends State<SubmitPage> {
         // height: ScreenUtil().setWidth(200),
         child: Column(
           children: [
-            Container(
-              height: ScreenUtil().setWidth(450),
-              color: Colors.black,
-              child: VideoWidget(
-                  item: {'video': assetsVideo},
-                  video: true,
-                  detail: true,
-                  isAssets: true),
-            ),
+
             totals != null
                 ? Container(
                     height: ScreenUtil().setWidth(100),
@@ -1526,7 +1518,7 @@ class _SubmitPageState extends State<SubmitPage> {
                                   totals +
                                   'M (' +
                                   (percent * 100).toStringAsFixed(1) +
-                                  '%)',
+                                  '%)\n卡在100%是因为后端转码中，请耐心等待',
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: ScreenUtil().setSp(26)),
@@ -1573,6 +1565,15 @@ class _SubmitPageState extends State<SubmitPage> {
                     ),
                   )
                 : Text(''),
+            Container(
+              height: ScreenUtil().setWidth(450),
+              color: Colors.black,
+              child: VideoWidget(
+                  item: {'video': assetsVideo},
+                  video: true,
+                  detail: true,
+                  isAssets: true),
+            ),
           ],
         ),
       );
