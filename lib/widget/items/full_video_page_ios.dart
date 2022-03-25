@@ -262,7 +262,7 @@ class _FullVideoPageIosState extends State<FullVideoPageIos> with RouteAware {
                 Offstage(
                   offstage: !(widget.showBottomWidget && showCover),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 0),
+                    padding: EdgeInsets.only(left: 50, right: 50, bottom: 0),
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       child: _VideoPlayerBottomWidget(),
@@ -276,7 +276,7 @@ class _FullVideoPageIosState extends State<FullVideoPageIos> with RouteAware {
                         top: 0,
                         // left: MediaQuery.of(context).padding.top,
                         child: GestureDetector(
-                          behavior: HitTestBehavior.opaque,
+                          // behavior: HitTestBehavior.opaque,
                           onTap: () {
                             if (Platform.isAndroid) {
                               SystemChrome.setEnabledSystemUIOverlays([
@@ -290,6 +290,7 @@ class _FullVideoPageIosState extends State<FullVideoPageIos> with RouteAware {
                             Navigator.pop(context, controller);
                           },
                           child: Container(
+                            // color: Colors.red,
                             width: ScreenUtil().setHeight(1334),
                             alignment: Alignment.centerLeft,
                             // color: Colors.white,
@@ -302,12 +303,17 @@ class _FullVideoPageIosState extends State<FullVideoPageIos> with RouteAware {
                             ),
                             child: Row(
                               children: [
-                                Image.asset(
-                                  'static/icon_back.png',
-                                  width: 20,
-                                  height: 20,
-                                  fit: BoxFit.contain,
-                                  color: Colors.white,
+                                Container(
+                                  height: ScreenUtil().setWidth(60),
+                                  width: ScreenUtil().setWidth(60),
+                                  child:
+                                  Image.asset(
+                                    'static/icon_back.png',
+                                    width: 20,
+                                    height: 20,
+                                    fit: BoxFit.contain,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 SizedBox(
                                   width: ScreenUtil().setWidth(10),
@@ -367,8 +373,12 @@ class _FullVideoPageIosState extends State<FullVideoPageIos> with RouteAware {
                   controller.play();
                 }
               },
-              child: controller.value.isPlaying
-                  ? Image.asset(
+              child: Container(
+                  // color: Colors.red,
+                  height: ScreenUtil().setWidth(60),
+                  width: ScreenUtil().setWidth(60),
+                  child: controller.value.isPlaying ?
+                  Image.asset(
                       'static/player_pause.png',
                       width: 24,
                       height: 24,
@@ -378,6 +388,7 @@ class _FullVideoPageIosState extends State<FullVideoPageIos> with RouteAware {
                       width: 24,
                       height: 24,
                     ),
+                  )
             ),
             SizedBox(
               width: 10,
