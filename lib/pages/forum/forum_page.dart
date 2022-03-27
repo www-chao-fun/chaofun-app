@@ -594,11 +594,11 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                         alignment:
                                                             Alignment.center,
                                                         child: Text(
-                                                          '表格',
+                                                          (tableList[0]['name'] == null || tableList[0]['name'] == '' ?  '表格' : tableList[0]['name']),
                                                           style: TextStyle(
                                                               fontWeight: FontWeight.bold,
                                                               color: navStr == 'table' ? KColor.primaryColor
-                                                                  : Color.fromRGBO(0, 0, 0, 1)),
+                                                                  : Theme.of(context).hintColor),
                                                         ),
                                                       ),
                                                     )

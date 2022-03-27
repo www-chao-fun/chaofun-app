@@ -49,7 +49,6 @@ class MainActivity: FlutterActivity() {
         FlutterEngineCache.getInstance().put("chaofun", flutterEngine);
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
             call, result ->
-
             try {
                 // 华为要求，必须用户同意协议以后才可以获取
                 if (call.method.equals("getDeviceInfo") && inited) {
@@ -60,7 +59,6 @@ class MainActivity: FlutterActivity() {
                     result.success(resultMap)
 
                 } else if (call.method.equals("share")) {
-
                     Handler(Looper.getMainLooper()).post {
                         val argMap = call.arguments as Map<String, Any>
                         Share.share(this@MainActivity, argMap);
@@ -82,14 +80,17 @@ class MainActivity: FlutterActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        PopupNotifyClick(PopupNotifyClickListener { title, summary, extMap ->
-            run {
-                runOnUiThread {
-                    val channel = MethodChannel(flutterEngine?.dartExecutor?.binaryMessenger, "app.chao.fun/main_channel")
-                    channel.invokeMethod("push", extMap)
-                }
-            }
-        }).onCreate(this, this.intent)
+        Log.i(TAG, "onCreate push step 1")
+
+//        PopupNotifyClick(PopupNotifyClickListener { title, summary, extMap ->
+//            run {
+//                runOnUiThread {
+//                    Log.i(TAG, "onCreate push step 2")
+//                    val channel = MethodChannel(FlutterEngineCache.getInstance()["chaofun"]!!.dartExecutor.binaryMessenger, "app.chao.fun/main_channel")
+//                    channel.invokeMethod("push", extMap)
+//                }
+//            }
+//        }).onCreate(this, this.intent)
 
     }
 
@@ -183,6 +184,17 @@ class MainActivity: FlutterActivity() {
         HuaWeiRegister.register(applicationContext)
         MiPushRegister.register(this, "2882303761518919904", "5261891975904")
         VivoRegister.register(applicationContext)
+
+        PopupNotifyClick(PopupNotifyClickListener { title, summary, extMap ->
+            run {
+                runOnUiThread {
+                    Log.i(TAG, "onCreate push step 2")
+                    val channel = MethodChannel(FlutterEngineCache.getInstance()["chaofun"]!!.dartExecutor.binaryMessenger, "app.chao.fun/main_channel")
+                    channel.invokeMethod("push", extMap)
+                }
+            }
+        }).onCreate(this, this.intent)
+
     }
 
 
