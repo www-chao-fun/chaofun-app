@@ -139,6 +139,8 @@ class Api {
 
   static const String listBadges = BASE_URL + '/api/v0/badge/list'; // 管理员推荐
 
+  static const String listPins = BASE_URL + '/api/v0/forum/listPins'; // 置顶帖
+
   static const String checkMessage = BASE_URL + '/api/v0/message/check'; //
 
   static const String addTag = BASE_URL + '/api/v0/post/addTag'; // 添加标签

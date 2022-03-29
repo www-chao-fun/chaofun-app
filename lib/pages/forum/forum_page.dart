@@ -81,12 +81,14 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
   List tagList = [];
   List tableList = [];
   bool showTag = false;
+  bool showTopPost = false;
   bool showNav = true;
   String navStr = 'post';
   List columData = [];
   List rowData = [];
   List mods = [];
   List rules = [];
+  List pins = [];
   var tableItem;
   var tableData;
   bool hasPrediction = false;
@@ -101,6 +103,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
       forumId = widget.arguments['forumId'];
     });
     initTag();
+    initTopPost();
     getForumData();
   }
 
@@ -199,6 +202,20 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
     super.didPushNext();
   }
 
+  initTopPost() async {
+    var res = await HttpUtil()
+        .get(Api.listPins, parameters: {'forumId': forumId.toString()});
+    print(res);
+    if (res['data'] != null && res['data'].length > 0) {
+      setState(() {
+        showTopPost = true;
+        pins = res['data'];
+      });
+    } else {
+      showTopPost = false;
+    }
+
+  }
   initTag() async {
     var res = await HttpUtil()
         .get(Api.listTag, parameters: {'forumId': forumId.toString()});
@@ -619,16 +636,10 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                         print(response);
                                                         if (response['data'] !=
                                                             null) {
-                                                          Navigator.pushNamed(
-                                                              context,
-                                                              '/predictionpage',
+                                                          Navigator.pushNamed(context, '/predictionpage',
                                                               arguments: {
-                                                                'forumId':
-                                                                    forumData[
-                                                                        'id'],
-                                                                'forumName':
-                                                                    forumData[
-                                                                        'name'],
+                                                                'forumId': forumData['id'],
+                                                                'forumName': forumData['name'],
                                                               });
                                                         } else {
                                                           Fluttertoast
@@ -699,11 +710,12 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                     return Container(
                                       child: Column(
                                         children: [
+                                          showTopPost ? _buildPins() : Container(height:0) ,
                                           showTag
                                               ? Container(
                                                   // color: Colors.white,
                                                   padding: EdgeInsets.only(
-                                                    left: ScreenUtil().setWidth(10),
+                                                    left: ScreenUtil().setWidth(0),
                                                     top: ScreenUtil().setWidth(10),
                                                     bottom: ScreenUtil().setWidth(10),
                                                   ),
@@ -717,10 +729,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                                 MainAxisAlignment
                                                                     .center,
                                                             children: [
-                                                              Image.asset(
-                                                                'assets/images/_icon/tag.png',
-                                                                width: 16,
-                                                              ),
+                                                              Image.asset('assets/images/_icon/tag.png', width: 16,),
                                                               SizedBox(
                                                                 width: 2,
                                                               ),
@@ -732,7 +741,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                               ),
                                                             ]),
                                                         width: ScreenUtil()
-                                                            .setWidth(140),
+                                                            .setWidth(120),
                                                       ),
                                                       Expanded(
                                                         flex: 1,
@@ -1139,6 +1148,45 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
     //     return alert;
     //   },
     // );
+  }
+
+  _buildPins() {
+    List<Widget> pinWidgets = [];
+    for (int i = 0; i < pins.length; i++) {
+      pinWidgets.add(
+          InkWell(onTap: () {
+            Navigator.pushNamed(
+              context,
+              '/postdetail',
+              arguments: {
+                "postId": pins[i]['postId'].toString()
+              },
+            );
+          }, child:
+          Container(
+            // color: Colors.,
+              padding: EdgeInsets.only(left: 4, bottom: 4),
+              // decoration: BoxDecoration(
+              //   // color: Color.fromRGBO(211, 211, 211, 1),
+              //   border:  Border(
+              //       bottom: new BorderSide(color: Theme.of(context).hintColor, width:0.2)),
+              //   // color: Colors.blue,
+              // ),
+              child: Row( children:[
+                // Container(color: Colors.orangeAccent, child: Icon(Icons.push_pin_outlined, color: Colors.white, size: ScreenUtil().setWidth(30),)),
+                Container(padding: EdgeInsets.only(left: 2, right: 2), color: Colors.orangeAccent, child: Text('置顶', style: TextStyle(color:Colors.white, fontSize:  ScreenUtil().setWidth(24)))),
+                Container(width: 2,),
+                Text(pins[i]['title'], maxLines: 1,                  softWrap: true,
+                  textAlign: TextAlign.left,
+
+                  style: TextStyle(color:Theme.of(context).textTheme.titleLarge.color, overflow: TextOverflow.ellipsis,fontSize:  ScreenUtil().setWidth(30)),)
+              ]
+              )
+          )
+          )
+      );
+    }
+    return Column(children: pinWidgets,);
   }
   ruleList() {
     if (rules.length > 0) {
