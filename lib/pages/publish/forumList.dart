@@ -39,18 +39,12 @@ class _ForumListPageState extends State<ForumListPage> {
 
   void filterData() async {
     var keyword = _inputController.text.trim();
-    List<Map> a = [];
-    beiData.forEach((element) {
-      if (element['name'].contains(keyword)) {
-        print('包含了$keyword');
-        print(element);
-        a.add(element);
-      }
-    });
+    var result = await HttpUtil().get(Api.searchForum, parameters: {'keyword': keyword});
+    List<Map> arr = (result['data'] as List).cast();
     setState(() {
       // allForum.clear();
       // allForum.addAll(a);
-      allForum = a;
+      allForum = arr;
     });
   }
 

@@ -312,16 +312,11 @@ class _AllDiscoverPageState extends State<AllDiscoverPage>
                                     BorderRadius.all(Radius.circular(50))),
                               ),
                               style: TextStyle(fontSize: ScreenUtil().setSp(28)),
-                              onChanged: (value) {
+                              onChanged: (value) async {
                                 print('onChanged:$value');
                                 if (value.trim().isNotEmpty) {
-                                  List<Map> arr = [];
-                                  allForumCopy.forEach((element) {
-                                    print(element['name']);
-                                    if (element['name'].contains(value)) {
-                                      arr.add(element);
-                                    }
-                                  });
+                                  var result = await HttpUtil().get(Api.searchForum, parameters: {'keyword': value});
+                                  List<Map> arr = (result['data'] as List).cast();
                                   setState(() {
                                     allForum = arr;
                                   });
