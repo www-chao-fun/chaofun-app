@@ -53,11 +53,13 @@ typedef OnSuccess<T>(T data);
 
 class _PostDetailPageState extends State<PostDetailPage> {
   List<Map> commentList = [];
+  Map<int, GlobalKey> commentGlobalKeyList = {};
   String postId;
   Map postInfo;
   Map forumInfo;
   Map toWho;
   bool deleted = false;
+  bool commentIsReady = false;
   TextEditingController _inputController = TextEditingController();
   FocusNode _commentFocus = FocusNode();
   var comParams = {
@@ -92,8 +94,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
   bool showImgs = false;
 
   List collectData = [];
+  GlobalKey commentKey = GlobalKey();
   Widget oks;
 
+  ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     // TODO: implement initState
@@ -123,11 +127,34 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
       setState(() {
         commentList = (da as List).cast();
+        commentGlobalKeyList = {};
+        if (commentList != null && commentList.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            GlobalKey key = GlobalKey();
+            commentGlobalKeyList.putIfAbsent(data[i]['id'], () => key);
+            data[i]['globalKey'] = key;
+          }
+        }
+        commentIsReady = true;
+        jump2Comment();
       });
     }, (message) {
       print('失败了');
     });
     getPostInfo();
+  }
+
+  jump2Comment() async {
+    var targetCommentId = null;
+    if (widget.arguments != null && widget.arguments['targetCommentId'] != null) {
+      targetCommentId = widget.arguments['targetCommentId'].toInt();
+    } else {
+      return;
+    }
+
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    Scrollable.ensureVisible(commentGlobalKeyList[targetCommentId].currentContext, alignment: 0.3);
   }
 
   Map queryChildren(parent, list) {
@@ -136,7 +163,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
     for (var i = 0, len = list.length; i < len; i++) {
       if (list[i]['parentId'] == parent['id']) {
         var item = this.queryChildren(list[i], list);
-
         children.add(item);
       }
     }
@@ -150,11 +176,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
   transformTree(list) {
     var tree = [];
-
     for (var i = 0, len = list.length; i < len; i++) {
       if (list[i]['parentId'] == null) {
         var item = queryChildren(list[i], list);
-
         tree.add(item);
       }
     }
@@ -262,6 +286,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   children: <Widget>[
                     postInfo != null && forumInfo != null
                         ? SingleChildScrollView(
+                      controller: _scrollController,
                       child: Container(
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                         constraints: BoxConstraints(
@@ -363,6 +388,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       ),
                                       Text(
                                         ' 评论区',
+                                        key: commentKey,
                                         style: TextStyle(
                                             fontSize:
                                             ScreenUtil().setSp(30)),
@@ -401,9 +427,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                           ),
                                           children: [
                                             WidgetSpan(
-                                              alignment:
-                                              PlaceholderAlignment
-                                                  .middle,
+                                              alignment: PlaceholderAlignment.middle,
                                               child: Image.asset(
                                                 'assets/images/_icon/exchange.png',
                                                 width: 14,
@@ -447,11 +471,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                 removeTop: true,
                                 context: context,
                                 child: ListView.builder(
-                                  primary: true,
-                                  shrinkWrap:
-                                  true, //为true可以解决子控件必须设置高度的问题
-                                  physics:
-                                  NeverScrollableScrollPhysics(), //禁用滑动事件
+                                  // primary: true,
+                                  shrinkWrap: true, //为true可以解决子控件必须设置高度的问题
+                                  // controller: _scrollController,
+                                  physics: NeverScrollableScrollPhysics(), //禁用滑动事件
                                   itemBuilder: (c, i) {
                                     return CommentWidget(
                                         item: commentList[i],
@@ -460,17 +483,11 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                             toWho = item;
                                             showImgs = false;
                                           });
-                                          if (Provider.of<
-                                              UserStateProvide>(
-                                              context,
-                                              listen: false)
-                                              .ISLOGIN) {
+                                          if (Provider.of<UserStateProvide>(context, listen: false).ISLOGIN) {
                                             // FocusScope.of(context).requestFocus(_commentFocus);
                                             doWay(context);
                                           } else {
-                                            Navigator.pushNamed(
-                                              context,
-                                              '/accoutlogin',
+                                            Navigator.pushNamed(context, '/accoutlogin',
                                               arguments: {
                                                 "from": 'from'
                                               },
@@ -574,6 +591,25 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         bottom: 80,
                         child: Column(
                             children: [
+                              InkWell(
+                                onTap: () async {
+                                  Scrollable.ensureVisible(commentKey.currentContext, alignment: 0.3);
+                                  // _scrollController.animateTo(1000, duration: Duration(milliseconds:500), curve:Curves.decelerate);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                  ),
+                                  child: Icon(
+                                    Icons.download,
+                                    color: Colors.white,
+                                  ),
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ),
+                              Container(height: ScreenUtil().setWidth(20),),
                               InkWell(
                                 onTap: () async {
                                   await this.getComment();

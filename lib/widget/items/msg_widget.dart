@@ -38,7 +38,8 @@ class MsgWidget extends StatelessWidget {
                         context,
                         '/postdetail',
                         arguments: {
-                          "postId": item['post']['postId'].toString()
+                          "postId": item['post']['postId'].toString(),
+                          "targetCommentId": (item['comment'] != null ? item['comment']['id']: null)
                         },
                       );
                     }

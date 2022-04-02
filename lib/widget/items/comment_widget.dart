@@ -81,6 +81,7 @@ class _CommentWidgetState extends State<CommentWidget> {
       child: Column(
         children: [
           Row(
+            key: item['globalKey'],
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
