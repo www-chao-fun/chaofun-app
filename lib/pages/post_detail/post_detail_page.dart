@@ -1767,7 +1767,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                     params['parentId'] = toWho['id'].toString();
                                   }
                                   print(params);
-                                  var response = await HttpUtil().get(Api.userToComment, parameters: params);
+                                  var response = await HttpUtil().post(Api.userToComment, parameters: params);
                                   if (response['success']) {
                                     setState(() {
                                       isLoading = false;

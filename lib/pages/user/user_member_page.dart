@@ -519,7 +519,7 @@ class _UserMemberPageState extends State<UserMemberPage>
               Navigator.pushNamed(
                 context,
                 '/postdetail',
-                arguments: {"postId": item['post']['postId'].toString()},
+                arguments: {"postId": item['post']['postId'].toString(), "targetCommentId": item['id']},
               );
             },
             child: Container(
