@@ -93,6 +93,10 @@ class _IndexPageState extends State<IndexPage> {
 
   String brand;
   void inits() async {
+
+    // 更新全局变量
+    Provider.of<UserStateProvide>(context, listen: false).init();
+
     /// 拉取版本号信息
     var _flatform;
     if (Platform.isAndroid) {
@@ -126,6 +130,7 @@ class _IndexPageState extends State<IndexPage> {
         compareTime(versionMap['android']['action']);
       }
     }
+
   }
 
   checkIfShowAgree() async {
