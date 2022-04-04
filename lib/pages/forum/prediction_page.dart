@@ -227,7 +227,7 @@ class _PredictionPageState extends State<PredictionPage> {
                                               alignment: Alignment.center,
                                               // color: Colors.blue,
                                               child: Text(
-                                                gameData['desc'],
+                                                gameData['desc'] != null ? gameData['desc']:'' ,
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize:

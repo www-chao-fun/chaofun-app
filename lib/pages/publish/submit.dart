@@ -1168,7 +1168,10 @@ class _SubmitPageState extends State<SubmitPage> {
           showBackgroundColorButton: false,
           showClearFormat: true,
         ),
-        Text('提示：如遇无法输入请切换光标至标题再切换回来即可', style: TextStyle(color: Theme.of(context).hintColor, fontSize: ScreenUtil().setWidth(20)),),
+        Visibility(
+          visible: Platform.isAndroid,
+          child: Text('提示：如遇无法输入请切换光标至标题再切换回来即可', style: TextStyle(color: Theme.of(context).hintColor, fontSize: ScreenUtil().setWidth(20)),),
+        ),
         Expanded(
           flex: 15,
           child:
