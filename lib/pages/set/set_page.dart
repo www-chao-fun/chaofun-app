@@ -322,7 +322,7 @@ class _SetPageState extends State<SetPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '自动播放视频',
+                          '视频详情页自动播放',
                           style: TextStyle(
                               color: Color.fromRGBO(105, 105, 105, 1)),
                         ),

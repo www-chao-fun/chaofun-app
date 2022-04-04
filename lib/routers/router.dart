@@ -11,6 +11,7 @@ import 'package:flutter_chaofan/pages/forum/prediction_page.dart';
 import 'package:flutter_chaofan/pages/forum/recommend_page.dart';
 import 'package:flutter_chaofan/pages/forum/test_page.dart';
 import 'package:flutter_chaofan/pages/forum_followers_page.dart';
+import 'package:flutter_chaofan/pages/history_page.dart';
 import 'package:flutter_chaofan/pages/login/accoutLogin.dart';
 import 'package:flutter_chaofan/pages/login/register.dart';
 import 'package:flutter_chaofan/pages/message_page.dart';
@@ -103,6 +104,7 @@ final routes = {
       DropWaterPage(arguments: arguments),
   '/parseUrlPage': (context, {arguments}) => ParseUrlPage(),
   '/setpage': (context, {arguments}) => SetPage(),
+  '/history': (context)=> HistoryPage(),
   '/setThemePage': (context, {arguments}) => SetThemePage(),
   '/bindphonepage': (context, {arguments}) => BindPhonePage(),
   '/pushSet': (context, {arguments}) => PushSetPage(),

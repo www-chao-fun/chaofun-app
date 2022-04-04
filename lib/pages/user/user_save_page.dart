@@ -28,6 +28,7 @@ class _UserSavePageState extends State<UserSavePage> {
   List<Map> pageData = [];
 
   var params = {
+    "pageNum": 1,
     "pageSize": '20',
     "marker": '',
   };
@@ -58,9 +59,6 @@ class _UserSavePageState extends State<UserSavePage> {
       setState(() {
         pageData.addAll(asd);
         print('HOME pagedata的数据长度是: ${pageData.length}');
-        if (data['marker'] != null) {
-          params["marker"] = data['marker'];
-        }
       });
     }, (message) {
       print('失败了');

@@ -83,6 +83,8 @@ class Api {
 
   static const String myListSaved = BASE_URL + '/api/v0/me/list_saved'; // 我收藏的
 
+  static const String myHistory = BASE_URL + '/api/v0/user/getBrowsingHistory'; // 我收藏的
+
   static const String userToComment = BASE_URL + '/api/comment'; // 评论
 
   static const String getActivity = BASE_URL + '/api/v0/activity'; // 查询活动

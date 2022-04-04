@@ -143,6 +143,22 @@ class HomeService {
     }
   }
 
+  Future myHistory(Map<String, dynamic> parameters, OnSuccess onSuccess,
+      OnFail onFail) async {
+    try {
+      var response =
+      await HttpUtil.instance.get(Api.myHistory, parameters: parameters);
+      if (response['success']) {
+        onSuccess(response["data"]);
+      } else {
+        onFail(response['errorMessage']);
+      }
+    } catch (e) {
+      print(e);
+      // onFail(Strings.SERVER_EXCEPTION);
+    }
+  }
+
   Future messageList(Map<String, dynamic> parameters, OnSuccess onSuccess,
       OnFail onFail) async {
     try {

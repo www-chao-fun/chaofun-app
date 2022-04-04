@@ -48,6 +48,7 @@ class _MemberPageState extends State<MemberPage> {
 
 
   List<Map> listData = [
+    {"label": "历史记录", "value": "16", "icon": "assets/images/icon/fabu.png"},
     {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
     // {"label": "浏览历史", "value": "11", "icon": "assets/images/icon/fabu.png"},
     // {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
@@ -838,6 +839,11 @@ class _MemberPageState extends State<MemberPage> {
                               context,
                               '/collectlist',
                               arguments: {'type': 1},
+                            );
+                          }  else if (item['value'] == '16') {
+                            Navigator.pushNamed(
+                              context,
+                              '/history',
                             );
                           }
                         } else {
