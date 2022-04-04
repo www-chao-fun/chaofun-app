@@ -17,6 +17,7 @@ class UserStateProvide with ChangeNotifier {
   var appVersionInfo;
   bool doubleTap = false;
   bool onlyNew = false;
+  bool autoPlayVideo = true;
   var searchHistory = [];
 
   bool showAgree = false;
@@ -34,6 +35,12 @@ class UserStateProvide with ChangeNotifier {
 
   var order = 'hot';
   var range = '1month';
+
+  void init() {
+    getLoopGif();
+    getAutoPlayVideo();
+    getAutoPlayGif();
+  }
 
   List looksList = [
     {
@@ -109,7 +116,6 @@ class UserStateProvide with ChangeNotifier {
     if (prefs.getBool('loopGif') != null) {
       loopGif = prefs.getBool('loopGif');
     }
-
     return loopGif;
   }
 
@@ -142,6 +148,21 @@ class UserStateProvide with ChangeNotifier {
       autoPlayGif = prefs.getBool('autoPlayGif');
     }
     return autoPlayGif;
+  }
+
+  Future<void> setAutoPlayVideo() async {
+    autoPlayVideo = !autoPlayVideo;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('autoPlayVideo', autoPlayVideo);
+    notifyListeners();
+  }
+
+  Future<bool> getAutoPlayVideo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('autoPlayVideo') != null) {
+      autoPlayVideo = prefs.getBool('autoPlayVideo');
+    }
+    return autoPlayVideo;
   }
 
   var changeTag;
