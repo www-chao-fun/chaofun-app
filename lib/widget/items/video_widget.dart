@@ -159,15 +159,19 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
               ..initialize().then((value) {
                 // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
                 print('视频加载value');
-                setState(() {
+                if (Provider.of<UserStateProvide>(context, listen: false).autoPlayVideo) {
+                  setState(() {
                   canshow = true;
-                });
+                  });
+                }
 
                 Future.delayed(Duration(milliseconds: 200)).then((e) {
                   setState(() {
                     initialized = true;
                   });
-                  _videoPlayerController.play();
+                  if (Provider.of<UserStateProvide>(context, listen: false).autoPlayVideo) {
+                    _videoPlayerController.play();
+                  }
                 });
 
                 _videoPlayerController.addListener(() {
