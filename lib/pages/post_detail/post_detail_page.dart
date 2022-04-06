@@ -102,6 +102,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    comParams['order'] = Provider.of<UserStateProvide>(context, listen: false).fixedCommentOrder;
     setState(() {
       postId = widget.arguments['postId'];
       comParams['postId'] = postId;
@@ -396,53 +397,17 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                     ],
                                   ),
 
-                                  InkWell(
-                                    onTap: () {
-                                      if (comParams['order'] == 'hot') {
-                                        setState(() {
-                                          comParams['order'] = 'new';
-                                        });
-                                      } else if (comParams['order'] == 'new') {
-                                        setState(() {
-                                          comParams['order'] = 'old';
-                                        });
-                                      } else {
-                                        setState(() {
-                                          comParams['order'] = 'hot';
-                                        });
-                                      }
-                                      getComment();
-                                    },
-                                    child: RichText(
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      text: TextSpan(
-                                          text: '',
-                                          style: TextStyle(
-                                            fontSize:
-                                            ScreenUtil().setSp(26),
-                                            color: Color.fromRGBO(
-                                                53, 140, 255, 1),
-                                            // fontWeight: FontWeight.bold,
-                                          ),
-                                          children: [
-                                            WidgetSpan(
-                                              alignment: PlaceholderAlignment.middle,
-                                              child: Image.asset(
-                                                'assets/images/_icon/exchange.png',
-                                                width: 14,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: getOrder(comParams['order']),
-
-                                              style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    33, 29, 47, 0.7),
-                                              ),
-                                            ),
-                                          ]),
-                                    ),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        getCommentOrderChoose('最新', 'new'),
+                                        Container(width: ScreenUtil().setWidth(25),),
+                                        getCommentOrderChoose('最热', 'hot'),
+                                        Container(width: ScreenUtil().setWidth(25),),
+                                        getCommentOrderChoose('时间', 'old'),
+                                        Container(width: ScreenUtil().setWidth(25),),
+                                        getCommentOrderChoose('只看帖主', 'owner'),
+                                    ],
                                   ),
                                   // assets/images/_icon/exchange.png
                                 ],
@@ -642,6 +607,21 @@ class _PostDetailPageState extends State<PostDetailPage> {
           }
         },
       ),
+    );
+  }
+
+  Widget getCommentOrderChoose(name, order) {
+    return  InkWell(
+        key: Key(order),
+        onTap:() {
+          setState(() {
+            comParams['order'] = order;
+          });
+          getComment();
+        },
+        child: Text(name , style:
+        comParams['order'] == order ? TextStyle(color: Theme.of(context).textTheme.titleLarge.color, fontWeight: FontWeight.bold , fontSize: ScreenUtil().setWidth(30))
+            : TextStyle(color: Theme.of(context).hintColor, fontSize: ScreenUtil().setWidth(30)),)
     );
   }
 

@@ -76,6 +76,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
   var detail = false;
   var init = false;
   var video = false;
+  var tapPlay = false;
   bool toFull = false;
   String dataSource;
 
@@ -159,9 +160,9 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
               ..initialize().then((value) {
                 // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
                 print('视频加载value');
-                if (Provider.of<UserStateProvide>(context, listen: false).autoPlayVideo) {
+                if (Provider.of<UserStateProvide>(context, listen: false).autoPlayVideo || tapPlay) {
                   setState(() {
-                  canshow = true;
+                    canshow = true;
                   });
                 }
 
@@ -169,7 +170,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
                   setState(() {
                     initialized = true;
                   });
-                  if (Provider.of<UserStateProvide>(context, listen: false).autoPlayVideo) {
+                  if (Provider.of<UserStateProvide>(context, listen: false).autoPlayVideo || tapPlay) {
                     _videoPlayerController.play();
                   }
                 });
@@ -675,6 +676,7 @@ class _VideoWidgetState extends State<VideoWidget> with RouteAware {
     return InkWell(
       onTap: () {
         if (_videoPlayerController == null || !initialized) {
+          tapPlay = true;
           _inits();
 
           // Future.delayed(Duration(milliseconds: 300)).then((e) {

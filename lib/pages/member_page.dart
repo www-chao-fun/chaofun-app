@@ -466,8 +466,7 @@ class _MemberPageState extends State<MemberPage> {
                           page: SelfHeader(
                             imgDataArr: [
                               KSet.imgOrigin +
-                                  info['icon'] +
-                                  '?x-oss-process=image/resize,h_150/format,webp/quality,q_75'
+                                  info['icon']
                             ],
                             index: 0,
                             showMore: true,

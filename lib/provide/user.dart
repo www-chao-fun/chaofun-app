@@ -30,6 +30,9 @@ class UserStateProvide with ChangeNotifier {
   var theme = 'normal'; // normal, dark, 
   var unreadMessage = 0;
   var modelType = 'model2';
+  var commentOrderType = 'last';
+  var fixedCommentOrder = 'hot';
+  var lastOrderType = 'hot';
 
   List remmenberForumList = [];
 
@@ -40,6 +43,7 @@ class UserStateProvide with ChangeNotifier {
     getLoopGif();
     getAutoPlayVideo();
     getAutoPlayGif();
+    getFixedCommentOrder();
   }
 
   List looksList = [
@@ -163,6 +167,21 @@ class UserStateProvide with ChangeNotifier {
       autoPlayVideo = prefs.getBool('autoPlayVideo');
     }
     return autoPlayVideo;
+  }
+
+  Future<void> setFixedCommentOrder(order) async {
+    fixedCommentOrder = order;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('fixedCommentOrder', order);
+    notifyListeners();
+  }
+
+  Future<String> getFixedCommentOrder() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('fixedCommentOrder') != null) {
+      fixedCommentOrder = prefs.getString('fixedCommentOrder');
+    }
+    return fixedCommentOrder;
   }
 
   var changeTag;

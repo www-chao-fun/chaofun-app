@@ -25,6 +25,7 @@ import 'package:flutter_chaofan/pages/publish/submit.dart';
 import 'package:flutter_chaofan/pages/publish/vote_publish_page.dart';
 import 'package:flutter_chaofan/pages/search/search_page.dart';
 import 'package:flutter_chaofan/pages/search/search_result_page.dart';
+import 'package:flutter_chaofan/pages/set/comment_order_set_page.dart';
 import 'package:flutter_chaofan/pages/set/contact_page.dart';
 import 'package:flutter_chaofan/pages/set/push_set_page.dart';
 import 'package:flutter_chaofan/pages/set/set_theme_page.dart';
@@ -108,6 +109,7 @@ final routes = {
   '/setThemePage': (context, {arguments}) => SetThemePage(),
   '/bindphonepage': (context, {arguments}) => BindPhonePage(),
   '/pushSet': (context, {arguments}) => PushSetPage(),
+  '/commentOrderSetPage': (context) => CommentOrderSetPage(),
   '/collectlist': (context, {arguments}) =>
       CollectListPage(arguments: arguments),
   '/collectdetail': (context, {arguments}) =>

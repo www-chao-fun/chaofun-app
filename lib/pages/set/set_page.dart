@@ -387,7 +387,50 @@ class _SetPageState extends State<SetPage> {
                     ),
                   ),
                 ),
+
               ),
+              Container(
+                color: Colors.white,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/commentOrderSetPage',
+                    );
+                  },
+                  child: Container(
+                    height: ScreenUtil().setWidth(110),
+                    padding: EdgeInsets.only(left: 0, right: 10),
+                    margin: EdgeInsets.only(left: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          width: 1,
+                          color: Color.fromRGBO(183, 183, 183, 0.2),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '默认评论排序',
+                          style: TextStyle(
+                              color: Color.fromRGBO(105, 105, 105, 1)),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+              ),
+
             ],
           ),
         ],

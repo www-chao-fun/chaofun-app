@@ -26,6 +26,18 @@ class _MessagePageState extends State<MessagePage> {
     '上海': ['黄浦区'],
     '杭州': ['西湖区'],
   };
+
+  static const  navData = [
+    {'label': '全部', 'value': 'all'},
+    {'label': '评论', 'value': 'comment'},
+    {'label': '@我', 'value': 'at'},
+    {'label': '点赞', 'value': 'upvote'},
+    {'label': '通知', 'value': 'notice'},
+  ];
+
+  String tabs = 'all';
+
+
   EasyRefreshController _controller;
   double appBarAlpha = 0;
   int counter;
@@ -67,16 +79,7 @@ class _MessagePageState extends State<MessagePage> {
     _controller = EasyRefreshController();
     print('我的消息1');
     getDatas('');
-    // commentFuture = homeService.messageList(params, (response) {
-    //   var data = response;
-    //   // setState(() {
-    //   setState(() {
-    //     params['marker'] = data['marker'] != null ? data['marker'] : '';
-    //     pageData = (data['messages'] as List).cast();
-    //   });
-    // }, (message) {
-    //   print('失败了');
-    // });
+
   }
 
   void inits(context) {
@@ -88,23 +91,6 @@ class _MessagePageState extends State<MessagePage> {
 
   Future futuregetDatas(type) async {
     var data = await HttpUtil().get(Api.messageList, parameters: params);
-    // print('我的消息2');
-    // print(data);
-    // if (type == 'refresh') {
-    //   setState(() {
-    //     pageData = [];
-    //   });
-    // }
-    // if (data['data'] != null && data['data']['messages'].length > 0) {
-    //   List<Map> res = (data['data']['messages'] as List).cast();
-
-    //   setState(() {
-    //     pageData.addAll(res);
-
-    //     params["marker"] = data['data']['marker'];
-    //   });
-    // } else {
-    // }
     return data;
   }
 
@@ -122,7 +108,6 @@ class _MessagePageState extends State<MessagePage> {
 
       setState(() {
         pageData.addAll(res);
-
         params["marker"] = data['data']['marker'];
       });
     } else {
@@ -159,43 +144,86 @@ class _MessagePageState extends State<MessagePage> {
         return Consumer<UserStateProvide>(
           builder: (BuildContext context, UserStateProvide user, Widget child) {
             if (user.ISLOGIN) {
-              return EasyRefresh.custom(
-                enableControlFinishRefresh: true,
-                enableControlFinishLoad: true,
-                controller: _controller,
-                header: ClassicalHeader(
-                  showInfo: false,
-                  refreshReadyText: KSet.refreshReadyText,
-                  refreshingText: KSet.refreshingText,
-                  refreshText: KSet.refreshText,
-                  refreshedText: KSet.refreshedText,
-                  textColor: KSet.textRefreshColor,
-                  refreshFailedText: '加载失败',
-                ),
-                footer: ClassicalFooter(
-                  enableHapticFeedback: false,
-                  showInfo: false,
-                  loadingText: KSet.loadingText,
-                  loadedText: KSet.loadedText,
-                  textColor: KSet.textRefreshColor,
-                  loadFailedText: '加载失败',
-                ),
-                onRefresh: _onRefresh,
-                onLoad: _onLoading,
-                slivers: <Widget>[
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        // return _item(pageData[index]);
-                        return MsgWidget(
-                          item: pageData[index],
-                        );
-                      },
-                      childCount: pageData.length,
+              return
+                Stack( children:[
+
+                  Padding(
+                      padding: EdgeInsets.only(top: 45),
+                      child:
+                      EasyRefresh.custom(
+                        enableControlFinishRefresh: true,
+                        enableControlFinishLoad: true,
+                        controller: _controller,
+                        header: ClassicalHeader(
+                          showInfo: false,
+                          refreshReadyText: KSet.refreshReadyText,
+                          refreshingText: KSet.refreshingText,
+                          refreshText: KSet.refreshText,
+                          refreshedText: KSet.refreshedText,
+                          textColor: KSet.textRefreshColor,
+                          refreshFailedText: '加载失败',
+                        ),
+                        footer: ClassicalFooter(
+                          enableHapticFeedback: false,
+                          showInfo: false,
+                          loadingText: KSet.loadingText,
+                          loadedText: KSet.loadedText,
+                          textColor: KSet.textRefreshColor,
+                          loadFailedText: '加载失败',
+                        ),
+                        onRefresh: _onRefresh,
+                        onLoad: _onLoading,
+                        slivers: <Widget>[
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                                  (context, index) {
+                                // return _item(pageData[index]);
+                                return MsgWidget(
+                                  item: pageData[index],
+                                );
+                              },
+                              childCount: pageData.length,
+                            ),
+                          ),
+                        ],
+                      )
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 46,
+                    // height: ScreenUtil().setWidth(160), // 搜索框60，导航80 + 边框20
+                    // MediaQueryData.fromWindow(window).padding.top +
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        left: ScreenUtil().setWidth(50),
+                        right: ScreenUtil().setWidth(50),
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border(
+                          bottom: BorderSide(
+                            width: 0.5,
+                            color: Color.fromRGBO(240, 240, 240, 1),
+                          ),
+                        ),
+                      ),
+                      child: Consumer<UserStateProvide>(
+                        builder: (context, UserStateProvide user, Widget child) {
+
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: navData.map((item) {
+                              return _navItem(item['label'], item['value']);
+                            }).toList(),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ],
-              );
+                ]
+                );
             } else {
               return Center(
                 child: Text('登录后查看消息'),
@@ -326,6 +354,54 @@ class _MessagePageState extends State<MessagePage> {
             style: TextStyle(
               color: Colors.black,
               fontSize: ScreenUtil().setSp(26),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _navItem(name, type) {
+    return InkWell(
+      onTap: () {
+        FocusScope.of(this.context).requestFocus(FocusNode());
+        setState(() {
+          tabs = type;
+          params['type'] = type;
+          _controller.callRefresh();
+        });
+        // }
+      },
+      child: Container(
+        width: ScreenUtil().setWidth(100),
+        height: 45,
+        padding: EdgeInsets.only(
+          top: 5,
+          // left: ScreenUtil().setHeight(30),
+          // right: ScreenUtil().setHeight(30),
+        ),
+        alignment: Alignment.center,
+        child: Container(
+          height: 45,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            // color: Colors.black12,
+            border: Border(
+              bottom: BorderSide(
+                width: 4,
+                color:
+                tabs == type ? Color.fromRGBO(255, 147, 0, 1) : Colors.white,
+              ),
+            ),
+          ),
+          child: Text(
+            name,
+            style: tabs == type
+                ? KFont.homeNavActStyle
+                : TextStyle(
+              fontSize: 15,
+              color: Color.fromRGBO(33, 29, 47, 0.7),
+              // fontWeight: FontWeight.bold,
             ),
           ),
         ),
