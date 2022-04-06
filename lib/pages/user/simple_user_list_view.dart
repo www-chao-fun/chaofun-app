@@ -50,7 +50,7 @@ class SimpleUserListViewState extends State<SimpleUserListView> {
                 left: 10,
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
                 child: CachedNetworkImage(
                   imageUrl: KSet.imgOrigin +
                       widget.userInfo['icon'] +

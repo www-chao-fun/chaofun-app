@@ -88,6 +88,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
   List rowData = [];
   List mods = [];
   List rules = [];
+  List badges = [];
   List pins = [];
   var tableItem;
   var tableData;
@@ -880,6 +881,10 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                             fontSize: ScreenUtil().setSp(32))
                                         ),
                                         userList(context),
+                                        Text("徽章", style: TextStyle(
+                                            fontSize: ScreenUtil().setSp(32))
+                                        ),
+                                        badgeList(context),
                                       ],
                                     );
                                   }
@@ -1025,6 +1030,101 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
     );
   }
 
+  Widget badgeList(BuildContext context) {
+    if (badges.length > 0) {
+      return Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: badges.map((e) {
+            return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      // builder: (context) => WebViewExample(
+                      //     url: 'https://chao.fun/p/417588', title: '炒饭用户及隐私政策'),
+                      builder: (context) => ChaoFunWebView(
+                        // url: 'https://chao.fun/p/417588',
+                        url:
+                        'https://chao.fun/webview/badge?badgeId=' +
+                            (e['id'] == null ? '' : e['id'].toString()) , //'https://chao.fun/webview/agreement',
+                        title: e['name'],
+                        showAction: false,
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 40,
+                  alignment: Alignment.centerLeft,
+                  // margin: EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 0.2,
+                        color: Color.fromRGBO(240, 240, 240, 1),
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 30,
+                        height: 30,
+                        margin: EdgeInsets.only(
+                          right: 8,
+                          left: 8,
+                        ),
+                        child: ClipRRect(
+                          child: CachedNetworkImage(
+                            imageUrl: KSet.imgOrigin +
+                                e['icon'] + '?x-oss-process=image/resize,h_60/format,webp/quality,q_75',
+                            width: 30,
+                            height: 30,
+                            fit: BoxFit.fill,
+                            placeholder: (context, url) =>
+                                Center(
+                                  child: Image.asset(
+                                      "assets/images/img/place.png"),
+                                ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          padding: EdgeInsets.only(top: 5, bottom: 5),
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(e['name'] + "(人数："
+                                    + (e['userNumber'] != null ? e['userNumber'].toString() : '') +  ", FBi："
+                                    + (e['integral'] != null ? e['integral'].toString() : '') +  ")",
+                                  style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(25),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+            );
+          }).toList(),
+        ),
+      );
+    } else {
+      return Text('本版块暂无徽章～');
+    }
+  }
+
   Widget userList(BuildContext context) {
     if (mods.length > 0) {
       return Container(
@@ -1062,7 +1162,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                         left: 8,
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(15),
                         child: CachedNetworkImage(
                           imageUrl: KSet.imgOrigin +
                               e['icon'] + '?x-oss-process=image/resize,h_60/format,webp/quality,q_75',
@@ -1406,6 +1506,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
 
     getMods();
     getRules();
+    getBadges();
 
     if (response1['data'] != null || response2['data'].length > 0) {
       setState(() {
@@ -1436,6 +1537,15 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
     });
     if (response3['data'] != null) {
       rules = response3['data'];
+    }
+  }
+
+  getBadges() async {
+    var response3 = await HttpUtil().get(Api.badgeList, parameters: {
+      'forumId': forumData['id'],
+    });
+    if (response3['data'] != null) {
+      badges = response3['data'];
     }
   }
 
