@@ -216,6 +216,8 @@ class Api {
 
   static const String ruleList = BASE_URL + '/api/v0/forum/listRules';
 
+  static const String badgeList = BASE_URL + '/api/v0/badge/listForumBadges';
+
   static const String modList = BASE_URL + '/api/v0/mod/list';
 
   static const String tableget = BASE_URL + '/api/v0/forum/table/get';
