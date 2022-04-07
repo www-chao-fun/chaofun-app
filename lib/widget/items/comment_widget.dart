@@ -187,61 +187,69 @@ class _CommentWidgetState extends State<CommentWidget> {
                               child: Text(''),
                               flex: 1,
                             ),
-                            item['canDeleted']
-                                ? InkWell(
-                              onTap: () {
-                                showCupertinoDialog(
-                                  //showCupertinoDialog
-                                    context: context,
-                                    builder: (context) {
-                                      return CupertinoAlertDialog(
-                                        title: Text('提示'),
-                                        content: Text('确认删除该评论吗？'),
-                                        actions: <Widget>[
-                                          CupertinoDialogAction(
-                                            child: Text('取消'),
-                                            onPressed: () {
-                                              Navigator.of(context).pop('cancel');
-                                            },
-                                          ),
-                                          CupertinoDialogAction(
-                                            child: Text('确认'),
-                                            onPressed: () async {
-                                              var res = await HttpUtil()
-                                                  .get(Api.deleteComment,
-                                                  parameters: {
-                                                    'commentId':
-                                                    item['id']
+                            Row(
+                                children: [
+
+                                  InkWell(
+                                    onTap: () {
+                                      doWay(context);
+                                    },
+                                    child: Text("举报", style: TextStyle(color: Theme.of(context).hintColor, fontSize: ScreenUtil().setWidth(25), fontWeight: FontWeight.bold), )
+                                  ),
+                              Container(width: 10,),
+                              item['canDeleted']
+                                  ? InkWell(
+                                onTap: () {
+                                  showCupertinoDialog(
+                                    //showCupertinoDialog
+                                      context: context,
+                                      builder: (context) {
+                                        return CupertinoAlertDialog(
+                                          title: Text('提示'),
+                                          content: Text('确认删除该评论吗？'),
+                                          actions: <Widget>[
+                                            CupertinoDialogAction(
+                                              child: Text('取消'),
+                                              onPressed: () {
+                                                Navigator.of(context).pop('cancel');
+                                              },
+                                            ),
+                                            CupertinoDialogAction(
+                                              child: Text('确认'),
+                                              onPressed: () async {
+                                                var res = await HttpUtil()
+                                                    .get(Api.deleteComment,
+                                                    parameters: {
+                                                      'commentId':
+                                                      item['id']
+                                                    });
+                                                if (res['success']) {
+                                                  Navigator.of(context)
+                                                      .pop('ok');
+                                                  item['text'] = '【已删除】';
+                                                  item['imageNames'] = null;
+                                                  setState(() {
+                                                    item = item;
                                                   });
-                                              if (res['success']) {
-                                                Navigator.of(context)
-                                                    .pop('ok');
-                                                item['text'] = '【已删除】';
-                                                item['imageNames'] = null;
-                                                setState(() {
-                                                  item = item;
-                                                });
-                                              } else {
-                                                Fluttertoast.showToast(
-                                                  msg: res['errorMessage']
-                                                      .toString(),
-                                                  gravity:
-                                                  ToastGravity.CENTER,
-                                                );
-                                              }
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },
-                              child: Image.asset(
-                                'assets/images/_icon/dele_comment.png',
-                                width: 20,
-                                height: 20,
-                              ),
+                                                } else {
+                                                  Fluttertoast.showToast(
+                                                    msg: res['errorMessage']
+                                                        .toString(),
+                                                    gravity:
+                                                    ToastGravity.CENTER,
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                },
+                                child: Icon(Icons.delete_forever, size: ScreenUtil().setWidth(35),color: Colors.red,)
+                              )
+                                  : Text('')
+                            ]
                             )
-                                : Text('')
                           ],
                         ),
                       ),
@@ -594,6 +602,77 @@ class _CommentWidgetState extends State<CommentWidget> {
     //   }
     // });
     // return formatTxtContent;
+  }
+
+  var _reportController = TextEditingController();
+  doWay(context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) =>
+      new AnimatedPadding(
+        padding: MediaQuery
+            .of(context)
+            .viewInsets, //边距（必要）
+        duration: const Duration(milliseconds: 80), //时常 （必要）
+        child: Container(
+          height: ScreenUtil().setHeight(220),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                child: TextField(
+                  controller: _reportController,
+                  decoration: InputDecoration(
+                    contentPadding:
+                    EdgeInsets.only(left: 10, top: 6, bottom: 4),
+                    border: OutlineInputBorder(),
+                    hintText: '请输入举报理由(可为空)',
+                  ),
+                  style: TextStyle(
+                    fontSize: ScreenUtil().setSp(28),
+                    // fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerRight,
+                padding: EdgeInsets.fromLTRB(0, 4, 10, 0),
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
+                  color: Colors.pink,
+                  child: InkWell(
+                    onTap: () {
+                      toReport(context, _reportController.text, item['id'].toString());
+                      // toUpReport(context, content, item);
+                    },
+                    child: Text(
+                      '提交',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> toReport(BuildContext context, String reason, String id) async {
+    var response = await HttpUtil().get(Api.upReport, parameters: {
+      'contentType': 'comment',
+      'reason': reason,
+      'id': id
+    });
+    if (response['success']) {
+      Fluttertoast.showToast(
+        msg: '举报成功',
+        gravity: ToastGravity.CENTER,
+        // textColor: Colors.grey,
+      );
+    }
+    Navigator.of(context).pop();
   }
 
   void toNavigate(Map args) {

@@ -458,7 +458,7 @@ class MoreWidget{
                     contentPadding:
                     EdgeInsets.only(left: 10, top: 6, bottom: 4),
                     border: OutlineInputBorder(),
-                    hintText: '请输入举报理由',
+                    hintText: '请输入举报理由(可为空)',
                   ),
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(28),
@@ -474,18 +474,7 @@ class MoreWidget{
                   color: Colors.pink,
                   child: InkWell(
                     onTap: () {
-                      var content = _inputController.text;
-                      if (content.trim().isNotEmpty) {
-                        // print('举报内容值为：${content}');
-                        toUpReport(context, content, item);
-                      } else {
-                        // print('举报内容值为空的');
-                        Fluttertoast.showToast(
-                          msg: '请输入举报原因',
-                          gravity: ToastGravity.CENTER,
-                          // textColor: Colors.grey,
-                        );
-                      }
+                      toUpReport(context, _inputController.text, item);
                       // toUpReport(context, content, item);
                     },
                     child: Text(
