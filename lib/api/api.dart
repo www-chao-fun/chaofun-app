@@ -137,6 +137,8 @@ class Api {
   // ?marker=&pageSize=40
   static const String listTag = BASE_URL + '/api/v0/forum/listTag'; // 获取标签列表
 
+  static const String leaveChannel = BASE_URL + '/api/v0/chat/group_chat/left'; // 获取标签列表
+
   static const String addRecommend = BASE_URL + '/api/v0/addRecommend'; // 管理员推荐
 
   static const String listBadges = BASE_URL + '/api/v0/badge/list'; // 管理员推荐

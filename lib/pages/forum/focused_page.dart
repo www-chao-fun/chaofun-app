@@ -230,6 +230,7 @@ class _FocusedPageState extends State<FocusedPage> {
                                           type: 'trends',
                                           pageSource: 'trends',
                                           source: pageData[index],
+                                          userInfo: pageData[index]['focusUser'],
                                         ),
                                       ),
                                       Padding(

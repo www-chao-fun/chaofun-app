@@ -1,9 +1,11 @@
 import 'package:extended_text_field/extended_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chaofan/api/api.dart';
 import 'package:flutter_chaofan/pages/chat_home_page.dart';
 import 'package:flutter_chaofan/utils/const.dart';
 import 'package:flutter_chaofan/utils/contacts.dart';
+import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_chaofan/utils/win_media.dart';
 import 'package:flutter_chaofan/utils/notice.dart';
 import 'package:flutter_chaofan/widget/im/chat_details_body.dart';
@@ -19,12 +21,16 @@ import 'chat_more_page.dart';
 
 enum ButtonType { voice, more }
 
+typedef QuitCallback = Future<void> Function();
+
+
 class ChatPage extends StatefulWidget {
   final String title;
   final int type;
   final int id;
+  final QuitCallback quitCallback;
 
-  ChatPage({this.id, this.title, this.type = 1});
+  ChatPage({this.id, this.title, this.type = 1, this.quitCallback});
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -203,6 +209,45 @@ class _ChatPageState extends State<ChatPage> {
     ];
 
     List<Widget> rWidget =  [
+      Visibility(
+        visible: widget.type != null && widget.type == 2,
+        child:  TextButton(
+          onPressed: () {
+            showCupertinoDialog(
+              //showCupertinoDialog
+                context: context,
+                builder: (context) {
+                  return CupertinoAlertDialog(
+                    title: Text('提示'),
+                    content: Text('你确定退出该群聊吗？你将无法收取到新消息提醒'),
+                    actions: <Widget>[
+                      CupertinoDialogAction(
+                        child: Text('取消'),
+                        onPressed: () {
+                          Navigator.of(context).pop('cancel');
+                        },
+                      ),
+                      CupertinoDialogAction(
+                        child: Text('确定'),
+                        onPressed: () async {
+                          await HttpUtil().get(Api.leaveChannel,
+                              parameters: {'channelId': widget.id});
+                          if (widget.quitCallback != null) {
+                            widget.quitCallback();
+                          }
+                          Navigator.of(context).pop('ok');
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                });
+
+          },
+          child: Text("退出")
+      ),
+
+      ),
     ];
 
     return

@@ -1341,7 +1341,8 @@ class _UserMemberPageState extends State<UserMemberPage>
               routePush(context, new ChatPage(
                   id:  response['data']['id'],
                   title: response['data']['name'],
-                  type: 2));
+                  type: 2,
+              ));
             }
           }
         },

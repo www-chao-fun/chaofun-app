@@ -60,7 +60,7 @@ class ChaoFunWebView extends StatefulWidget {
 
 class _WebViewExampleState extends State<ChaoFunWebView> {
   final Completer<InAppWebViewController> _controller =
-      Completer<InAppWebViewController>();
+  Completer<InAppWebViewController>();
   InAppWebViewController webView;
   final GlobalKey webViewKey = GlobalKey();
   CookieManager cookieManager = new CookieManager();
@@ -177,8 +177,8 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
             showAction == null
                 ? NavigationControls(_controller.future)
                 : Container(
-                    width: 0,
-                  ),
+              width: 0,
+            ),
             // SampleMenu(_controller.future),
           ],
         ),
@@ -187,217 +187,218 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
       body: Stack(children: <Widget>[
         !isError
             ? InAppWebView(
-                key: webViewKey,
-                // initialUrl: url,
-                initialUrlRequest: URLRequest(url: Uri.parse(url)),
-                // initialHeaders: {},
-                initialOptions: InAppWebViewGroupOptions(
-                  crossPlatform: InAppWebViewOptions(
-                    useShouldOverrideUrlLoading: true,
-                    mediaPlaybackRequiresUserGesture: false,
-                  ),
-                  android: AndroidInAppWebViewOptions(
-                    useHybridComposition: true,
-                  ),
-                  ios: IOSInAppWebViewOptions(
-                    allowsInlineMediaPlayback: true,
-                  ),
-                ),
-                onWebViewCreated: (InAppWebViewController controller) {
-                  webView = controller;
-                  _controller.complete(controller);
+          key: webViewKey,
+          // initialUrl: url,
+          initialUrlRequest: URLRequest(url: Uri.parse(url)),
+          // initialHeaders: {},
+          initialOptions: InAppWebViewGroupOptions(
+            crossPlatform: InAppWebViewOptions(
+              useShouldOverrideUrlLoading: true,
+              mediaPlaybackRequiresUserGesture: false,
+            ),
+            android: AndroidInAppWebViewOptions(
+                useHybridComposition: true,
+                mixedContentMode: AndroidMixedContentMode.MIXED_CONTENT_ALWAYS_ALLOW
+            ),
+            ios: IOSInAppWebViewOptions(
+              allowsInlineMediaPlayback: true,
+            ),
+          ),
+          onWebViewCreated: (InAppWebViewController controller) {
+            webView = controller;
+            _controller.complete(controller);
 
-                  controller.addJavaScriptHandler(
-                      handlerName: "uploadImage",
-                      callback: (args) {
-                        ChaoFunJsChannelMethods.uploadImage(
-                            context, controller);
-                      });
-                  controller.addJavaScriptHandler(
-                      handlerName: "toAppUser",
-                      callback: (args) {
-                        print('打印参数$args');
-                        ChaoFunJsChannelMethods.navigator(
-                            context, 'userMemberPage', args[0]);
-                      });
-                  controller.addJavaScriptHandler(
-                      handlerName: "toAppForum",
-                      callback: (args) {
-                        print('打印参数$args');
-                        ChaoFunJsChannelMethods.navigator(
-                            context, 'forumpage', args[0]);
-                      });
-                  controller.addJavaScriptHandler(
-                      handlerName: "toAppPost",
-                      callback: (args) {
-                        print('打印参数$args');
-                        ChaoFunJsChannelMethods.navigator(
-                            context, 'postdetail', args[0]);
-                      });
-                  // 去app首页
-                  controller.addJavaScriptHandler(
-                      handlerName: "toAppIndex",
-                      callback: (args) {
-                        print('打印参数$args');
-                        Provider.of<CurrentIndexProvide>(context, listen: false)
-                            .currentIndex = 0;
-                        ChaoFunJsChannelMethods.navigator(context, null, {});
-                      });
-                  controller.addJavaScriptHandler(
-                      handlerName: "toViewPage",
-                      callback: (args) {
-                        print('打印参数$args');
-                        ChaoFunJsChannelMethods.toViewPage(
-                            context, args[0]['url'], args[0]);
-                      });
-                  // 去登录
-                  controller.addJavaScriptHandler(
-                      handlerName: "toLoginPage",
-                      callback: (args) {
-                        print('打印参数$args');
-                        ChaoFunJsChannelMethods.navigator(
-                            context, 'accoutlogin', {});
-                      });
-                  //跳转升级页面
-                  controller.addJavaScriptHandler(
-                      handlerName: "toUpgradePage",
-                      callback: (args) {
-                        print('打印参数$args');
-                        ChaoFunJsChannelMethods.navigator(
-                            context, 'appversion', {});
-                      });
-                  // 返回
-                  controller.addJavaScriptHandler(
-                      handlerName: "nativeBack",
-                      callback: (args) {
-                        print('打印参数$args');
-                        Navigator.pop(context);
-                      });
-                  // 反馈建议
-                  controller.addJavaScriptHandler(
-                    handlerName: "toAdvice",
-                    callback: (args) {
-                      print('打印参数$args');
-                      var str =
-                          '22|炒饭日常|biz/097b352092a352efdc585d5d012b8b3e.png';
-                      ChaoFunJsChannelMethods.navigator(
-                          context, 'imagepublish', {"str": str});
-                    },
-                  );
-                  // 查看大图
-                  controller.addJavaScriptHandler(
-                    handlerName: "viewImage",
-                    callback: (args) {
-                      print('打印参数$args');
-                      ChaoFunJsChannelMethods.viewImage(
-                          context, args[0]['data'], args[0]['index']);
-                    },
-                  );
-                },
-                onLoadStart: (controller, url) {
-                  setState(() {
-                    this.url = url.toString();
-                    this.isLoading = true;
-                    // urlController.text = this.url;
-                  });
-                },
-                onLoadStop: (controller, url) async {
-                  // pullToRefreshController.endRefreshing();
-                  setState(() {
-                    this.url = url.toString();
-                    this.isLoading = false;
-                    // urlController.text = this.url;
-                  });
+            controller.addJavaScriptHandler(
+                handlerName: "uploadImage",
+                callback: (args) {
+                  ChaoFunJsChannelMethods.uploadImage(
+                      context, controller);
+                });
+            controller.addJavaScriptHandler(
+                handlerName: "toAppUser",
+                callback: (args) {
+                  print('打印参数$args');
+                  ChaoFunJsChannelMethods.navigator(
+                      context, 'userMemberPage', args[0]);
+                });
+            controller.addJavaScriptHandler(
+                handlerName: "toAppForum",
+                callback: (args) {
+                  print('打印参数$args');
+                  ChaoFunJsChannelMethods.navigator(
+                      context, 'forumpage', args[0]);
+                });
+            controller.addJavaScriptHandler(
+                handlerName: "toAppPost",
+                callback: (args) {
+                  print('打印参数$args');
+                  ChaoFunJsChannelMethods.navigator(
+                      context, 'postdetail', args[0]);
+                });
+            // 去app首页
+            controller.addJavaScriptHandler(
+                handlerName: "toAppIndex",
+                callback: (args) {
+                  print('打印参数$args');
+                  Provider.of<CurrentIndexProvide>(context, listen: false)
+                      .currentIndex = 0;
+                  ChaoFunJsChannelMethods.navigator(context, null, {});
+                });
+            controller.addJavaScriptHandler(
+                handlerName: "toViewPage",
+                callback: (args) {
+                  print('打印参数$args');
+                  ChaoFunJsChannelMethods.toViewPage(
+                      context, args[0]['url'], args[0]);
+                });
+            // 去登录
+            controller.addJavaScriptHandler(
+                handlerName: "toLoginPage",
+                callback: (args) {
+                  print('打印参数$args');
+                  ChaoFunJsChannelMethods.navigator(
+                      context, 'accoutlogin', {});
+                });
+            //跳转升级页面
+            controller.addJavaScriptHandler(
+                handlerName: "toUpgradePage",
+                callback: (args) {
+                  print('打印参数$args');
+                  ChaoFunJsChannelMethods.navigator(
+                      context, 'appversion', {});
+                });
+            // 返回
+            controller.addJavaScriptHandler(
+                handlerName: "nativeBack",
+                callback: (args) {
+                  print('打印参数$args');
+                  Navigator.pop(context);
+                });
+            // 反馈建议
+            controller.addJavaScriptHandler(
+              handlerName: "toAdvice",
+              callback: (args) {
+                print('打印参数$args');
+                var str =
+                    '22|炒饭日常|biz/097b352092a352efdc585d5d012b8b3e.png';
+                ChaoFunJsChannelMethods.navigator(
+                    context, 'imagepublish', {"str": str});
+              },
+            );
+            // 查看大图
+            controller.addJavaScriptHandler(
+              handlerName: "viewImage",
+              callback: (args) {
+                print('打印参数$args');
+                ChaoFunJsChannelMethods.viewImage(
+                    context, args[0]['data'], args[0]['index']);
+              },
+            );
+          },
+          onLoadStart: (controller, url) {
+            setState(() {
+              this.url = url.toString();
+              this.isLoading = true;
+              // urlController.text = this.url;
+            });
+          },
+          onLoadStop: (controller, url) async {
+            // pullToRefreshController.endRefreshing();
+            setState(() {
+              this.url = url.toString();
+              this.isLoading = false;
+              // urlController.text = this.url;
+            });
 
-                  controller.evaluateJavascript(source: _js);
-                  // String v = (Provider.of<UserStateProvide>(context, listen: false)
-                  //         .appVersionInfo)
-                  // .toString();
-                  var versionNow = await PackageInfo.fromPlatform();
-                  var version = versionNow.version.toString();
-                  controller.evaluateJavascript(
-                      source: 'callChaoFun("10001","${version}");');
-                },
-                // onFindResultReceived: (controller, url) async {},
-                onProgressChanged:
-                    (InAppWebViewController controller, int progress) {
-                  setState(() {
-                    this.progress = progress / 100;
-                  });
-                  print('当前进度 ${progress}');
-                  if (widget.callBack != null) {
-                    controller.getHtml().then((value) {
-                      widget.callBack(value);
-                      Fluttertoast.showToast(
-                        msg: '复制成功~',
-                        gravity: ToastGravity.CENTER,
-                        // textColor: Colors.grey,
-                      );
-                    });
-                  }
-                },
-                androidOnPermissionRequest:
-                    (controller, origin, resources) async {
-                  return PermissionRequestResponse(
-                      resources: resources,
-                      action: PermissionRequestResponseAction.GRANT);
-                },
-                shouldOverrideUrlLoading: (controller, navigationAction) async {
-                  var uri = navigationAction.request.url;
-                  print('wocao');
-                  print(uri);
-                  if ([
-                    "http",
-                    "https",
-                    "file",
-                    "chrome",
-                    "data",
-                    "javascript",
-                    "about"
-                  ].contains(uri.scheme)) {
-                    print('22222');
-                    print(navigationAction.request.url);
-                    // if (await canLaunch(url)) {
-                    //   // Launch the App
-                    //   await launch(
-                    //     url,
-                    //   );
-                    //   // and cancel the request
+            controller.evaluateJavascript(source: _js);
+            // String v = (Provider.of<UserStateProvide>(context, listen: false)
+            //         .appVersionInfo)
+            // .toString();
+            var versionNow = await PackageInfo.fromPlatform();
+            var version = versionNow.version.toString();
+            controller.evaluateJavascript(
+                source: 'callChaoFun("10001","${version}");');
+          },
+          // onFindResultReceived: (controller, url) async {},
+          onProgressChanged:
+              (InAppWebViewController controller, int progress) {
+            setState(() {
+              this.progress = progress / 100;
+            });
+            print('当前进度 ${progress}');
+            if (widget.callBack != null) {
+              controller.getHtml().then((value) {
+                widget.callBack(value);
+                Fluttertoast.showToast(
+                  msg: '复制成功~',
+                  gravity: ToastGravity.CENTER,
+                  // textColor: Colors.grey,
+                );
+              });
+            }
+          },
+          androidOnPermissionRequest:
+              (controller, origin, resources) async {
+            return PermissionRequestResponse(
+                resources: resources,
+                action: PermissionRequestResponseAction.GRANT);
+          },
+          shouldOverrideUrlLoading: (controller, navigationAction) async {
+            var uri = navigationAction.request.url;
+            print('wocao');
+            print(uri);
+            if ([
+              "http",
+              "https",
+              "file",
+              "chrome",
+              "data",
+              "javascript",
+              "about"
+            ].contains(uri.scheme)) {
+              print('22222');
+              print(navigationAction.request.url);
+              // if (await canLaunch(url)) {
+              //   // Launch the App
+              //   await launch(
+              //     url,
+              //   );
+              //   // and cancel the request
 
-                    // }
-                    return NavigationActionPolicy.ALLOW;
-                  } else {
-                    print('33333');
-                    print(navigationAction.request.url);
-                    return NavigationActionPolicy.CANCEL;
-                  }
-                  // return NavigationActionPolicy.CANCEL;
-                },
-                onLoadError: (controller, url, code, message) {
-                  // pullToRefreshController.endRefreshing();
-                  // Fluttertoast.showToast(
-                  //   msg: '异常异常异常异常异常',
-                  //   gravity: ToastGravity.CENTER,
-                  // );
-                  setState(() {
-                    isError = true;
-                  });
-                },
-                onConsoleMessage: (controller, consoleMessage) {
-                  print('打印控制台输出');
-                  print(consoleMessage);
-                },
-              )
+              // }
+              return NavigationActionPolicy.ALLOW;
+            } else {
+              print('33333');
+              print(navigationAction.request.url);
+              return NavigationActionPolicy.CANCEL;
+            }
+            // return NavigationActionPolicy.CANCEL;
+          },
+          onLoadError: (controller, url, code, message) {
+            // pullToRefreshController.endRefreshing();
+            // Fluttertoast.showToast(
+            //   msg: '异常异常异常异常异常',
+            //   gravity: ToastGravity.CENTER,
+            // );
+            setState(() {
+              isError = true;
+            });
+          },
+          onConsoleMessage: (controller, consoleMessage) {
+            print('打印控制台输出');
+            print(consoleMessage);
+          },
+        )
             : NoNetWorkPage(),
         isLoading
             ? Container(
-                height: 2,
-                child: LinearProgressIndicator(
-                  backgroundColor: Colors.blue,
-                  // value: 0.2,
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.red),
-                ),
-              )
+          height: 2,
+          child: LinearProgressIndicator(
+            backgroundColor: Colors.blue,
+            // value: 0.2,
+            valueColor: new AlwaysStoppedAnimation<Color>(Colors.red),
+          ),
+        )
             : Container(),
       ]),
     );
@@ -430,15 +431,15 @@ class NavigationControls extends StatelessWidget {
               onPressed: !webViewReady
                   ? null
                   : () async {
-                      if (await controller.canGoBack()) {
-                        await controller.goBack();
-                      } else {
-                        Scaffold.of(context).showSnackBar(
-                          const SnackBar(content: Text("已经是第一页了")),
-                        );
-                        return;
-                      }
-                    },
+                if (await controller.canGoBack()) {
+                  await controller.goBack();
+                } else {
+                  Scaffold.of(context).showSnackBar(
+                    const SnackBar(content: Text("已经是第一页了")),
+                  );
+                  return;
+                }
+              },
             ),
             IconButton(
               icon: const Icon(
@@ -449,15 +450,15 @@ class NavigationControls extends StatelessWidget {
               onPressed: !webViewReady
                   ? null
                   : () async {
-                      if (await controller.canGoForward()) {
-                        await controller.goForward();
-                      } else {
-                        Scaffold.of(context).showSnackBar(
-                          const SnackBar(content: Text("没有下一页了")),
-                        );
-                        return;
-                      }
-                    },
+                if (await controller.canGoForward()) {
+                  await controller.goForward();
+                } else {
+                  Scaffold.of(context).showSnackBar(
+                    const SnackBar(content: Text("没有下一页了")),
+                  );
+                  return;
+                }
+              },
             ),
             IconButton(
               icon: const Icon(
@@ -467,8 +468,8 @@ class NavigationControls extends StatelessWidget {
               onPressed: !webViewReady
                   ? null
                   : () {
-                      controller.reload();
-                    },
+                controller.reload();
+              },
             ),
           ],
         );

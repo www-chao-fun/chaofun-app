@@ -19,19 +19,25 @@ class ItemsTop extends StatelessWidget {
   var pageSource;
   var source;
   var callTag;
+  var userInfo;
   ItemsTop(
       {Key key,
-      this.item,
-      this.type,
-      this.pageSource,
-      this.source,
-      this.callTag})
+        this.item,
+        this.type,
+        this.pageSource,
+        this.source,
+        this.callTag,
+        this.userInfo,
+      })
       : super(key: key);
 
   TextEditingController _inputController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    if (type == null || type != 'trend') {
+      userInfo = item['userInfo'];
+    }
     // if (item['postId'].toString() != '414101') {
     return Container(
       padding: EdgeInsets.only(top: 8, bottom: 8),
@@ -40,8 +46,8 @@ class ItemsTop extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).backgroundColor,
         border: Border(
-            // bottom: BorderSide(width: 0.5, color: KColor.defaultBorderColor),
-            ),
+          // bottom: BorderSide(width: 0.5, color: KColor.defaultBorderColor),
+        ),
       ),
       child: _rows(context),
     );
@@ -135,13 +141,13 @@ class ItemsTop extends StatelessWidget {
                         context,
                         '/userMemberPage',
                         arguments: {
-                          "userId": item['userInfo']['userId'].toString()
+                          "userId": userInfo['userId'].toString()
                         },
                       );
                     },
                     child: CachedNetworkImage(
                       imageUrl: KSet.imgOrigin +
-                          item['userInfo']['icon'] +
+                          userInfo['icon'] +
                           '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                       width: ScreenUtil().setWidth(68),
                       height: ScreenUtil().setWidth(68),
@@ -211,7 +217,7 @@ class ItemsTop extends StatelessWidget {
                       borderRadius: BorderRadius.circular(ScreenUtil().setWidth(20)),
                       child: Image.network(
                         KSet.imgOrigin +
-                            item['userInfo']['icon'] +
+                            userInfo['icon'] +
                             '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                         width: 16,
                         height: 16,
@@ -221,7 +227,7 @@ class ItemsTop extends StatelessWidget {
                   ),
                   // Image.network(
                   //   KSet.imgOrigin +
-                  //       item['userInfo']['icon'] +
+                  //       userInfo['icon'] +
                   //       '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                   //   width: ScreenUtil().setWidth(40),
                   //   height: ScreenUtil().setWidth(40),
@@ -292,14 +298,14 @@ class ItemsTop extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   '/userMemberPage',
-                  arguments: {"userId": item['userInfo']['userId'].toString()},
+                  arguments: {"userId": userInfo['userId'].toString()},
                 );
               }
             },
             child: Text(
               pageSource == null
                   ? item['forum']['name']
-                  : item['userInfo']['userName'],
+                  : userInfo['userName'],
               style: TextStyle(
                 fontSize: ScreenUtil().setSp(28),
                 // color: Color.fromRGBO(33, 29, 47, 1),
@@ -316,7 +322,7 @@ class ItemsTop extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/userMemberPage',
-                arguments: {"userId": item['userInfo']['userId'].toString()},
+                arguments: {"userId": userInfo['userId'].toString()},
               );
             },
             child: RichText(
@@ -337,29 +343,29 @@ class ItemsTop extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  item['userInfo']['userTag'] != null
+                  userInfo['userTag'] != null && !(type == 'trends')
                       ? WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                left: 1, right: 1, top: 1, bottom: 1),
-                            color: Color.fromRGBO(221, 221, 221, 0.5),
-                            child: Text(
-                              item['userInfo']['userTag']['data'],
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(24),
-                                color: Theme.of(context).hintColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            padding: EdgeInsets.only(left: 1, right: 1),
-                          ),
-                        )
-                      : TextSpan(
-                          text: '',
+                    alignment: PlaceholderAlignment.middle,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          left: 1, right: 1, top: 1, bottom: 1),
+                      color: Color.fromRGBO(221, 221, 221, 0.5),
+                      child: Text(
+                        userInfo['userTag']['data'],
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: ScreenUtil().setSp(24),
+                          color: Theme.of(context).hintColor,
+                          fontWeight: FontWeight.w500,
                         ),
+                      ),
+                      padding: EdgeInsets.only(left: 1, right: 1),
+                    ),
+                  )
+                      : TextSpan(
+                    text: '',
+                  ),
                 ],
               ),
             ),
@@ -378,7 +384,7 @@ class ItemsTop extends StatelessWidget {
 
   _doSource() {
     if (pageSource == null) {
-      return '来自' + item['userInfo']['userName'];
+      return '来自' + userInfo['userName'];
     } else if (pageSource == 'trends') {
       switch (source['type']) {
         case 'post':
@@ -403,41 +409,41 @@ class ItemsTop extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/userMemberPage',
-                arguments: {"userId": item['userInfo']['userId'].toString()},
+                arguments: {"userId": userInfo['userId'].toString()},
               );
             },
             child: RichText(
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
-                text: item['userInfo']['userName'],
+                text: userInfo['userName'],
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(26),
                   color: Theme.of(context).hintColor,
                   fontWeight: FontWeight.w500,
                 ),
                 children: [
-                  item['userInfo']['userTag'] != null
+                  userInfo['userTag'] != null
                       ? WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                left: 2, right: 2, top: 2, bottom: 2),
-                            color: Color.fromRGBO(221, 221, 221, 0.5),
-                            child: Text(
-                              item['userInfo']['userTag']['data'],
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(24),
-                                color: Theme.of(context).hintColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            padding: EdgeInsets.only(left: 4, right: 4),
-                          ),
-                        )
-                      : TextSpan(
-                          text: '',
+                    alignment: PlaceholderAlignment.middle,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          left: 2, right: 2, top: 2, bottom: 2),
+                      color: Color.fromRGBO(221, 221, 221, 0.5),
+                      child: Text(
+                        userInfo['userTag']['data'],
+                        style: TextStyle(
+                          fontSize: ScreenUtil().setSp(24),
+                          color: Theme.of(context).hintColor,
+                          fontWeight: FontWeight.w500,
                         ),
+                      ),
+                      padding: EdgeInsets.only(left: 4, right: 4),
+                    ),
+                  )
+                      : TextSpan(
+                    text: '',
+                  ),
                   TextSpan(
                     text: ' · ' + Utils.moments(item['gmtCreate']),
                     style: TextStyle(
@@ -452,7 +458,7 @@ class ItemsTop extends StatelessWidget {
             //   maxLines: 2,
             //   overflow: TextOverflow.ellipsis,
             //   text: TextSpan(
-            //     text: item['userInfo']['userName'] + ' · ',
+            //     text: userInfo['userName'] + ' · ',
             //     style: TextStyle(
             //       fontSize: ScreenUtil().setSp(26),
             //       color: Theme.of(context).hintColor,
