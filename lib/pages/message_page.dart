@@ -368,7 +368,7 @@ class _MessagePageState extends State<MessagePage> {
         setState(() {
           tabs = type;
           params['type'] = type;
-          _controller.callRefresh();
+          _controller.callRefresh(duration: Duration(milliseconds: 101));
         });
         // }
       },

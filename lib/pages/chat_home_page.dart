@@ -214,7 +214,6 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
                 ),
                 actions: [TextButton(onPressed: () {
                   getChatData();
-                  reconnect();
                 }, child: Text("刷新"))],
                 backgroundColor: Colors.white,
               ),
