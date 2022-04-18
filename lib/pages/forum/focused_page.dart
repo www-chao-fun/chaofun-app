@@ -231,6 +231,7 @@ class _FocusedPageState extends State<FocusedPage> {
                                           pageSource: 'trends',
                                           source: pageData[index],
                                           userInfo: pageData[index]['focusUser'],
+                                          time: pageData[index]['gmtCreate']
                                         ),
                                       ),
                                       Padding(

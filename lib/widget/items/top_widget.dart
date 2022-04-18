@@ -20,6 +20,7 @@ class ItemsTop extends StatelessWidget {
   var source;
   var callTag;
   var userInfo;
+  var time;
   ItemsTop(
       {Key key,
         this.item,
@@ -28,6 +29,7 @@ class ItemsTop extends StatelessWidget {
         this.source,
         this.callTag,
         this.userInfo,
+        this.time
       })
       : super(key: key);
 
@@ -35,8 +37,9 @@ class ItemsTop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (type == null || type != 'trend') {
+    if (type == null || type != 'trends') {
       userInfo = item['userInfo'];
+      time = item['gmtCreate'];
     }
     // if (item['postId'].toString() != '414101') {
     return Container(
@@ -329,7 +332,7 @@ class ItemsTop extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
-                text: Utils.moments(item['gmtCreate']) + ' · ',
+                text: Utils.moments(time) + ' · ',
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(24),
                   color: Theme.of(context).hintColor,

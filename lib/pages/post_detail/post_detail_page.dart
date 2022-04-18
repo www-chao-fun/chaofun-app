@@ -1504,7 +1504,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                           '的评论-' +
                                           toWho['text'],
                                   style: TextStyle(
-                                    color: Color.fromRGBO(33, 29, 47, 1),
+                                    color: Theme.of(context).hintColor,
                                   ),
                                 ),
                               ],
