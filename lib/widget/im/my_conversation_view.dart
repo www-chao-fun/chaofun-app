@@ -28,7 +28,6 @@ class MyConversationView extends StatefulWidget {
 class _MyConversationViewState extends State<MyConversationView> {
   @override
   Widget build(BuildContext context) {
-    print('_MyConversationViewState imageUrl' + widget.imageUrl);
     var row = new Row(
       children: <Widget>[
         new Space(width: mainSpace),

@@ -208,6 +208,10 @@ class Api {
   static const String predictionsGet =
       BASE_URL + '/api/v0/forum/predictions_tournament/get';
 
+
+  static const String donateIsOpen =
+      BASE_URL + '/api/v0/donate/isOpen';
+
   static const String predictlistPosts =
       BASE_URL + '/api/v0/forum/predictions_tournament/listPosts';
 

@@ -93,6 +93,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
   var tableItem;
   var tableData;
   bool hasPrediction = false;
+  bool hasDonate = false;
   var url =
       'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg';
 
@@ -697,6 +698,34 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                           fontWeight: FontWeight.bold,
                                                           color: navStr == 'more' ? KColor.primaryColor
                                                               : Theme.of(context).hintColor),
+                                                    ),
+                                                  )
+                                              ),
+                                              Visibility(
+                                                  visible: hasDonate,
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) => ChaoFunWebView(
+                                                            url:
+                                                            'https://chao.fun/webview/donate?forumId=' + this.forumId.toString(),
+                                                            title: "版块众筹",
+                                                            showHeader: true,
+                                                            cookie: true,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                        width: ScreenUtil()
+                                                            .setWidth(150),
+                                                        alignment:
+                                                        Alignment.center,
+                                                        child: Text(
+                                                          '众筹',
+                                                        )
                                                     ),
                                                   )
                                               ),
@@ -1500,6 +1529,10 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
     var response1 = await HttpUtil().get(Api.predictionsGet, parameters: {
       'forumId': forumData['id'],
     });
+
+    var donateIsOpenResponse = await HttpUtil().get(Api.donateIsOpen, parameters: {
+      'forumId': forumData['id'],
+    });
     var response2 = await HttpUtil().get(Api.tablelist, parameters: {
       'forumId': forumData['id'],
     });
@@ -1518,6 +1551,12 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
         if (response2['data'].length > 0) {
           tableItem = response2['data'][0];
         }
+      });
+    }
+
+    if (donateIsOpenResponse != null) {
+      setState(() {
+        hasDonate = donateIsOpenResponse['data'];
       });
     }
   }
