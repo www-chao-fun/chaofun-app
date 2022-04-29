@@ -317,6 +317,12 @@ class _FocusedPageState extends State<FocusedPage> {
           child: Icon(Icons.play_circle_outline_outlined, color: Colors.white),
         );
         break;
+      case 'audio':
+        return Container(
+          color: Color.fromRGBO(0, 0, 0, 0.5),
+          child: Icon(Icons.audio_file, color: Colors.white),
+        );
+        break;
       case 'link':
         return Container(
           color: Color.fromRGBO(0, 0, 0, 0.5),
@@ -432,6 +438,7 @@ class _FocusedPageState extends State<FocusedPage> {
         );
         break;
       case 'article':
+      case 'audio':
         return Container(
           width: 0,
         );

@@ -49,6 +49,7 @@ class Api {
   static const String submitLink = BASE_URL + '/api/submit_link'; //发布链接帖子
   static const String submitImage = BASE_URL + '/api/submit_image'; //发布图片帖子
   static const String submitVideo = BASE_URL + '/api/v0/submitVideo'; //发布视频帖子
+  static const String submitAudio = BASE_URL + '/api/submit_audio'; //发布音频帖子
 
   static const String submitArticle =
       BASE_URL + '/api/v0/submit_article'; //发布文本帖子

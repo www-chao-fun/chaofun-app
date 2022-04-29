@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.47.5+279
+version: 2.49.0+281
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
@@ -67,10 +67,12 @@ dependencies:
   extended_text: ^9.0.0
   web_socket_channel: ^2.1.0
   flutter_quill: ^4.1.3
+  record: ^3.0.4
   markdown: ^4.0.1
   args: ^2.0.0
   charcode: ^1.2.0
   collection: ^1.15.0
+  just_audio: ^0.9.20
 
   flutter_localizations:
     sdk: flutter
@@ -255,6 +257,7 @@ flutter:
     - assets/images/_icon/t4.png
     - assets/images/_icon/t5.png
     - assets/images/_icon/t6.png
+    - assets/images/_icon/t7.png
 
     - assets/images/_icon/s1.png
     - assets/images/_icon/s2.png
@@ -262,6 +265,7 @@ flutter:
     - assets/images/_icon/s4.png
     - assets/images/_icon/s5.png
     - assets/images/_icon/s6.png
+    - assets/images/_icon/s7.png
     - assets/images/_icon/Add@2x.png
     - assets/images/_icon/s_close.png
     - assets/images/_icon/add_2.png
@@ -271,7 +275,11 @@ flutter:
     - assets/images/chat/ic_chat_more.webp
     - assets/images/chat/ic_details_photo.webp
     - assets/images/chat/ic_details_camera.webp
-    
+    - assets/images/chat/sound_left_0.webp
+    - assets/images/chat/sound_left_1.webp
+    - assets/images/chat/sound_left_2.webp
+    - assets/images/chat/sound_left_3.webp
+
     
     
     

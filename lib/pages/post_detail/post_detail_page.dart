@@ -18,6 +18,7 @@ import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/image/image_scrollshow_wiget.dart';
 import 'package:flutter_chaofan/widget/items/MoreWidget.dart';
+import 'package:flutter_chaofan/widget/items/audio_widget.dart';
 import 'package:flutter_chaofan/widget/items/bottom_widget.dart';
 import 'package:flutter_chaofan/widget/items/commentItem_widget.dart';
 import 'package:flutter_chaofan/widget/items/comment_widget.dart';
@@ -1130,6 +1131,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
       return VoteWidget(key: Key(data['postId'].toString()), item: data);
     } else if (data['type'] == 'forward') {
       return _forwardWidget(context, data);
+    } else if (data['type'] == 'audio') {
+      return AudioWidget(key: Key(data['postId'].toString()),item: data);
     } else if (data['type'] == 'prediction') {
       return Column(
         children: [

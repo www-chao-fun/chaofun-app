@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'dart:convert';
+import 'dart:convert' hide Codec;
+import 'dart:typed_data';
 import 'dart:ui';
 import 'dart:io';
 
@@ -29,11 +30,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_chaofan/api/api.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:images_picker/images_picker.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:record/record.dart';
 import 'package:tuple/tuple.dart';
-
 
 import 'package:flutter_chaofan/database/userHelper.dart';
 import 'package:flutter_chaofan/database/model/userDB.dart';
@@ -75,6 +78,12 @@ class _SubmitPageState extends State<SubmitPage> {
       'label': '视频',
       'icon': 'assets/images/_icon/t3.png',
       'actIcon': 'assets/images/_icon/s3.png',
+    },
+    {
+      'type': 'audio',
+      'label': '语音',
+      'icon': 'assets/images/_icon/t7.png',
+      'actIcon': 'assets/images/_icon/s7.png',
     },
     {
       'type': 'link',
@@ -141,12 +150,16 @@ class _SubmitPageState extends State<SubmitPage> {
   List imagesUrl = [];
   var chooseType;
   var videoUrl;
+  var audioUrl;
   bool canSub = true;
   final _picker = ImagePicker();
   var counts;
   var totals;
   var percent = 0.0;
+  bool isRecording = false;
+  Duration duration = new Duration();
   var assetsVideo;
+  var assetsAudio;
   var clipboardDatas;
   var collectionId = '';
   var collectName;
@@ -767,7 +780,7 @@ class _SubmitPageState extends State<SubmitPage> {
         gravity: ToastGravity.CENTER,
       );
       return;
-    } else if (!(postType == 'image' || postType == 'inner_video' )  && title == '') {
+    } else if (!(postType == 'image' || postType == 'inner_video' || postType == 'audio' )  && title == '') {
       Fluttertoast.showToast(
         msg: '该类型帖子需要输入标题',
         gravity: ToastGravity.CENTER,
@@ -969,9 +982,45 @@ class _SubmitPageState extends State<SubmitPage> {
         );
         _pickVote();
       }
+    }  else if (postType == 'audio') {
+      if (isLoading) {
+        Fluttertoast.showToast(
+          msg: '音频上传中，请稍等',
+          gravity: ToastGravity.CENTER,
+        );
+        return;
+      }
+      if (canSub) {
+        if (audioUrl != null) {
+          setState(() {
+            canSub = false;
+          });
+          response = await HttpUtil().get(Api.submitAudio, parameters: {
+            'forumId': forumId,
+            'title': title,
+            'ossName': audioUrl,
+            'tagId': tagId,
+            'anonymity': anonymity,
+            'collectionId': collectionId
+          });
+        } else {
+          Fluttertoast.showToast(
+            msg: '还没有录制音频~',
+            gravity: ToastGravity.CENTER,
+          );
+          return;
+        }
+      } else {
+        Fluttertoast.showToast(
+          msg: '请勿重复提交',
+          gravity: ToastGravity.CENTER,
+        );
+        return;
+      }
     }
 
-    if (response['success']) {
+
+  if (response['success']) {
       setState(() {
         isLoading = false;
       });
@@ -1006,6 +1055,9 @@ class _SubmitPageState extends State<SubmitPage> {
         break;
       case 'inner_video':
         return _videoWidget();
+        break;
+      case 'audio':
+        return _audioWidget();
         break;
       case 'link':
         return _linkWidget();
@@ -1379,6 +1431,105 @@ class _SubmitPageState extends State<SubmitPage> {
           ),
         )
     );
+  }
+
+  var recording = false;
+  Record myRecorder = null;
+  _audioWidget() {
+      return Container(
+          alignment: Alignment.topLeft,
+          child: TextButton(onPressed: () async {
+            if (audioUrl != null) {
+              setState(() {
+                audioUrl = null;
+              });
+            }
+
+            if (isLoading) {
+              Fluttertoast.showToast(
+                msg: '音频上传中，请稍等',
+                gravity: ToastGravity.CENTER,
+              );
+              return;
+            }
+            if (myRecorder == null) {
+              myRecorder = Record();
+              bool result = await myRecorder.hasPermission();
+              if (result) {
+                setState(() {
+
+                  isRecording = true;
+                });
+                var tempDir = await getTemporaryDirectory();
+                await myRecorder.start(
+                  path: tempDir.path + '/myFile.aac', // required
+                  encoder: AudioEncoder.AAC, // by default
+                  bitRate: 128000, // by default
+                  samplingRate: 44100, // by default
+                );
+              }
+            } else {
+              var uri =  await myRecorder.stop();
+              myRecorder = null;
+              setState(() {
+                isRecording = false;
+                isLoading = true;
+              });
+              print(uri);
+              print(await File(uri).length());
+              FormData formdata = FormData.fromMap({
+                "file": await MultipartFile.fromFile(uri),
+                "fileName": 'myFile.aac'
+              });
+
+              duration = await (new AudioPlayer()).setFilePath(uri);
+              setState(() {});
+
+              var response = await dio.post("https://chao.fun/api/upload_audio", data: formdata);
+              setState(() {
+                isLoading = false;
+              });
+
+              if (response.data['success']) {
+                setState(() {
+                  audioUrl = response.data['data'];
+                });
+              }
+            }
+          }, child:
+          Container(
+              padding: EdgeInsets.only(
+                left: 10,
+                right: 10,
+                bottom: 8,
+                top: 20,
+              ),
+              // height: ScreenUtil().setWidth(100),
+              child: Text(getAudioText())
+          )
+          )
+      );
+  }
+
+  String getAudioText() {
+    if (audioUrl != null) {
+      return  duration.inMinutes.toString() + '\'' + duration.inSeconds.toString() + '\'\'' +  " 已上传 / 点击重新录制";
+    } else {
+      if (isRecording) {
+        return "录制中... / 点击停止录制";
+      } else {
+        if (isLoading) {
+          return duration.inMinutes.toString() + '\'' + duration.inSeconds.toString() + '\'\'' +  " 上传中... / 请稍候";
+        } else {
+          return "点击录制";
+        }
+      }
+    }
+  }
+
+  Future<Uint8List> getAssetData(String path) async {
+    var asset = await rootBundle.load(path);
+    return asset.buffer.asUint8List();
   }
 
   _videoWidget() {

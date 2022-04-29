@@ -7,6 +7,7 @@ import 'package:flutter_chaofan/pages/post_detail/postwebview.dart';
 import 'package:flutter_chaofan/utils/check.dart';
 import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/items/article_widget.dart';
+import 'package:flutter_chaofan/widget/items/audio_widget.dart';
 import 'package:flutter_chaofan/widget/items/bottom_widget.dart';
 import 'package:flutter_chaofan/widget/items/image_widget.dart';
 import 'package:flutter_chaofan/widget/items/link_widget.dart';
@@ -83,6 +84,9 @@ class ItemIndex extends StatelessWidget {
         break;
       case 'vote':
         return VoteWidget(key: Key(item['postId'].toString()), item: item);
+        break;
+      case 'audio':
+        return AudioWidget(key: Key(item['postId'].toString()), item: item);
         break;
       case 'forward':
         return _forwardWidget(context, item);
