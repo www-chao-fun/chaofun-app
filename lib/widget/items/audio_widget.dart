@@ -53,7 +53,12 @@ class _AudioWidgetState extends State<AudioWidget> with TickerProviderStateMixin
   Future<void> getDuration() async {
     if (init == false) {
       try {
-        duration = await player.setUrl('https://i.chao.fun/' + widget.item['audio'], preload: true);
+        var tmpDuration = await player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao.fun/' + widget.item['audio'])));
+            if (tmpDuration != null) {
+          setState(() {
+            duration = tmpDuration;
+          });
+        }
         init = true;
       } catch (e) {
 
@@ -82,7 +87,16 @@ class _AudioWidgetState extends State<AudioWidget> with TickerProviderStateMixin
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Visibility(visible: playing, child: Text('播放中...')),
+            StreamBuilder<PlayerState>(
+              stream: player.playerStateStream,
+              builder: (context, snapshot) {
+                final playerState = snapshot.data;
+                final processingState = playerState?.processingState;
+                final playing = playerState?.playing;
+
+                return Visibility(visible: player.playing, child: Text('播放中...'));
+              },
+            ),
             new Text(twoDigits(duration.inMinutes) + ':' + twoDigits(duration.inSeconds) , textAlign: TextAlign.start, maxLines: 1),
             new Space(width: 10.0 / 2),
             new Image.asset(
@@ -95,19 +109,11 @@ class _AudioWidgetState extends State<AudioWidget> with TickerProviderStateMixin
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         onPressed: () async {
-          if (!playing) {
-            await player.setUrl('https://i.chao.fun/' + widget.item['audio']);
-            player.play().then((value) => setState(() {
-              playing = false;
-            }));
-
-            setState(() {
-              playing = true;
-            });
+          if (!player.playing) {
+            player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao.fun/' + widget.item['audio'])));
+            player.play();
           } else {
-            player.stop().then((value) => setState(() {
-              playing = false;
-            }));
+            player.stop();
           }
         },
       ),

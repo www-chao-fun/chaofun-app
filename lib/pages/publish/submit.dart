@@ -1511,15 +1511,18 @@ class _SubmitPageState extends State<SubmitPage> {
       );
   }
 
+  String twoDigits(int n) => n.toString().padLeft(2, "0");
+
   String getAudioText() {
+
     if (audioUrl != null) {
-      return  duration.inMinutes.toString() + '\'' + duration.inSeconds.toString() + '\'\'' +  " 已上传 / 点击重新录制";
+      return  twoDigits(duration.inMinutes) + ':' + twoDigits(duration.inSeconds) +  " 已上传 / 点击重新录制";
     } else {
       if (isRecording) {
         return "录制中... / 点击停止录制";
       } else {
         if (isLoading) {
-          return duration.inMinutes.toString() + '\'' + duration.inSeconds.toString() + '\'\'' +  " 上传中... / 请稍候";
+          return twoDigits(duration.inMinutes) + ':' + twoDigits(duration.inSeconds) +  " 上传中... / 请稍候";
         } else {
           return "点击录制";
         }
