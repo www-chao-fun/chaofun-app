@@ -93,9 +93,17 @@ class _AudioWidgetState extends State<AudioWidget> with TickerProviderStateMixin
                 final playerState = snapshot.data;
                 final processingState = playerState?.processingState;
                 final playing = playerState?.playing;
-
-                return Visibility(visible: player.playing, child: Text('播放中...'));
-              },
+                if (processingState == ProcessingState.loading ||
+                    processingState == ProcessingState.buffering) {
+                  return Text('');
+                } else if (playing != true) {
+                  return Text('');
+                } else if (processingState != ProcessingState.completed) {
+                  return Text('播放中...');
+                } else {
+                  return Text('');
+                }
+              }
             ),
             new Text(twoDigits(duration.inMinutes) + ':' + twoDigits(duration.inSeconds) , textAlign: TextAlign.start, maxLines: 1),
             new Space(width: 10.0 / 2),
