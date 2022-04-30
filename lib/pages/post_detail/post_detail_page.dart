@@ -16,6 +16,7 @@ import 'package:flutter_chaofan/provide/user.dart';
 import 'package:flutter_chaofan/service/home_service.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_chaofan/utils/utils.dart';
+import 'package:flutter_chaofan/widget/im/ui.dart';
 import 'package:flutter_chaofan/widget/image/image_scrollshow_wiget.dart';
 import 'package:flutter_chaofan/widget/items/MoreWidget.dart';
 import 'package:flutter_chaofan/widget/items/audio_widget.dart';
@@ -32,11 +33,14 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:images_picker/images_picker.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_chaofan/widget/items/link_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_chaofan/widget/items/index_widget.dart';
+import 'package:record/record.dart';
 
 
 // arguments
@@ -97,6 +101,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
   List collectData = [];
   GlobalKey commentKey = GlobalKey();
   Widget oks;
+  StateSetter dialogState = null;
 
   ScrollController _scrollController = ScrollController();
   @override
@@ -1461,12 +1466,21 @@ class _PostDetailPageState extends State<PostDetailPage> {
     );
   }
 
+  var recording = false;
+  Record myRecorder = null;
+  String audioUrl = null;
+  bool isRecording = false;
+  Duration duration = new Duration();
+  String choose = 'image';
+
   doWay(context) {
     showModalBottomSheet(
       isScrollControlled: true, // !important
       context: context,
       builder: (context) {
+
         return StatefulBuilder(builder: (c, setDialogState) {
+          this.dialogState = setDialogState;
           return AnimatedPadding(
             // padding: MediaQuery.of(context).viewInsets, //边距（必要）
             padding: EdgeInsets.only(
@@ -1538,7 +1552,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             onPressed: () async {
                               print(imagesUrl);
                               var content = _inputController.text;
-                              if (content.trim().isNotEmpty || imagesUrl.length != 0) {
+                              if (content.trim().isNotEmpty || (choose == 'image' && imagesUrl.length != 0) || (choose == 'audio' && audioUrl != 0)) {
                                 // print('举报内容值为：${content}');
                                 // toUpReport(context, content, item);
                                 if (!isLoading) {
@@ -1565,10 +1579,15 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                     }
                                   }
 
-                                  if (imagesUrl.length > 0) {
+                                  if (choose == 'image' && imagesUrl.length > 0) {
                                     params['imageNames'] =
                                         imagesUrl.take(9).join(',');
                                   }
+
+                                  if (choose == 'audio') {
+                                    params['audioName'] = audioUrl;
+                                  }
+
                                   if (toWho != null) {
                                     params['parentId'] = toWho['id'].toString();
                                   }
@@ -1582,6 +1601,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       showImgs = false;
                                       imageList = [];
                                       imagesUrl = [];
+                                      audioUrl = null;
+                                      choose = 'image';
                                     });
                                     _inputController.text = '';
                                     Fluttertoast.showToast(
@@ -1742,10 +1763,15 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                     }
                                   }
 
-                                  if (imagesUrl.length > 0) {
+                                  if (choose == 'image' && imagesUrl.length > 0) {
                                     params['imageNames'] =
                                         imagesUrl.take(9).join(',');
                                   }
+
+                                  if (choose == 'audio') {
+                                    params['audioName'] = audioUrl;
+                                  }
+
                                   if (toWho != null) {
                                     params['parentId'] = toWho['id'].toString();
                                   }
@@ -1757,6 +1783,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       showImgs = false;
                                       imageList = [];
                                       imagesUrl = [];
+                                      audioUrl = null;
+                                      choose = 'image';
                                     });
                                     _inputController.text = '';
                                     Fluttertoast.showToast(
@@ -1819,79 +1847,187 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           ),
                           color: Colors.white30,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               isUploadingImage ? Text("上传中") : InkWell(
                                 onTap: () {
-                                  if (imagesUrl.length < 9) {
-                                    getImage(false);
-                                  } else {
-                                    Fluttertoast.showToast(
-                                      msg: '最多上传9张图片',
-                                      gravity: ToastGravity.CENTER,
-                                      // textColor: Colors.grey,
-                                    );
-                                  }
+                                  setDialogState(() {
+                                    choose = 'image';
+                                  });
                                 },
                                 child: Icon(
                                   Icons.photo_library,
-                                  color: Color.fromRGBO(153, 153, 153, 1),
+                                  color: choose == 'image' ? Colors.green : Color.fromRGBO(153, 153, 153, 1) ,
                                   size: ScreenUtil().setWidth(56),
                                 ),
                               ),
+                              Space(width: ScreenUtil().setWidth(30),),
+                              InkWell(
+                                onTap: () {
+                                  setDialogState(() {
+                                    choose = 'audio';
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.keyboard_voice,
+                                  color: choose == 'audio' ? Colors.green : Color.fromRGBO(153, 153, 153, 1) ,
+                                  size: ScreenUtil().setWidth(56),
+                                ),
+
+                              ),
+
                             ],
                           ),
 
                   ): Container(),
                   showImgs
-                      ? Container(
+                      ? (choose == 'image' ? Container(
                           height: ScreenUtil().setWidth(220),
                           padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
-                                child: Container(
-                                  height: ScreenUtil().setWidth(180),
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        height: ScreenUtil().setWidth(180),
-                                        width: ScreenUtil().setWidth(180),
-                                        child: Image.file(
-                                          File(imageList[index].path),
+                              if (index == 0) {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(4),
+                                  child: Container(
+                                    height: ScreenUtil().setWidth(180),
+                                    child:
+                                        InkWell(
+                                          onTap: () {
+                                            if (imagesUrl.length < 9) {
+                                              getImage(false);
+                                            } else {
+                                              Fluttertoast.showToast(
+                                                msg: '最多上传9张图片',
+                                                gravity: ToastGravity.CENTER,
+                                                // textColor: Colors.grey,
+                                              );
+                                            }
+                                          },
+                                        child: Container(
                                           height: ScreenUtil().setWidth(180),
                                           width: ScreenUtil().setWidth(180),
-                                          fit: BoxFit.cover,
+                                          child: Icon(Icons.add, size: ScreenUtil().setWidth(100),),
                                         ),
-                                      ),
-                                      Positioned(
-                                        bottom: 20,
-                                        right: 0,
-                                        child: InkWell(
-                                          onTap: () {
-                                            setDialogState(() {
-                                              imageList.removeAt(index);
-                                              imagesUrl.removeAt(index);
-                                            });
-                                          },
-                                          child: Icon(
-                                            Icons.delete_forever,
-                                            size: 20,
-                                            color: Colors.black54,
+                                        )
+                                    ),
+                                );
+                              } else {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(4),
+                                  child: Container(
+                                    height: ScreenUtil().setWidth(180),
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: ScreenUtil().setWidth(180),
+                                          width: ScreenUtil().setWidth(180),
+                                          child: Image.file(
+                                            File(imageList[index - 1].path),
+                                            height: ScreenUtil().setWidth(180),
+                                            width: ScreenUtil().setWidth(180),
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Positioned(
+                                          bottom: 20,
+                                          right: 0,
+                                          child: InkWell(
+                                            onTap: () {
+                                              setDialogState(() {
+                                                imageList.removeAt(index - 1);
+                                                imagesUrl.removeAt(index - 1);
+                                              });
+                                            },
+                                            child: Icon(
+                                              Icons.delete_forever,
+                                              size: 20,
+                                              color: Colors.black54,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
+                                );
+                              }
                             },
-                            itemCount: imageList.length,
+                            itemCount: imageList.length + 1,
                           ),
                         )
-                      : Container(),
+                      :
+                    Container(
+                alignment: Alignment.topLeft,
+                child: TextButton(onPressed: () async {
+                  if (audioUrl != null) {
+                    setDialogState(() {
+                      audioUrl = null;
+                    });
+                  }
+
+                  if (isLoading) {
+                    Fluttertoast.showToast(
+                      msg: '音频上传中，请稍等',
+                      gravity: ToastGravity.CENTER,
+                    );
+                    return;
+                  }
+                  if (myRecorder == null) {
+                    myRecorder = Record();
+                    bool result = await myRecorder.hasPermission();
+                    if (result) {
+                      setDialogState(() {
+                        isRecording = true;
+                      });
+                      var tempDir = await getTemporaryDirectory();
+                      await myRecorder.start(
+                        path: tempDir.path + '/myFile.aac', // required
+                        encoder: AudioEncoder.AAC, // by default
+                        bitRate: 128000, // by default
+                        samplingRate: 44100, // by default
+                      );
+                    }
+                  } else {
+                    var uri =  await myRecorder.stop();
+                    myRecorder = null;
+                    setDialogState(() {
+                      isRecording = false;
+                      isLoading = true;
+                    });
+                    print(uri);
+                    print(await File(uri).length());
+                    FormData formdata = FormData.fromMap({
+                      "file": await MultipartFile.fromFile(uri),
+                      "fileName": 'myFile.aac'
+                    });
+
+                    duration = await (new AudioPlayer()).setFilePath(uri);
+                    setDialogState(() {});
+
+                    var response = await dio.post("https://chao.fun/api/upload_audio", data: formdata);
+                    setDialogState(() {
+                      isLoading = false;
+                    });
+
+                    if (response.data['success']) {
+                      setDialogState(() {
+                        audioUrl = response.data['data'];
+                      });
+                    }
+                  }
+                }, child:
+                Container(
+                    padding: EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                      bottom: 8,
+                      top: 20,
+                    ),
+                    // height: ScreenUtil().setWidth(100),
+                    child: Text(getAudioText())
+                )
+                )
+            )) : Container(),
                 ],
               ),
             ),
@@ -1901,6 +2037,23 @@ class _PostDetailPageState extends State<PostDetailPage> {
     );
   }
 
+  String twoDigits(int n) => n.toString().padLeft(2, "0");
+
+  String getAudioText() {
+    if (audioUrl != null) {
+      return  twoDigits((duration.inSeconds / 60).toInt()) + ':' + twoDigits((duration.inSeconds % 60).toInt()) +  " 已上传 / 点击重新录制";
+    } else {
+      if (isRecording) {
+        return "录制中... / 点击停止录制";
+      } else {
+        if (isLoading) {
+          return twoDigits((duration.inSeconds / 60).toInt()) + ':' + twoDigits((duration.inSeconds % 60).toInt()) +  " 上传中... / 请稍候";
+        } else {
+          return "点击录制";
+        }
+      }
+    }
+  }
   outRepeat(arr) {
     // var repeat = ['aa', 'bb', 'cc', 'aa', 'bb'];
     var brr = [];
@@ -1952,21 +2105,25 @@ class _PostDetailPageState extends State<PostDetailPage> {
       count: 9 - imagesUrl.length,
       pickType: PickType.image,
     );
-    Navigator.pop(context);
-    doWay(context);
+
     if (res != null) {
       print(res);
-      setState(() {
-        imageList.addAll(res.map((e) {
-          return File(e.path);
-        }).toList());
-        imagesUrl.addAll(new List(res.length));
-      });
+      if (dialogState != null) {
+        dialogState(() {
+          imageList.addAll(res.map((e) {
+            return File(e.path);
+          }).toList());
+          imagesUrl.addAll(new List(res.length));
+        });
+      }
 
-      setState(() {
-        isLoading = true;
-        isUploadingImage = true;
-      });
+      if (dialogState != null) {
+        dialogState(() {
+          isLoading = true;
+          isUploadingImage = true;
+        });
+      }
+
       // Navigator.pop(context);
       // doWay(context);
       for (var i = (imageList.length - res.length); i < imageList.length; i++) {
@@ -1993,17 +2150,20 @@ class _PostDetailPageState extends State<PostDetailPage> {
     print(response);
     print(response.data['data']);
     if (response.data['success']) {
-      setState(() {
-        imagesUrl[i] = response.data['data'];
-      });
-
+      if (dialogState != null) {
+        dialogState(() {
+          imagesUrl[i] = response.data['data'];
+        });
+      }
     } else {
-      setState(() {
-        isLoading = false;
-        isUploadingImage = false;
-        imageList.removeAt(i);
-        imagesUrl.removeAt(i);
-      });
+      if (dialogState != null) {
+        dialogState(() {
+          isLoading = false;
+          isUploadingImage = false;
+          imageList.removeAt(i);
+          imagesUrl.removeAt(i);
+        });
+      }
       Fluttertoast.showToast(
         msg: response.data['errorMessage'],
         gravity: ToastGravity.CENTER,
@@ -2016,10 +2176,12 @@ class _PostDetailPageState extends State<PostDetailPage> {
       }
     }
     if (count == 0) {
-      setState(() {
-        isLoading = false;
-        isUploadingImage = false;
-      });
+      if (dialogState != null) {
+        dialogState(() {
+          isLoading = false;
+          isUploadingImage = false;
+        });
+      }
     }
   }
 

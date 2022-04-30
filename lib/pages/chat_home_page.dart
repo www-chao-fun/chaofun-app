@@ -181,7 +181,7 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
 
   Widget timeView(int time) {
     return new SizedBox(
-      width: 70.0,
+      width: 80.0,
       child: new Text(
         Utils.chatTime(time),
         maxLines: 1,
@@ -231,6 +231,9 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
                         Map<String, dynamic>  data = _chatData[index];
                         return InkWell(
                           onTap: () {
+                            setState(() {
+                              _chatData[index]['unReadMessageNumber'] = 0;
+                            });
                             routePush(context, new ChatPage(
                               id: data['id'],
                               title: data['name'],
@@ -238,15 +241,15 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
                               quitCallback: () {
                                 getChatData();
                               },
-
                             ));
                           },
                           child: new MyConversationView(
-                            imageUrl: strNoEmpty(data['avatar']) ? KSet.imgOrigin + data['avatar'] + '?x-oss-process=image/resize,h_80/format,webp/quality,q_75' : 'https://i.chao.fun/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                            imageUrl: strNoEmpty(data['avatar']) ? KSet.imgOrigin + data['avatar'] + '?x-oss-process=image/resize,h_120/format,webp/quality,q_75' : 'https://i.chao.fun/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                             title: data['name'] ?? '',
                             content: getShowContent(data),
                             time: data['lastMessageTime'] == null ?  new Container() : timeView(data['lastMessageTime'])  ,
                             isBorder: true,
+                            unReadMessageNumber: data['unReadMessageNumber'],
                           ),
                         );
                       },

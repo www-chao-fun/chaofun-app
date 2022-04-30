@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chaofan/utils/const.dart';
 import 'package:flutter_chaofan/utils/win_media.dart';
 import 'package:flutter_chaofan/widget/im/ui.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'content_msg.dart';
 import 'image_view.dart';
@@ -12,6 +13,7 @@ class MyConversationView extends StatefulWidget {
   final String content;
   final Widget time;
   final bool isBorder;
+  final int unReadMessageNumber;
 
   MyConversationView({
     this.imageUrl,
@@ -19,6 +21,7 @@ class MyConversationView extends StatefulWidget {
     this.content,
     this.time,
     this.isBorder = true,
+    this.unReadMessageNumber = 0
   });
 
   @override
@@ -60,11 +63,31 @@ class _MyConversationViewState extends State<MyConversationView> {
       child: new Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          new ImageView(
-              img: widget.imageUrl,
-              height: 50.0,
-              width: 50.0,
-              fit: BoxFit.cover),
+          Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                // Container(
+                //     width: ScreenUtil().setWidth(85),
+                //     height: ScreenUtil().setWidth(85),
+                // child:
+                Container(
+                  alignment: Alignment.center,
+                  width: ScreenUtil().setWidth(85),
+                  height: ScreenUtil().setWidth(85),
+                  // color: Colors.red,
+                  child: new ImageView(
+                      img: widget.imageUrl,
+                      height: ScreenUtil().setWidth(75),
+                      width: ScreenUtil().setWidth(75),
+                      fit: BoxFit.cover),
+                ),
+                // ),
+                Visibility(visible: widget.unReadMessageNumber > 0, child:
+                Positioned(top: 0, right: 0, child: Container(width: ScreenUtil().setWidth(16), height: ScreenUtil().setWidth(16),  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(ScreenUtil().setWidth(8))),
+                )))
+              ]),
           new Container(
             padding: EdgeInsets.only(right: 18.0, top: 12.0, bottom: 12.0),
             width: winWidth(context) - 68,

@@ -1457,7 +1457,6 @@ class _SubmitPageState extends State<SubmitPage> {
               bool result = await myRecorder.hasPermission();
               if (result) {
                 setState(() {
-
                   isRecording = true;
                 });
                 var tempDir = await getTemporaryDirectory();
@@ -1516,13 +1515,13 @@ class _SubmitPageState extends State<SubmitPage> {
   String getAudioText() {
 
     if (audioUrl != null) {
-      return  twoDigits(duration.inMinutes) + ':' + twoDigits(duration.inSeconds) +  " 已上传 / 点击重新录制";
+      return  twoDigits((duration.inSeconds / 60).toInt()) + ':' + twoDigits((duration.inSeconds % 60).toInt()) +  " 已上传 / 点击重新录制";
     } else {
       if (isRecording) {
         return "录制中... / 点击停止录制";
       } else {
         if (isLoading) {
-          return twoDigits(duration.inMinutes) + ':' + twoDigits(duration.inSeconds) +  " 上传中... / 请稍候";
+          return twoDigits((duration.inSeconds / 60).toInt()) + ':' + twoDigits((duration.inSeconds % 60).toInt()) +  " 上传中... / 请稍候";
         } else {
           return "点击录制";
         }

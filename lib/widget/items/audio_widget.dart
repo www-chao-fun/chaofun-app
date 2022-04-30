@@ -101,11 +101,12 @@ class _AudioWidgetState extends State<AudioWidget> with TickerProviderStateMixin
                 } else if (processingState != ProcessingState.completed) {
                   return Text('播放中...');
                 } else {
+                  player.stop();
                   return Text('');
                 }
               }
             ),
-            new Text(twoDigits(duration.inMinutes) + ':' + twoDigits(duration.inSeconds) , textAlign: TextAlign.start, maxLines: 1),
+            new Text(twoDigits((duration.inSeconds / 60).toInt()) + ':' + twoDigits((duration.inSeconds % 60).toInt()) , textAlign: TextAlign.start, maxLines: 1),
             new Space(width: 10.0 / 2),
             new Image.asset(
                 leftSoundNames[3],

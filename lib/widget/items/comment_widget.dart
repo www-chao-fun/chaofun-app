@@ -9,6 +9,7 @@ import 'package:flutter_chaofan/config/color.dart';
 import 'package:flutter_chaofan/pages/post_detail/chao_fun_webview.dart';
 import 'package:flutter_chaofan/provide/current_index_provide.dart';
 import 'package:flutter_chaofan/store/index.dart';
+import 'package:flutter_chaofan/utils/content_utils.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/image/image_scrollshow_wiget.dart';
@@ -17,6 +18,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_chaofan/config/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:just_audio/just_audio.dart';
+
+import '../im/ui.dart';
 
 class CommentWidget extends StatefulWidget {
   String imgurl;
@@ -30,12 +34,42 @@ class CommentWidget extends StatefulWidget {
 class _CommentWidgetState extends State<CommentWidget> {
   var item;
   var a;
+
+  Duration duration = Duration();
+  var init = false;
+
+  AudioPlayer player =  AudioPlayer();
+  var playing = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     item = widget.item;
+    if (item['audio'] != null) {
+      player = AudioPlayer();
+      duration = Duration();
+      getDuration();
+    }
     // islink('https://chao.fun我的炒饭https://chao.fun和https://www.baidu.com');
+  }
+
+  Future<void> getDuration() async {
+    if (init == false) {
+      try {
+        var tmpDuration = await player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao.fun/' + widget.item['audio'])));
+        if (tmpDuration != null) {
+          setState(() {
+            duration = tmpDuration;
+          });
+        }
+        init = true;
+      } catch (e) {
+
+      }
+    }
+    setState(() {
+    });
   }
 
   @override
@@ -44,7 +78,7 @@ class _CommentWidgetState extends State<CommentWidget> {
       // a = (item['children'] as List).cast();
       a = item['children'];
     }
-    return _comItem(widget.item);
+    return _comItem(widget.item,);
   }
 
   Widget ddd(coms) {
@@ -55,7 +89,7 @@ class _CommentWidgetState extends State<CommentWidget> {
         shrinkWrap: true, //为true可以解决子控件必须设置高度的问题
         physics: NeverScrollableScrollPhysics(), //禁用滑动事件
         itemBuilder: (c, i) {
-          return _comItem(coms[i]);
+          return CommentWidget(item: coms[i], callBack: widget.callBack,);
         },
         // itemExtent: 100.0,
         itemCount: coms.length,
@@ -63,7 +97,8 @@ class _CommentWidgetState extends State<CommentWidget> {
     );
   }
 
-  Widget _comItem(item) {
+  Widget _comItem(Map item) {
+
     var a;
     if (item['children'] != null) {
       // a = (item['children'] as List).cast();
@@ -191,64 +226,65 @@ class _CommentWidgetState extends State<CommentWidget> {
                                 children: [
 
                                   InkWell(
-                                    onTap: () {
-                                      doWay(context);
-                                    },
-                                    child: Text("举报", style: TextStyle(color: Theme.of(context).hintColor, fontSize: ScreenUtil().setWidth(25), fontWeight: FontWeight.bold), )
+                                      onTap: () {
+                                        doWay(context);
+                                      },
+                                      child: Text("举报", style: TextStyle(color: Theme.of(context).hintColor, fontSize: ScreenUtil().setWidth(25), fontWeight: FontWeight.bold), )
                                   ),
-                              Container(width: 10,),
-                              item['canDeleted']
-                                  ? InkWell(
-                                onTap: () {
-                                  showCupertinoDialog(
-                                    //showCupertinoDialog
-                                      context: context,
-                                      builder: (context) {
-                                        return CupertinoAlertDialog(
-                                          title: Text('提示'),
-                                          content: Text('确认删除该评论吗？'),
-                                          actions: <Widget>[
-                                            CupertinoDialogAction(
-                                              child: Text('取消'),
-                                              onPressed: () {
-                                                Navigator.of(context).pop('cancel');
-                                              },
-                                            ),
-                                            CupertinoDialogAction(
-                                              child: Text('确认'),
-                                              onPressed: () async {
-                                                var res = await HttpUtil()
-                                                    .get(Api.deleteComment,
-                                                    parameters: {
-                                                      'commentId':
-                                                      item['id']
-                                                    });
-                                                if (res['success']) {
-                                                  Navigator.of(context)
-                                                      .pop('ok');
-                                                  item['text'] = '【已删除】';
-                                                  item['imageNames'] = null;
-                                                  setState(() {
-                                                    item = item;
-                                                  });
-                                                } else {
-                                                  Fluttertoast.showToast(
-                                                    msg: res['errorMessage']
-                                                        .toString(),
-                                                    gravity:
-                                                    ToastGravity.CENTER,
-                                                  );
-                                                }
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      });
-                                },
-                                child: Icon(Icons.delete_forever, size: ScreenUtil().setWidth(35),color: Colors.red,)
-                              )
-                                  : Text('')
-                            ]
+                                  Container(width: 10,),
+                                  item['canDeleted']
+                                      ? InkWell(
+                                      onTap: () {
+                                        showCupertinoDialog(
+                                          //showCupertinoDialog
+                                            context: context,
+                                            builder: (context) {
+                                              return CupertinoAlertDialog(
+                                                title: Text('提示'),
+                                                content: Text('确认删除该评论吗？'),
+                                                actions: <Widget>[
+                                                  CupertinoDialogAction(
+                                                    child: Text('取消'),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop('cancel');
+                                                    },
+                                                  ),
+                                                  CupertinoDialogAction(
+                                                    child: Text('确认'),
+                                                    onPressed: () async {
+                                                      var res = await HttpUtil()
+                                                          .get(Api.deleteComment,
+                                                          parameters: {
+                                                            'commentId':
+                                                            item['id']
+                                                          });
+                                                      if (res['success']) {
+                                                        Navigator.of(context)
+                                                            .pop('ok');
+                                                        item['text'] = '【已删除】';
+                                                        item['imageNames'] = null;
+                                                        item['audioName'] = null;
+                                                        setState(() {
+                                                          item = item;
+                                                        });
+                                                      } else {
+                                                        Fluttertoast.showToast(
+                                                          msg: res['errorMessage']
+                                                              .toString(),
+                                                          gravity:
+                                                          ToastGravity.CENTER,
+                                                        );
+                                                      }
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            });
+                                      },
+                                      child: Icon(Icons.delete_forever, size: ScreenUtil().setWidth(35),color: Colors.red,)
+                                  )
+                                      : Text('')
+                                ]
                             )
                           ],
                         ),
@@ -274,91 +310,145 @@ class _CommentWidgetState extends State<CommentWidget> {
                           // color: Colors.blue,
                           child: !islink(item['text'])
                               ? Text(
-                                  item['text'] != null ? item['text'] : '',
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(30),
-                                  ),
-                                  // overflow: TextOverflow.ellipsis,
-                                )
+                            item['text'] != null ? item['text'] : '',
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(30),
+                            ),
+                            // overflow: TextOverflow.ellipsis,
+                          )
                               : _doRichText(item['text']),
                         ),
                       ),
                       item['imageNames'] != null
                           ? Container(
-                              height: ScreenUtil().setWidth(145),
-                              padding: EdgeInsets.only(
-                                top: ScreenUtil().setWidth(10),
-                                bottom: ScreenUtil().setWidth(10),
-                              ),
-                              child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 5,
-                                  mainAxisSpacing: ScreenUtil().setWidth(8),
-                                  crossAxisSpacing: ScreenUtil().setWidth(8),
-                                ),
-                                physics: NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                        FadeRoute(
-                                          page: JhPhotoAllScreenShow(
-                                            imgDataArr: doImgList2(
-                                                item['imageNames']
-                                                    .split(',')), //[imgurl],
-                                            index: index,
-                                            heroTag:
-                                                'https://i.chao.fun/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(4),
+                        height: ScreenUtil().setWidth(145),
+                        padding: EdgeInsets.only(
+                          top: ScreenUtil().setWidth(10),
+                          bottom: ScreenUtil().setWidth(10),
+                        ),
+                        child: GridView.builder(
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 5,
+                            mainAxisSpacing: ScreenUtil().setWidth(8),
+                            crossAxisSpacing: ScreenUtil().setWidth(8),
+                          ),
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  FadeRoute(
+                                    page: JhPhotoAllScreenShow(
+                                      imgDataArr: doImgList2(
+                                          item['imageNames']
+                                              .split(',')), //[imgurl],
+                                      index: index,
+                                      heroTag:
+                                      'https://i.chao.fun/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: Container(
+                                  height: ScreenUtil().setWidth(150),
+                                  // color: Colors
+                                  //     .primaries[index % Colors.primaries.length],
+                                  child: CachedNetworkImage(
+                                    filterQuality: FilterQuality.high,
+                                    imageUrl: KSet.imgOrigin +
+                                        item['imageNames']
+                                            .split(',')[index] +
+                                        '?x-oss-process=image/resize,,h_300/format,webp/quality,q_75',
+                                    // fit: BoxFit.fitHeight,
+                                    fit: BoxFit.cover,
+                                    height: ScreenUtil().setWidth(150),
+                                    placeholder: (context, url) => Center(
                                       child: Container(
-                                        height: ScreenUtil().setWidth(150),
-                                        // color: Colors
-                                        //     .primaries[index % Colors.primaries.length],
-                                        child: CachedNetworkImage(
-                                          filterQuality: FilterQuality.high,
-                                          imageUrl: KSet.imgOrigin +
-                                              item['imageNames']
-                                                  .split(',')[index] +
-                                              '?x-oss-process=image/resize,,h_300/format,webp/quality,q_75',
-                                          // fit: BoxFit.fitHeight,
-                                          fit: BoxFit.cover,
-                                          height: ScreenUtil().setWidth(150),
-                                          placeholder: (context, url) => Center(
-                                            child: Container(
-                                              width: 40,
-                                              height: 40,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                            Color>(
-                                                        Color.fromRGBO(
-                                                            254, 149, 0, 100)),
-                                              ),
-                                            ),
-                                          ),
-                                          // fit: BoxFit.scaleDown,
-                                          // height:
-                                          //     ScreenUtil().setWidth(hight),
+                                        width: 40,
+                                        height: 40,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          backgroundColor:
+                                          Colors.transparent,
+                                          valueColor:
+                                          AlwaysStoppedAnimation<
+                                              Color>(
+                                              Color.fromRGBO(
+                                                  254, 149, 0, 100)),
                                         ),
                                       ),
                                     ),
-                                  );
-                                },
-                                itemCount: item['imageNames'].split(',').length,
+                                    // fit: BoxFit.scaleDown,
+                                    // height:
+                                    //     ScreenUtil().setWidth(hight),
+                                  ),
+                                ),
                               ),
-                            )
+                            );
+                          },
+                          itemCount: item['imageNames'].split(',').length,
+                        ),
+                      )
                           : Container(
-                              height: ScreenUtil().setWidth(0),
-                            ),
+                        height: ScreenUtil().setWidth(0),
+                      ),
+                      item['audio'] != null
+                          ? new Container(
+                        width: ScreenUtil().setWidth(380),
+                        height: ScreenUtil().setWidth(70),
+                        padding: EdgeInsets.only(right: 10.0),
+                        child:
+                        new FlatButton(
+                          padding: EdgeInsets.only(left: 0, right: 4.0),
+                          child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              StreamBuilder<PlayerState>(
+                                  stream: player.playerStateStream,
+                                  builder: (context, snapshot) {
+                                    final playerState = snapshot.data;
+                                    final processingState = playerState?.processingState;
+                                    final playing = playerState?.playing;
+                                    if (processingState == ProcessingState.loading ||
+                                        processingState == ProcessingState.buffering) {
+                                      return Text('');
+                                    } else if (playing != true) {
+                                      return Text('');
+                                    } else if (processingState != ProcessingState.completed) {
+                                      return Text('播放中...');
+                                    } else {
+                                      player.stop();
+                                      return Text('');
+                                    }
+                                  }
+                              ),
+                              new Text(twoDigits((duration.inSeconds / 60).toInt()) + ':' + twoDigits((duration.inSeconds % 60).toInt()) , textAlign: TextAlign.start, maxLines: 1),
+                              new Space(width: 10.0 / 2),
+                              new Image.asset(
+                                  'assets/images/chat/sound_left_3.webp',
+                                  height: 20.0,
+                                  color: Theme.of(context).textTheme.titleLarge.color,
+                                  fit: BoxFit.cover),
+                              new Space(width: 10.0)
+                            ],
+                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                          onPressed: () async {
+                            if (!player.playing) {
+                              player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao.fun/' + widget.item['audio'])));
+                              player.play();
+                            } else {
+                              player.stop();
+                            }
+                          },
+                        ),
+                      )
+                      : Container(
+                        height: ScreenUtil().setWidth(0),
+                      ),
                     ],
                   ),
                 ),
