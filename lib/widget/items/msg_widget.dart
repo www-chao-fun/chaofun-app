@@ -24,7 +24,7 @@ class MsgWidget extends StatelessWidget {
         bottom: ScreenUtil().setWidth(30),
       ),
       margin: EdgeInsets.only(bottom: 5),
-      child: (item['type'] != 'text_notice' && item['type'] != 'delete_post')
+      child: (item['type'] != 'text_notice' && item['type'] != 'delete_post'  && item['type'] != 'delete_comment')
           ? Column(
               children: [
                 _msgTop(context),
@@ -66,6 +66,14 @@ class MsgWidget extends StatelessWidget {
                       if (item['link'] != null) {
                         KSet.toNavigate(context, item['link'], '炒饭通知');
                         // https://chao.fun/p/1026976
+                      } else if (item['type'] == 'delete_comment') {
+                        Navigator.pushNamed(
+                          context,
+                          '/postdetail',
+                          arguments: {
+                            "postId": item['post']['postId'].toString(),
+                          },
+                        );
                       }
                     },
                     onLongPress: () {
@@ -94,11 +102,7 @@ class MsgWidget extends StatelessWidget {
                         //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
                       ),
                       child: Text(
-                        item['type'] != 'delete_post'
-                            ? item['text']
-                            : '【' +
-                                item['post']['title'] +
-                                '】已被删除，请阅读炒饭和分区发帖规范。',
+                        getText(item),
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(26),
                           color: Theme.of(context).hintColor,
@@ -111,6 +115,31 @@ class MsgWidget extends StatelessWidget {
             ),
     );
   }
+
+  String getText(item) {
+
+    String result = null;
+    if (item['type'] == 'notice') {
+      result = item['text'];
+    }
+    if (item['type'] == 'delete_post') {
+      result = '你的帖子【' +
+          item['post']['title'] +
+          '】已被删除，请阅读炒饭和分区发帖规范。';
+    }
+    if (item['type'] == 'delete_comment') {
+      result = '你在帖子【' +
+          item['post']['title'] +
+          '】下的评论已被删除，请阅读炒饭和分区发帖规范。';
+    }
+
+    if (result == null) {
+      result = '';
+    }
+
+    return result;
+  }
+
 
   _doContent(context) {
     switch (item['type']) {
