@@ -38,7 +38,7 @@ class _CommentWidgetState extends State<CommentWidget> {
   Duration duration = Duration();
   var init = false;
 
-  AudioPlayer player =  AudioPlayer();
+  AudioPlayer player = null;
   var playing = false;
 
   @override
@@ -52,6 +52,15 @@ class _CommentWidgetState extends State<CommentWidget> {
       getDuration();
     }
     // islink('https://chao.fun我的炒饭https://chao.fun和https://www.baidu.com');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (player != null) {
+      player.stop();
+      player.dispose();
+    }
   }
 
   Future<void> getDuration() async {
@@ -89,7 +98,7 @@ class _CommentWidgetState extends State<CommentWidget> {
         shrinkWrap: true, //为true可以解决子控件必须设置高度的问题
         physics: NeverScrollableScrollPhysics(), //禁用滑动事件
         itemBuilder: (c, i) {
-          return CommentWidget(item: coms[i], callBack: widget.callBack,);
+          return CommentWidget(key: Key(coms[i]['id'].toString()), item: coms[i], callBack: widget.callBack,);
         },
         // itemExtent: 100.0,
         itemCount: coms.length,
@@ -263,7 +272,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                             .pop('ok');
                                                         item['text'] = '【已删除】';
                                                         item['imageNames'] = null;
-                                                        item['audioName'] = null;
+                                                        item['audio'] = null;
                                                         setState(() {
                                                           item = item;
                                                         });

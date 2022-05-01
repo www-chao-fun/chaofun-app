@@ -448,6 +448,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                   physics: NeverScrollableScrollPhysics(), //禁用滑动事件
                                   itemBuilder: (c, i) {
                                     return CommentWidget(
+                                        key : Key(commentList[i]['id'].toString()),
                                         item: commentList[i],
                                         callBack: (item) {
                                           setState(() {
