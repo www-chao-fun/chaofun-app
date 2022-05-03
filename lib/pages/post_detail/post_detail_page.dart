@@ -1551,88 +1551,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             ),
                             padding: EdgeInsets.symmetric(vertical: 0),
                             onPressed: () async {
-                              print(imagesUrl);
-                              var content = _inputController.text;
-                              if (content.trim().isNotEmpty || (choose == 'image' && imagesUrl.length != 0) || (choose == 'audio' && audioUrl != 0)) {
-                                // print('举报内容值为：${content}');
-                                // toUpReport(context, content, item);
-                                if (!isLoading) {
-                                  setState(() {
-                                    isLoading = true;
-                                  });
-                                  var params = {
-                                    'postId': postId,
-                                    'comment': content,
-                                    'imageNames': '',
-                                    'ats': '',
-                                  };
-                                  if (atUserMap != null &&
-                                      atUserMap.length > 0) {
-                                    List finalAt = [];
-                                    for (var i = 0; i < atUserMap.length; i++) {
-                                      if (content.contains(
-                                          '@' + atUserMap[i]['userName'])) {
-                                        finalAt.add(atUserMap[i]['userId']);
-                                      }
-                                    }
-                                    if (finalAt.length > 0) {
-                                      params['ats'] = finalAt.join(',');
-                                    }
-                                  }
-
-                                  if (choose == 'image' && imagesUrl.length > 0) {
-                                    params['imageNames'] =
-                                        imagesUrl.take(9).join(',');
-                                  }
-
-                                  if (choose == 'audio') {
-                                    params['audioName'] = audioUrl;
-                                  }
-
-                                  if (toWho != null) {
-                                    params['parentId'] = toWho['id'].toString();
-                                  }
-                                  print(params);
-                                  var response = await HttpUtil().get(
-                                      Api.userToComment,
-                                      parameters: params);
-                                  if (response['success']) {
-                                    setState(() {
-                                      isLoading = false;
-                                      showImgs = false;
-                                      imageList = [];
-                                      imagesUrl = [];
-                                      audioUrl = null;
-                                      choose = 'image';
-                                    });
-                                    _inputController.text = '';
-                                    Fluttertoast.showToast(
-                                      msg: '评论成功',
-                                      gravity: ToastGravity.CENTER,
-                                      // textColor: Colors.grey,
-                                    );
-                                    getComment();
-                                    Navigator.pop(context);
-                                  } else {
-                                    setState(() {
-                                      isLoading = false;
-                                    });
-
-                                      Fluttertoast.showToast(
-                                        msg: response['errorMessage'],
-                                        gravity: ToastGravity.CENTER,
-                                      );
-
-                                  }
-                                }
-                              } else {
-                                // print('举报内容值为空的');
-                                Fluttertoast.showToast(
-                                  msg: '评论不能为空哦~',
-                                  gravity: ToastGravity.CENTER,
-                                  // textColor: Colors.grey,
-                                );
-                              }
+                              submitComment();
                             },
                           ),
                         ),
@@ -1736,83 +1655,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                             },
 
                             onSubmitted: (term) async {
-                              print(term);
-                              var content = term;
-                              if (content.trim().isNotEmpty || imagesUrl.length != 0) {
-                                // print('举报内容值为：${content}');
-                                // toUpReport(context, content, item);
-                                if (!isLoading) {
-                                  setState(() {
-                                    isLoading = true;
-                                  });
-                                  var params = {
-                                    'postId': postId,
-                                    'comment': content,
-                                    'imageNames': '',
-                                    'ats': '',
-                                  };
-                                  if (atUserMap != null &&
-                                      atUserMap.length > 0) {
-                                    List finalAt = [];
-                                    for (var i = 0; i < atUserMap.length; i++) {
-                                      if (content.contains('@' + atUserMap[i]['userName'])) {
-                                        finalAt.add(atUserMap[i]['userId']);
-                                      }
-                                    }
-                                    if (finalAt.length > 0) {
-                                      params['ats'] = finalAt.join(',');
-                                    }
-                                  }
-
-                                  if (choose == 'image' && imagesUrl.length > 0) {
-                                    params['imageNames'] =
-                                        imagesUrl.take(9).join(',');
-                                  }
-
-                                  if (choose == 'audio') {
-                                    params['audioName'] = audioUrl;
-                                  }
-
-                                  if (toWho != null) {
-                                    params['parentId'] = toWho['id'].toString();
-                                  }
-                                  print(params);
-                                  var response = await HttpUtil().post(Api.userToComment, parameters: params);
-                                  if (response['success']) {
-                                    setState(() {
-                                      isLoading = false;
-                                      showImgs = false;
-                                      imageList = [];
-                                      imagesUrl = [];
-                                      audioUrl = null;
-                                      choose = 'image';
-                                    });
-                                    _inputController.text = '';
-                                    Fluttertoast.showToast(
-                                      msg: '评论成功',
-                                      gravity: ToastGravity.CENTER,
-                                      // textColor: Colors.grey,
-                                    );
-                                    getComment();
-                                    Navigator.pop(context);
-                                  } else {
-                                    setState(() {
-                                      isLoading = false;
-                                    });
-                                    Fluttertoast.showToast(
-                                      msg: response['errorMessage'],
-                                      gravity: ToastGravity.CENTER,
-                                    );
-                                  }
-                                }
-                              } else {
-                                // print('举报内容值为空的');
-                                Fluttertoast.showToast(
-                                  msg: '评论不能为空哦~',
-                                  gravity: ToastGravity.CENTER,
-                                  // textColor: Colors.grey,
-                                );
-                              }
+                              submitComment();
                               // 这里进行事件处理
                             },
                           ),
@@ -2036,6 +1879,90 @@ class _PostDetailPageState extends State<PostDetailPage> {
         });
       },
     );
+  }
+
+  void submitComment() {
+    var content = _inputController.text;
+    if (content.trim().isNotEmpty || (choose == 'image' && imagesUrl.length != 0) || (choose == 'audio' && audioUrl != null)) {
+      // print('举报内容值为：${content}');
+      // toUpReport(context, content, item);
+      if (!isLoading) {
+        setState(() {
+          isLoading = true;
+        });
+        var params = {
+          'postId': postId,
+          'comment': content,
+          'imageNames': '',
+          'ats': '',
+        };
+        if (atUserMap != null &&
+            atUserMap.length > 0) {
+          List finalAt = [];
+          for (var i = 0; i < atUserMap.length; i++) {
+            if (content.contains(
+                '@' + atUserMap[i]['userName'])) {
+              finalAt.add(atUserMap[i]['userId']);
+            }
+          }
+          if (finalAt.length > 0) {
+            params['ats'] = finalAt.join(',');
+          }
+        }
+
+        if (choose == 'image' && imagesUrl.length > 0) {
+          params['imageNames'] =
+              imagesUrl.take(9).join(',');
+        }
+
+        if (choose == 'audio') {
+          params['audioName'] = audioUrl;
+        }
+
+        if (toWho != null) {
+          params['parentId'] = toWho['id'].toString();
+        }
+        print(params);
+        var response = await HttpUtil().get(
+            Api.userToComment,
+            parameters: params);
+        if (response['success']) {
+          setState(() {
+            isLoading = false;
+            showImgs = false;
+            imageList = [];
+            imagesUrl = [];
+            audioUrl = null;
+            choose = 'image';
+          });
+          _inputController.text = '';
+          Fluttertoast.showToast(
+            msg: '评论成功',
+            gravity: ToastGravity.CENTER,
+            // textColor: Colors.grey,
+          );
+          getComment();
+          Navigator.pop(context);
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+
+          Fluttertoast.showToast(
+            msg: response['errorMessage'],
+            gravity: ToastGravity.CENTER,
+          );
+
+        }
+      }
+    } else {
+      // print('举报内容值为空的');
+      Fluttertoast.showToast(
+        msg: '评论不能为空哦~',
+        gravity: ToastGravity.CENTER,
+        // textColor: Colors.grey,
+      );
+    }
   }
 
   String twoDigits(int n) => n.toString().padLeft(2, "0");
