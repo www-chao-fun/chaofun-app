@@ -1881,7 +1881,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     );
   }
 
-  void submitComment() {
+  Future<void> submitComment() async {
     var content = _inputController.text;
     if (content.trim().isNotEmpty || (choose == 'image' && imagesUrl.length != 0) || (choose == 'audio' && audioUrl != null)) {
       // print('举报内容值为：${content}');
@@ -1958,7 +1958,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     } else {
       // print('举报内容值为空的');
       Fluttertoast.showToast(
-        msg: '评论不能为空哦~',
+        msg: '不能是空评论哦~，附上图片或声音吧',
         gravity: ToastGravity.CENTER,
         // textColor: Colors.grey,
       );

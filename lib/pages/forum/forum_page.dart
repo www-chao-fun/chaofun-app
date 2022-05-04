@@ -969,7 +969,9 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                     );
                   },
                   child: Container(
+                    alignment: Alignment.center,
                     decoration: BoxDecoration(
+                      color: Colors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                     child:
@@ -990,13 +992,12 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                 ),
                               ))
                             ),
-                            Icon(Icons.mail_outline_rounded)
+                            Icon(Icons.mail_outline_rounded, color: Colors.white,)
                           ]
-                        )
+                        ),
 
-
-                    // width: 20,
-                    // height: 20,
+                    width: 40,
+                    height: 40,
                   ),
                 ),
                 SizedBox(
@@ -1045,10 +1046,20 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                     }
                     // _pickImage(context);
                   },
-                  child: Image.asset(
-                    'assets/images/_icon/push.png',
-                    width: 24,
-                    height: 24,
+                  child:
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: Image.asset(
+                      'assets/images/_icon/push.png',
+                      width: 24,
+                      height: 24,
+                    ),
+                    width: 40,
+                    height: 40,
                   ),
                 ),
               ],

@@ -119,7 +119,7 @@ class MsgWidget extends StatelessWidget {
   String getText(item) {
 
     String result = null;
-    if (item['type'] == 'notice') {
+    if (item['type'] == 'text_notice') {
       result = item['text'];
     }
     if (item['type'] == 'delete_post') {
