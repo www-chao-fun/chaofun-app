@@ -31,7 +31,7 @@ class _UserMemberPageState extends State<UserMemberPage>
   ScrollController _scrollController = ScrollController();
   bool canload = true;
 
-  var memberInfo = {};
+  Map memberInfo = {'focused': false, 'icon': '', 'userName': ''};
 
   var curSelected = 'publish';
 
@@ -88,15 +88,16 @@ class _UserMemberPageState extends State<UserMemberPage>
     print(widget.arguments['userId']);
     params['userId'] = widget.arguments['userId'];
     memberInfoFuture = homeService
-        .getMemberInfo({'userId': widget.arguments['userId']}, (response) {
+        .getMemberInfo({'userId': widget.arguments['userId']}, (response) async {
       // var data = response;
       // // setState(() {
       // setState(() {
       //   commentList = (data as List).cast();
       // });
       // var data = (response as List).cast();
-      print('获取用户信息');
-      memberInfo = response;
+      setState(() {
+        memberInfo = response;
+      });
       print(response);
     }, (message) {
       print('失败了');
@@ -561,7 +562,7 @@ class _UserMemberPageState extends State<UserMemberPage>
           // image: AssetImage("assets/背景/bg1.jpg"),
           image: NetworkImage(
             KSet.imgOrigin +
-                (memberInfo == null ? '' : memberInfo['icon'] ) +
+                (memberInfo == null || memberInfo['icon'] == null ? '' : memberInfo['icon'] ) +
                 '?x-oss-process=image/resize,h_414/format,webp/quality,q_75',
           ),
           fit: BoxFit.cover,
@@ -1357,7 +1358,7 @@ class _UserMemberPageState extends State<UserMemberPage>
       height: ScreenUtil().setWidth(60),
       // color: Colors.blue,
       child: MaterialButton(
-        color: memberInfo['focused']
+        color: memberInfo['focused'] != null && memberInfo['focused']
             ? Colors.white
             : Color.fromRGBO(255, 147, 0, 1),
         textColor: memberInfo['focused'] ? Colors.grey : Colors.white,
