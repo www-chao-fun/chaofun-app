@@ -725,6 +725,9 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                         Alignment.center,
                                                         child: Text(
                                                           '众筹',
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.bold,
+                                                              color: Theme.of(context).hintColor),
                                                         )
                                                     ),
                                                   )
