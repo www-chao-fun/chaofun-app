@@ -105,6 +105,14 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
   ScrollController _scrollController = ScrollController();
   @override
+  void dispose() {
+
+    _commentFocus.dispose();
+    _inputController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -150,6 +158,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
     });
     getPostInfo();
   }
+
+
 
   jump2Comment() async {
     var targetCommentId = null;
@@ -1653,7 +1663,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                 str = val;
                               });
                             },
-
                             onSubmitted: (term) async {
                               submitComment();
                               // 这里进行事件处理

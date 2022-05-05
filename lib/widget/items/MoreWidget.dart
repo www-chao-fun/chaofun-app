@@ -453,6 +453,7 @@ class MoreWidget{
               Container(
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: TextField(
+                  autofocus: true,
                   controller: _inputController,
                   decoration: InputDecoration(
                     contentPadding:

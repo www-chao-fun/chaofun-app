@@ -48,7 +48,7 @@ class ChaoFunWebView extends StatefulWidget {
     Key key,
     @required this.url,
     this.title,
-    this.cookie = false,
+    this.cookie = true,
     this.showHeader = true,
     this.showAction,
     this.callBack,

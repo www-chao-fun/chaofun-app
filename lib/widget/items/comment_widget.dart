@@ -227,74 +227,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ): Text(''),
-                            Expanded(
-                              child: Text(''),
-                              flex: 1,
-                            ),
-                            Row(
-                                children: [
-
-                                  InkWell(
-                                      onTap: () {
-                                        doWay(context);
-                                      },
-                                      child: Text("举报", style: TextStyle(color: Theme.of(context).hintColor, fontSize: ScreenUtil().setWidth(25), fontWeight: FontWeight.bold), )
-                                  ),
-                                  Container(width: 10,),
-                                  item['canDeleted']
-                                      ? InkWell(
-                                      onTap: () {
-                                        showCupertinoDialog(
-                                          //showCupertinoDialog
-                                            context: context,
-                                            builder: (context) {
-                                              return CupertinoAlertDialog(
-                                                title: Text('提示'),
-                                                content: Text('确认删除该评论吗？'),
-                                                actions: <Widget>[
-                                                  CupertinoDialogAction(
-                                                    child: Text('取消'),
-                                                    onPressed: () {
-                                                      Navigator.of(context).pop('cancel');
-                                                    },
-                                                  ),
-                                                  CupertinoDialogAction(
-                                                    child: Text('确认'),
-                                                    onPressed: () async {
-                                                      var res = await HttpUtil()
-                                                          .get(Api.deleteComment,
-                                                          parameters: {
-                                                            'commentId':
-                                                            item['id']
-                                                          });
-                                                      if (res['success']) {
-                                                        Navigator.of(context)
-                                                            .pop('ok');
-                                                        item['text'] = '【已删除】';
-                                                        item['imageNames'] = null;
-                                                        item['audio'] = null;
-                                                        setState(() {
-                                                          item = item;
-                                                        });
-                                                      } else {
-                                                        Fluttertoast.showToast(
-                                                          msg: res['errorMessage']
-                                                              .toString(),
-                                                          gravity:
-                                                          ToastGravity.CENTER,
-                                                        );
-                                                      }
-                                                    },
-                                                  ),
-                                                ],
-                                              );
-                                            });
-                                      },
-                                      child: Icon(Icons.delete_forever, size: ScreenUtil().setWidth(35),color: Colors.red,)
-                                  )
-                                      : Text('')
-                                ]
-                            )
                           ],
                         ),
                       ),
@@ -559,7 +491,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                         widget.callBack(item);
                       },
                       child: Container(
-                        padding: EdgeInsets.only(left: 10, right: 10),
+                        padding: EdgeInsets.only(left: 5, right: 5),
                         child: Text(
                           '回复',
                           style: TextStyle(
@@ -568,47 +500,154 @@ class _CommentWidgetState extends State<CommentWidget> {
                         ),
                       ),
                     ),
-                    item['forumAdmin'] == true ? InkWell(
-                      onTap: () async {
-                        if (item['forumAdminHighlight'] == true) {
-                          var res = await HttpUtil().get(Api.unHighLightComment,
-                              parameters: {'commentId': item['id']});
-                          if (res['success']) {
-                            setState(() {
-                              item['forumAdminHighlight'] = false;
-                            });
-                          } else {
-                            Fluttertoast.showToast(
-                              msg: res['errorMessage'],
-                              gravity: ToastGravity.CENTER,
-                            );
-                          }
-                        } else {
-                          var res = await HttpUtil().get(Api.highLightComment,
-                              parameters: {'commentId': item['id']});
-                          if (res['success']) {
-                            setState(() {
-                              item['forumAdminHighlight'] = true;
-                            });
-                          } else {
-                            Fluttertoast.showToast(
-                              msg: res['errorMessage'],
-                              gravity: ToastGravity.CENTER,
-                            );
-                          }
-                        }
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Text(
-                          item['forumAdminHighlight'] == true ? '取消高亮': '高亮',
-//                           '高亮',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: ScreenUtil().setSp(28)),
-                        ),
-                      ),
-                    ): Text(''),
+                    InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) => Container(
+                                height: ScreenUtil().setWidth(350),
+                                  child: Column(
+                                    children: [
+                                      item['forumAdmin'] == true? InkWell(
+                                        onTap: () async {
+                                          Navigator.of(context).pop();
+                                          if (item['forumAdminHighlight'] == true) {
+                                            var res = await HttpUtil().get(Api.unHighLightComment,
+                                                parameters: {'commentId': item['id']});
+                                            if (res['success']) {
+                                              setState(() {
+                                                item['forumAdminHighlight'] = false;
+                                              });
+                                            } else {
+                                              Fluttertoast.showToast(
+                                                msg: res['errorMessage'],
+                                                gravity: ToastGravity.CENTER,
+                                              );
+                                            }
+                                          } else {
+                                            var res = await HttpUtil().get(Api.highLightComment,
+                                                parameters: {'commentId': item['id']});
+                                            if (res['success']) {
+                                              setState(() {
+                                                item['forumAdminHighlight'] = true;
+                                              });
+                                            } else {
+                                              Fluttertoast.showToast(
+                                                msg: res['errorMessage'],
+                                                gravity: ToastGravity.CENTER,
+                                              );
+                                            }
+                                          }
+                                        },
+                                        child:
+                                        Container(
+                                          margin: EdgeInsets.only(left: 30, right: 30),
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                  width: 0.5, color: KColor.defaultBorderColor),
+                                            ),
+                                          ),
+                                          alignment: Alignment.center,
+                                          padding: EdgeInsets.only(left: 10, right: 10),
+                                          height: ScreenUtil().setWidth(90),
+                                          child: Text('高亮'),
+                                        ),
+                                      ): Container(),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                          doWay(context);
+                                        },
+                                        child:
+                                        Container(
+                                          margin: EdgeInsets.only(left: 30, right: 30),
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                  width: 0.5, color: KColor.defaultBorderColor),
+                                            ),
+                                          ),
+                                          alignment: Alignment.center,
+                                          padding: EdgeInsets.only(left: 10, right: 10),
+                                          height: ScreenUtil().setWidth(90),
+                                          child: Text('举报'),
+                                        ),
+                                      ),
+                                      item['canDeleted'] ? InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                          showCupertinoDialog(
+                                            //showCupertinoDialog
+                                              context: context,
+                                              builder: (context) {
+                                                return CupertinoAlertDialog(
+                                                  title: Text('提示'),
+                                                  content: Text('确认删除该评论吗？'),
+                                                  actions: <Widget>[
+                                                    CupertinoDialogAction(
+                                                      child: Text('取消'),
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop('cancel');
+                                                      },
+                                                    ),
+                                                    CupertinoDialogAction(
+                                                      child: Text('确认'),
+                                                      onPressed: () async {
+                                                        var res = await HttpUtil()
+                                                            .get(Api.deleteComment,
+                                                            parameters: {
+                                                              'commentId':
+                                                              item['id']
+                                                            });
+                                                        if (res['success']) {
+                                                          Navigator.of(context)
+                                                              .pop('ok');
+                                                          item['text'] = '【已删除】';
+                                                          item['imageNames'] = null;
+                                                          item['audio'] = null;
+                                                          setState(() {
+                                                            item = item;
+                                                          });
+                                                        } else {
+                                                          Fluttertoast.showToast(
+                                                            msg: res['errorMessage']
+                                                                .toString(),
+                                                            gravity:
+                                                            ToastGravity.CENTER,
+                                                          );
+                                                        }
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        child:
+                                        Container(
+                                          margin: EdgeInsets.only(left: 30, right: 30),
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                  width: 0.5, color: KColor.defaultBorderColor),
+                                            ),
+                                          ),
+                                          alignment: Alignment.center,
+                                          padding: EdgeInsets.only(left: 10, right: 10),
+                                          height: ScreenUtil().setWidth(90),
+                                          child: Text('删除'),
+                                        ),
+                                      ) : Container(),
+                                    ],
+                                  )
+                              )
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.more_horiz_sharp, color:  Colors.grey,)
+                        )
+                    )
                   ],
                 ),
               ],
@@ -720,6 +759,7 @@ class _CommentWidgetState extends State<CommentWidget> {
               Container(
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: TextField(
+                  autofocus: true,
                   controller: _reportController,
                   decoration: InputDecoration(
                     contentPadding:

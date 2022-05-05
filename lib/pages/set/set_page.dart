@@ -12,6 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_chaofan/provide/user.dart';
 import 'package:provider/provider.dart';
 
+import '../post_detail/chao_fun_webview.dart';
+
 class SetPage extends StatefulWidget {
   _SetPageState createState() => _SetPageState();
 }
@@ -206,6 +208,53 @@ class _SetPageState extends State<SetPage> {
                             : Text(Provider.of<UserStateProvide>(context,
                                     listen: true)
                                 .userInfo['phone']),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.white,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChaoFunWebView(
+                          url:
+                          'https://chao.fun/webview/badge/setting', //'https://chao.fun/webview/agreement',
+                          title: '徽章显示设置',
+                          showAction: false,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: ScreenUtil().setWidth(110),
+                    padding: EdgeInsets.only(left: 0, right: 10),
+                    margin: EdgeInsets.only(left: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          width: 1,
+                          color: Color.fromRGBO(183, 183, 183, 0.2),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '徽章显示设置',
+                          style: TextStyle(
+                              color: Color.fromRGBO(105, 105, 105, 1)),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                          size: 16,
+                        ),
                       ],
                     ),
                   ),
@@ -430,6 +479,7 @@ class _SetPageState extends State<SetPage> {
                 ),
 
               ),
+
 
             ],
           ),
