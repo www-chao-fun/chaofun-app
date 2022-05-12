@@ -51,12 +51,7 @@ class _MemberPageState extends State<MemberPage> {
     {"label": "历史记录", "value": "16", "icon": "assets/images/icon/fabu.png"},
     {"label": "修改资料", "value": "1", "icon": "assets/images/icon/fabu.png"},
     // {"label": "浏览历史", "value": "11", "icon": "assets/images/icon/fabu.png"},
-    // {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
-    // {"label": "我的发布", "value": "1", "icon": "assets/images/icon/fabu.png"},
-    // {"label": "我点赞的", "value": "2", "icon": "assets/images/icon/dianzan.png"},
-    // {"label": "我的收藏", "value": "3", "icon": "assets/images/icon/shoucang.png"},
-    // {"label": "我的合集", "value": "5", "icon": "assets/images/icon/shoucang.png"},
-    // {"label": "我的工具", "value": "4", "icon": "assets/images/icon/shoucang.png"},
+    {"label": "管理的版块", "value": "12", "icon": "assets/images/icon/fabu.png"},
   ];
 // 颜色 #FB8A96
   List<Map> listData2 = [
