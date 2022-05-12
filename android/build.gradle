@@ -9,7 +9,7 @@ buildscript {
         jcenter()
 
         maven {
-            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
         }
 
         maven {
@@ -21,7 +21,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.aliyun.ams:emas-services:1.0.1'
     }
@@ -54,7 +54,7 @@ allprojects {
         // }
         maven { url 'http://download.flutter.io' }
         maven {
-            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
         }
         maven { url 'https://dl.bintray.com/umsdk/release' }
 

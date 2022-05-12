@@ -55,7 +55,6 @@ class SubmitPage extends StatefulWidget {
 class _SubmitPageState extends State<SubmitPage> {
   Widget forumNameWidget;
   TextEditingController _inputController = TextEditingController();
-  TextEditingController _articleController = TextEditingController();
   TextEditingController _linkurlController = TextEditingController();
 
 
@@ -850,6 +849,7 @@ class _SubmitPageState extends State<SubmitPage> {
     var html = markdownToHtml(markdown);
     html = html.replaceAll("\n", "<br>");
     html = html.replaceAll("<p>", "<p style=\"white-space:pre-wrap\">");
+
     // html = html.replaceAll(" ", "&nbsp;");
     return html;
   }

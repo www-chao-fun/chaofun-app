@@ -39,9 +39,7 @@ class _UserSavePageState extends State<UserSavePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
-      forumId = widget.arguments['forumId'];
-    });
+
     dataFuture = homeService.myListSaved(params, (response) {
       var data = response;
       List<Map> asd = (data['posts'] as List).cast();

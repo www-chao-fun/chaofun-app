@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_chaofan/config/index.dart';
+import 'package:flutter_chaofan/widget/items/save_flow_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_chaofan/api/api.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart' hide Toast;
 
 class BottomWidget extends StatefulWidget {
   var item;
@@ -56,7 +57,7 @@ class _BottomWidgetState extends State<BottomWidget> {
             flex: 1,
           ),
           Expanded(
-            child: _loveItem(),
+            child: _loveItem(context),
             flex: 1,
           ),
         ],
@@ -243,9 +244,10 @@ class _BottomWidgetState extends State<BottomWidget> {
   }
 
   // 收藏
-  Widget _loveItem() {
+  Widget _loveItem(BuildContext context) {
     return InkWell(
       onTap: () async {
+        // Toast.show(context);
         setState(() {
           item['save'] = !item['save'];
         });
