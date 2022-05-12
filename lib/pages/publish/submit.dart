@@ -24,6 +24,7 @@ import 'package:flutter_chaofan/pages/post_detail/webview_flutter.dart';
 import 'package:flutter_chaofan/pages/publish/forumList.dart';
 import 'package:flutter_chaofan/provide/user.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
+import 'package:flutter_chaofan/widget/im/ui.dart';
 import 'package:flutter_chaofan/widget/items/video_widget.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,6 +37,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:record/record.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuple/tuple.dart';
 
 import 'package:flutter_chaofan/database/userHelper.dart';
@@ -55,6 +57,11 @@ class _SubmitPageState extends State<SubmitPage> {
   TextEditingController _inputController = TextEditingController();
   TextEditingController _articleController = TextEditingController();
   TextEditingController _linkurlController = TextEditingController();
+
+
+  QuillController _controller = QuillController.basic();
+  ScrollController _scrollController = ScrollController();
+
 
   final FocusNode _focusNode = FocusNode();
 
@@ -163,6 +170,7 @@ class _SubmitPageState extends State<SubmitPage> {
   var clipboardDatas;
   var collectionId = '';
   var collectName;
+  var fromDraft = false;
   List<Map> voteList = [
     {'optionName': ''},
     {'optionName': ''},
@@ -212,13 +220,26 @@ class _SubmitPageState extends State<SubmitPage> {
     super.initState();
     forumNameWidget = _forumNameWidget();
 
+    if (widget.arguments != null) {
 
-    if (widget.arguments != null && widget.arguments['str'] != null) {
-      var a = widget.arguments['str'].split('|');
-      forumId = a[0];
-      forumName = a[1];
-      forumImageName = a[2];
+      if (widget.arguments['str'] != null) {
+        var a = widget.arguments['str'].split('|');
+        forumId = a[0];
+        forumName = a[1];
+        forumImageName = a[2];
+      }
+
+      if (widget.arguments['fromDraft'] != null) {
+        fromDraft = widget.arguments['fromDraft'];
+      }
     }
+
+    _controller.document.changes.listen((event) {
+      saveDraft();
+    });
+
+    recoverDraft();
+
     _forumRow();
     getTagList();
     // Timer(const Duration(milliseconds: 0), () {
@@ -238,6 +259,26 @@ class _SubmitPageState extends State<SubmitPage> {
     return forumRow;
   }
 
+
+  Future<void> recoverDraft() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('cf_draft_article') != null) {
+      _controller = QuillController(
+          document: Document.fromJson(json.decode(prefs.getString('cf_draft_article'))),
+          selection: TextSelection.collapsed(offset: 0));
+    }
+  }
+
+  Future<void> saveDraft() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (_controller.document.toPlainText().isNotEmpty) {
+      var temp = _controller.document.toDelta().toJson();
+      prefs.setString('cf_draft_article', json.encode(temp));
+    } else {
+      prefs.remove('cf_draft_article');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -252,38 +293,104 @@ class _SubmitPageState extends State<SubmitPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
+                  onTap: ()  async {
+                    SharedPreferences prefs= await SharedPreferences.getInstance();
+
+                    if (prefs.getString('cf_draft_article') != null) {
+                      showCupertinoDialog(
+                        //showCupertinoDialog
+                          context: context,
+                          builder: (context) {
+                            return CupertinoAlertDialog(
+                              title: Text('提示'),
+                              content: Text('你有未提交的文章，将此次文章编辑保留？'),
+                              actions: <Widget>[
+                                CupertinoDialogAction(
+                                  child: Text('不保留'),
+                                  onPressed: () {
+                                    prefs.remove('cf_draft_article');
+                                    Navigator.of(context).pop('cancel');
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                CupertinoDialogAction(
+                                  child: Text('保留'),
+                                  onPressed: () async {
+                                    Navigator.of(context).pop('ok');
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          });
+                    } else {
+                      Navigator.of(context).pop();
+                    }
                   },
                   child: Image.asset('assets/images/_icon/closes.png')),
 
-              InkWell(
-                onTap: debounce(() {
-                  toPush(context);
-                }),
-                child: Container(
-                  padding: EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                    bottom: 4,
-                    top: 4,
-                  ),
-                  alignment: Alignment.centerLeft,
-                  decoration: BoxDecoration(
-                    color: KColor.primaryColor,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    // border: Border.all(
-                    //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
-                  ),
-                  child: Text(
-                    '发布',
-                    style: TextStyle(
-                      fontSize: ScreenUtil().setSp(28),
-                      color: Colors.white,
+              Row(
+                  children:[
+                    // InkWell(
+                    //   onTap: debounce(() {
+                    //     Navigator.pushNamed(
+                    //       context,
+                    //       '/draft',
+                    //     );
+                    //   }),
+                    //   child: Container(
+                    //     padding: EdgeInsets.only(
+                    //       left: 16,
+                    //       right: 16,
+                    //       bottom: 4,
+                    //       top: 4,
+                    //     ),
+                    //     alignment: Alignment.centerLeft,
+                    //     decoration: BoxDecoration(
+                    //       color: KColor.primaryColor,
+                    //       borderRadius: BorderRadius.all(Radius.circular(20)),
+                    //       // border: Border.all(
+                    //       //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
+                    //     ),
+                    //     child: Text(
+                    //       '草稿',
+                    //       style: TextStyle(
+                    //         fontSize: ScreenUtil().setSp(28),
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Space(width: ScreenUtil().setWidth(20),),
+                    InkWell(
+                      onTap: debounce(() {
+                        toPush(context);
+                      }),
+                      child: Container(
+                        padding: EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                          bottom: 4,
+                          top: 4,
+                        ),
+                        alignment: Alignment.centerLeft,
+                        decoration: BoxDecoration(
+                          color: KColor.primaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          // border: Border.all(
+                          //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
+                        ),
+                        child: Text(
+                          '发布',
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setSp(28),
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
+                  ]
+              )
             ],
           ),
         ),
@@ -808,6 +915,11 @@ class _SubmitPageState extends State<SubmitPage> {
             setState(() {
               canSub = true;
             });
+            Fluttertoast.showToast(
+              msg: '文章发布失败，有不支持的格式',
+              gravity: ToastGravity.CENTER,
+            );
+            return;
           }
           print(_controller.document.toPlainText());
           response = await HttpUtil().post(
@@ -821,6 +933,11 @@ class _SubmitPageState extends State<SubmitPage> {
               },
             ),
           );
+
+          if (response['success']) {
+            SharedPreferences prefs= await SharedPreferences.getInstance();
+            prefs.remove('cf_draft_article');
+          }
         } else {
           Fluttertoast.showToast(
             msg: '请勿重复提交',
@@ -1219,17 +1336,15 @@ class _SubmitPageState extends State<SubmitPage> {
     }
   }
 
-  QuillController _controller = QuillController.basic();
-  ScrollController _scrollController = ScrollController();
-
-
   _articleWidget() {
+
 
     return Column(
       children: [
         QuillToolbar.basic(
           controller: _controller,
           onImagePickCallback: _onImagePickCallback,
+          showFontSize: false,
           showDividers: false,
           showCenterAlignment: false,
           showRedo: false,
