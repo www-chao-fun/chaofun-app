@@ -1,6 +1,7 @@
 import 'package:extended_text/extended_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/utils/win_media.dart';
 import 'package:flutter_chaofan/widget/im/text_span_builder.dart';
 import 'package:flutter_screenutil/screen_util.dart';
@@ -95,7 +96,7 @@ class _TextItemContainerState extends State<TextItemContainer> {
             child: GestureDetector(
               onTap: () {
                 print("1234");
-                KSet.toNavigate(context, widget.text, '分享的链接');
+                Utils.toNavigate(context, widget.text, '分享的链接');
               },
               child: ExtendedText(
                 widget.text ?? '文字为空',

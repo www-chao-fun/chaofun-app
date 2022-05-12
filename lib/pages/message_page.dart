@@ -10,6 +10,7 @@ import 'package:flutter_chaofan/pages/nonetwork_page.dart';
 import 'package:flutter_chaofan/provide/user.dart';
 import 'package:flutter_chaofan/service/home_service.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
+import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/items/msg_widget.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -342,7 +343,7 @@ class _MessagePageState extends State<MessagePage> {
               arguments: {"postId": item['post']['postId'].toString()},
             );
           } else if (item['type'] == 'text_notice' && item['link'] != null) {
-            KSet.toNavigate(context, item['link'], '炒饭通知');
+            Utils.toNavigate(context, item['link'], '炒饭通知');
             // https://chao.fun/p/1026976
           }
         },

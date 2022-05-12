@@ -60,12 +60,12 @@ class _MemberPageState extends State<MemberPage> {
   ];
 // 颜色 #FB8A96
   List<Map> listData2 = [
-    {"label": "检查更新", "value": "6", "icon": "assets/images/icon/update.png"},
-    {"label": "联系我们", "value": "7", "icon": "assets/images/icon/about.png"},
-    {"label": "鸣谢", "value": "8", "icon": "assets/images/icon/like_filled.png"},
     {"label": "设置", "value": "9", "icon": "assets/images/icon/set.png"},
     {"label": "主题", "value": "15", "icon": "assets/images/icon/set.png"},
     {"label": "清除缓存", "value": "10", "icon": "assets/images/icon/set.png"},
+    {"label": "检查更新", "value": "6", "icon": "assets/images/icon/update.png"},
+    {"label": "联系我们", "value": "7", "icon": "assets/images/icon/about.png"},
+    {"label": "鸣谢", "value": "8", "icon": "assets/images/icon/like_filled.png"},
     // {"label": "关于我们", "value": "7", "icon": "assets/images/icon/about.png"},
   ];
 
@@ -843,6 +843,16 @@ class _MemberPageState extends State<MemberPage> {
                             Navigator.pushNamed(
                               context,
                               '/history',
+                            );
+                          } else if (item['value'] == '17') {
+                            Navigator.pushNamed(
+                              context,
+                              '/draft',
+                            );
+                          }else if (item['value'] == '12') {
+                            Navigator.pushNamed(
+                              context,
+                              '/managerForums',
                             );
                           }
                         } else {

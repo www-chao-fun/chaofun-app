@@ -24,6 +24,8 @@ class Api {
   static const String listFansUserV1 =
       BASE_URL + '/api/v0/focus/list_fans'; // 查询关注用户
 
+  static const String listManageForums =
+      BASE_URL + '/api/v0/user/listManageForums'; // 查询关注用户
 
   static const String listFollowersUserV1 =
       BASE_URL + '/api/v0/forum/listFollowers'; // 查询关注用户

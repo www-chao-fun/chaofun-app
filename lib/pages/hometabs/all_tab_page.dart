@@ -341,6 +341,14 @@ class _PageAllTabState extends State<PageAllTab>
 
     try {
       var data = await HttpUtil().get(Api.HomeListCombine, parameters: params);
+      if (type == 'refresh') {
+        setState(() {
+          pageData = [
+            {'name': 'nav'},
+            {'name': 'sort'}
+          ];
+        });
+      }
       if (noNet) {
         setState(() {
           noNet = false;
@@ -352,19 +360,7 @@ class _PageAllTabState extends State<PageAllTab>
         );
         return;
       }
-      if (type == 'refresh') {
-        setState(() {
-          pageData = [
-            {'name': 'nav'},
-            {'name': 'sort'}
-          ];
-        });
-        Future.delayed(Duration(milliseconds: 2000)).then((e) {
-          setState(() {
-            canRefresh = true;
-          });
-        });
-      }
+
       List<Map> res = (data['data']['posts'] as List).cast();
       
       if (type == 'addForum' && (res == null || res.length == 0)) {
@@ -403,6 +399,12 @@ class _PageAllTabState extends State<PageAllTab>
         // noNet = true;
       });
       // db.close();
+    } finally {
+      Future.delayed(Duration(milliseconds: 2000)).then((e) {
+        setState(() {
+          canRefresh = true;
+        });
+      });
     }
   }
 

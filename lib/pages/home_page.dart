@@ -7,6 +7,7 @@ import 'package:flutter_chaofan/provide/current_index_provide.dart';
 import 'package:flutter_chaofan/service/home_service.dart';
 import 'package:flutter_chaofan/api/api.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
+import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_chaofan/widget/hometop/topsearch_widget.dart';
 import 'dart:ui';
 import 'dart:io';
@@ -409,7 +410,7 @@ class _HomePageState extends State<HomePage>
                       setState(() {
                         indexDialog = 'false';
                       });
-                      toNavigate(context, activitys['url'], activitys['title']);
+                      Utils.toNavigate(context, activitys['url'], activitys['title']);
                       // Navigator.push(
                       //   context,
                       //   MaterialPageRoute(
@@ -467,140 +468,4 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  void toNavigate(context, url, String title) {
-    String u = '';
-
-    var nativePush = false;
-    var arguments;
-
-    if (url.startsWith("https://chao.fun/") ||
-        url.startsWith("https://www.chao.fun") ||
-        url.startsWith("http://chao.fun") ||
-        url.startsWith("http://www.chao.fun") ||
-        url.startsWith("https://chao.fun")) {
-      var newUrl = url
-          .replaceAll("https://chao.fun/", "")
-          .replaceAll("https://www.chao.fun/", "")
-          .replaceAll("http://chao.fun", "")
-          .replaceAll("http://www.chao.fun", "");
-
-      var a = newUrl.split('/');
-      nativePush = true;
-      print('打打');
-      print(a);
-
-      if (a.length >= 2 &&
-          (a[0] == 'f' ||
-              a[0] == 'p' ||
-              a[0] == 'user' ||
-              a[0] == 'predictions')) {
-        String start = a[0];
-        String end = a[1];
-
-        switch (start) {
-          case "f":
-            u = '/forumpage';
-            arguments = {'forumId': end};
-            break;
-          case "user":
-            u = '/userMemberPage';
-            arguments = {'userId': end};
-            break;
-          case "p":
-            u = '/postdetail';
-            arguments = {'postId': end};
-            break;
-          case "predictions":
-            u = '/predictionpage';
-            arguments = {'forumId': end.toString()};
-            break;
-        }
-//        Future.delayed(Duration(seconds: 1), () {
-        if (u != '') {
-          print('u');
-          print(u);
-          Navigator.pushNamed(context, u, arguments: arguments);
-        } else {}
-
-//        });
-      } else {
-        print('跳转首页');
-        if (url == 'https://www.chao.fun' ||
-            url == 'http://www.chao.fun' ||
-            url == 'https://chao.fun' ||
-            url == 'http://chao.fun' ||
-            url == 'https://www.chao.fun/' ||
-            url == 'http://www.chao.fun/' ||
-            url == 'https://chao.fun/' ||
-            url == 'http://chao.fun/') {
-          Provider.of<CurrentIndexProvide>(context, listen: false)
-              .currentIndex = 0;
-          Navigator.pushAndRemoveUntil(
-            context,
-            new MaterialPageRoute(builder: (context) => IndexPage()),
-            (route) => route == null,
-          );
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChaoFunWebView(
-                url: url,
-                title: title,
-                showHeader: true,
-                cookie: true,
-              ),
-            ),
-          );
-        }
-      }
-    }
-
-    if (!nativePush) {
-      title = '外部链接';
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChaoFunWebView(
-            url: url,
-            title: title,
-            showHeader: true,
-            cookie: true,
-          ),
-        ),
-      );
-    }
-  }
-
-  Widget _navItem(name, id, index) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          tabs = id;
-          _tabIndex = index;
-        });
-        _pageController.jumpToPage(index);
-      },
-      child: Container(
-        width: 50,
-        height: 45,
-        padding: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
-        alignment: Alignment.topCenter,
-        decoration: BoxDecoration(
-          // color: Colors.black12,
-          border: Border(
-            bottom: BorderSide(
-              width: 4,
-              color: tabs == id ? KColor.primaryColor : Colors.white,
-            ),
-          ),
-        ),
-        child: Text(
-          name,
-          style: tabs == id ? KFont.homeNavActStyle : KFont.homeNavStyle,
-        ),
-      ),
-    );
-    // );
-  }
 }

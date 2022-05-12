@@ -64,7 +64,7 @@ class MsgWidget extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       if (item['link'] != null) {
-                        KSet.toNavigate(context, item['link'], '炒饭通知');
+                        Utils.toNavigate(context, item['link'], '炒饭通知');
                         // https://chao.fun/p/1026976
                       } else if (item['type'] == 'delete_comment') {
                         Navigator.pushNamed(

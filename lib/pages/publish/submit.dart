@@ -793,15 +793,22 @@ class _SubmitPageState extends State<SubmitPage> {
           setState(() {
             canSub = false;
           });
-          FormData formdata = FormData.fromMap({
-            'anonymity': anonymity,
-            'forumId': forumId,
-            'title': title,
-            'articleType': 'richtext',
-            'article': deltaToHtml(_controller.document.toDelta()),
-            'tagId': tagId,
-            'collectionId': collectionId,
-          });
+          FormData formdata = null;
+          try {
+            formdata = FormData.fromMap({
+              'anonymity': anonymity,
+              'forumId': forumId,
+              'title': title,
+              'articleType': 'richtext',
+              'article': deltaToHtml(_controller.document.toDelta()),
+              'tagId': tagId,
+              'collectionId': collectionId,
+            });
+          } catch (e) {
+            setState(() {
+              canSub = true;
+            });
+          }
           print(_controller.document.toPlainText());
           response = await HttpUtil().post(
             Api.submitArticle,
@@ -865,11 +872,36 @@ class _SubmitPageState extends State<SubmitPage> {
             'collectionId': collectionId,
           });
         } else {
-          Fluttertoast.showToast(
-            msg: '还没有选择视频或者视频上传中~',
-            gravity: ToastGravity.CENTER,
-          );
-          return;
+          if (!isLoading && title != null && title != '') {
+            setState(() {
+              canSub = false;
+            });
+            FormData formdata = FormData.fromMap({
+                'anonymity': anonymity,
+                'forumId': forumId,
+                'title': title,
+                'articleType': 'richtext',
+                'tagId': tagId,
+                'collectionId': collectionId,
+              });
+            response = await HttpUtil().post(
+              Api.submitArticle,
+              parameters: {'data': formdata},
+              options: Options(
+                headers: {
+                  Headers.contentTypeHeader:
+                  'application/x-www-form-urlencoded', // set content-length
+                  Headers.acceptHeader: 'application/json'
+                },
+              ),
+            );
+          } else {
+            Fluttertoast.showToast(
+              msg: '请填写图片或标题～',
+              gravity: ToastGravity.CENTER,
+            );
+            return;
+          }
         }
       } else {
         Fluttertoast.showToast(

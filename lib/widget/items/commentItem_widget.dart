@@ -76,7 +76,7 @@ class PostItemWidget extends StatelessWidget {
                 print(src);
               },
               onLinkTap: (src, _, __, ___) {
-                toNavigate(src, context);
+                Utils.toNavigate(context, src, null);
                 print(src);
               },
             )
@@ -94,113 +94,4 @@ class PostItemWidget extends StatelessWidget {
     );
   }
 
-  void toNavigate(url, context) {
-    String u = '';
-
-    // String url = 'https://chao.fun';
-    String title = '炒饭 - 分享奇趣、发现世界';
-
-    // if (args.containsKey("url")) {
-    //   url = args['url'].toString();
-    // } else {
-    //   return;
-    // }
-
-    // if (args.containsKey("title")) {
-    //   title = args['title'].toString();
-    // }
-
-    // var arguments = {};
-
-    var nativePush = false;
-    var arguments;
-
-    if (url.startsWith("https://chao.fun/") ||
-        url.startsWith("https://www.chao.fun") ||
-        url.startsWith("http://chao.fun") ||
-        url.startsWith("http://www.chao.fun") ||
-        url.startsWith("https://chao.fun")) {
-      var newUrl = url
-          .replaceAll("https://chao.fun/", "")
-          .replaceAll("https://www.chao.fun/", "")
-          .replaceAll("http://chao.fun", "")
-          .replaceAll("http://www.chao.fun", "");
-
-      var a = newUrl.split('/');
-      print('不一样');
-      print(a);
-      nativePush = true;
-      if (a.length >= 2 && (a[0] == 'f' || a[0] == 'p' || a[0] == 'user')) {
-        String start = a[0];
-        String end = a[1];
-        switch (start) {
-          case "f":
-            u = '/forumpage';
-            arguments = {'forumId': end};
-            break;
-          case "user":
-            u = '/userMemberPage';
-            arguments = {'userId': end};
-            break;
-          case "p":
-            u = '/postdetail';
-            arguments = {'postId': end};
-            break;
-        }
-//        Future.delayed(Duration(seconds: 1), () {
-        if (u != '') {
-          print('u');
-          print(u);
-          Navigator.pushNamed(context, u, arguments: arguments);
-        } else {}
-
-//        });
-      } else {
-        print('跳转首页');
-        if (url == 'https://www.chao.fun' ||
-            url == 'http://www.chao.fun' ||
-            url == 'https://chao.fun' ||
-            url == 'http://chao.fun' ||
-            url == 'https://www.chao.fun/' ||
-            url == 'http://www.chao.fun/' ||
-            url == 'https://chao.fun/' ||
-            url == 'http://chao.fun/') {
-          Provider.of<CurrentIndexProvide>(context, listen: false)
-              .currentIndex = 0;
-          Navigator.pushAndRemoveUntil(
-            context,
-            new MaterialPageRoute(builder: (context) => IndexPage()),
-            (route) => route == null,
-          );
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChaoFunWebView(
-                url: url,
-                title: title,
-                showHeader: true,
-                cookie: true,
-              ),
-            ),
-          );
-        }
-      }
-    }
-
-    if (!nativePush) {
-      title = '外部链接';
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChaoFunWebView(
-            url: url,
-            title: title,
-            showHeader: true,
-            cookie: true,
-          ),
-        ),
-      );
-    }
-  }
 }

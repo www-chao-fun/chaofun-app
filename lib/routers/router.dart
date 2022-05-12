@@ -14,6 +14,7 @@ import 'package:flutter_chaofan/pages/forum_followers_page.dart';
 import 'package:flutter_chaofan/pages/history_page.dart';
 import 'package:flutter_chaofan/pages/login/accoutLogin.dart';
 import 'package:flutter_chaofan/pages/login/register.dart';
+import 'package:flutter_chaofan/pages/manager_forums_page.dart';
 import 'package:flutter_chaofan/pages/message_page.dart';
 
 import 'package:flutter_chaofan/pages/post_detail/post_detail_page.dart';
@@ -106,6 +107,7 @@ final routes = {
   '/parseUrlPage': (context, {arguments}) => ParseUrlPage(),
   '/setpage': (context, {arguments}) => SetPage(),
   '/history': (context)=> HistoryPage(),
+  '/managerForums': (context)=> ManagerForumsPage(),
   '/setThemePage': (context, {arguments}) => SetThemePage(),
   '/bindphonepage': (context, {arguments}) => BindPhonePage(),
   '/pushSet': (context, {arguments}) => PushSetPage(),

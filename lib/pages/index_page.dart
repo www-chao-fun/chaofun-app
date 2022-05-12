@@ -10,6 +10,7 @@ import 'package:flutter_chaofan/pages/nonetwork_page.dart';
 import 'package:flutter_chaofan/pages/post_detail/chao_fun_webview.dart';
 import 'package:flutter_chaofan/provide/user.dart';
 import 'package:flutter_chaofan/utils/notice.dart';
+import 'package:flutter_chaofan/utils/utils.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -236,7 +237,7 @@ class _IndexPageState extends State<IndexPage> {
   Future<dynamic> platformCallHandler(MethodCall call) async {
     switch (call.method) {
       case "push":
-        toNavigate(call.arguments);
+        Utils.toNavigate(context, call.arguments['url'], call.arguments['title']);
     }
   }
 
@@ -344,78 +345,6 @@ class _IndexPageState extends State<IndexPage> {
     print(androidInfo.board); //设备基板名称
     print(androidInfo.bootloader); //获取设备引导程序版本号
     print(androidInfo.product); //整个产品的名称
-  }
-
-  void toNavigate(Map args) {
-    String u = '';
-
-    String url = 'https://chao.fun';
-    String title = '炒饭 - 分享奇趣、发现世界';
-
-    if (args.containsKey("url")) {
-      url = args['url'].toString();
-    } else {
-      return;
-    }
-
-    if (args.containsKey("title")) {
-      title = args['title'].toString();
-    }
-
-    var arguments = {};
-
-    var nativePush = false;
-
-    if (url.startsWith("https://chao.fun/") ||
-        url.startsWith("https://www.chao.fun/") ||
-        url.startsWith("http://chao.fun") ||
-        url.startsWith("http://www.chao.fun")) {
-      var newUrl = url
-          .replaceAll("https://chao.fun/", "")
-          .replaceAll("https://www.chao.fun/", "")
-          .replaceAll("http://chao.fun", "")
-          .replaceAll("http://www.chao.fun", "");
-
-      var a = newUrl.split('/');
-      print('打印出来；$a');
-      if (a.length >= 2 && (a[0] == 'f' || a[0] == 'p' || a[0] == 'user')) {
-        nativePush = true;
-        String start = a[0];
-        String end = a[1];
-        switch (start) {
-          case "f":
-            u = '/forumpage';
-            arguments = {'forumId': end};
-            break;
-          case "user":
-            u = '/userMemberPage';
-            arguments = {'userId': end};
-            break;
-          case "p":
-            u = '/postdetail';
-            arguments = {'postId': end};
-            break;
-        }
-        Navigator.pushNamed(context, u, arguments: arguments);
-      } else if (a[0] == "route" && a[2] != null && a[2] == 'message') {
-        nativePush = true;
-        Provider.of<CurrentIndexProvide>(context, listen: false).setIndex(3);
-      }
-    }
-
-    if (!nativePush) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChaoFunWebView(
-            url: url,
-            title: title,
-            showAction: 0,
-            cookie: true,
-          ),
-        ),
-      );
-    }
   }
 
   @override

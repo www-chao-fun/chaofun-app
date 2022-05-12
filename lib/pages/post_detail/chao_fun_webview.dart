@@ -166,7 +166,7 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
             title,
             style: TextStyle(
               color: Colors.black,
-              fontSize: ScreenUtil().setSp(38),
+              fontSize: ScreenUtil().setSp(30),
               // fontWeight: FontWeight.bold,
             ),
           ),
@@ -442,6 +442,7 @@ class NavigationControls extends StatelessWidget {
               },
             ),
             IconButton(
+              padding: const EdgeInsets.all(0.0),
               icon: const Icon(
                 Icons.arrow_forward_ios,
                 color: KColor.defaultGrayColor,
@@ -469,6 +470,24 @@ class NavigationControls extends StatelessWidget {
                   ? null
                   : () {
                 controller.reload();
+              },
+            ),
+
+            IconButton(
+              icon: const Icon(
+                Icons.copy,
+                color: KColor.defaultGrayColor,
+              ),
+              onPressed: !webViewReady
+                  ? null
+                  : () async {
+                Uri uri = await controller.getUrl();
+                Clipboard.setData(ClipboardData(text:uri.toString()));
+                Fluttertoast.showToast(
+                  msg: '已复制链接',
+                  gravity: ToastGravity.BOTTOM,
+                  // textColor: Colors.grey,
+                );
               },
             ),
           ],

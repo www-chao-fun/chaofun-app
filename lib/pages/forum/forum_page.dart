@@ -681,26 +681,6 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                     )
                                                   : Text(''),
 
-                                              InkWell(
-                                                  onTap: () async {
-                                                    setState(() {
-                                                      navStr = 'more';
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    width: ScreenUtil()
-                                                        .setWidth(150),
-                                                    alignment:
-                                                    Alignment.center,
-                                                    child: Text(
-                                                      '更多',
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          color: navStr == 'more' ? KColor.primaryColor
-                                                              : Theme.of(context).hintColor),
-                                                    ),
-                                                  )
-                                              ),
                                               Visibility(
                                                   visible: hasDonate,
                                                   child: InkWell(
@@ -732,6 +712,27 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                     ),
                                                   )
                                               ),
+                                              InkWell(
+                                                  onTap: () async {
+                                                    setState(() {
+                                                      navStr = 'more';
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    width: ScreenUtil()
+                                                        .setWidth(150),
+                                                    alignment:
+                                                    Alignment.center,
+                                                    child: Text(
+                                                      '更多',
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          color: navStr == 'more' ? KColor.primaryColor
+                                                              : Theme.of(context).hintColor),
+                                                    ),
+                                                  )
+                                              ),
+
                                             ],
                                           ),
                                         )
