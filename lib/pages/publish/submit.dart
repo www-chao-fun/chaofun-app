@@ -233,9 +233,7 @@ class _SubmitPageState extends State<SubmitPage> {
       }
     }
 
-    _controller.document.changes.listen((event) {
-      saveDraft();
-    });
+
 
     recoverDraft();
 
@@ -266,6 +264,10 @@ class _SubmitPageState extends State<SubmitPage> {
           document: Document.fromJson(json.decode(prefs.getString('cf_draft_article'))),
           selection: TextSelection.collapsed(offset: 0));
     }
+
+    _controller.document.changes.listen((event) {
+      saveDraft();
+    });
   }
 
   Future<void> saveDraft() async {
@@ -294,7 +296,6 @@ class _SubmitPageState extends State<SubmitPage> {
               InkWell(
                   onTap: ()  async {
                     SharedPreferences prefs= await SharedPreferences.getInstance();
-
                     if (prefs.getString('cf_draft_article') != null) {
                       showCupertinoDialog(
                         //showCupertinoDialog
