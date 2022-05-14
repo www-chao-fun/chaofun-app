@@ -24,6 +24,8 @@ import 'package:flutter_chaofan/pages/publish/link_publish_page.dart';
 import 'package:flutter_chaofan/pages/publish/image_publish_page.dart';
 import 'package:flutter_chaofan/pages/publish/submit.dart';
 import 'package:flutter_chaofan/pages/publish/vote_publish_page.dart';
+import 'package:flutter_chaofan/pages/save/save_add_page.dart';
+import 'package:flutter_chaofan/pages/save/save_list_page.dart';
 import 'package:flutter_chaofan/pages/search/search_page.dart';
 import 'package:flutter_chaofan/pages/search/search_result_page.dart';
 import 'package:flutter_chaofan/pages/set/comment_order_set_page.dart';
@@ -114,6 +116,10 @@ final routes = {
   '/commentOrderSetPage': (context) => CommentOrderSetPage(),
   '/collectlist': (context, {arguments}) =>
       CollectListPage(arguments: arguments),
+  '/saveFolderList': (context, {arguments}) =>
+      SaveListPage(arguments: arguments),
+  '/saveFolderAdd': (context, {arguments}) =>
+      SaveAddPage(),
   '/collectdetail': (context, {arguments}) =>
       CollectDetailPage(arguments: arguments),
   '/collectadd': (context, {arguments}) => CollectAddPage(),

@@ -177,6 +177,10 @@ class Api {
   static const String collectionlist =
       BASE_URL + '/api/v0/collection/list'; // 合集列表
 
+  static const String saveFolderList =
+      BASE_URL + '/api/v0/savefolder/list'; // 列表
+
+
   static const String deleteCollection =
       BASE_URL + '/api/v0/collection/delete'; // 合集删除
 
@@ -187,6 +191,9 @@ class Api {
   static const String addcollection =
       BASE_URL + '/api/v0/collection/add'; // 合集详情
 
+  static const String addSaveFolder =
+      BASE_URL + '/api/v0//add'; // 合集详情
+
   static const String applyMod =
       BASE_URL + '/api/v0/apply_mod'; // 申请Mod
 
@@ -195,6 +202,10 @@ class Api {
 
   static const String addCollectionPost =
       BASE_URL + '/api/v0/post/addCollection'; // 合集详情
+
+  static const String addPost2SaveFolder =
+      BASE_URL + '/api/v0/post/addCollection'; // 合集详情
+
 
   static const String deleteComment =
       BASE_URL + '/api/v0/delete_comment'; // 删除评论

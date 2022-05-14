@@ -8,6 +8,7 @@ import 'package:flutter_chaofan/config/color.dart';
 
 import 'package:flutter_chaofan/config/index.dart';
 import 'package:flutter_chaofan/pages/collect/collect_add_page.dart';
+import 'package:flutter_chaofan/pages/save/save_add_page.dart';
 import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -45,7 +46,7 @@ class _SaveListPageState extends State<SaveListPage> {
   }
 
   collectionlist() async {
-    var res = await HttpUtil().get(Api.collectionlist, parameters: {});
+    var res = await HttpUtil().get(Api.saveFolderList, parameters: {});
     if (res['success'] && res['data'] != null) {
       var data = res['data'];
       var a = [];
@@ -101,7 +102,7 @@ class _SaveListPageState extends State<SaveListPage> {
         ),
         brightness: Brightness.light,
         title: Text(
-          widget.arguments['type'] == 'choose' ? '选择合集' : '我的合集',
+          widget.arguments['type'] == 'choose' ? '选择收藏夹' : '我的收藏夹',
           style:
               TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(34)),
         ),
@@ -115,7 +116,7 @@ class _SaveListPageState extends State<SaveListPage> {
               color: Color.fromRGBO(255, 147, 0, 1),
               textColor: Colors.white,
               child: new Text(
-                '创建合集',
+                '创建',
                 style: TextStyle(
                   fontSize: ScreenUtil().setSp(28),
                 ),
@@ -132,7 +133,7 @@ class _SaveListPageState extends State<SaveListPage> {
               onPressed: () async {
                 Navigator.push<String>(context,
                     new MaterialPageRoute(builder: (BuildContext context) {
-                  return new CollectAddPage();
+                  return new SaveAddPage();
                 })).then((String result) {
                   //处理代码
                   setState(() {
@@ -353,7 +354,7 @@ class _SaveListPageState extends State<SaveListPage> {
                         };
                         print('pas$pas');
                         var res = await HttpUtil()
-                            .get(Api.addCollectionPost, parameters: pas);
+                            .get(Api.addPost2SaveFolder, parameters: pas);
                         if (res['success']) {
                           Fluttertoast.showToast(
                             msg: '加入合集成功',
