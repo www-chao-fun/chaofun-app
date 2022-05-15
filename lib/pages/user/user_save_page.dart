@@ -95,8 +95,7 @@ class _UserSavePageState extends State<UserSavePage> {
     }
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        child: AppBar(
+      appBar: AppBar(
           elevation: 0,
           leading: Container(
             color: Colors.white,
@@ -111,6 +110,39 @@ class _UserSavePageState extends State<UserSavePage> {
               ),
             ),
           ),
+          actions: [
+            Container(
+              margin: EdgeInsets.only(bottom: 12, top: 12, right: 10),
+              width: ScreenUtil().setWidth(140),
+              height: ScreenUtil().setWidth(40),
+              child: MaterialButton(
+                color: Color.fromRGBO(255, 147, 0, 1),
+                textColor: Colors.white,
+                child: new Text(
+                  '收藏夹',
+                  style: TextStyle(
+                    fontSize: ScreenUtil().setSp(28),
+                  ),
+                ),
+                minWidth: ScreenUtil().setWidth(120),
+                height: ScreenUtil().setWidth(20),
+                padding: EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                  side: BorderSide(
+                    color: Color.fromRGBO(255, 147, 0, 1),
+                  ),
+                ),
+                onPressed: () async {
+                  Navigator.pushNamed(
+                    context,
+                    '/saveFolderList',
+                    arguments: {},
+                  );
+                },
+              ),
+            ),
+          ],
           brightness: Brightness.light,
           title: Text(
             '我收藏的',
@@ -119,8 +151,6 @@ class _UserSavePageState extends State<UserSavePage> {
           ),
           backgroundColor: Colors.white,
         ),
-        preferredSize: Size.fromHeight(40),
-      ),
       body: FutureBuilder(
           //防止刷新重绘
           future: dataFuture,

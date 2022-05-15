@@ -25,6 +25,7 @@ import 'package:flutter_chaofan/pages/publish/image_publish_page.dart';
 import 'package:flutter_chaofan/pages/publish/submit.dart';
 import 'package:flutter_chaofan/pages/publish/vote_publish_page.dart';
 import 'package:flutter_chaofan/pages/save/save_add_page.dart';
+import 'package:flutter_chaofan/pages/save/save_detail_page.dart';
 import 'package:flutter_chaofan/pages/save/save_list_page.dart';
 import 'package:flutter_chaofan/pages/search/search_page.dart';
 import 'package:flutter_chaofan/pages/search/search_result_page.dart';
@@ -122,6 +123,8 @@ final routes = {
       SaveAddPage(),
   '/collectdetail': (context, {arguments}) =>
       CollectDetailPage(arguments: arguments),
+  '/saveFolderDetail': (context, {arguments}) =>
+      SaveDetailPage(arguments: arguments),
   '/collectadd': (context, {arguments}) => CollectAddPage(),
   '/predictionpage': (context, {arguments}) =>
       PredictionPage(arguments: arguments),

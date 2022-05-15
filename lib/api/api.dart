@@ -188,11 +188,15 @@ class Api {
   static const String collectionlistPosts =
       BASE_URL + '/api/v0/collection/listPosts'; // 合集详情
 
+  static const String saveFolderlistPosts =
+      BASE_URL + '/api/v0/savefolder/list_post'; // 合集详情
+
+
   static const String addcollection =
       BASE_URL + '/api/v0/collection/add'; // 合集详情
 
   static const String addSaveFolder =
-      BASE_URL + '/api/v0//add'; // 合集详情
+      BASE_URL + '/api/v0/savefolder/add'; // 合集详情
 
   static const String applyMod =
       BASE_URL + '/api/v0/apply_mod'; // 申请Mod
@@ -204,7 +208,7 @@ class Api {
       BASE_URL + '/api/v0/post/addCollection'; // 合集详情
 
   static const String addPost2SaveFolder =
-      BASE_URL + '/api/v0/post/addCollection'; // 合集详情
+      BASE_URL + '/api/v0/savefolder/save_post'; // 合集详情
 
 
   static const String deleteComment =

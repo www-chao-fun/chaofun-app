@@ -247,7 +247,9 @@ class _BottomWidgetState extends State<BottomWidget> {
   Widget _loveItem(BuildContext context) {
     return InkWell(
       onTap: () async {
-        Toast.show(context);
+        if (!item['save']) {
+          SaveToast.show(context, item['postId']);
+        }
         setState(() {
           item['save'] = !item['save'];
         });

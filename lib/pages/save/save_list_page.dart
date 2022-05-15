@@ -188,79 +188,79 @@ class _SaveListPageState extends State<SaveListPage> {
                       color: Colors.white,
                       child: InkWell(
                         onLongPress: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) => Container(
-                                height: ScreenUtil().setWidth(200),
-                                child: Column(
-                                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.of(context).pop('cancel');
-                                          showCupertinoDialog(
-                                            //showCupertinoDialog
-                                              context: context,
-                                              builder: (context) {
-                                                return CupertinoAlertDialog(
-                                                  title: Text('提示'),
-                                                  content: Text('确定删除合集吗？（不会删除帖子）'),
-                                                  actions: <Widget>[
-                                                    CupertinoDialogAction(
-                                                      child: Text('取消'),
-                                                      onPressed: () {
-                                                        Navigator.of(context).pop('cancel');
-                                                      },
-                                                    ),
-                                                    CupertinoDialogAction(
-                                                      child: Text('确定'),
-                                                      onPressed: () async {
-                                                        var response = await HttpUtil.instance
-                                                            .get(Api.deleteCollection, parameters: {'collectionId': setData[index]['id'],});
-                                                        collectionlist();
-                                                        Navigator.of(context).pop();
-                                                      },
-                                                    ),
-                                                  ],
-                                                );
-                                              });
-                                        },
-                                        child: Container(
-                                          // color: Colors.blue,
-                                          height: ScreenUtil().setWidth(90),
-                                          child: Row(
-                                            children: [
-                                              // SizedBox(
-                                              //   width: 10,
-                                              // ),
-                                              // Container(
-                                              //   width: ScreenUtil().setWidth(44),
-                                              //   height: ScreenUtil().setWidth(44),
-                                              //   decoration: BoxDecoration(
-                                              //     shape: BoxShape.circle,
-                                              //     image: DecorationImage(
-                                              //       image: AssetImage(
-                                              //         pushItem['icon'],
-                                              //       ),
-                                              //       fit: BoxFit.fill,
-                                              //     ),
-                                              //   ),
-                                              // ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text(
-                                                '删除',
-                                                style: TextStyle(
-                                                  fontSize: ScreenUtil().setSp(32),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),)
-                                  ]
-                                ),
-                              ));
+                          // showModalBottomSheet(
+                          //     context: context,
+                          //     builder: (context) => Container(
+                          //       height: ScreenUtil().setWidth(200),
+                          //       child: Column(
+                          //         // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          //           children: [
+                          //             InkWell(
+                          //               onTap: () {
+                          //                 Navigator.of(context).pop('cancel');
+                          //                 showCupertinoDialog(
+                          //                   //showCupertinoDialog
+                          //                     context: context,
+                          //                     builder: (context) {
+                          //                       return CupertinoAlertDialog(
+                          //                         title: Text('提示'),
+                          //                         content: Text('确定删除合集吗？（不会删除帖子）'),
+                          //                         actions: <Widget>[
+                          //                           CupertinoDialogAction(
+                          //                             child: Text('取消'),
+                          //                             onPressed: () {
+                          //                               Navigator.of(context).pop('cancel');
+                          //                             },
+                          //                           ),
+                          //                           CupertinoDialogAction(
+                          //                             child: Text('确定'),
+                          //                             onPressed: () async {
+                          //                               var response = await HttpUtil.instance
+                          //                                   .get(Api.deleteCollection, parameters: {'collectionId': setData[index]['id'],});
+                          //                               collectionlist();
+                          //                               Navigator.of(context).pop();
+                          //                             },
+                          //                           ),
+                          //                         ],
+                          //                       );
+                          //                     });
+                          //               },
+                          //               child: Container(
+                          //                 // color: Colors.blue,
+                          //                 height: ScreenUtil().setWidth(90),
+                          //                 child: Row(
+                          //                   children: [
+                          //                     // SizedBox(
+                          //                     //   width: 10,
+                          //                     // ),
+                          //                     // Container(
+                          //                     //   width: ScreenUtil().setWidth(44),
+                          //                     //   height: ScreenUtil().setWidth(44),
+                          //                     //   decoration: BoxDecoration(
+                          //                     //     shape: BoxShape.circle,
+                          //                     //     image: DecorationImage(
+                          //                     //       image: AssetImage(
+                          //                     //         pushItem['icon'],
+                          //                     //       ),
+                          //                     //       fit: BoxFit.fill,
+                          //                     //     ),
+                          //                     //   ),
+                          //                     // ),
+                          //                     SizedBox(
+                          //                       width: 10,
+                          //                     ),
+                          //                     Text(
+                          //                       '删除',
+                          //                       style: TextStyle(
+                          //                         fontSize: ScreenUtil().setSp(32),
+                          //                       ),
+                          //                     ),
+                          //                   ],
+                          //                 ),
+                          //               ),)
+                          //         ]
+                          //       ),
+                          //     ));
                         },
                         onTap: () {
                           SystemUiOverlayStyle systemUiOverlayStyle =
@@ -272,7 +272,7 @@ class _SaveListPageState extends State<SaveListPage> {
                               systemUiOverlayStyle);
                           Navigator.pushNamed(
                             context,
-                            '/collectdetail',
+                            '/saveFolderDetail',
                             arguments: {
                               'id': setData[index]['id'],
                               'name': setData[index]['name']
@@ -295,6 +295,7 @@ class _SaveListPageState extends State<SaveListPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              // Icon(Icons.collections),
                               Image.asset(
                                 'assets/images/_icon/collects.png',
                                 width: ScreenUtil().setWidth(40),
@@ -350,14 +351,14 @@ class _SaveListPageState extends State<SaveListPage> {
                       if (_radioGroupValue != '') {
                         var pas = {
                           'postId': widget.arguments['postId'],
-                          'collectionId': _radioGroupValue,
+                          'folderId': _radioGroupValue,
                         };
                         print('pas$pas');
                         var res = await HttpUtil()
                             .get(Api.addPost2SaveFolder, parameters: pas);
                         if (res['success']) {
                           Fluttertoast.showToast(
-                            msg: '加入合集成功',
+                            msg: '加入收藏夹成功',
                             gravity: ToastGravity.CENTER,
                           );
                           Future.delayed(Duration(milliseconds: 1500))
