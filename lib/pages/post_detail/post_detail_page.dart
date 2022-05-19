@@ -1995,25 +1995,30 @@ class _PostDetailPageState extends State<PostDetailPage> {
     print('上传结束');
     print(response);
     print(response.data['data']);
-    if (response.data['success']) {
-      if (dialogState != null) {
-        dialogState(() {
-          imagesUrl[i] = response.data['data'];
-        });
+    try {
+      // 为了防止图片已经被删除
+      if (response.data['success']) {
+        if (dialogState != null) {
+          dialogState(() {
+            imagesUrl[i] = response.data['data'];
+          });
+        }
+      } else {
+        if (dialogState != null) {
+          dialogState(() {
+            isLoading = false;
+            isUploadingImage = false;
+            imageList.removeAt(i);
+            imagesUrl.removeAt(i);
+          });
+        }
+        Fluttertoast.showToast(
+          msg: response.data['errorMessage'],
+          gravity: ToastGravity.CENTER,
+        );
       }
-    } else {
-      if (dialogState != null) {
-        dialogState(() {
-          isLoading = false;
-          isUploadingImage = false;
-          imageList.removeAt(i);
-          imagesUrl.removeAt(i);
-        });
-      }
-      Fluttertoast.showToast(
-        msg: response.data['errorMessage'],
-        gravity: ToastGravity.CENTER,
-      );
+    } catch (e) {
+
     }
     int count = 0;
     for (int i = 0 ; i < imageList.length; i++) {
