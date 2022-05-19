@@ -134,7 +134,7 @@ class _SearchPageState extends State<SearchPage> {
             (showSearch)
                 ? Container(
                     color: Colors.white,
-                    padding: EdgeInsets.only(top: ScreenUtil().setWidth(138)),
+                    padding: EdgeInsets.only(top: ScreenUtil().setWidth(150)),
                     height: ScreenUtil().setHeight(1334),
                     child: ListView(
                       shrinkWrap: true,
@@ -160,7 +160,7 @@ class _SearchPageState extends State<SearchPage> {
                               padding: EdgeInsets.only(left: 20, top: 10),
                               child: Text(
                                 '暂无搜索记录',
-                                style: TextStyle(color: Colors.grey),
+                                style: TextStyle(color: Colors.grey, fontSize: ScreenUtil().setSp(28)),
                               ),
                             );
                           }
