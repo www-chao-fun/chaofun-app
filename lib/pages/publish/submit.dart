@@ -992,7 +992,7 @@ class _SubmitPageState extends State<SubmitPage> {
             canSub = false;
           });
           try {
-            response = await HttpUtil().post(Api.submitImage, parameters: {
+            response = await HttpUtil().post(Api.submitImage, queryParameters: {
               'forumId': forumId,
               'title': title,
               'ossNames': img,
