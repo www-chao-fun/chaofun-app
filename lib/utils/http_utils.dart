@@ -153,7 +153,7 @@ class HttpUtil {
         Fluttertoast.showToast(
           msg: response.data['hintMessage'],
           gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 3,
+          timeInSecForIosWeb: 2,
         );
       }
     }
@@ -205,7 +205,7 @@ class HttpUtil {
         Fluttertoast.showToast(
           msg: response.data['hintMessage'],
           gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 3,
+          timeInSecForIosWeb: 2,
         );
       }
     }

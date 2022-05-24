@@ -2546,9 +2546,11 @@ class _SubmitPageState extends State<SubmitPage> {
     // });
     Dio dio = new Dio();
     dio.options.headers['content-Type'] = '';
+    dio.options.headers['content-length'] = await new File(path).length();
     try {
-      var response = await dio.put(applyResponse['data']['uploadUrl'], data: new File(path).openRead(),
-          onSendProgress: (int count, int total) {
+      await dio.put(applyResponse['data']['uploadUrl'], data: new File(path).openRead(), onSendProgress: (int count, int total) {
+            print('progress: ${(count / total * 100).toStringAsFixed(0)}% ($count/$total)');
+
             if (total != null) {
               if (totals == null) {
                 setState(() {
