@@ -430,28 +430,28 @@ class _SubmitPageState extends State<SubmitPage> {
                               ),
                             ]),
                         InkWell(
-                          onTap:() {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ChaoFunWebView(
-                                  url: "https://chao.fun/webview/forum/show_rule?forumId=" + forumId,
-                                  title: "发帖规范",
-                                  showHeader: true,
-                                  cookie: true,
+                            onTap:() {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChaoFunWebView(
+                                    url: "https://chao.fun/webview/forum/show_rule?forumId=" + forumId,
+                                    title: "发帖规范",
+                                    showHeader: true,
+                                    cookie: true,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              child:  Text(
+                                "发帖规范",
+                                style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(24),
+                                    color: Theme.of(context).hintColor
                                 ),
                               ),
-                            );
-                          },
-                          child: Container(
-                            child:  Text(
-                                "发帖规范",
-                              style: TextStyle(
-                                fontSize: ScreenUtil().setSp(24),
-                                color: Theme.of(context).hintColor
-                              ),
-                            ),
-                          )
+                            )
                         )
                       ],
                     ),
@@ -463,59 +463,59 @@ class _SubmitPageState extends State<SubmitPage> {
                 ),
                 tagList.length != 0
                     ? Container(
-                        height: 30,
-                        color: Color.fromRGBO(244, 244, 245, 1),
-                        width: ScreenUtil().setWidth(750),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: tagList.length,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                if (tagList[index]['id'].toString() == tagId) {
-                                  setState(() {
-                                    tagId = '';
-                                  });
-                                } else {
-                                  setState(() {
-                                    tagId = tagList[index]['id'].toString();
-                                  });
-                                }
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color:
-                                      tagId == tagList[index]['id'].toString()
-                                          ? Color.fromRGBO(33, 29, 47, 1)
-                                          : Color.fromRGBO(211, 210, 214, 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                ),
-                                alignment: Alignment.center,
-                                padding: EdgeInsets.only(
-                                  left: 10,
-                                  right: 10,
-                                ),
-                                margin: EdgeInsets.only(
-                                    left: 14, top: 5, bottom: 5),
-                                child: Text(
-                                  tagList[index]['name'],
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(24),
-                                    color:
-                                        tagId == tagList[index]['id'].toString()
-                                            ? Colors.white
-                                            : Color.fromRGBO(33, 29, 47, 1),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
+                  height: 30,
+                  color: Color.fromRGBO(244, 244, 245, 1),
+                  width: ScreenUtil().setWidth(750),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: tagList.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          if (tagList[index]['id'].toString() == tagId) {
+                            setState(() {
+                              tagId = '';
+                            });
+                          } else {
+                            setState(() {
+                              tagId = tagList[index]['id'].toString();
+                            });
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                            tagId == tagList[index]['id'].toString()
+                                ? Color.fromRGBO(33, 29, 47, 1)
+                                : Color.fromRGBO(211, 210, 214, 1),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
+                          ),
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                          ),
+                          margin: EdgeInsets.only(
+                              left: 14, top: 5, bottom: 5),
+                          child: Text(
+                            tagList[index]['name'],
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(24),
+                              color:
+                              tagId == tagList[index]['id'].toString()
+                                  ? Colors.white
+                                  : Color.fromRGBO(33, 29, 47, 1),
+                            ),
+                          ),
                         ),
-                      )
+                      );
+                    },
+                  ),
+                )
                     : Container(
-                        height: 0,
-                      ),
+                  height: 0,
+                ),
                 TextField(
 //                   focusNode: _commentFocus,
                   autofocus: true,
@@ -549,7 +549,7 @@ class _SubmitPageState extends State<SubmitPage> {
                     // 这里进行事件处理
                   },
                   onTap:() {
-                   // FocusScope.of(context).requestFocus(FocusNode());
+                    // FocusScope.of(context).requestFocus(FocusNode());
                   },
                 ),
                 Expanded(
@@ -570,111 +570,111 @@ class _SubmitPageState extends State<SubmitPage> {
                 children: [
                   clipboardDatas != null
                       ? Container(
-                          margin: EdgeInsets.only(bottom: 14),
-                          padding: EdgeInsets.all(4),
-                          color: KColor.defaultPageBgColor,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  clipboardDatas,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(26),
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  _linkurlController.text = clipboardDatas;
-
-                                  var url = KSet.islink(clipboardDatas);
-                                  FormData formdata = FormData.fromMap({
-                                    'url': url,
-                                  });
-                                  var res = await HttpUtil().post(
-                                    Api.httpurltitle,
-                                    parameters: {'data': formdata},
-                                    options: Options(
-                                      headers: {
-                                        Headers.contentTypeHeader:
-                                            'application/x-www-form-urlencoded', // set content-length
-                                        Headers.acceptHeader: 'application/json'
-                                      },
-                                    ),
-                                  );
-                                  print(res);
-                                  _inputController.text = res['data'];
-                                  setState(() {
-                                    clipboardDatas = null;
-                                  });
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                    // left: 10,
-                                    // right: 10,
-                                    bottom: 4,
-                                    top: 4,
-                                  ),
-                                  // margin: EdgeInsets.only(top: 8),
-                                  width: ScreenUtil().setWidth(100),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(33, 29, 47, 0.05),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                    // border: Border.all(
-                                    //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
-                                  ),
-                                  child: Text(
-                                    '粘贴',
-                                    style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(26),
-                                      color: KColor.primaryColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    clipboardDatas = null;
-                                  });
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                    // left: 10,
-                                    // right: 10,
-                                    bottom: 4,
-                                    top: 4,
-                                  ),
-                                  margin: EdgeInsets.only(left: 4),
-                                  width: ScreenUtil().setWidth(100),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(33, 29, 47, 0.05),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                    // border: Border.all(
-                                    //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
-                                  ),
-                                  child: Text(
-                                    '取消',
-                                    style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(26),
-                                      color: KColor.primaryColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                    margin: EdgeInsets.only(bottom: 14),
+                    padding: EdgeInsets.all(4),
+                    color: KColor.defaultPageBgColor,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            clipboardDatas,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(26),
+                              color: Colors.grey,
+                            ),
                           ),
-                        )
-                      : Container(
-                          height: 0,
                         ),
+                        InkWell(
+                          onTap: () async {
+                            _linkurlController.text = clipboardDatas;
+
+                            var url = KSet.islink(clipboardDatas);
+                            FormData formdata = FormData.fromMap({
+                              'url': url,
+                            });
+                            var res = await HttpUtil().post(
+                              Api.httpurltitle,
+                              parameters: {'data': formdata},
+                              options: Options(
+                                headers: {
+                                  Headers.contentTypeHeader:
+                                  'application/x-www-form-urlencoded', // set content-length
+                                  Headers.acceptHeader: 'application/json'
+                                },
+                              ),
+                            );
+                            print(res);
+                            _inputController.text = res['data'];
+                            setState(() {
+                              clipboardDatas = null;
+                            });
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(
+                              // left: 10,
+                              // right: 10,
+                              bottom: 4,
+                              top: 4,
+                            ),
+                            // margin: EdgeInsets.only(top: 8),
+                            width: ScreenUtil().setWidth(100),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(33, 29, 47, 0.05),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(4)),
+                              // border: Border.all(
+                              //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
+                            ),
+                            child: Text(
+                              '粘贴',
+                              style: TextStyle(
+                                fontSize: ScreenUtil().setSp(26),
+                                color: KColor.primaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              clipboardDatas = null;
+                            });
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(
+                              // left: 10,
+                              // right: 10,
+                              bottom: 4,
+                              top: 4,
+                            ),
+                            margin: EdgeInsets.only(left: 4),
+                            width: ScreenUtil().setWidth(100),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(33, 29, 47, 0.05),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(4)),
+                              // border: Border.all(
+                              //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
+                            ),
+                            child: Text(
+                              '取消',
+                              style: TextStyle(
+                                fontSize: ScreenUtil().setSp(26),
+                                color: KColor.primaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                      : Container(
+                    height: 0,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -857,9 +857,9 @@ class _SubmitPageState extends State<SubmitPage> {
 
 
   Function debounce(
-    Function func, [
-    Duration delay = const Duration(milliseconds: 1000),
-  ]) {
+      Function func, [
+        Duration delay = const Duration(milliseconds: 1000),
+      ]) {
     Timer timer;
     Function target = () {
       if (timer?.isActive ?? false) {
@@ -923,17 +923,22 @@ class _SubmitPageState extends State<SubmitPage> {
             return;
           }
           print(_controller.document.toPlainText());
-          response = await HttpUtil().post(
-            Api.submitArticle,
-            parameters: {'data': formdata},
-            options: Options(
-              headers: {
-                Headers.contentTypeHeader:
-                    'application/x-www-form-urlencoded', // set content-length
-                Headers.acceptHeader: 'application/json'
-              },
-            ),
-          );
+          try {
+            response = await HttpUtil().post(
+              Api.submitArticle,
+              parameters: {'data': formdata},
+              options: Options(
+                headers: {
+                  Headers.contentTypeHeader:
+                  'application/x-www-form-urlencoded', // set content-length
+                  Headers.acceptHeader: 'application/json'
+                },
+              ),
+            );
+          } catch (e) {
+            _handleSubmitError();
+            return;
+          }
 
           if (response['success']) {
             SharedPreferences prefs= await SharedPreferences.getInstance();
@@ -969,50 +974,65 @@ class _SubmitPageState extends State<SubmitPage> {
           setState(() {
             canSub = false;
           });
-          response = await HttpUtil().post(Api.submitImage, queryParameters: {
-            'forumId': forumId,
-            'title': title,
-            'ossName': img,
-            'tagId': tagId,
-            'anonymity': anonymity,
-            'collectionId': collectionId,
-          });
+          try {
+            response = await HttpUtil().post(Api.submitImage, queryParameters: {
+              'forumId': forumId,
+              'title': title,
+              'ossName': img,
+              'tagId': tagId,
+              'anonymity': anonymity,
+              'collectionId': collectionId,
+            });
+          } catch (e) {
+            _handleSubmitError();
+            return;
+          }
         } else if (imagesUrl.length > 1) {
           setState(() {
             canSub = false;
           });
-          response = await HttpUtil().get(Api.submitImage, parameters: {
-            'forumId': forumId,
-            'title': title,
-            'ossNames': img,
-            'tagId': tagId,
-            'anonymity': anonymity,
-            'collectionId': collectionId,
-          });
+          try {
+            response = await HttpUtil().post(Api.submitImage, parameters: {
+              'forumId': forumId,
+              'title': title,
+              'ossNames': img,
+              'tagId': tagId,
+              'anonymity': anonymity,
+              'collectionId': collectionId,
+            });
+          } catch (e) {
+            _handleSubmitError();
+            return;
+          }
         } else {
           if (!isLoading && title != null && title != '') {
             setState(() {
               canSub = false;
             });
             FormData formdata = FormData.fromMap({
-                'anonymity': anonymity,
-                'forumId': forumId,
-                'title': title,
-                'articleType': 'richtext',
-                'tagId': tagId,
-                'collectionId': collectionId,
-              });
-            response = await HttpUtil().post(
-              Api.submitArticle,
-              parameters: {'data': formdata},
-              options: Options(
-                headers: {
-                  Headers.contentTypeHeader:
-                  'application/x-www-form-urlencoded', // set content-length
-                  Headers.acceptHeader: 'application/json'
-                },
-              ),
-            );
+              'anonymity': anonymity,
+              'forumId': forumId,
+              'title': title,
+              'articleType': 'richtext',
+              'tagId': tagId,
+              'collectionId': collectionId,
+            });
+            try {
+              response = await HttpUtil().post(
+                Api.submitArticle,
+                parameters: {'data': formdata},
+                options: Options(
+                  headers: {
+                    Headers.contentTypeHeader:
+                    'application/x-www-form-urlencoded', // set content-length
+                    Headers.acceptHeader: 'application/json'
+                  },
+                ),
+              );
+            } catch (e) {
+              _handleSubmitError();
+              return;
+            }
           } else {
             Fluttertoast.showToast(
               msg: '请填写图片或标题～',
@@ -1041,14 +1061,19 @@ class _SubmitPageState extends State<SubmitPage> {
           setState(() {
             canSub = false;
           });
-          response = await HttpUtil().get(Api.submitVideo, parameters: {
-            'forumId': forumId,
-            'title': title,
-            'ossName': videoUrl,
-            'tagId': tagId,
-            'anonymity': anonymity,
-            'collectionId': collectionId
-          }, alterFailed: true);
+          try {
+            response = await HttpUtil().get(Api.submitVideo, parameters: {
+              'forumId': forumId,
+              'title': title,
+              'ossName': videoUrl,
+              'tagId': tagId,
+              'anonymity': anonymity,
+              'collectionId': collectionId
+            }, alterFailed: true);
+          } catch (e) {
+            _handleSubmitError();
+            return;
+          }
         } else {
           Fluttertoast.showToast(
             msg: '还没有选择视频或者视频上传中~',
@@ -1073,14 +1098,19 @@ class _SubmitPageState extends State<SubmitPage> {
             setState(() {
               isLoading = true;
             });
-            response = await HttpUtil().get(Api.submitLink, parameters: {
-              'forumId': forumId,
-              'title': title,
-              'link': _linkurlController.text,
-              'tagId': tagId,
-              'anonymity': anonymity,
-              'collectionId': collectionId
-            });
+            try {
+              response = await HttpUtil().get(Api.submitLink, parameters: {
+                'forumId': forumId,
+                'title': title,
+                'link': _linkurlController.text,
+                'tagId': tagId,
+                'anonymity': anonymity,
+                'collectionId': collectionId
+              });
+            } catch (e) {
+              _handleSubmitError();
+              return;
+            }
           } else {
             Fluttertoast.showToast(
               msg: '请勿重复提交',
@@ -1108,14 +1138,19 @@ class _SubmitPageState extends State<SubmitPage> {
             //     {'forumId': forumId, 'title': title, 'options': json.encode(voteList)});
             print('oooooooooooooo');
             print(showVoteList);
-            response = await HttpUtil().post(Api.submitVote, queryParameters: {
-              'forumId': forumId,
-              'title': title,
-              'tagId': tagId,
-              'options': json.encode(showVoteList),
-              'anonymity': anonymity,
-              'collectionId': collectionId
-            });
+            try {
+              response = await HttpUtil().post(Api.submitVote, queryParameters: {
+                'forumId': forumId,
+                'title': title,
+                'tagId': tagId,
+                'options': json.encode(showVoteList),
+                'anonymity': anonymity,
+                'collectionId': collectionId
+              });
+            } catch (e) {
+              _handleSubmitError();
+              return;
+            }
             print(response);
           } else {
             Fluttertoast.showToast(
@@ -1145,14 +1180,19 @@ class _SubmitPageState extends State<SubmitPage> {
           setState(() {
             canSub = false;
           });
-          response = await HttpUtil().get(Api.submitAudio, parameters: {
-            'forumId': forumId,
-            'title': title,
-            'ossName': audioUrl,
-            'tagId': tagId,
-            'anonymity': anonymity,
-            'collectionId': collectionId
-          });
+          try {
+            response = await HttpUtil().get(Api.submitAudio, parameters: {
+              'forumId': forumId,
+              'title': title,
+              'ossName': audioUrl,
+              'tagId': tagId,
+              'anonymity': anonymity,
+              'collectionId': collectionId
+            });
+          } catch (e) {
+            _handleSubmitError();
+            return;
+          }
         } else {
           Fluttertoast.showToast(
             msg: '还没有录制音频~',
@@ -1170,13 +1210,13 @@ class _SubmitPageState extends State<SubmitPage> {
     }
 
 
-  if (response['success']) {
+    if (response['success']) {
       setState(() {
         isLoading = false;
       });
       Provider.of<UserStateProvide>(context, listen: false)
           .setRemmenberForumList(
-              {'id': forumId, 'name': forumName, 'imageName': forumImageName});
+          {'id': forumId, 'name': forumName, 'imageName': forumImageName});
       Fluttertoast.showToast(
         msg: '发布成功',
         gravity: ToastGravity.CENTER,
@@ -1192,6 +1232,16 @@ class _SubmitPageState extends State<SubmitPage> {
         gravity: ToastGravity.CENTER,
       );
     }
+  }
+  _handleSubmitError() {
+    Fluttertoast.showToast(
+      msg: '发布失败，请重新尝试～',
+      gravity: ToastGravity.CENTER,
+    );
+    setState(() {
+      canSub = false;
+    });
+    return;
   }
 
   _dealContent() {
@@ -1247,7 +1297,7 @@ class _SubmitPageState extends State<SubmitPage> {
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   primary:
-                      false, //false，如果内容不足，则用户无法滚动 而如果[primary]为true，它们总是可以尝试滚动。
+                  false, //false，如果内容不足，则用户无法滚动 而如果[primary]为true，它们总是可以尝试滚动。
                   shrinkWrap: true, // 内容适配
                   itemCount: showVoteList.length,
                   itemBuilder: (c, i) {
@@ -1373,19 +1423,19 @@ class _SubmitPageState extends State<SubmitPage> {
           flex: 15,
           child:
           Container(
-            padding: EdgeInsets.only(left: 15, right: 15, bottom: 70),
-                child: QuillEditor(
-                  placeholder: '输入正文(可选)',
-                  controller: _controller,
-                  scrollController: _scrollController,
-                  scrollable: true,
-                  focusNode: _focusNode,
-                  autoFocus: true,
-                  readOnly: false,
-                  expands: true,
-                  padding: EdgeInsets.zero,
-                )
-            ),
+              padding: EdgeInsets.only(left: 15, right: 15, bottom: 70),
+              child: QuillEditor(
+                placeholder: '输入正文(可选)',
+                controller: _controller,
+                scrollController: _scrollController,
+                scrollable: true,
+                focusNode: _focusNode,
+                autoFocus: true,
+                readOnly: false,
+                expands: true,
+                padding: EdgeInsets.zero,
+              )
+          ),
           // ),
         )
       ],
@@ -1402,7 +1452,7 @@ class _SubmitPageState extends State<SubmitPage> {
           decoration: InputDecoration(
             isDense: true,
             contentPadding:
-                EdgeInsets.only(left: 14, top: 0, right: 14, bottom: 0),
+            EdgeInsets.only(left: 14, top: 0, right: 14, bottom: 0),
             filled: true,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Color(0x00FF0000)),
@@ -1584,78 +1634,78 @@ class _SubmitPageState extends State<SubmitPage> {
   var recording = false;
   Record myRecorder = null;
   _audioWidget() {
-      return Container(
-          alignment: Alignment.topLeft,
-          child: TextButton(onPressed: () async {
-            if (audioUrl != null) {
-              setState(() {
-                audioUrl = null;
-              });
-            }
+    return Container(
+        alignment: Alignment.topLeft,
+        child: TextButton(onPressed: () async {
+          if (audioUrl != null) {
+            setState(() {
+              audioUrl = null;
+            });
+          }
 
-            if (isLoading) {
-              Fluttertoast.showToast(
-                msg: '音频上传中，请稍等',
-                gravity: ToastGravity.CENTER,
+          if (isLoading) {
+            Fluttertoast.showToast(
+              msg: '音频上传中，请稍等',
+              gravity: ToastGravity.CENTER,
+            );
+            return;
+          }
+          if (myRecorder == null) {
+            myRecorder = Record();
+            bool result = await myRecorder.hasPermission();
+            if (result) {
+              setState(() {
+                isRecording = true;
+              });
+              var tempDir = await getTemporaryDirectory();
+              await myRecorder.start(
+                path: tempDir.path + '/myFile.aac', // required
+                encoder: AudioEncoder.AAC, // by default
+                bitRate: 128000, // by default
+                samplingRate: 44100, // by default
               );
-              return;
             }
-            if (myRecorder == null) {
-              myRecorder = Record();
-              bool result = await myRecorder.hasPermission();
-              if (result) {
-                setState(() {
-                  isRecording = true;
-                });
-                var tempDir = await getTemporaryDirectory();
-                await myRecorder.start(
-                  path: tempDir.path + '/myFile.aac', // required
-                  encoder: AudioEncoder.AAC, // by default
-                  bitRate: 128000, // by default
-                  samplingRate: 44100, // by default
-                );
-              }
-            } else {
-              var uri =  await myRecorder.stop();
-              myRecorder = null;
+          } else {
+            var uri =  await myRecorder.stop();
+            myRecorder = null;
+            setState(() {
+              isRecording = false;
+              isLoading = true;
+            });
+            print(uri);
+            print(await File(uri).length());
+            FormData formdata = FormData.fromMap({
+              "file": await MultipartFile.fromFile(uri),
+              "fileName": 'myFile.aac'
+            });
+
+            duration = await (new AudioPlayer()).setFilePath(uri);
+            setState(() {});
+
+            var response = await dio.post("https://chao.fun/api/upload_audio", data: formdata);
+            setState(() {
+              isLoading = false;
+            });
+
+            if (response.data['success']) {
               setState(() {
-                isRecording = false;
-                isLoading = true;
+                audioUrl = response.data['data'];
               });
-              print(uri);
-              print(await File(uri).length());
-              FormData formdata = FormData.fromMap({
-                "file": await MultipartFile.fromFile(uri),
-                "fileName": 'myFile.aac'
-              });
-
-              duration = await (new AudioPlayer()).setFilePath(uri);
-              setState(() {});
-
-              var response = await dio.post("https://chao.fun/api/upload_audio", data: formdata);
-              setState(() {
-                isLoading = false;
-              });
-
-              if (response.data['success']) {
-                setState(() {
-                  audioUrl = response.data['data'];
-                });
-              }
             }
-          }, child:
-          Container(
-              padding: EdgeInsets.only(
-                left: 10,
-                right: 10,
-                bottom: 8,
-                top: 20,
-              ),
-              // height: ScreenUtil().setWidth(100),
-              child: Text(getAudioText())
-          )
-          )
-      );
+          }
+        }, child:
+        Container(
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              bottom: 8,
+              top: 20,
+            ),
+            // height: ScreenUtil().setWidth(100),
+            child: Text(getAudioText())
+        )
+        )
+    );
   }
 
   String twoDigits(int n) => n.toString().padLeft(2, "0");
@@ -1685,96 +1735,96 @@ class _SubmitPageState extends State<SubmitPage> {
   _videoWidget() {
     if (assetsVideo == null) {
       return InkWell(
-            onTap: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: Container(
-              // color: Color.fromRGBO(95, 60, 94, 1),
-              padding: EdgeInsets.only(top: 4, left: 10, right: 10),
-              // width: ScreenUtil().setWidth(250),
-              // height: ScreenUtil().setWidth(250),
-              alignment: Alignment.topLeft,
-              child: InkWell(
-                onTap: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Container(
-                  width: ScreenUtil().setWidth(228),
-                  height: ScreenUtil().setWidth(228),
-                  decoration: BoxDecoration(
-                    // border: Border.all(
-                    //   width: 1,
-                    //   color: Color.fromRGBO(224, 224, 224, 0.7),
-                    // ),
-                    image: DecorationImage(
-                      // image: AssetImage("assets/背景/bg1.jpg"),
-                      image: AssetImage(
-                        'assets/images/_icon/add_2.png',
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  // child: Image.asset(
-                  //   'assets/images/_icon/Add@2x.png',
-                  //   fit: BoxFit.cover,
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Container(
+            // color: Color.fromRGBO(95, 60, 94, 1),
+            padding: EdgeInsets.only(top: 4, left: 10, right: 10),
+            // width: ScreenUtil().setWidth(250),
+            // height: ScreenUtil().setWidth(250),
+            alignment: Alignment.topLeft,
+            child: InkWell(
+              onTap: () {
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: Container(
+                width: ScreenUtil().setWidth(228),
+                height: ScreenUtil().setWidth(228),
+                decoration: BoxDecoration(
+                  // border: Border.all(
+                  //   width: 1,
+                  //   color: Color.fromRGBO(224, 224, 224, 0.7),
                   // ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          getVideo(true);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: ScreenUtil().setWidth(114),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            // color: KColor.primaryColor,
-//                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border: Border.all(
-                                color: Color.fromRGBO(153, 153, 153, 0.3),
-                                width: 0.5),
-                          ),
-                          child: Text(
-                            '拍摄',
-                            style: TextStyle(
-                              fontSize: ScreenUtil().setSp(34),
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          getVideo(false);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: ScreenUtil().setWidth(114),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            // color: KColor.primaryColor,
-//                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border: Border.all(
-                                color: Color.fromRGBO(153, 153, 153, 0.3),
-                                width: 0.5),
-                          ),
-                          child: Text(
-                            '相册',
-                            style: TextStyle(
-                              fontSize: ScreenUtil().setSp(34),
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  image: DecorationImage(
+                    // image: AssetImage("assets/背景/bg1.jpg"),
+                    image: AssetImage(
+                      'assets/images/_icon/add_2.png',
+                    ),
+                    fit: BoxFit.cover,
                   ),
                 ),
+                // child: Image.asset(
+                //   'assets/images/_icon/Add@2x.png',
+                //   fit: BoxFit.cover,
+                // ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        getVideo(true);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: ScreenUtil().setWidth(114),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          // color: KColor.primaryColor,
+//                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border: Border.all(
+                              color: Color.fromRGBO(153, 153, 153, 0.3),
+                              width: 0.5),
+                        ),
+                        child: Text(
+                          '拍摄',
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setSp(34),
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        getVideo(false);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: ScreenUtil().setWidth(114),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          // color: KColor.primaryColor,
+//                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border: Border.all(
+                              color: Color.fromRGBO(153, 153, 153, 0.3),
+                              width: 0.5),
+                        ),
+                        child: Text(
+                          '相册',
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setSp(34),
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )
-        );
+            ),
+          )
+      );
     } else {
       return Container(
         alignment: Alignment.topLeft,
@@ -1784,88 +1834,88 @@ class _SubmitPageState extends State<SubmitPage> {
 
             totals != null
                 ? Container(
-                    height: ScreenUtil().setWidth(100),
-                    width: ScreenUtil().setWidth(750),
-                    // color: Colors.blue,
-                    alignment: Alignment.center,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: SizedBox(
-                              //限制进度条的高度
-                              height: 10.0,
-                              //限制进度条的宽度
-                              width: ScreenUtil().setWidth(600),
-                              child: new LinearProgressIndicator(
-                                  //0~1的浮点数，用来表示进度多少;如果 value 为 null 或空，则显示一个动画，否则显示一个定值
-                                  value:
-                                      double.parse(percent.toStringAsFixed(2)),
-                                  //背景颜色
-                                  backgroundColor:
-                                      Color.fromRGBO(240, 240, 240, 1),
-                                  //进度颜色
-                                  valueColor: new AlwaysStoppedAnimation<Color>(
-                                      Colors.green)),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Container(
-                            child: Text(
-                              '视频上传中-' +
-                                  totals +
-                                  'M (' +
-                                  (percent * 100).toStringAsFixed(1) +
-                                  '%)\n卡在100%是因为后端转码中，请耐心等待',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: ScreenUtil().setSp(26)),
-                            ),
-                          ),
-                        ],
+              height: ScreenUtil().setWidth(100),
+              width: ScreenUtil().setWidth(750),
+              // color: Colors.blue,
+              alignment: Alignment.center,
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: SizedBox(
+                        //限制进度条的高度
+                        height: 10.0,
+                        //限制进度条的宽度
+                        width: ScreenUtil().setWidth(600),
+                        child: new LinearProgressIndicator(
+                          //0~1的浮点数，用来表示进度多少;如果 value 为 null 或空，则显示一个动画，否则显示一个定值
+                            value:
+                            double.parse(percent.toStringAsFixed(2)),
+                            //背景颜色
+                            backgroundColor:
+                            Color.fromRGBO(240, 240, 240, 1),
+                            //进度颜色
+                            valueColor: new AlwaysStoppedAnimation<Color>(
+                                Colors.green)),
                       ),
                     ),
-                  )
+                    SizedBox(
+                      height: 2,
+                    ),
+                    Container(
+                      child: Text(
+                        '视频上传中-' +
+                            totals +
+                            'M (' +
+                            (percent * 100).toStringAsFixed(1) +
+                            '%)\n卡在100%是因为后端转码中，请耐心等待',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: ScreenUtil().setSp(26)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
                 : Container(
-                    height: 0,
-                  ),
+              height: 0,
+            ),
             totals == null
                 ? InkWell(
-                    onTap: () {
-                      setState(() {
-                        assetsVideo = null;
-                      });
-                      _pickImage();
-                    },
-                    child: Container(
-                      padding: EdgeInsets.only(
-                        left: 10,
-                        right: 10,
-                        bottom: 8,
-                        top: 8,
-                      ),
-                      margin: EdgeInsets.only(top: 8),
-                      width: ScreenUtil().setWidth(180),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(33, 29, 47, 0.05),
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        // border: Border.all(
-                        //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
-                      ),
-                      child: Text(
-                        '重新选择',
-                        style: TextStyle(
-                          fontSize: ScreenUtil().setSp(26),
-                          color: KColor.primaryColor,
-                        ),
-                      ),
-                    ),
-                  )
+              onTap: () {
+                setState(() {
+                  assetsVideo = null;
+                });
+                _pickImage();
+              },
+              child: Container(
+                padding: EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  bottom: 8,
+                  top: 8,
+                ),
+                margin: EdgeInsets.only(top: 8),
+                width: ScreenUtil().setWidth(180),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(33, 29, 47, 0.05),
+                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                  // border: Border.all(
+                  //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
+                ),
+                child: Text(
+                  '重新选择',
+                  style: TextStyle(
+                    fontSize: ScreenUtil().setSp(26),
+                    color: KColor.primaryColor,
+                  ),
+                ),
+              ),
+            )
                 : Text(''),
             Container(
               height: ScreenUtil().setWidth(450),
@@ -1913,8 +1963,8 @@ class _SubmitPageState extends State<SubmitPage> {
                       onTap: () {
                         Navigator.push<String>(context, new MaterialPageRoute(
                             builder: (BuildContext context) {
-                          return new CollectAddPage();
-                        })).then((String result) {
+                              return new CollectAddPage();
+                            })).then((String result) {
                           //处理代码
                           print(result);
                           if (result != null) {
@@ -1940,71 +1990,71 @@ class _SubmitPageState extends State<SubmitPage> {
               Expanded(
                 child: collects.length > 0
                     ? Container(
-                        // height: ScreenUtil().setWidth(500),
-                        // color: Colors.white,
-                        padding: EdgeInsets.only(
-                          left: ScreenUtil().setWidth(30),
-                          right: ScreenUtil().setWidth(30),
-                          top: ScreenUtil().setWidth(20),
-                        ),
-                        child: ListView.builder(
-                          // physics: NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: InkWell(
-                                onTap: () async {
-                                  setBottomSheetState(() {
-                                    collectionId =
-                                        collects[index]['id'].toString();
-                                    collectName = collects[index]['name'];
-                                  });
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  height: ScreenUtil().setWidth(100),
-                                  alignment: Alignment.centerLeft,
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                        width: 0.8,
-                                        color: KColor.defaultBorderColor,
-                                      ),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    collects[index]['name'],
-                                    style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(30),
-                                    ),
-                                  ),
-                                  // color: Colors.primaries[(index) % Colors.primaries.length],
+                  // height: ScreenUtil().setWidth(500),
+                  // color: Colors.white,
+                  padding: EdgeInsets.only(
+                    left: ScreenUtil().setWidth(30),
+                    right: ScreenUtil().setWidth(30),
+                    top: ScreenUtil().setWidth(20),
+                  ),
+                  child: ListView.builder(
+                    // physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: InkWell(
+                          onTap: () async {
+                            setBottomSheetState(() {
+                              collectionId =
+                                  collects[index]['id'].toString();
+                              collectName = collects[index]['name'];
+                            });
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            height: ScreenUtil().setWidth(100),
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  width: 0.8,
+                                  color: KColor.defaultBorderColor,
                                 ),
                               ),
-                            );
-                          },
-                          itemCount: collects.length,
-                        ),
-                      )
-                    : Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/images/_icon/nodata.png'),
-                            SizedBox(
-                              height: 5,
                             ),
-                            Text(
-                              '暂无合集',
+                            child: Text(
+                              collects[index]['name'],
                               style: TextStyle(
-                                fontSize: ScreenUtil().setSp(28),
-                                color: Colors.grey,
+                                fontSize: ScreenUtil().setSp(30),
                               ),
                             ),
-                          ],
+                            // color: Colors.primaries[(index) % Colors.primaries.length],
+                          ),
+                        ),
+                      );
+                    },
+                    itemCount: collects.length,
+                  ),
+                )
+                    : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/_icon/nodata.png'),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '暂无合集',
+                        style: TextStyle(
+                          fontSize: ScreenUtil().setSp(28),
+                          color: Colors.grey,
                         ),
                       ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
@@ -2063,8 +2113,8 @@ class _SubmitPageState extends State<SubmitPage> {
                             ? picks[index]['title']
                             : picksVideo[index]['title'],
                         style: TextStyle(
-                            // color: _doColor(index),
-                            ),
+                          // color: _doColor(index),
+                        ),
                       )
                     ],
                   ),
@@ -2118,7 +2168,7 @@ class _SubmitPageState extends State<SubmitPage> {
       });
       _forumRow();
       var response =
-          await HttpUtil().get(Api.listTag, parameters: {'forumId': forumId});
+      await HttpUtil().get(Api.listTag, parameters: {'forumId': forumId});
       print('ksssssss');
       print(response);
       if (response['success'] == true) {
@@ -2296,11 +2346,11 @@ class _SubmitPageState extends State<SubmitPage> {
                     contentPadding: EdgeInsets.fromLTRB(10, 2, 10, 2),
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.transparent, width: 0.5),
+                      BorderSide(color: Colors.transparent, width: 0.5),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.transparent, width: 1),
+                      BorderSide(color: Colors.transparent, width: 1),
                     ),
                   ),
                 ),
@@ -2384,8 +2434,8 @@ class _SubmitPageState extends State<SubmitPage> {
         });
 
         for (var i = (imageList.length - res.length);
-            i < imageList.length;
-            i++) {
+        i < imageList.length;
+        i++) {
           _upLoadImage(imageList[i], i);
         }
       }
@@ -2411,15 +2461,15 @@ class _SubmitPageState extends State<SubmitPage> {
       });
     } else {
       // if (Platform.isIOS) {
-        XFile res = await _picker.pickVideo(
-          source: ImageSource.gallery,
-          maxDuration: const Duration(seconds: 10000),
-        );
-        // final File file = File(res.path);
-        _upLoadVideo(File(res.path));
-        setState(() {
-          assetsVideo = res.path;
-        });
+      XFile res = await _picker.pickVideo(
+        source: ImageSource.gallery,
+        maxDuration: const Duration(seconds: 10000),
+      );
+      // final File file = File(res.path);
+      _upLoadVideo(File(res.path));
+      setState(() {
+        assetsVideo = res.path;
+      });
     }
     // }
   }
@@ -2435,7 +2485,7 @@ class _SubmitPageState extends State<SubmitPage> {
 
     Dio dio = new Dio();
     var response =
-        await dio.post("https://chao.fun/api/upload_image", data: formdata);
+    await dio.post("https://chao.fun/api/upload_image", data: formdata);
     print('上传结束');
     print(response);
     print(response.data['data']);
@@ -2531,10 +2581,10 @@ class _SubmitPageState extends State<SubmitPage> {
     });
   }
 
-  
+
   getTagList() async {
     var response =
-        await HttpUtil().get(Api.listTag, parameters: {'forumId': forumId});
+    await HttpUtil().get(Api.listTag, parameters: {'forumId': forumId});
     print('ksssssss');
     print(response);
     if (response['success']) {
@@ -2608,7 +2658,7 @@ class _SubmitPageState extends State<SubmitPage> {
 //              FocusScope.of(context).requestFocus(FocusNode());
               if (postType == 'link' && _linkurlController.text == '') {
                 ClipboardData data =
-                    await Clipboard.getData(Clipboard.kTextPlain);
+                await Clipboard.getData(Clipboard.kTextPlain);
 
                 if (data != null && KSet.islink(data.text) != '') {
                   setState(() {

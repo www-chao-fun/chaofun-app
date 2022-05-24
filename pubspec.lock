@@ -402,7 +402,7 @@ packages:
       name: flutter_quill
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.9"
+    version: "4.2.2"
   flutter_screenutil:
     dependency: "direct main"
     description:

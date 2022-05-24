@@ -127,7 +127,7 @@ class HttpUtil {
   }
 
   Future get(String url,
-      {Map<String, dynamic> parameters, Options options, bool alterFailed = false}) async {
+      {Map<String, dynamic> parameters, Options options, bool alterFailed = false, bool alterHint = true}) async {
     Response response;
     if (parameters != null && options != null) {
       response =
@@ -147,6 +147,17 @@ class HttpUtil {
         );
       }
     }
+
+    if (alterHint == true) {
+      if (response.data['hintMessage'] != null) {
+        Fluttertoast.showToast(
+          msg: response.data['hintMessage'],
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 3,
+        );
+      }
+    }
+
     try {
       return response.data;
     } catch (e) {
@@ -157,7 +168,7 @@ class HttpUtil {
   Future post(String url,
       {Map<String, dynamic> parameters,
       Options options,
-      queryParameters}) async {
+      queryParameters, bool alterFailed = true, bool alterHint = true}) async {
     Response response;
     if (parameters != null && options != null) {
       var formdata;
@@ -179,6 +190,26 @@ class HttpUtil {
     } else {
       response = await dio.post(url, queryParameters: queryParameters);
     }
+
+    if (alterFailed == true) {
+      if (!response.data['success']) {
+        Fluttertoast.showToast(
+          msg: response.data['errorMessage'],
+          gravity: ToastGravity.CENTER,
+        );
+      }
+    }
+
+    if (alterHint == true) {
+      if (response.data['hintMessage'] != null) {
+        Fluttertoast.showToast(
+          msg: response.data['hintMessage'],
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 3,
+        );
+      }
+    }
+
     return response.data;
   }
 }
