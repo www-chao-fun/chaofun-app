@@ -282,7 +282,7 @@ class MsgWidget extends StatelessWidget {
         //     Border.all(color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
       ),
       child: Text(
-        item['post']['title'],
+        item['post']['title'] ?? '',
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(

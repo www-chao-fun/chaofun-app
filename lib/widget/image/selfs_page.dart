@@ -125,7 +125,6 @@ class _SelfHeaderState extends State<SelfHeader> {
     var response = await Dio().get(widget.imgDataArr[currentIndex],
         options: Options(responseType: ResponseType.bytes));
     print('response------------------------------------------------');
-    print(response);
     String alphabet = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
     int strlenght = 32;
 

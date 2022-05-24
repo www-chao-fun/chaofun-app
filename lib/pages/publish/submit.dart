@@ -1048,7 +1048,7 @@ class _SubmitPageState extends State<SubmitPage> {
             'tagId': tagId,
             'anonymity': anonymity,
             'collectionId': collectionId
-          });
+          }, alterFailed: true);
         } else {
           Fluttertoast.showToast(
             msg: '还没有选择视频或者视频上传中~',
@@ -2402,7 +2402,7 @@ class _SubmitPageState extends State<SubmitPage> {
       //     source: isTakePhoto ? ImageSource.camera : ImageSource.gallery);
       var ims = await ImagesPicker.openCamera(
         pickType: PickType.video,
-        maxTime: 10000, // record video max time
+        maxTime: 100000, // record video max time
       );
       print('视频地址');
       _upLoadVideo(File(ims[0].path));
@@ -2420,23 +2420,6 @@ class _SubmitPageState extends State<SubmitPage> {
         setState(() {
           assetsVideo = res.path;
         });
-        // print('获取视频结果ios');
-        // print(res);
-      // } else {
-      //   List res = await ImagesPicker.pick(
-      //     count: 1,
-      //     pickType: PickType.video,
-      //     // quality: 0.7,
-      //       maxTime: 10000
-      //   );
-      //   // maxSize: 307200,
-      //   _upLoadVideo(File(res[0].path));
-      //   setState(() {
-      //     assetsVideo = res[0].path;
-      //   });
-      //   print('获取视频结果android');
-      //   print(res);
-      // }
     }
     // }
   }
@@ -2493,61 +2476,61 @@ class _SubmitPageState extends State<SubmitPage> {
     print('进入视频上传');
     print(path);
     var name =
-        path.substring(path.lastIndexOf("/") + 1, path.length).toLowerCase();
+    path.substring(path.lastIndexOf("/") + 1, path.length).toLowerCase();
     print(name);
-    name = (name.endsWith(".jpg") ||
-            name.endsWith('.jpeg') ||
-            name.endsWith('.png')
-        ? name
-            .replaceAll(".jpg", ".mp4")
-            .replaceAll(".jpeg", ".mp4")
-            .replaceAll(".png", ".mp4")
-        : name);
-    print(name);
-    print('视频开始上传');
-    FormData formdata = FormData.fromMap({
-      "file": await MultipartFile.fromFile(path, filename: name),
-      "fileName": name
-    });
-    Dio dio = new Dio();
-    var response = await dio.post("https://chao.fun/api/upload_image",
-        data: formdata, onSendProgress: (int count, int total) {
-      if (total != null) {
-        if (totals == null) {
-          setState(() {
-            totals = (total / (1024 * 1024)).toStringAsFixed(2);
-          });
-        }
-        setState(() {
-          counts = (count / (1024 * 1024)).toStringAsFixed(2);
-          percent = (count / total);
-        });
-      }
-      print('count $count');
-      print('total $total');
-      print('percent $percent');
-    });
-    print('上传结束');
-    print(response);
-    print(response.data['data']);
-    if (response.data['success']) {
-      videoUrl = response.data['data'];
-      setState(() {
-        totals = null;
-        if (chooseType == null) {
-          chooseType = 'video';
-        }
-      });
-    } else {
-      setState(() {
-        chooseType = null;
-      });
+    if (name.endsWith(".jpg") ||
+        name.endsWith('.jpeg') ||
+        name.endsWith('.png')) {
       Fluttertoast.showToast(
-        msg: response.data['errorMessage'],
+        msg: "文件类型不对",
         gravity: ToastGravity.CENTER,
       );
     }
+
+    var applyResponse = await HttpUtil().get(Api.applyVideoUpload, parameters: {'fileName': name});
+
+    print(applyResponse);
+
+    // FormData formdata = FormData.fromMap({
+    //   "data": await File.fromFile(path, filename: name).b,
+    // });
+    Dio dio = new Dio();
+    dio.options.headers['content-Type'] = '';
+    try {
+      var response = await dio.put(applyResponse['data']['uploadUrl'], data: new File(path).openRead(),
+          onSendProgress: (int count, int total) {
+            if (total != null) {
+              if (totals == null) {
+                setState(() {
+                  totals = (total / (1024 * 1024)).toStringAsFixed(2);
+                });
+              }
+              setState(() {
+                counts = (count / (1024 * 1024)).toStringAsFixed(2);
+                percent = (count / total);
+              });
+            }
+            print('count $count');
+            print('total $total');
+            print('percent $percent');
+          });
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: '上传失败，请联系开发同学排查',
+        gravity: ToastGravity.CENTER,
+      );
+      return;
+    }
+    print('上传结束');
+    videoUrl = applyResponse['data']['ossName'];
+    setState(() {
+      totals = null;
+      if (chooseType == null) {
+        chooseType = 'video';
+      }
+    });
   }
+
   
   getTagList() async {
     var response =

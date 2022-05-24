@@ -370,7 +370,7 @@ class _FocusedPageState extends State<FocusedPage> {
             ),
             alignment: Alignment.centerLeft,
             child: Text(
-              item['postInfo']['title'],
+              item['postInfo']['title'] ?? '',
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: ScreenUtil().setSp(30)),

@@ -17,7 +17,7 @@ save(context, fileNames, type) async {
   var appDocDir = await getTemporaryDirectory();
 
   for (var fileName in fileNames.split(",")) {
-    String savePath = appDocDir.path + "/" + fileName;
+    String savePath = appDocDir.path + "/" + DateTime.now().millisecondsSinceEpoch.toString() +  fileName;
     String downloadUrl = KSet.imgOrigin + fileName;
     if (downloadUrl.endsWith('.webp')) {
       savePath = savePath.replaceAll('.webp', '.png');

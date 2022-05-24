@@ -39,28 +39,7 @@ class _UserSavePageState extends State<UserSavePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    dataFuture = homeService.myListSaved(params, (response) {
-      var data = response;
-      List<Map> asd = (data['posts'] as List).cast();
-      // List<Map> arr = [];
-      // if (asd.length > 0) {
-      //   asd.forEach((v) {
-      //     if (v['type'] == 'image' ||
-      //         (v['type'] == 'link') ||
-      //         v['type'] == 'article') {
-      //       arr.addAll([v]);
-      //     }
-      //   });
-      // }
-      // setState(() {
-      setState(() {
-        pageData.addAll(asd);
-        print('HOME pagedata的数据长度是: ${pageData.length}');
-      });
-    }, (message) {
-      print('失败了');
-    });
+    getDatas('refresh');
   }
 
   RefreshController _refreshController =
@@ -151,11 +130,8 @@ class _UserSavePageState extends State<UserSavePage> {
           ),
           backgroundColor: Colors.white,
         ),
-      body: FutureBuilder(
-          //防止刷新重绘
-          future: dataFuture,
-          builder: (context, AsyncSnapshot asyncSnapshot) {
-            return SafeArea(
+      body:
+            SafeArea(
               child: Stack(children: <Widget>[
                 EasyRefresh.custom(
                   enableControlFinishRefresh: false,
@@ -193,8 +169,7 @@ class _UserSavePageState extends State<UserSavePage> {
                   ],
                 ),
               ]),
-            );
-          }),
+    )
     );
   }
 
@@ -212,6 +187,8 @@ class _UserSavePageState extends State<UserSavePage> {
     // response = response['data'];
     if (type == 'refresh') {
       pageData = [];
+      params["marker"] = null;
+
     }
     List<Map> res = (data['data']['posts'] as List).cast();
     // var asd = (data['posts'] as List).cast();
