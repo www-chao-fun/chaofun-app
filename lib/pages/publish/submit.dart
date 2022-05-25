@@ -42,6 +42,7 @@ import 'package:tuple/tuple.dart';
 
 import 'package:flutter_chaofan/database/userHelper.dart';
 import 'package:flutter_chaofan/database/model/userDB.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 import '../delta_to_html/delta_markdown.dart';
 import '../delta_to_html/html_renderer.dart';
@@ -1711,7 +1712,6 @@ class _SubmitPageState extends State<SubmitPage> {
   String twoDigits(int n) => n.toString().padLeft(2, "0");
 
   String getAudioText() {
-
     if (audioUrl != null) {
       return  twoDigits((duration.inSeconds / 60).toInt()) + ':' + twoDigits((duration.inSeconds % 60).toInt()) +  " 已上传 / 点击重新录制";
     } else {
@@ -2413,33 +2413,29 @@ class _SubmitPageState extends State<SubmitPage> {
         _upLoadImage(imageList[i], i);
       }
     } else {
-      List res = await ImagesPicker.pick(
-        count: 9 - imageList.length,
-        pickType: PickType.image, //maxSize: 20480,
-        // cropOpt: CropOption(
-        //     // aspectRatio: CropAspectRatio.wh16x9
-        //     ),
-      );
-      print(res);
-      if (res != null) {
-        print(res);
+      final List<AssetEntity> result = await AssetPicker.pickAssets(context, pickerConfig: AssetPickerConfig(maxAssets: 9 - imageList.length, requestType: RequestType.image));
 
+      if (result != null) {
+        for (int i = 0; i < result.length; i ++) {
+
+        }
+        for (int i = 0; i < result.length; i ++) {
+          File imgFile = await result[i].file;
+          imageList.add(imgFile);
+        }
         setState(() {
-          imageList.addAll(res.map((e) {
-            return File(e.path);
-          }).toList());
-          imagesUrl.addAll(new List(res.length));
+          // imageList.addAll(result.map((e) {
+          //   return e.file(); // Your `File` object
+          //   // return File(e.relativePath);
+          // }).toList());
+          imagesUrl.addAll(new List(result.length));
           canSub = false;
           isLoading = true;
         });
-
-        for (var i = (imageList.length - res.length);
-        i < imageList.length;
-        i++) {
+        for (var i = (imageList.length - result.length); i < imageList.length; i++) {
           _upLoadImage(imageList[i], i);
         }
       }
-      // PickedFile image = await _picker.getImage(source: ImageSource.gallery);
     }
     // }
   }

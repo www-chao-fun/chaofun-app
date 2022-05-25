@@ -246,6 +246,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
+  extended_image:
+    dependency: transitive
+    description:
+      name: extended_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.1.0"
+  extended_image_library:
+    dependency: transitive
+    description:
+      name: extended_image_library
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
   extended_text:
     dependency: "direct main"
     description:
@@ -483,6 +497,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.4"
+  http_client_helper:
+    dependency: transitive
+    description:
+      name: http_client_helper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   http_parser:
     dependency: transitive
     description:
@@ -756,6 +777,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
+  photo_manager:
+    dependency: transitive
+    description:
+      name: photo_manager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
   photo_view:
     dependency: "direct main"
     description:
@@ -1202,6 +1230,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.7.5"
+  wechat_assets_picker:
+    dependency: "direct main"
+    description:
+      name: wechat_assets_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.2.0"
   win32:
     dependency: transitive
     description:

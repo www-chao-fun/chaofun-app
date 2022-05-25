@@ -3,7 +3,9 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_chaofan/api/api.dart';
 import 'package:flutter_chaofan/utils/ImageUtils.dart';
+import 'package:flutter_chaofan/utils/http_utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -125,6 +127,10 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
     // print(info);PermissionHandler
   }
 
+  _emoji(context, type) async {
+
+  }
+
   _save(context, type) async {
     var appDocDir = await getTemporaryDirectory();
     String savePath = appDocDir.path + "/" + getFileName(widget.imgDataArr[currentIndex]);
@@ -161,6 +167,14 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
     var splitList = url.split("/");
     var subPrefix = splitList[splitList.length -1];
     return subPrefix.split("?")[0];
+  }
+
+  String getOssFileName(String url) {
+    if (!url.contains('i.chao.fun')) {
+      return null;
+    } else {
+      return url.replaceAll('https://', '').replaceAll('www.', '').replaceAll('i.chao.fun/', '').split("?")[0];
+    }
   }
 
   @override
@@ -410,6 +424,41 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
             ),
           ),
 
+          Positioned(
+            left: 20,
+            bottom: MediaQuery.of(context).padding.top + 15,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: InkWell(
+                onTap: () {
+                  _save(context, 2);
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child:TextButton(
+                    onPressed: () async {
+                      var ossName = getOssFileName(widget.imgDataArr[currentIndex]);
+                      if (ossName == null) {
+                        Fluttertoast.showToast(
+                          msg: '检测图片链接失败，可能为本地或者外部图图片～',
+                          gravity: ToastGravity.CENTER,
+                        );
+                      } else {
+                        var response = await HttpUtil().get(Api.addEmoji, parameters: {'type': 'image', 'name': ossName}, alterFailed: true);
+                        if (response['success']) {
+                          Fluttertoast.showToast(
+                            msg: '收藏成功',
+                            gravity: ToastGravity.CENTER,
+                          );
+                        }
+                      }
+                    },
+                    child: const Text('表情收藏'),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

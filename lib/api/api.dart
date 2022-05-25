@@ -63,6 +63,8 @@ class Api {
   static const String forumPostList = BASE_URL + '/api/v0/list'; //查询版块信息
   static const String getPostInfo = BASE_URL + '/api/get_post_info'; // 获取帖子详情
 
+  static const String getEmojis = BASE_URL + '/api/v0/emoji/getEmoji'; //获取用户信息
+
   static const String listComments =
       BASE_URL + '/api/v0/list_comments'; // 获取评论列表
 
@@ -94,6 +96,8 @@ class Api {
   static const String getActivity = BASE_URL + '/api/v0/activity'; // 查询活动
 
   static const String messageList = BASE_URL + '/api/v0/message/list'; // 我的消息
+
+  static const String addEmoji = BASE_URL + '/api/v0/emoji/addEmoji';
 
   static const String getLatestAppVersion =
       BASE_URL + '/api/v0/app/getLatestAppVersion'; // 获取版本

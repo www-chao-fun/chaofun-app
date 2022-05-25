@@ -8,6 +8,7 @@ import 'package:flutter_chaofan/config/color.dart';
 import 'package:flutter_chaofan/api/api.dart';
 import 'package:flutter_chaofan/config/index.dart';
 import 'package:flutter_chaofan/config/set.dart';
+import 'package:flutter_chaofan/pages/emoji/emoji_page.dart';
 import 'package:flutter_chaofan/pages/index_page.dart';
 import 'package:flutter_chaofan/pages/post_detail/chao_fun_webview.dart';
 import 'package:flutter_chaofan/pages/user/at_user_list.dart';
@@ -1634,27 +1635,45 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.circular(4),
                                   child: Container(
-                                    height: ScreenUtil().setWidth(180),
-                                    child:
-                                        InkWell(
-                                          onTap: () {
-                                            if (imagesUrl.length < 9) {
-                                              getImage(false);
-                                            } else {
-                                              Fluttertoast.showToast(
-                                                msg: '最多上传9张图片',
-                                                gravity: ToastGravity.CENTER,
-                                                // textColor: Colors.grey,
-                                              );
-                                            }
-                                          },
-                                        child: Container(
-                                          height: ScreenUtil().setWidth(180),
-                                          width: ScreenUtil().setWidth(180),
-                                          child: Icon(Icons.add, size: ScreenUtil().setWidth(100),),
-                                        ),
-                                        )
-                                    ),
+                                      height: ScreenUtil().setWidth(180),
+                                      child:
+                                            Container(
+                                              height: ScreenUtil().setWidth(180),
+                                              width: ScreenUtil().setWidth(180),
+                                              child:Column(
+                                                  children: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        if (imagesUrl.length < 9) {
+                                                          getImage(false);
+                                                        } else {
+                                                          Fluttertoast.showToast(
+                                                            msg: '最多上传9张图片',
+                                                            gravity: ToastGravity.CENTER,
+                                                            // textColor: Colors.grey,
+                                                          );
+                                                        }
+                                                      },
+                                                      child: const Text('从相册'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        if (imagesUrl.length < 9) {
+                                                          getEmoji();
+                                                        } else {
+                                                          Fluttertoast.showToast(
+                                                            msg: '最多上传9张图片',
+                                                            gravity: ToastGravity.CENTER,
+                                                            // textColor: Colors.grey,
+                                                          );
+                                                        }
+                                                      },
+                                                      child: const Text('从表情'),
+                                                    ),
+                                                  ]
+                                              )
+                                            ),
+                                  ),
                                 );
                               } else {
                                 return ClipRRect(
@@ -1666,7 +1685,15 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                         Container(
                                           height: ScreenUtil().setWidth(180),
                                           width: ScreenUtil().setWidth(180),
-                                          child: Image.file(
+                                          // 这里有一部分是表情伪装的 File
+                                          child: imageList[index - 1].path.contains('i.chao.fun') ?
+                                          Image.network(
+                                            imageList[index - 1].path + '?x-oss-process=image/resize,h_360/format,webp/quality,q_75',
+                                            height: ScreenUtil().setWidth(180),
+                                            width: ScreenUtil().setWidth(180),
+                                            fit: BoxFit.cover,
+                                          ):
+                                          Image.file(
                                             File(imageList[index - 1].path),
                                             height: ScreenUtil().setWidth(180),
                                             width: ScreenUtil().setWidth(180),
@@ -1941,6 +1968,20 @@ class _PostDetailPageState extends State<PostDetailPage> {
       print('当前输入的值是$tt');
     }
     return {"index": index, "tt": tt};
+  }
+
+  Future getEmoji() async {
+    Navigator.push<String>(context,
+        new MaterialPageRoute(builder: (BuildContext context) {
+          return new EmojiPage(callBack: (result) {
+            if (dialogState != null) {
+              dialogState((){
+                imageList.add(File('https://i.chao.fun/' + result));
+                imagesUrl.add(result);
+              });
+            }
+          },);
+        }));
   }
 
   Future getImage(isTakePhoto) async {
