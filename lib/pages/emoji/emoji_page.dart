@@ -62,6 +62,7 @@ class _EmojiPageState extends State<EmojiPage> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int hIndex) {
                 return ClipRRect(
+                  key: Key(allEmojis[vIndex * lineEmojiNum + hIndex]['id'].toString()),
                   borderRadius: BorderRadius.circular(4),
                   child: Container(
                     height: ScreenUtil().setWidth(125),
@@ -112,7 +113,6 @@ class _EmojiPageState extends State<EmojiPage> {
                                                 msg: '删除表情成功',
                                                 gravity: ToastGravity.CENTER,
                                               );
-                                              return;
                                             }
                                             _getEmoji();
                                             Navigator.of(context).pop();
@@ -134,15 +134,15 @@ class _EmojiPageState extends State<EmojiPage> {
                   ),
                 );
               },
-              itemCount:  vIndex == (allEmojis.length / lineEmojiNum + 0.001).ceil() - 1 ? allEmojis.length % 6 : 6,
+              itemCount:  vIndex == (allEmojis.length / lineEmojiNum ).ceil() - 1 ?
+              (allEmojis.length % lineEmojiNum == 0 ? lineEmojiNum : allEmojis.length % lineEmojiNum) : lineEmojiNum,
             )
           );
         },
 
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
-          itemCount: (allEmojis.length / lineEmojiNum + 0.001).ceil(),
-
+          itemCount: (allEmojis.length / lineEmojiNum).ceil(),
         )
     );
   }
