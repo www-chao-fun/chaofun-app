@@ -98,6 +98,7 @@ class Api {
   static const String messageList = BASE_URL + '/api/v0/message/list'; // 我的消息
 
   static const String addEmoji = BASE_URL + '/api/v0/emoji/addEmoji';
+  static const String removeEmoji = BASE_URL + '/api/v0/emoji/removeEmoji';
 
   static const String getLatestAppVersion =
       BASE_URL + '/api/v0/app/getLatestAppVersion'; // 获取版本
