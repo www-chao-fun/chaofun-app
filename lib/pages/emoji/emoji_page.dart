@@ -139,7 +139,6 @@ class _EmojiPageState extends State<EmojiPage> {
             )
           );
         },
-
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
           itemCount: (allEmojis.length / lineEmojiNum).ceil(),

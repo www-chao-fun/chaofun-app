@@ -215,6 +215,7 @@ class _SubmitPageState extends State<SubmitPage> {
   TextEditingController _voteController5 = TextEditingController();
   TextEditingController _voteController6 = TextEditingController();
   bool anonymity = false;
+  bool watermark = true;
   @override
   void initState() {
     super.initState();
@@ -679,9 +680,75 @@ class _SubmitPageState extends State<SubmitPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      Visibility(
+                        visible: postType == 'image',
+                        child:  InkWell(
+                          onTap: () {
+                            setState(() {
+                              if (!watermark) {
+                                watermark = true;
+                              } else {
+                                watermark = false;
+                              }
+                            });
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                              bottom: 4,
+                              top: 4,
+                            ),
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              color: !watermark
+                                  ? Color.fromRGBO(244, 244, 245, 1)
+                                  : KColor.primaryColor,
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(14)),
+                              // border: Border.all(
+                              //     color: Color.fromRGBO(153, 153, 153, 0.3), width: 0.5),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: ScreenUtil().setWidth(24),
+                                  height: ScreenUtil().setWidth(24),
+                                  alignment: Alignment.centerLeft,
+                                  margin: EdgeInsets.only(right: 4),
+                                  decoration: BoxDecoration(
+                                    color: watermark
+                                        ? Colors.green
+                                        : Colors.transparent,
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(14)),
+                                    border: Border.all(
+                                        color: !watermark
+                                            ? Color.fromRGBO(
+                                            153, 153, 153, 0.7)
+                                            : Colors.transparent,
+                                        width: 1),
+                                  ),
+                                ),
+                                Text(
+                                  '水印',
+                                  style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(26),
+                                    color: !watermark
+                                        ? Color.fromRGBO(33, 29, 47, 0.7)
+                                        : Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                       // Container(
                       //   height: 20,
                       // ),collectionlist
+                      Container(width: 15,),
+
                       InkWell(
                         onTap: () {
                           collectionlist('1');
@@ -791,7 +858,7 @@ class _SubmitPageState extends State<SubmitPage> {
                                 margin: EdgeInsets.only(right: 4),
                                 decoration: BoxDecoration(
                                   color: anonymity
-                                      ? Colors.blueGrey
+                                      ? Colors.green
                                       : Colors.transparent,
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(14)),
@@ -816,6 +883,7 @@ class _SubmitPageState extends State<SubmitPage> {
                           ),
                         ),
                       ),
+
                     ],
                   ),
                   _typeWidget(),
@@ -983,6 +1051,7 @@ class _SubmitPageState extends State<SubmitPage> {
               'tagId': tagId,
               'anonymity': anonymity,
               'collectionId': collectionId,
+              'watermark': watermark,
             });
           } catch (e) {
             _handleSubmitError();
@@ -1000,6 +1069,7 @@ class _SubmitPageState extends State<SubmitPage> {
               'tagId': tagId,
               'anonymity': anonymity,
               'collectionId': collectionId,
+              'watermark': watermark,
             });
           } catch (e) {
             _handleSubmitError();
