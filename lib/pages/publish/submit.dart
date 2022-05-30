@@ -2485,7 +2485,7 @@ class _SubmitPageState extends State<SubmitPage> {
     } else {
       final List<AssetEntity> result = await AssetPicker.pickAssets(context, pickerConfig: AssetPickerConfig(maxAssets: 9 - imageList.length, requestType: RequestType.image));
 
-      if (result != null) {
+      if (result != null && result.length > 0) {
         for (int i = 0; i < result.length; i ++) {
 
         }
@@ -2527,15 +2527,18 @@ class _SubmitPageState extends State<SubmitPage> {
       });
     } else {
       // if (Platform.isIOS) {
-      XFile res = await _picker.pickVideo(
-        source: ImageSource.gallery,
-        maxDuration: const Duration(seconds: 10000),
-      );
-      // final File file = File(res.path);
-      _upLoadVideo(File(res.path));
-      setState(() {
-        assetsVideo = res.path;
-      });
+      final List<AssetEntity> result = await AssetPicker.pickAssets(context, pickerConfig: AssetPickerConfig(maxAssets: 1, requestType: RequestType.video));
+
+      if (result != null && result.length > 0) {
+        File file = await result[0].file;
+        _upLoadVideo(file);
+        setState(() {
+          assetsVideo = file.path;
+        });
+      }
+
+        // final File file = File(res.path);
+
     }
     // }
   }
