@@ -26,6 +26,7 @@ class _SetPageState extends State<SetPage> {
   bool loopGif = true;
   bool autoPlayGif = true;
   bool autoPlayVideo = true;
+  bool closeRecommend = false;
   var plat;
   var downpercent = 0.0;
   @override
@@ -40,12 +41,13 @@ class _SetPageState extends State<SetPage> {
     var tLoopGif = await Provider.of<UserStateProvide>(context, listen: false).getLoopGif();
     var tAutoPlayGif = await Provider.of<UserStateProvide>(context, listen: false).getAutoPlayGif();
     var tAutoPlayVideo = await Provider.of<UserStateProvide>(context, listen: false).getAutoPlayVideo();
+    var tCloseRecommend = await Provider.of<UserStateProvide>(context, listen: false).getCloseRecommend();
     setState(() {
       loopGif = tLoopGif;
       autoPlayGif = tAutoPlayGif;
       autoPlayVideo = tAutoPlayVideo;
+      closeRecommend = tCloseRecommend;
     });
-
   }
 
   @override
@@ -479,8 +481,51 @@ class _SetPageState extends State<SetPage> {
                 ),
 
               ),
-
-
+              Container(
+                color: Colors.white,
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    height: ScreenUtil().setWidth(110),
+                    padding: EdgeInsets.only(left: 0, right: 0),
+                    margin: EdgeInsets.only(left: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          width: 1,
+                          color: Color.fromRGBO(183, 183, 183, 0.2),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '定向推送',
+                          style: TextStyle(
+                              color: Color.fromRGBO(105, 105, 105, 1)),
+                        ),
+                        Transform.scale(
+                          scale: 0.8,
+                          child: CupertinoSwitch(
+                            //CupertinoSwitch
+                            value: !closeRecommend,
+                            onChanged: (value) {
+                              setState(() {
+                                closeRecommend = !closeRecommend;
+                              });
+                              Provider.of<UserStateProvide>(context,
+                                  listen: false)
+                                  .setCloseRecommend();
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ],

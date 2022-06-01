@@ -27,7 +27,8 @@ class UserStateProvide with ChangeNotifier {
   bool loopGif = true;
   bool autoPlayGif = true;
   bool hasNewMessage = false;
-  var theme = 'normal'; // normal, dark, 
+  bool closeRecommend = false;
+  var theme = 'normal'; // normal, dark,
   var unreadMessage = 0;
   var modelType = 'model2';
   var commentOrderType = 'last';
@@ -154,10 +155,25 @@ class UserStateProvide with ChangeNotifier {
     return autoPlayGif;
   }
 
+  Future<bool> getCloseRecommend() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('closeRecommend') != null) {
+      closeRecommend = prefs.getBool('closeRecommend');
+    }
+    return closeRecommend;
+  }
+
   Future<void> setAutoPlayVideo() async {
     autoPlayVideo = !autoPlayVideo;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('autoPlayVideo', autoPlayVideo);
+    notifyListeners();
+  }
+
+  Future<void> setCloseRecommend() async {
+    closeRecommend = !closeRecommend;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('closeRecommend', closeRecommend);
     notifyListeners();
   }
 
@@ -275,33 +291,7 @@ class UserStateProvide with ChangeNotifier {
       print(prefs.getString("cookie"));
     }
     if (str == 'looksList') {
-      if (ISLOGIN) {
-        looksList = [
-          {
-            'icon': 'assets/images/_icon/quanzhan.png',
-            'label': '全站',
-            'value': 'all'
-          },
-          {
-            'icon': 'assets/images/_icon/tuijian.png',
-            'label': '推荐',
-            'value': 'recommend'
-          },
-          {
-            'icon': 'assets/images/_icon/guanzhu.png',
-            'label': '关注',
-            'value': 'focused'
-          },
-        ];
-      } else {
-        looksList = [
-          {
-            'icon': 'assets/images/_icon/tuijian.png',
-            'label': '推荐',
-            'value': 'recommend'
-          },
-        ];
-      }
+      getLooksList();
     }
     if (str == 'remmenberForumList') {
       remmenberForumList = [];
@@ -430,58 +420,56 @@ class UserStateProvide with ChangeNotifier {
     notifyListeners(); //通知监听者刷新页面
   }
 
-  void getLooksList() async {
-    // print('执行120');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('looksList') != null) {
-      var a = prefs.getString('looksList');
-      var b = json.decode(a.toString());
-      if (!ISLOGIN) {
-        if (b[0]['value'] == 'all') {
-          b.removeAt(0);
-        }
-        if (b.length > 2 && b[2]['value'] == 'focused') {
-          b.removeAt(2);
-        }
-      } else {
-        if (b[0]['value'] != 'all') {
-          b.insert(0, {
-            'icon': 'assets/images/_icon/quanzhan.png',
-            'label': '全站',
-            'value': 'all'
-          });
-        }
-        if (b.length > 2 && b[2]['value'] != 'focused') {
-          b.insert(2, {
-            'icon': 'assets/images/_icon/guanzhu.png',
-            'label': '关注',
-            'value': 'focused'
-          });
-        }
-      }
-      looksList = b;
-      //通知监听者刷新页面
+  List getLeftHeaderList()  {
+    var result = [];
+    var all = {
+      'icon': 'assets/images/_icon/quanzhan.png',
+      'label': '全站',
+      'value': 'all'
+    };
+
+    var recommmend = {
+      'icon': 'assets/images/_icon/tuijian.png',
+      'label': '推荐',
+      'value': 'recommend'
+    };
+
+    var focus = {
+      'icon': 'assets/images/_icon/guanzhu.png',
+      'label': '关注',
+      'value': 'focused'
+    };
+
+    if (ISLOGIN) {
+      result.add(all);
+      result.add(recommmend);
+      result.add(focus);
     } else {
-      if (ISLOGIN) {
-        if (looksList[0]['value'] != 'all') {
-          looksList.insert(0, {
-            'icon': 'assets/images/_icon/quanzhan.png',
-            'label': '全站',
-            'value': 'all'
-          });
+      result.add(recommmend);
+    }
+    return result;
+  }
+
+  void getLooksList() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List a = [];
+    List b = [];
+
+    if (prefs.getString('looksList') != null) {
+      var tLooksList = json.decode(prefs.getString('looksList'));
+      for (var i = 0; i < tLooksList.length; i++) {
+        if (tLooksList[i]['value'] != 'all' &&
+            tLooksList[i]['value'] != 'recommend' &&
+            tLooksList[i]['value'] != 'focused') {
+          if (!b.contains(tLooksList[i])) {
+            b.add(tLooksList[i]);
+          }
         }
-        if (looksList.length < 3) {
-          looksList.insert(2, {
-            'icon': 'assets/images/_icon/guanzhu.png',
-            'label': '关注',
-            'value': 'focused'
-          });
-        }
-        print('顶部内容2');
-      } else {
-        print('执行110');
       }
     }
+    a.addAll(getLeftHeaderList());
+    a.addAll(b);
+    looksList = a;
     notifyListeners();
   }
 
@@ -489,35 +477,28 @@ class UserStateProvide with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool has = false;
     int index = 0;
-    List a;
-    List b;
-    if (ISLOGIN) {
-      a = looksList.take(3).toList();
-      b = looksList.skip(3).toList();
-    } else {
-      a = looksList.take(1).toList();
-      b = looksList.skip(1).toList();
-    }
+    List a = [];
+    List b = [];
+    List c = [];
 
-    for (var i = 0; i < b.length; i++) {
-      if (b[i]['value'] == item['value'] &&
-          b[i]['value'] != 'all' &&
-          b[i]['value'] != 'recommend' &&
-          b[i]['value'] != 'focused') {
-        has = true;
-        index = i;
+    for (var i = 0; i < looksList.length; i++) {
+      if (looksList[i]['value'] == 'all' ||
+          looksList[i]['value'] == 'recommend'||
+          looksList[i]['value'] == 'focused') {
+        a.add(looksList[i]);
+      } else {
+        if (looksList[i]['value'] != item['value']) {
+          b.add(looksList[i]);
+        }
       }
     }
-    if (!has) {
-      //通知监听者刷新页面
-    } else {
-      b.removeAt(index);
-    }
+
     b.insert(0, item);
-    a.addAll(b);
-    looksList = a;
-    var c = jsonEncode(a).toString();
-    prefs.setString('looksList', c);
+    c.addAll(a);
+    c.addAll(b);
+    looksList = c;
+    var jsonResult = jsonEncode(c).toString();
+    prefs.setString('looksList', jsonResult);
     notifyListeners();
   }
 
