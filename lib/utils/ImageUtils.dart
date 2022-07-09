@@ -13,7 +13,7 @@ class ImageUtils {
 
     String imageUrl = imageName;
 
-    if (!imageName.startsWith("https://i.chao.fun")) {
+    if (!imageName.startsWith("https://chaofun.oss-cn-hangzhou.aliyuncs.com")) {
       imageUrl =  KSet.imgOrigin + imageUrl;
     }
 

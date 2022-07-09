@@ -64,9 +64,9 @@ class ContactPage extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => WebViewExample(
                             // url: 'http://192.168.8.208:9010/uupieh5/#/test',
-                            url: 'https://chao.fun/webview/contact',
+                            url: 'https://chao.fan/webview/contact',
 //                            url: 'http://192.168.8.208:8099/webview/contact',
-                            // url: 'https://chao.fun',
+                            // url: 'https://chao.fan',
                             title: '反馈建议',
                             showAction: 0,
                           ),

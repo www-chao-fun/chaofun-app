@@ -387,12 +387,12 @@ class _UserMemberPageState extends State<UserMemberPage>
                                       context,
                                       MaterialPageRoute(
                                         // builder: (context) => WebViewExample(
-                                        //     url: 'https://chao.fun/p/417588', title: '炒饭用户及隐私政策'),
+                                        //     url: 'https://chao.fan/p/417588', title: '炒饭用户及隐私政策'),
                                         builder: (context) => ChaoFunWebView(
-                                          // url: 'https://chao.fun/p/417588',
+                                          // url: 'https://chao.fan/p/417588',
                                           url:
-                                          'https://chao.fun/webview/badge?badgeId=' +
-                                              (badges[index]['badge']['id'] == null ? '' : badges[index]['badge']['id'].toString()) , //'https://chao.fun/webview/agreement',
+                                          'https://chao.fan/webview/badge?badgeId=' +
+                                              (badges[index]['badge']['id'] == null ? '' : badges[index]['badge']['id'].toString()) , //'https://chao.fan/webview/agreement',
                                           title: badges[index]['badge']['name'],
                                           showAction: false,
                                         ),
@@ -630,7 +630,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                                       imgDataArr: [
                                         KSet.imgOrigin + memberInfo['icon']
                                         // +'?x-oss-process=image/resize,h_1024/format,webp/quality,q_75',
-                                        // 'https://i.chao.fun/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
+                                        // 'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
                                       ],
                                       index: 0,
                                     ),

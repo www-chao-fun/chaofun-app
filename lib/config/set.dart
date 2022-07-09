@@ -7,7 +7,7 @@ import 'package:flutter_chaofan/provide/current_index_provide.dart';
 import 'package:flutter_chaofan/store/index.dart';
 
 class KSet {
-  static const String imgOrigin = 'https://i.chao.fun/';
+  static const String imgOrigin = 'https://chaofun.oss-cn-hangzhou.aliyuncs.com/';
   static const String refreshReadyText = '松手刷新页面';
   static const String refreshingText = '正在刷新中...'; //正在刷新中...
   static const String refreshText = '下拉刷新页面';

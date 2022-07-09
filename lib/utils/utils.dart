@@ -67,19 +67,19 @@ class Utils {
   static void toNavigate(context, url, title) {
     String u = '';
 
-    // String url = 'https://chao.fun';
+    // String url = 'https://chao.fan';
     String title = '炒饭 - 分享奇趣、发现世界';
 
     var nativePush = false;
     Map arguments;
 
-    if (url.startsWith("https://chao.fun/") ||
+    if (url.startsWith("https://chao.fan/") ||
         url.startsWith("https://www.chao.fun") ||
         url.startsWith("http://chao.fun") ||
         url.startsWith("http://www.chao.fun") ||
-        url.startsWith("https://chao.fun")) {
+        url.startsWith("https://chao.fan")) {
       var newUrl = url
-          .replaceAll("https://chao.fun/", "")
+          .replaceAll("https://chao.fan/", "")
           .replaceAll("https://www.chao.fun/", "")
           .replaceAll("http://chao.fun", "")
           .replaceAll("http://www.chao.fun", "");
@@ -136,11 +136,11 @@ class Utils {
         print('跳转首页');
         if (url == 'https://www.chao.fun' ||
             url == 'http://www.chao.fun' ||
-            url == 'https://chao.fun' ||
+            url == 'https://chao.fan' ||
             url == 'http://chao.fun' ||
             url == 'https://www.chao.fun/' ||
             url == 'http://www.chao.fun/' ||
-            url == 'https://chao.fun/' ||
+            url == 'https://chao.fan/' ||
             url == 'http://chao.fun/') {
           Provider.of<CurrentIndexProvide>(context, listen: false)
               .currentIndex = 0;

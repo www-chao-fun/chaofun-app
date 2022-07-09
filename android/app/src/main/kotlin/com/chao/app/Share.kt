@@ -11,9 +11,9 @@ class Share {
     companion object {
         private val CHANNEL = "app.chao.fun/main_channel"
 
-        private val imageBaseUrl = "https://i.chao.fun/"
+        private val imageBaseUrl = "https://chaofun.oss-cn-hangzhou.aliyuncs.com/"
 
-        private val baseUrl = "https://chao.fun/p/"
+        private val baseUrl = "https://chao.fan/p/"
 
         private val miniProgramBaseUrl = "/pages/detail/detail?postId="
 
@@ -30,7 +30,7 @@ class Share {
 
                 if (share_media == SHARE_MEDIA.WEIXIN && (argMap["type"]!!.equals("image") ||  argMap["type"]!!.equals("forward") || argMap["type"]!!.equals("gif") ||  argMap["type"]!!.equals("article") || argMap["type"]!!.equals("vote") || argMap["type"]!!.equals("inner_video")) ) {
 
-                    var ummin = UMMin("https://chao.fun/p/" + (argMap["postId"] as java.lang.Integer))
+                    var ummin = UMMin("https://chao.fan/p/" + (argMap["postId"] as java.lang.Integer))
 
                     ummin.path = miniProgramBaseUrl + (argMap["postId"] as java.lang.Integer);
 

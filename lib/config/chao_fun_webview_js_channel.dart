@@ -34,7 +34,7 @@ _upLoadImage(_controller, File image) async {
     "fileName": name
   });
   Dio dio = new Dio();
-  var res = await dio.post("https://chao.fun/api/upload_image", data: formdata);
+  var res = await dio.post("https://chao.fan/api/upload_image", data: formdata);
   print('上传结束');
   print(res);
   print(res.data['data']);
@@ -112,10 +112,10 @@ class ChaoFunJsChannelMethods {
               ? params['title']
               : '外部链接',
           showAction: 0,
-          showHeader: url.contains('https://chao.fun')
+          showHeader: url.contains('https://chao.fan')
               ? (params['showHeader'] == null ? false : params['showHeader'])
               : true,
-          cookie: url.contains('https://chao.fun') ? true : false,
+          cookie: url.contains('https://chao.fan') ? true : false,
         ),
       ),
     );

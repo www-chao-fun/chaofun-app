@@ -65,7 +65,7 @@ class MsgWidget extends StatelessWidget {
                     onTap: () {
                       if (item['link'] != null) {
                         Utils.toNavigate(context, item['link'], '炒饭通知');
-                        // https://chao.fun/p/1026976
+                        // https://chao.fan/p/1026976
                       } else if (item['type'] == 'delete_comment') {
                         Navigator.pushNamed(
                           context,

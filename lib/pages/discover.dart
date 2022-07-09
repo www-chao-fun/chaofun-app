@@ -116,7 +116,7 @@ class _DiscoverPageState extends State<DiscoverPage>
                   _tabWidget = [
                     AllDiscoverPage(),
                     ChaoFunWebView(
-                      url: 'https://chao.fun/webview/activity/index',
+                      url: 'https://chao.fan/webview/activity/index',
                       title: '123',
                       cookie: true,
                       showHeader: false,
@@ -127,7 +127,7 @@ class _DiscoverPageState extends State<DiscoverPage>
                     AddJoinPage(),
                     AllDiscoverPage(),
                     ChaoFunWebView(
-                      url: 'https://chao.fun/webview/activity/index',
+                      url: 'https://chao.fan/webview/activity/index',
                       title: '222',
                       cookie: true,
                       showHeader: false,
@@ -309,7 +309,7 @@ class _DiscoverPageState extends State<DiscoverPage>
         //         // url: 'http://192.168.8.208:9010/uupieh5/#/test',
         //         // url: 'http://192.168.8.208:8099',
         //         url: 'http://192.168.8.208:8099/webview/forum/seting?forumId=3',
-        //         // url: 'https://chao.fun',
+        //         // url: 'https://chao.fan',
         //         title: '反馈建议',
         //         showAction: 0,
         //         cookie: true,

@@ -98,7 +98,7 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
   }
 
 
-  // TODO[cijian]: 这里必须只能对 https://chao.fun 做 Cookie 注入
+  // TODO[cijian]: 这里必须只能对 https://chao.fan 做 Cookie 注入
   // 获取cookie
   setCookies() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -112,7 +112,7 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
       print(getcookieList[1].runtimeType.toString());
       print(getcookieList[1] == '');
       Uri domain = getDomain();
-      if (domain.host == 'chao.fun' || domain.host == 'www.chao.fun' || domain.host == 'chao.fan' || domain.host == 'www.chao.fun') {
+      if (domain.host == 'chao.fun' || domain.host == 'www.chao.fun' || domain.host == 'chao.fan' || domain.host == 'www.chao.fun' || domain.host == '47.96.98.153') {
         getcookieList.forEach(
               (item) {
             if (item != '') {

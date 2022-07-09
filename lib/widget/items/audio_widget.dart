@@ -53,7 +53,7 @@ class _AudioWidgetState extends State<AudioWidget> with TickerProviderStateMixin
   Future<void> getDuration() async {
     if (init == false) {
       try {
-        var tmpDuration = await player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao.fun/' + widget.item['audio'])));
+        var tmpDuration = await player.setAudioSource(AudioSource.uri(Uri.parse('https://chaofun.oss-cn-hangzhou.aliyuncs.com/' + widget.item['audio'])));
             if (tmpDuration != null) {
           setState(() {
             duration = tmpDuration;
@@ -119,7 +119,7 @@ class _AudioWidgetState extends State<AudioWidget> with TickerProviderStateMixin
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         onPressed: () async {
           if (!player.playing) {
-            player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao.fun/' + widget.item['audio'])));
+            player.setAudioSource(AudioSource.uri(Uri.parse('https://chaofun.oss-cn-hangzhou.aliyuncs.com/' + widget.item['audio'])));
             player.play();
           } else {
             player.stop();

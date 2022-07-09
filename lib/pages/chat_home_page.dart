@@ -102,7 +102,7 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
       await Future.delayed(Duration(milliseconds: 1000));
     }
     allChannel = WebSocketChannel.connect(
-      Uri.parse('wss://chao.fun/ws/v0/all'),
+      Uri.parse('wss://chao.fan/ws/v0/all'),
     );
     authStream();
     allChannel.stream.listen((data) => processMessage(data),
@@ -244,7 +244,7 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
                             ));
                           },
                           child: new MyConversationView(
-                            imageUrl: strNoEmpty(data['avatar']) ? KSet.imgOrigin + data['avatar'] + '?x-oss-process=image/resize,h_120/format,webp/quality,q_75' : 'https://i.chao.fun/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                            imageUrl: strNoEmpty(data['avatar']) ? KSet.imgOrigin + data['avatar'] + '?x-oss-process=image/resize,h_120/format,webp/quality,q_75' : 'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                             title: data['name'] ?? '',
                             content: getShowContent(data),
                             time: data['lastMessageTime'] == null ?  new Container() : timeView(data['lastMessageTime'])  ,
@@ -318,7 +318,7 @@ class MyBehavior extends ScrollBehavior {
 }
 
 WebSocketChannel allChannel = WebSocketChannel.connect(
-  Uri.parse('wss://chao.fun/ws/v0/all'),
+  Uri.parse('wss://chao.fan/ws/v0/all'),
 );
 
 Future<dynamic> routePush(BuildContext context, Widget widget) {

@@ -690,7 +690,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                                                         MaterialPageRoute(
                                                           builder: (context) => ChaoFunWebView(
                                                             url:
-                                                            'https://chao.fun/webview/donate?forumId=' + this.forumId.toString(),
+                                                            'https://chao.fan/webview/donate?forumId=' + this.forumId.toString(),
                                                             title: "版块众筹",
                                                             showHeader: true,
                                                             cookie: true,
@@ -1086,12 +1086,12 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                     context,
                     MaterialPageRoute(
                       // builder: (context) => WebViewExample(
-                      //     url: 'https://chao.fun/p/417588', title: '炒饭用户及隐私政策'),
+                      //     url: 'https://chao.fan/p/417588', title: '炒饭用户及隐私政策'),
                       builder: (context) => ChaoFunWebView(
-                        // url: 'https://chao.fun/p/417588',
+                        // url: 'https://chao.fan/p/417588',
                         url:
-                        'https://chao.fun/webview/badge?badgeId=' +
-                            (e['id'] == null ? '' : e['id'].toString()) , //'https://chao.fun/webview/agreement',
+                        'https://chao.fan/webview/badge?badgeId=' +
+                            (e['id'] == null ? '' : e['id'].toString()) , //'https://chao.fan/webview/agreement',
                         title: e['name'],
                         showAction: false,
                       ),
@@ -2124,7 +2124,7 @@ class _ForumPageState extends State<ForumPage> with RouteAware {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ChaoFunWebView(
-                      url: 'https://chao.fun/webview/forum/seting?forumId=' +
+                      url: 'https://chao.fan/webview/forum/seting?forumId=' +
                           forumData['id'].toString(),
                       // url: 'http://192.168.8.208:8099/f/3/setting',
                       title: '版块设置',

@@ -320,7 +320,7 @@ class _MemberPageState extends State<MemberPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ChaoFunWebView(
-                    url: 'https://chao.fun/webview/fbi',
+                    url: 'https://chao.fan/webview/fbi',
                     title: '饭币（FBi）',
                     showAction: 0,
                     cookie: true,
@@ -600,7 +600,7 @@ class _MemberPageState extends State<MemberPage> {
     });
     Dio dio = new Dio();
     var res =
-        await dio.post("https://chao.fun/api/upload_image", data: formdata);
+        await dio.post("https://chao.fan/api/upload_image", data: formdata);
     print('上传结束');
     print(res);
     print(res.data['data']);
@@ -920,7 +920,7 @@ class _MemberPageState extends State<MemberPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ChaoFunWebView(
-                                url: 'https://chao.fun/webview/contact?v=1',
+                                url: 'https://chao.fan/webview/contact?v=1',
                                 title: '反馈建议',
                                 showAction: 0,
                                 cookie: true,
@@ -939,7 +939,7 @@ class _MemberPageState extends State<MemberPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChaoFunWebView(
-                              url: 'https://chao.fun/webview/thx',
+                              url: 'https://chao.fan/webview/thx',
                               title: '鸣谢',
                               showAction: 0,
                               cookie: true,
@@ -976,7 +976,7 @@ class _MemberPageState extends State<MemberPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChaoFunWebView(
-                              url: 'https://chao.fun/webview/useragree', //'https://chao.fun/webview/agreement',
+                              url: 'https://chao.fan/webview/useragree', //'https://chao.fan/webview/agreement',
                               title: '用户服务协议',
                               showAction: false,
                             ),
@@ -988,8 +988,8 @@ class _MemberPageState extends State<MemberPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChaoFunWebView(
-                              // url: 'https://chao.fun/p/417588',
-                              url: 'https://chao.fun/webview/agreement', //'https://chao.fun/webview/agreement',
+                              // url: 'https://chao.fan/p/417588',
+                              url: 'https://chao.fan/webview/agreement', //'https://chao.fan/webview/agreement',
                               title: '隐私政策',
                               showAction: false,
                             ),
@@ -1086,7 +1086,7 @@ class _MemberPageState extends State<MemberPage> {
             child: Column(
               children: <Widget>[
                 Image.network(
-                  'https://i.chao.fun/990cf5792a356642fe46e7dbe577ebab.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                  'https://chaofun.oss-cn-hangzhou.aliyuncs.com/990cf5792a356642fe46e7dbe577ebab.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                   width: ScreenUtil().setWidth(60),
                 ),
                 Text(
@@ -1342,9 +1342,9 @@ class _MemberPageState extends State<MemberPage> {
           context,
           MaterialPageRoute(
             builder: (context) => ChaoFunWebView(
-              url: 'https://chao.fun/webview/cancelAccount',
+              url: 'https://chao.fan/webview/cancelAccount',
 //                            url: 'http://192.168.8.208:8099/webview/contact',
-              // url: 'https://chao.fun',
+              // url: 'https://chao.fan',
               title: '如何注销账号',
               showAction: 0,
             ),

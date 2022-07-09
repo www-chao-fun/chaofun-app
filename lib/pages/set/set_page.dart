@@ -224,7 +224,7 @@ class _SetPageState extends State<SetPage> {
                       MaterialPageRoute(
                         builder: (context) => ChaoFunWebView(
                           url:
-                          'https://chao.fun/webview/badge/setting', //'https://chao.fun/webview/agreement',
+                          'https://chao.fan/webview/badge/setting', //'https://chao.fan/webview/agreement',
                           title: '徽章显示设置',
                           showAction: false,
                         ),

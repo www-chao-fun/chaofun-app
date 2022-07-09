@@ -713,7 +713,7 @@ class ItemIndex extends StatelessWidget {
           )
               : CachedNetworkImage(
             imageUrl:
-            'https://i.chao.fun/biz/9563cdd828d2b674c424b79761ccb4c0.png',
+            'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/9563cdd828d2b674c424b79761ccb4c0.png',
             fit: BoxFit.contain,
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),

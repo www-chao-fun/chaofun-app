@@ -700,7 +700,7 @@ class _IndexPageState extends State<IndexPage> {
                         ),
                         Expanded(
                           // child: ChaoFunWebView(
-                          //   url: 'https://chao.fun/webview/agreement',
+                          //   url: 'https://chao.fan/webview/agreement',
                           //   title: '',
                           //   showHeader: false,
                           // ),
@@ -709,7 +709,7 @@ class _IndexPageState extends State<IndexPage> {
                           //     // initialUrl: url,
                           //     initialUrlRequest: URLRequest(
                           //         url: Uri.parse(
-                          //             'https://chao.fun/webview/agreement')),
+                          //             'https://chao.fan/webview/agreement')),
                           //     // initialHeaders: {},
                           //     initialOptions: InAppWebViewGroupOptions(
                           //       crossPlatform: InAppWebViewOptions(
@@ -768,7 +768,7 @@ class _IndexPageState extends State<IndexPage> {
                                         MaterialPageRoute(
                                           builder: (context) => ChaoFunWebView(
                                             url:
-                                                'https://chao.fun/webview/useragree', //'https://chao.fun/webview/agreement',
+                                                'https://chao.fan/webview/useragree', //'https://chao.fan/webview/agreement',
                                             title: '用户服务协议',
                                             showAction: false,
                                           ),
@@ -794,7 +794,7 @@ class _IndexPageState extends State<IndexPage> {
                                         MaterialPageRoute(
                                           builder: (context) => ChaoFunWebView(
                                             url:
-                                                'https://chao.fun/webview/agreement', //'https://chao.fun/webview/agreement',
+                                                'https://chao.fan/webview/agreement', //'https://chao.fan/webview/agreement',
                                             title: '隐私政策',
                                             showAction: false,
                                           ),
@@ -1108,7 +1108,7 @@ class _IndexPageState extends State<IndexPage> {
                                 });
                                 print('点击下载');
                                 var id = await RUpgrade.upgrade(
-                                    'https://chao.fun/chaofan.apk',
+                                    'https://chao.fan/chaofan.apk',
                                     fileName: 'chaofan.apk',
                                     isAutoRequestInstall: true,
                                     notificationStyle:

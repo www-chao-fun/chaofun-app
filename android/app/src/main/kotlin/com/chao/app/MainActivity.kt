@@ -36,9 +36,9 @@ import java.util.*
 class MainActivity: FlutterActivity() {
     private val CHANNEL = "app.chao.fun/main_channel"
 
-    private val imageBaseUrl = "https://i.chao.fun/"
+    private val imageBaseUrl = "https://chaofun.oss-cn-hangzhou.aliyuncs.com/"
 
-    private val baseUrl = "https://chao.fun/p/"
+    private val baseUrl = "https://chao.fan/p/"
 
     private var inited = false;
 
@@ -138,7 +138,7 @@ class MainActivity: FlutterActivity() {
         PlatformConfig.setWeixin("wx301447e1e7833b29", "d108db12d305e28f9aa8e40396a4a14b")
         PlatformConfig.setQQZone("101935770", "85fda2250376ca4a7a778a3be0088e53")
         PlatformConfig.setDing("dingoaas7n1scswrel4kyq")
-        PlatformConfig.setSinaWeibo("1791909991", "bdf690e90dab45bc2fa832417edd3762", "https://chao.fun")
+        PlatformConfig.setSinaWeibo("1791909991", "bdf690e90dab45bc2fa832417edd3762", "https://chao.fan")
         PlatformConfig.setQQFileProvider("com.chao.app.fileprovider")
         PlatformConfig.setWXFileProvider("com.chao.app.fileprovider")
         PlatformConfig.setSinaFileProvider("com.chao.app.fileprovider")

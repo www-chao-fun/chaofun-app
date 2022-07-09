@@ -2,7 +2,7 @@ class Api {
   //static const String BASE_URL = 'http://192.168.190.84:8080/mall-app';
   //static const String BASE_URL = 'http://192.168.190.84:8080';
 //  static const String BASE_URL='http://192.168.190.35:8082/wx';
-  static const String BASE_URL = 'https://chao.fun';
+  static const String BASE_URL = 'https://chao.fan';
   static const String HOME_NAV_DATA =
       BASE_URL + '/api/get_menu?pageNum=1&order=new'; //首页数据
   static const String HomeListCombine = BASE_URL + '/api/v0/list_combine';

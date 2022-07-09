@@ -891,7 +891,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
               )
             : CachedNetworkImage(
                 imageUrl:
-                    'https://i.chao.fun/biz/9563cdd828d2b674c424b79761ccb4c0.png',
+                    'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/9563cdd828d2b674c424b79761ccb4c0.png',
                 fit: BoxFit.contain,
                 errorWidget: (context, url, error) => Icon(Icons.error),
               );
@@ -1775,7 +1775,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                     duration = await (new AudioPlayer()).setFilePath(uri);
                     setDialogState(() {});
 
-                    var response = await dio.post("https://chao.fun/api/upload_audio", data: formdata);
+                    var response = await dio.post("https://chao.fan/api/upload_audio", data: formdata);
                     setDialogState(() {
                       isLoading = false;
                     });
@@ -1976,7 +1976,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           return new EmojiPage(callBack: (result) {
             if (dialogState != null) {
               dialogState((){
-                imageList.add(File('https://i.chao.fun/' + result));
+                imageList.add(File('https://chaofun.oss-cn-hangzhou.aliyuncs.com/' + result));
                 imagesUrl.add(result);
               });
             }
@@ -2032,7 +2032,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     });
     Dio dio = new Dio();
     var response =
-        await dio.post("https://chao.fun/api/upload_image", data: formdata);
+        await dio.post("https://chao.fan/api/upload_image", data: formdata);
     print('上传结束');
     print(response);
     print(response.data['data']);
@@ -2570,7 +2570,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 imgDataArr: [
                   KSet.imgOrigin + data['imageName']
                   // +'?x-oss-process=image/format,webp/quality,q_75/resize,h_1024',
-                  // 'https://i.chao.fun/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
+                  // 'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
                 ],
                 imgHeight: data['height'],
                 imgWidth: data['width'],
@@ -2670,7 +2670,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   imgDataArr: doImgList(data), //[imgurl],
                   index: key,
                   heroTag:
-                      'https://i.chao.fun/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
+                      'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
                 ),
               ),
             );

@@ -47,7 +47,7 @@ class _SendMessageViewState extends State<SendMessageView> {
       return null;
     }
 
-    if (content.trim().startsWith("https://chao.fun") && !content.contains(" ")) {
+    if (content.trim().startsWith("https://chao.fan") && !content.contains(" ")) {
       return true;
     }
 

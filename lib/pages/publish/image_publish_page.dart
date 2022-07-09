@@ -619,7 +619,7 @@ class _ImagePublishPageState extends State<ImagePublishPage> {
     });
     Dio dio = new Dio();
     var response =
-        await dio.post("https://chao.fun/api/upload_image", data: formdata);
+        await dio.post("https://chao.fan/api/upload_image", data: formdata);
     print('上传结束');
     print(response);
     print(response.data['data']);
@@ -668,7 +668,7 @@ class _ImagePublishPageState extends State<ImagePublishPage> {
       "fileName": name
     });
     Dio dio = new Dio();
-    var response = await dio.post("https://chao.fun/api/upload_image",
+    var response = await dio.post("https://chao.fan/api/upload_image",
         data: formdata, onSendProgress: (int count, int total) {
       if (total != null) {
         if (totals == null) {

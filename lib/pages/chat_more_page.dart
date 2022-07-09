@@ -73,7 +73,7 @@ class _ChatMorePageState extends State<ChatMorePage> {
     Dio dio = new Dio();
     String imageUrl = null;
     var response =
-    await dio.post("https://chao.fun/api/upload_image", data: formdata);
+    await dio.post("https://chao.fan/api/upload_image", data: formdata);
     print('上传结束');
     print(response);
     print(response.data['data']);
