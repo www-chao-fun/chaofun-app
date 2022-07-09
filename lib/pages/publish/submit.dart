@@ -40,7 +40,7 @@ import 'package:record/record.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuple/tuple.dart';
 
-import 'package:flutter_chaofan/database/userHelper.dart';
+import 'package:flutter_chaofan/database/userhelper.dart';
 import 'package:flutter_chaofan/database/model/userDB.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 

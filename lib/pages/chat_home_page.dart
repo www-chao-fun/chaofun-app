@@ -36,7 +36,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:flutter_chaofan/database/userHelper.dart';
+import 'package:flutter_chaofan/database/userhelper.dart';
 import 'package:flutter_chaofan/database/model/userDB.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web_socket_channel/io.dart';

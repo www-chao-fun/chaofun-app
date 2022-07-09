@@ -11,7 +11,7 @@ import 'package:flutter_chaofan/api/api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_chaofan/database/userHelper.dart';
+import 'package:flutter_chaofan/database/userhelper.dart';
 
 class AccoutLoginPage extends StatefulWidget {
   var arguments;
