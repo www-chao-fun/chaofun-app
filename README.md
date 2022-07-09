@@ -37,5 +37,5 @@ flutter run
 如有其他疑问，也可添加微信 cijianzy 咨询
 
 # 贡献鸣谢
-请移步 [炒饭鸣谢](https://www.chao.fun/webview/thx) 
+请移步 [炒饭鸣谢](https://www.chao.fan/webview/thx) 
 
