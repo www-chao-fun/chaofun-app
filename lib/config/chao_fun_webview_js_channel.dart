@@ -115,7 +115,7 @@ class ChaoFunJsChannelMethods {
           showHeader: url.contains('https://chao.fan')
               ? (params['showHeader'] == null ? false : params['showHeader'])
               : true,
-          cookie: url.contains('https://chao.fan') ? true : false,
+          cookie: url.contains('https://chao.fan') || url.contains('https://chao.fun') || url.contains('http://47.96.98.153') ? true : false,
         ),
       ),
     );
