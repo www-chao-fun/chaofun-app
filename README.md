@@ -4,6 +4,10 @@
 # 关于炒饭
 [炒饭](https://chao.fan/app) 是一个鼓励优质内容的兴趣社区，Slogan是「世界那么大」，愿景是做中国最好的内容社区。
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.chao.app/)
+
 # 如何参与
 
 * 可以先去 issue 区查看目前有什么BUG或者需要新功能
