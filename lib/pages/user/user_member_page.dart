@@ -630,7 +630,7 @@ class _UserMemberPageState extends State<UserMemberPage>
                                       imgDataArr: [
                                         KSet.imgOrigin + memberInfo['icon']
                                         // +'?x-oss-process=image/resize,h_1024/format,webp/quality,q_75',
-                                        // 'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
+                                        // 'https://i.chao-fan.com/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
                                       ],
                                       index: 0,
                                     ),

@@ -187,7 +187,7 @@ class _PredictionPageState extends State<PredictionPage> {
                             delegate: SliverChildBuilderDelegate(
                               (content, index) {
                                 if (index == 0) {
-                                  //https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/0dd39345f731e512a2308a9cf20b8926.png
+                                  //https://i.chao-fan.com/biz/0dd39345f731e512a2308a9cf20b8926.png
                                   return Stack(
                                     children: [
                                       Container(
@@ -195,7 +195,7 @@ class _PredictionPageState extends State<PredictionPage> {
                                         decoration: BoxDecoration(
                                           image: new DecorationImage(
                                             image: CachedNetworkImageProvider(
-                                                'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/0dd39345f731e512a2308a9cf20b8926.png'),
+                                                'https://i.chao-fan.com/biz/0dd39345f731e512a2308a9cf20b8926.png'),
                                             //这里是从assets静态文件中获取的，也可以new NetworkImage(）从网络上获取
                                             centerSlice: new Rect.fromLTRB(
                                                 270.0, 180.0, 1360.0, 730.0),

@@ -891,7 +891,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
               )
             : CachedNetworkImage(
                 imageUrl:
-                    'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/9563cdd828d2b674c424b79761ccb4c0.png',
+                    'https://i.chao-fan.com/biz/9563cdd828d2b674c424b79761ccb4c0.png',
                 fit: BoxFit.contain,
                 errorWidget: (context, url, error) => Icon(Icons.error),
               );
@@ -1976,7 +1976,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           return new EmojiPage(callBack: (result) {
             if (dialogState != null) {
               dialogState((){
-                imageList.add(File('https://chaofun.oss-cn-hangzhou.aliyuncs.com/' + result));
+                imageList.add(File('https://i.chao-fan.com/' + result));
                 imagesUrl.add(result);
               });
             }
@@ -2570,7 +2570,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 imgDataArr: [
                   KSet.imgOrigin + data['imageName']
                   // +'?x-oss-process=image/format,webp/quality,q_75/resize,h_1024',
-                  // 'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
+                  // 'https://i.chao-fan.com/biz/097049900ba1c8e6cc03e27138e82758.jpg?x-oss-process=image/resize,h_512/format,webp/quality,q_75'
                 ],
                 imgHeight: data['height'],
                 imgWidth: data['width'],
@@ -2670,7 +2670,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   imgDataArr: doImgList(data), //[imgurl],
                   index: key,
                   heroTag:
-                      'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
+                      'https://i.chao-fan.com/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
                 ),
               ),
             );

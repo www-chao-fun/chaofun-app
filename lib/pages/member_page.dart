@@ -1086,7 +1086,7 @@ class _MemberPageState extends State<MemberPage> {
             child: Column(
               children: <Widget>[
                 Image.network(
-                  'https://chaofun.oss-cn-hangzhou.aliyuncs.com/990cf5792a356642fe46e7dbe577ebab.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                  'https://i.chao-fan.com/990cf5792a356642fe46e7dbe577ebab.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                   width: ScreenUtil().setWidth(60),
                 ),
                 Text(

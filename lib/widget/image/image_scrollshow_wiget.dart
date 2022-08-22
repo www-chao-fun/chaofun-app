@@ -170,13 +170,14 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
   }
 
   String getOssFileName(String url) {
-    if (!url.contains('i.chao.fun') && !url.contains('47.114.76.196') || !url.contains('i.chao.fan') || !url.contains('chaofun.oss-cn-hangzhou.aliyuncs.com')) {
+    if (!url.contains('i.chao.fun') && !url.contains('47.114.76.196') || !url.contains('i.chao-fan.com') || !url.contains('chaofun.oss-cn-hangzhou.aliyuncs.com')) {
       return null;
     } else {
       return url.replaceAll('https://', '').replaceAll('www.', '')
           .replaceAll('47.114.76.196/', '')
+          .replaceAll('i.chao-fan.com/', '')
           .replaceAll('i.chao.fun/', '')
-          .replaceAll('chaofun.oss-cn-hangzhou.aliyuncs.com', '').split("?")[0];
+          .replaceAll('chaofun.oss-cn-hangzhou.aliyuncs.com/', '').split("?")[0];
     }
   }
 

@@ -50,7 +50,7 @@ class _MsgAvatarState extends State<MsgAvatar> with TickerProviderStateMixin {
           ),
           margin: EdgeInsets.only(right: 10.0),
           child: new ImageView(
-            img:  widget.model['sender']['icon'] == null ?  'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75' :  KSet.imgOrigin +
+            img:  widget.model['sender']['icon'] == null ?  'https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75' :  KSet.imgOrigin +
                 widget.model['sender']['icon'] +
                 '?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
             height: 35,

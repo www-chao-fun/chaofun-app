@@ -66,7 +66,7 @@ class _CommentWidgetState extends State<CommentWidget> {
   Future<void> getDuration() async {
     if (init == false) {
       try {
-        var tmpDuration = await player.setAudioSource(AudioSource.uri(Uri.parse('https://chaofun.oss-cn-hangzhou.aliyuncs.com/' + widget.item['audio'])));
+        var tmpDuration = await player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao-fan.com/' + widget.item['audio'])));
         if (tmpDuration != null) {
           setState(() {
             duration = tmpDuration;
@@ -286,7 +286,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                               .split(',')), //[imgurl],
                                       index: index,
                                       heroTag:
-                                      'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
+                                      'https://i.chao-fan.com/biz/7101be096e69b69ab4e296a9f92bea76.jpg',
                                     ),
                                   ),
                                 );
@@ -379,7 +379,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                           onPressed: () async {
                             if (!player.playing) {
-                              player.setAudioSource(AudioSource.uri(Uri.parse('https://chaofun.oss-cn-hangzhou.aliyuncs.com/' + widget.item['audio'])));
+                              player.setAudioSource(AudioSource.uri(Uri.parse('https://i.chao-fan.com/' + widget.item['audio'])));
                               player.play();
                             } else {
                               player.stop();

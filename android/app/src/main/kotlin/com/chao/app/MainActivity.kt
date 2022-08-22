@@ -36,7 +36,7 @@ import java.util.*
 class MainActivity: FlutterActivity() {
     private val CHANNEL = "app.chao.fun/main_channel"
 
-    private val imageBaseUrl = "https://chaofun.oss-cn-hangzhou.aliyuncs.com/"
+    private val imageBaseUrl = "https://i.chao-fan.com/"
 
     private val baseUrl = "https://chao.fan/p/"
 

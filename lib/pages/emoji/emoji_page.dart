@@ -78,7 +78,7 @@ class _EmojiPageState extends State<EmojiPage> {
                             height: ScreenUtil().setWidth(120),
                             width: ScreenUtil().setWidth(120),
                             child: Image.network(
-                              'https://chaofun.oss-cn-hangzhou.aliyuncs.com/' + allEmojis[vIndex * lineEmojiNum + hIndex]['name'] + '?x-oss-process=image/resize,h_360/format,webp/quality,q_75',
+                              'https://i.chao-fan.com/' + allEmojis[vIndex * lineEmojiNum + hIndex]['name'] + '?x-oss-process=image/resize,h_360/format,webp/quality,q_75',
                               height: ScreenUtil().setWidth(120),
                               width: ScreenUtil().setWidth(120),
                               fit: BoxFit.cover,

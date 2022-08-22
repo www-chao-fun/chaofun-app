@@ -244,7 +244,7 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
                             ));
                           },
                           child: new MyConversationView(
-                            imageUrl: strNoEmpty(data['avatar']) ? KSet.imgOrigin + data['avatar'] + '?x-oss-process=image/resize,h_120/format,webp/quality,q_75' : 'https://chaofun.oss-cn-hangzhou.aliyuncs.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
+                            imageUrl: strNoEmpty(data['avatar']) ? KSet.imgOrigin + data['avatar'] + '?x-oss-process=image/resize,h_120/format,webp/quality,q_75' : 'https://i.chao-fan.com/biz/08a2d3a676f4f520cb99910496e48b4e.png?x-oss-process=image/resize,h_80/format,webp/quality,q_75',
                             title: data['name'] ?? '',
                             content: getShowContent(data),
                             time: data['lastMessageTime'] == null ?  new Container() : timeView(data['lastMessageTime'])  ,

@@ -65,7 +65,7 @@ import CloudPushSDK
         
         if var newObject: NSMutableDictionary = shareObject as? NSMutableDictionary {
             
-            let imageBaseUrl = "https://chaofun.oss-cn-hangzhou.aliyuncs.com/"
+            let imageBaseUrl = "https://i.chao-fan.com/"
             
             let postBaseUrl = "https://chao.fan/p/"
             
