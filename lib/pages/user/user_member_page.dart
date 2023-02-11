@@ -387,12 +387,12 @@ class _UserMemberPageState extends State<UserMemberPage>
                                       context,
                                       MaterialPageRoute(
                                         // builder: (context) => WebViewExample(
-                                        //     url: 'https://chao.fan/p/417588', title: '炒饭用户及隐私政策'),
+                                        //     url: 'https://choa.fun/p/417588', title: '炒饭用户及隐私政策'),
                                         builder: (context) => ChaoFunWebView(
-                                          // url: 'https://chao.fan/p/417588',
+                                          // url: 'https://choa.fun/p/417588',
                                           url:
-                                          'https://chao.fan/webview/badge?badgeId=' +
-                                              (badges[index]['badge']['id'] == null ? '' : badges[index]['badge']['id'].toString()) , //'https://chao.fan/webview/agreement',
+                                          'https://choa.fun/webview/badge?badgeId=' +
+                                              (badges[index]['badge']['id'] == null ? '' : badges[index]['badge']['id'].toString()) , //'https://choa.fun/webview/agreement',
                                           title: badges[index]['badge']['name'],
                                           showAction: false,
                                         ),

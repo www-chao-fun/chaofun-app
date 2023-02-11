@@ -173,7 +173,7 @@ class MoreWidget{
             Navigator.of(context).pop();
           } else if (pushItem['value'] == '2') {
             Clipboard.setData(ClipboardData(
-                text: 'https://chao.fan/p/' + item['postId'].toString()));
+                text: 'https://choa.fun/p/' + item['postId'].toString()));
             Fluttertoast.showToast(
               msg: "已复制帖子链接",
               gravity: ToastGravity.CENTER,

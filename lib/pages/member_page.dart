@@ -320,7 +320,7 @@ class _MemberPageState extends State<MemberPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ChaoFunWebView(
-                    url: 'https://chao.fan/webview/fbi',
+                    url: 'https://choa.fun/webview/fbi',
                     title: '饭币（FBi）',
                     showAction: 0,
                     cookie: true,
@@ -600,7 +600,7 @@ class _MemberPageState extends State<MemberPage> {
     });
     Dio dio = new Dio();
     var res =
-        await dio.post("https://chao.fan/api/upload_image", data: formdata);
+        await dio.post("https://choa.fun/api/upload_image", data: formdata);
     print('上传结束');
     print(res);
     print(res.data['data']);
@@ -920,7 +920,7 @@ class _MemberPageState extends State<MemberPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ChaoFunWebView(
-                                url: 'https://chao.fan/webview/contact?v=1',
+                                url: 'https://choa.fun/webview/contact?v=1',
                                 title: '反馈建议',
                                 showAction: 0,
                                 cookie: true,
@@ -939,7 +939,7 @@ class _MemberPageState extends State<MemberPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChaoFunWebView(
-                              url: 'https://chao.fan/webview/thx',
+                              url: 'https://choa.fun/webview/thx',
                               title: '鸣谢',
                               showAction: 0,
                               cookie: true,
@@ -976,7 +976,7 @@ class _MemberPageState extends State<MemberPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChaoFunWebView(
-                              url: 'https://chao.fan/webview/useragree', //'https://chao.fan/webview/agreement',
+                              url: 'https://choa.fun/webview/useragree', //'https://choa.fun/webview/agreement',
                               title: '用户服务协议',
                               showAction: false,
                             ),
@@ -988,8 +988,8 @@ class _MemberPageState extends State<MemberPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChaoFunWebView(
-                              // url: 'https://chao.fan/p/417588',
-                              url: 'https://chao.fan/webview/agreement', //'https://chao.fan/webview/agreement',
+                              // url: 'https://choa.fun/p/417588',
+                              url: 'https://choa.fun/webview/agreement', //'https://choa.fun/webview/agreement',
                               title: '隐私政策',
                               showAction: false,
                             ),
@@ -1342,7 +1342,7 @@ class _MemberPageState extends State<MemberPage> {
           context,
           MaterialPageRoute(
             builder: (context) => ChaoFunWebView(
-              url: 'https://chao.fan/webview/cancelAccount',
+              url: 'https://choa.fun/webview/cancelAccount',
 //                            url: 'http://192.168.8.208:8099/webview/contact',
               // url: 'https://chao.fan',
               title: '如何注销账号',

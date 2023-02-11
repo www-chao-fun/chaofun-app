@@ -126,7 +126,7 @@ class _PredictionPageState extends State<PredictionPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ChaoFunWebView(
-                      url: 'https://chao.fan/webview/prediction/rank?id=' +
+                      url: 'https://choa.fun/webview/prediction/rank?id=' +
                           (gameData == null ? '0' : gameData['id'].toString()),
                       title: '积分排行榜',
                       showAction: 0,

@@ -102,7 +102,7 @@ class _ChatHomePageState extends State<ChatHomePage>  with AutomaticKeepAliveCli
       await Future.delayed(Duration(milliseconds: 1000));
     }
     allChannel = WebSocketChannel.connect(
-      Uri.parse('wss://chao.fan/ws/v0/all'),
+      Uri.parse('wss://choa.fun/ws/v0/all'),
     );
     authStream();
     allChannel.stream.listen((data) => processMessage(data),
@@ -318,7 +318,7 @@ class MyBehavior extends ScrollBehavior {
 }
 
 WebSocketChannel allChannel = WebSocketChannel.connect(
-  Uri.parse('wss://chao.fan/ws/v0/all'),
+  Uri.parse('wss://choa.fun/ws/v0/all'),
 );
 
 Future<dynamic> routePush(BuildContext context, Widget widget) {

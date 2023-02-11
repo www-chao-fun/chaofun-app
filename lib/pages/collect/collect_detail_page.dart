@@ -751,7 +751,7 @@ class _CollectDetailPageState extends State<CollectDetailPage>
                   context,
                   MaterialPageRoute(
                     builder: (context) => ChaoFunWebView(
-                      url: 'https://chao.fan/webview/forum/seting?forumId=' +
+                      url: 'https://choa.fun/webview/forum/seting?forumId=' +
                           forumData['id'].toString(),
                       // url: 'http://192.168.8.208:8099/f/3/setting',
                       title: '版块设置',

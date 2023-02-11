@@ -1775,7 +1775,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                     duration = await (new AudioPlayer()).setFilePath(uri);
                     setDialogState(() {});
 
-                    var response = await dio.post("https://chao.fan/api/upload_audio", data: formdata);
+                    var response = await dio.post("https://choa.fun/api/upload_audio", data: formdata);
                     setDialogState(() {
                       isLoading = false;
                     });
@@ -2032,7 +2032,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
     });
     Dio dio = new Dio();
     var response =
-        await dio.post("https://chao.fan/api/upload_image", data: formdata);
+        await dio.post("https://choa.fun/api/upload_image", data: formdata);
     print('上传结束');
     print(response);
     print(response.data['data']);

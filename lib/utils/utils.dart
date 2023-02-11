@@ -76,10 +76,12 @@ class Utils {
     if (url.startsWith("https://chao.fan/") ||
         url.startsWith("https://www.chao.fun") ||
         url.startsWith("http://chao.fun") ||
+        url.startsWith("https://choa.fun") ||
         url.startsWith("http://www.chao.fun") ||
         url.startsWith("https://chao.fan")) {
       var newUrl = url
           .replaceAll("https://chao.fan/", "")
+          .replaceAll("https://choa.fun/", "")
           .replaceAll("https://www.chao.fun/", "")
           .replaceAll("http://chao.fun", "")
           .replaceAll("http://www.chao.fun", "");
@@ -133,7 +135,6 @@ class Utils {
 
 //        });
       } else {
-        print('跳转首页');
         if (url == 'https://www.chao.fun' ||
             url == 'http://www.chao.fun' ||
             url == 'https://chao.fan' ||
@@ -141,7 +142,7 @@ class Utils {
             url == 'https://www.chao.fun/' ||
             url == 'http://www.chao.fun/' ||
             url == 'https://chao.fan/' ||
-            url == 'http://chao.fun/') {
+            url == 'https://chao.fun/') {
           Provider.of<CurrentIndexProvide>(context, listen: false)
               .currentIndex = 0;
           Navigator.pushAndRemoveUntil(

@@ -67,7 +67,7 @@ import CloudPushSDK
             
             let imageBaseUrl = "https://i.chao-fan.com/"
             
-            let postBaseUrl = "https://chao.fan/p/"
+            let postBaseUrl = "https://choa.fun/p/"
             
             var title = "无标题";
             
@@ -82,7 +82,7 @@ import CloudPushSDK
                 if (platform == UMSocialPlatformType.wechatSession  && (newObject["type"] as? String == "image" || newObject["type"] as? String == "gif" || newObject["type"] as? String == "article" || newObject["type"] as? String == "forward" || newObject["type"] as? String == "vote")) {
                     shareObject = UMShareMiniProgramObject.shareObject(withTitle: title, descr: "炒饭 - 世界那么大", thumImage: "") as! UMShareObject
                     (shareObject as! UMShareMiniProgramObject).path = "/pages/detail/detail?postId=" + String(newObject["postId"] as! Int);
-                    (shareObject as! UMShareMiniProgramObject).webpageUrl = "https://chao.fan/p/" + String(newObject["postId"] as! Int);
+                    (shareObject as! UMShareMiniProgramObject).webpageUrl = "https://choa.fun/p/" + String(newObject["postId"] as! Int);
                     (shareObject as! UMShareMiniProgramObject).userName = "gh_41eb4fc2a95b";
                     (shareObject as! UMShareMiniProgramObject).miniProgramType = UShareWXMiniProgramType.release;
                     
@@ -156,22 +156,22 @@ import CloudPushSDK
         UMCommonLogManager.setUp()
         UMAnalyticsSwift.init();
 
-        UMSocialGlobal.shareInstance()?.universalLinkDic = [UMSocialPlatformType.QQ.rawValue : "https://chao.fan/qq_conn/101935770"]
-        UMSocialGlobal.shareInstance()?.universalLinkDic = [UMSocialPlatformType.wechatSession.rawValue : "https://chao.fan/"]
-        UMSocialGlobal.shareInstance()?.universalLinkDic = [UMSocialPlatformType.sina.rawValue : "https://chao.fan/"]
+        UMSocialGlobal.shareInstance()?.universalLinkDic = [UMSocialPlatformType.QQ.rawValue : "https://choa.fun/qq_conn/101935770"]
+        UMSocialGlobal.shareInstance()?.universalLinkDic = [UMSocialPlatformType.wechatSession.rawValue : "https://choa.fun/"]
+        UMSocialGlobal.shareInstance()?.universalLinkDic = [UMSocialPlatformType.sina.rawValue : "https://choa.fun/"]
 
         UMCommonSwift.setLogEnabled(bFlag: true)
         UMCommonSwift.initWithAppkey(appKey: "5f7ea1ae80455950e49e063d", channel: "App Store")
 
-        WXApi.registerApp("wx301447e1e7833b29", universalLink: "https://chao.fan/")
+        WXApi.registerApp("wx301447e1e7833b29", universalLink: "https://choa.fun/")
 
         UMSocialManager.default()?.setPlaform(UMSocialPlatformType.wechatSession, appKey: "wx301447e1e7833b29", appSecret: "d108db12d305e28f9aa8e40396a4a14b", redirectURL: "https://www.umeng.com/social")
 
-        UMSocialManager.default()?.setPlaform(UMSocialPlatformType.QQ, appKey: "101935770", appSecret: "85fda2250376ca4a7a778a3be0088e53", redirectURL: "https://chao.fan/qq_conn/101935770")
+        UMSocialManager.default()?.setPlaform(UMSocialPlatformType.QQ, appKey: "101935770", appSecret: "85fda2250376ca4a7a778a3be0088e53", redirectURL: "https://choa.fun/qq_conn/101935770")
 
-        UMSocialManager.default()?.setPlaform(UMSocialPlatformType.dingDing, appKey: "dingoaas7n1scswrel4kyq", appSecret: "10DpFvqEBWY2IjkBqUEGFWZaTKXrvQW_ghjPmGB9qgfbNCxWftLsLAXiVG5bGnaR", redirectURL: "https://chao.fan/")
+        UMSocialManager.default()?.setPlaform(UMSocialPlatformType.dingDing, appKey: "dingoaas7n1scswrel4kyq", appSecret: "10DpFvqEBWY2IjkBqUEGFWZaTKXrvQW_ghjPmGB9qgfbNCxWftLsLAXiVG5bGnaR", redirectURL: "https://choa.fun/")
 
-        UMSocialManager.default()?.setPlaform(UMSocialPlatformType.sina, appKey: "1791909991", appSecret: "bdf690e90dab45bc2fa832417edd3762", redirectURL: "https://chao.fan/")
+        UMSocialManager.default()?.setPlaform(UMSocialPlatformType.sina, appKey: "1791909991", appSecret: "bdf690e90dab45bc2fa832417edd3762", redirectURL: "https://choa.fun/")
 //
 //        print("123");
     }

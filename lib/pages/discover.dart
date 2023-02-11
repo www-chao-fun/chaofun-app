@@ -116,7 +116,7 @@ class _DiscoverPageState extends State<DiscoverPage>
                   _tabWidget = [
                     AllDiscoverPage(),
                     ChaoFunWebView(
-                      url: 'https://chao.fan/webview/activity/index',
+                      url: 'https://choa.fun/webview/activity/index',
                       title: '123',
                       cookie: true,
                       showHeader: false,
@@ -127,7 +127,7 @@ class _DiscoverPageState extends State<DiscoverPage>
                     AddJoinPage(),
                     AllDiscoverPage(),
                     ChaoFunWebView(
-                      url: 'https://chao.fan/webview/activity/index',
+                      url: 'https://choa.fun/webview/activity/index',
                       title: '222',
                       cookie: true,
                       showHeader: false,

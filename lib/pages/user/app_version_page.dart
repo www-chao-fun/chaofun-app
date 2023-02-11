@@ -286,7 +286,7 @@ class _AppVersionPageState extends State<AppVersionPage> {
                         });
                         print('点击下载');
                         var id = await RUpgrade.upgrade(
-                            'https://chao.fan/chaofan.apk',
+                            'https://choa.fun/chaofan.apk',
                             fileName: 'chaofan.apk',
                             isAutoRequestInstall: true,
                             notificationStyle:
@@ -368,7 +368,7 @@ class _AppVersionPageState extends State<AppVersionPage> {
             // textColor: Colors.grey,
           );
           print('点击下载');
-          var id = await RUpgrade.upgrade('https://chao.fan/chaofan.apk',
+          var id = await RUpgrade.upgrade('https://choa.fun/chaofan.apk',
               fileName: 'chaofan.apk',
               isAutoRequestInstall: true,
               notificationStyle: NotificationStyle.speechAndPlanTime,

@@ -363,11 +363,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 context,
                 MaterialPageRoute(
                   // builder: (context) => WebViewExample(
-                  //     url: 'https://chao.fan/p/417588', title: '炒饭用户及隐私政策'),
+                  //     url: 'https://choa.fun/p/417588', title: '炒饭用户及隐私政策'),
                   builder: (context) => ChaoFunWebView(
-                    // url: 'https://chao.fan/p/417588',
+                    // url: 'https://choa.fun/p/417588',
                     url:
-                        'https://chao.fan/webview/useragree', //'https://chao.fan/webview/agreement',
+                        'https://choa.fun/webview/useragree', //'https://choa.fun/webview/agreement',
                     title: '用户服务协议',
                     showAction: false,
                   ),
@@ -395,11 +395,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 context,
                 MaterialPageRoute(
                   // builder: (context) => WebViewExample(
-                  //     url: 'https://chao.fan/p/417588', title: '炒饭用户及隐私政策'),
+                  //     url: 'https://choa.fun/p/417588', title: '炒饭用户及隐私政策'),
                   builder: (context) => ChaoFunWebView(
-                    // url: 'https://chao.fan/p/417588',
+                    // url: 'https://choa.fun/p/417588',
                     url:
-                        'https://chao.fan/webview/agreement', //'https://chao.fan/webview/agreement',
+                        'https://choa.fun/webview/agreement', //'https://choa.fun/webview/agreement',
                     title: '隐私政策',
                     showAction: false,
                   ),

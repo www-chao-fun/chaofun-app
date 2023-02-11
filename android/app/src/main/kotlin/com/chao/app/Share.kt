@@ -13,7 +13,7 @@ class Share {
 
         private val imageBaseUrl = "https://i.chao-fan.com/"
 
-        private val baseUrl = "https://chao.fan/p/"
+        private val baseUrl = "https://choa.fun/p/"
 
         private val miniProgramBaseUrl = "/pages/detail/detail?postId="
 
@@ -30,7 +30,7 @@ class Share {
 
                 if (share_media == SHARE_MEDIA.WEIXIN && (argMap["type"]!!.equals("image") ||  argMap["type"]!!.equals("forward") || argMap["type"]!!.equals("gif") ||  argMap["type"]!!.equals("article") || argMap["type"]!!.equals("vote") || argMap["type"]!!.equals("inner_video")) ) {
 
-                    var ummin = UMMin("https://chao.fan/p/" + (argMap["postId"] as java.lang.Integer))
+                    var ummin = UMMin("https://choa.fun/p/" + (argMap["postId"] as java.lang.Integer))
 
                     ummin.path = miniProgramBaseUrl + (argMap["postId"] as java.lang.Integer);
 

@@ -38,7 +38,7 @@ class MainActivity: FlutterActivity() {
 
     private val imageBaseUrl = "https://i.chao-fan.com/"
 
-    private val baseUrl = "https://chao.fan/p/"
+    private val baseUrl = "https://choa.fun/p/"
 
     private var inited = false;
 

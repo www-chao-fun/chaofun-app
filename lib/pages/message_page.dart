@@ -344,7 +344,7 @@ class _MessagePageState extends State<MessagePage> {
             );
           } else if (item['type'] == 'text_notice' && item['link'] != null) {
             Utils.toNavigate(context, item['link'], '炒饭通知');
-            // https://chao.fan/p/1026976
+            // https://choa.fun/p/1026976
           }
         },
         child: Container(

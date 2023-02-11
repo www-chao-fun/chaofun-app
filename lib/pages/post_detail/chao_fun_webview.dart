@@ -63,7 +63,7 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
   Completer<InAppWebViewController>();
   InAppWebViewController webView;
   final GlobalKey webViewKey = GlobalKey();
-  CookieManager cookieManager = new CookieManager();
+  CookieManager cookieManager = CookieManager.instance();
   String url = "";
   String title = "";
   double progress = 0;
@@ -112,7 +112,7 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
       print(getcookieList[1].runtimeType.toString());
       print(getcookieList[1] == '');
       Uri domain = getDomain();
-      if (domain.host == 'chao.fun' || domain.host == 'www.chao.fun' || domain.host == 'chao.fan' || domain.host == 'www.chao.fun' || domain.host == '47.96.98.153') {
+      if (domain.host == 'choa.fun' || domain.host == 'tuxun.fun' || domain.host == 'chao.fun' || domain.host == 'www.chao.fun' || domain.host == 'chao.fan' || domain.host == 'www.chao.fun' || domain.host == '47.96.98.153') {
         getcookieList.forEach(
               (item) {
             if (item != '') {

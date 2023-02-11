@@ -437,7 +437,7 @@ class _SubmitPageState extends State<SubmitPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ChaoFunWebView(
-                                    url: "https://chao.fan/webview/forum/show_rule?forumId=" + forumId,
+                                    url: "https://choa.fun/webview/forum/show_rule?forumId=" + forumId,
                                     title: "发帖规范",
                                     showHeader: true,
                                     cookie: true,
@@ -1440,7 +1440,7 @@ class _SubmitPageState extends State<SubmitPage> {
 
     Dio dio = new Dio();
     var response =
-    await dio.post("https://chao.fan/api/upload_image", data: formdata);
+    await dio.post("https://choa.fun/api/upload_image", data: formdata);
     print('上传结束');
     print(response);
     print(response.data['data']);
@@ -1753,7 +1753,7 @@ class _SubmitPageState extends State<SubmitPage> {
             duration = await (new AudioPlayer()).setFilePath(uri);
             setState(() {});
 
-            var response = await dio.post("https://chao.fan/api/upload_audio", data: formdata);
+            var response = await dio.post("https://choa.fun/api/upload_audio", data: formdata);
             setState(() {
               isLoading = false;
             });
@@ -2554,7 +2554,7 @@ class _SubmitPageState extends State<SubmitPage> {
 
     Dio dio = new Dio();
     var response =
-    await dio.post("https://chao.fan/api/upload_image", data: formdata);
+    await dio.post("https://choa.fun/api/upload_image", data: formdata);
     print('上传结束');
     print(response);
     print(response.data['data']);

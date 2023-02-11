@@ -152,7 +152,7 @@ class HttpUtil {
       if (response.data['hintMessage'] != null) {
         Fluttertoast.showToast(
           msg: response.data['hintMessage'],
-          gravity: ToastGravity.BOTTOM,
+          gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 2,
         );
       }

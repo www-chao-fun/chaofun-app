@@ -452,7 +452,7 @@ class _SelfHeaderState extends State<SelfHeader> {
     });
     Dio dio = new Dio();
     var res =
-        await dio.post("https://chao.fan/api/upload_image", data: formdata);
+        await dio.post("https://choa.fun/api/upload_image", data: formdata);
     print('上传结束');
     print(res);
     print(res.data['data']);
