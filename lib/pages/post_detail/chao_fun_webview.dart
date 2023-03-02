@@ -123,6 +123,11 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
                 name: item.split("=")[0],
                 value: item.split("=")[1],
               );
+              cookieManager.setCookie(
+                url: Uri.parse('https://tuxun.fun'),
+                name: item.split("=")[0],
+                value: item.split("=")[1],
+              );
               print(cookieManager);
             }
           },
