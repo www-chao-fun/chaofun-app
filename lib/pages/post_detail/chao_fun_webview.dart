@@ -112,7 +112,7 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
       print(getcookieList[1].runtimeType.toString());
       print(getcookieList[1] == '');
       Uri domain = getDomain();
-      if (domain.host == 'choa.fun' || domain.host == 'tuxun.fun' || domain.host == 'chao.fun' || domain.host == 'www.chao.fun' || domain.host == 'chao.fan' || domain.host == 'www.chao.fun' || domain.host == '47.96.98.153') {
+      if (domain.host == 'cf.qq.cab' || domain.host == 'qq.cab' || domain.host == 'choa.fun' || domain.host == 'tuxun.fun' || domain.host == 'chao.fun' || domain.host == 'www.chao.fun' || domain.host == 'chao.fan' || domain.host == 'www.chao.fun' || domain.host == '47.96.98.153') {
         getcookieList.forEach(
               (item) {
             if (item != '') {
@@ -124,7 +124,17 @@ class _WebViewExampleState extends State<ChaoFunWebView> {
                 value: item.split("=")[1],
               );
               cookieManager.setCookie(
+                url: Uri.parse('https://chao.fan'),
+                name: item.split("=")[0],
+                value: item.split("=")[1],
+              );
+              cookieManager.setCookie(
                 url: Uri.parse('https://tuxun.fun'),
+                name: item.split("=")[0],
+                value: item.split("=")[1],
+              );
+              cookieManager.setCookie(
+                url: Uri.parse('https://choa.fun'),
                 name: item.split("=")[0],
                 value: item.split("=")[1],
               );
