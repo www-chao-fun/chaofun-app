@@ -44,7 +44,7 @@ class _SendMessageViewState extends State<SendMessageView> {
 
   bool checkIsLink(String content) {
     if (content == null) {
-      return null;
+      return false;
     }
 
     if ((content.trim().startsWith("https://chao.fan") || content.trim().startsWith("https://choa.fun") || content.trim().startsWith("https://chao.fun") || content.trim().startsWith("https://tuxun.fun")) && !content.contains(" ")) {
